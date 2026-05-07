@@ -1,0 +1,22 @@
+[
+  {
+    "listing": "/blog/index.html",
+    "items": [
+      "/blog/posts/second-blog/second-blog.html",
+      "/blog/posts/maximum-likelihood-estimation/index.html",
+      "/blog/posts/probability-versus-likelihood/index.html",
+      "/blog/posts/dual-axis-plots/index.html",
+      "/blog/posts/multicollinearity-problem-or-not/index.html"
+    ]
+  },
+  {
+    "listing": "/index.html",
+    "items": [
+      "/blog/posts/second-blog/second-blog.html",
+      "/blog/posts/maximum-likelihood-estimation/index.html",
+      "/blog/posts/probability-versus-likelihood/index.html",
+      "/blog/posts/dual-axis-plots/index.html",
+      "/blog/posts/multicollinearity-problem-or-not/index.html"
+    ]
+  }
+]

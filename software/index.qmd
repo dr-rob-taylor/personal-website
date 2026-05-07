@@ -1,0 +1,14 @@
+---
+title: "Software"
+subtitle: "Web applications, R packages, and code"
+page-layout: full
+toc: false
+title-block-banner: true
+search: false
+---
+
+### Medium LaTeX Editor
+
+I got fed up with Medium's lack of LaTeX support and the third party applications, so I created my own. If you publish mathematical content on Medium you might find this useful.
+
+<a role="button" class="btn btn-outline-primary" href="latex-editor/" target="_blank">Open App</a>

@@ -1,0 +1,43 @@
+project:
+  type: website
+
+website:
+  title: "robtaylor"
+  image: ""
+  favicon: ""
+  navbar:
+    title: "rob taylor"
+    background: primary
+    collapse-below: lg
+    left:
+      - href: index.qmd
+        text: Home
+      - href: about/
+        text: About
+      - href: blog/
+        text: Blog
+      - href: software/
+        text: Software
+      - href: resources/
+        text: Resources
+      - href: publications/
+        text: Publications
+  page-footer:
+    background: dark
+    foreground: light
+    left: "© Rob Taylor. Built with [Quarto](https://quarto.org)."
+    center: "Statistics, probability, and Bayesian thinking"
+    right: "[robtaylor.co.nz](https://robtaylor.co.nz)"
+      
+format:
+  html:
+    toc: true
+    anchor-sections: false
+    smooth-scroll: true
+    html-math-method: katex
+    respect-user-color-scheme: true
+    theme: [cosmo, theme.scss]
+    css: styles.css
+
+editor: visual
+

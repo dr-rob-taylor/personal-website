@@ -1,0 +1,119 @@
+/*-- scss:defaults --*/
+
+/* ---- Bootstrap core ---- */
+$primary:   #98776f;
+$secondary: #c79478;
+$tertiary:  #b1a49a;
+$success:   #73a75c;
+$info:      #625d5a;
+$warning:   #f19724;
+$danger:    #f44336;
+$light:     #fff9f9;
+$dark:      #454444;
+
+/* ---- Extended accent colours ---- */
+$accent-warm:    #d4956a;   /* warmer nudge from secondary */
+$accent-cool:    #7a9e8e;   /* muted teal complement */
+$accent-muted:   #a89890;   /* desaturated primary for subtle highlights */
+$accent-earth:   #8b6f5e;   /* deeper earth tone */
+
+/* ---- Surface colours ---- */
+$surface-base:     #fff9f9;   /* matches $light — page background */
+$surface-raised:   #f5eeeb;   /* slightly warmer — cards, panels */
+$surface-overlay:  #ede4e0;   /* modals, dropdowns, hover states */
+$surface-sunken:   #e8ddd9;   /* inputs, code blocks, inset areas */
+$surface-dark:     #454444;   /* matches $dark — inverted surfaces */
+$surface-darker:   #2f2e2e;   /* deeper dark — footer, code bg */
+$surface-darkest:  #1f1e1e;   /* deepest dark layer */
+
+/* ---- Border colours ---- */
+$border-subtle:    rgba(152, 119, 111, 0.12);  /* barely visible */
+$border-muted:     rgba(152, 119, 111, 0.25);  /* default borders */
+$border-strong:    rgba(152, 119, 111, 0.45);  /* emphasis borders */
+$border-accent:    $primary;                    /* accent bordered elements */
+$border-dark:      rgba(255, 249, 249, 0.08);  /* borders on dark surfaces */
+
+/* ---- Text colours ---- */
+$text-primary:     #2c2928;   /* near-black with warm undertone */
+$text-secondary:   #5c5250;   /* muted body text */
+$text-tertiary:    #8c7e7a;   /* captions, metadata, placeholders */
+$text-muted:       #a89890;   /* very muted, hints */
+$text-inverse:     #fff9f9;   /* text on dark surfaces */
+$text-inverse-muted: #c4b5b0; /* muted text on dark surfaces */
+$text-accent:      $primary;  /* highlighted or linked text */
+$text-success:     #4e7a3d;   /* darker success for readable text */
+$text-warning:     #b87010;   /* darker warning for readable text */
+$text-danger:      #c1281e;   /* darker danger for readable text */
+
+/* ---- Bootstrap overrides using extended palette ---- */
+$body-bg:          $surface-base;
+$body-color:       $text-primary;
+$link-color:       $primary;
+$link-hover-color: $accent-earth;
+
+$card-bg:          $surface-raised;
+$card-border-color: $border-muted;
+
+$input-bg:         $surface-sunken;
+$input-border-color: $border-muted;
+$input-focus-border-color: $primary;
+$input-color:      $text-primary;
+
+$navbar-light-color:        $text-secondary;
+$navbar-light-hover-color:  $primary;
+$navbar-light-active-color: $primary;
+
+$dropdown-bg:              $surface-overlay;
+$dropdown-border-color:    $border-muted;
+$dropdown-link-color:      $text-primary;
+$dropdown-link-hover-bg:   $surface-raised;
+$dropdown-link-hover-color: $primary;
+
+$code-color:       $accent-earth;
+$code-bg:          $surface-sunken;
+$pre-bg:           $surface-sunken;
+
+$table-border-color:      $border-muted;
+$table-striped-bg:        $surface-raised;
+$table-hover-bg:          $surface-overlay;
+
+$badge-border-radius:     3px;
+
+$hr-color:         $border-muted;
+$hr-opacity:       1;
+
+/*-- scss:rules --*/
+
+/* ---- Expose custom variables as CSS custom properties ---- */
+/* This makes them available to your styles.css as well */
+:root {
+  --accent-warm:    #{$accent-warm};
+  --accent-cool:    #{$accent-cool};
+  --accent-muted:   #{$accent-muted};
+  --accent-earth:   #{$accent-earth};
+
+  --surface-base:    #{$surface-base};
+  --surface-raised:  #{$surface-raised};
+  --surface-overlay: #{$surface-overlay};
+  --surface-sunken:  #{$surface-sunken};
+  --surface-dark:    #{$surface-dark};
+  --surface-darker:  #{$surface-darker};
+  --surface-darkest: #{$surface-darkest};
+
+  --border-subtle:   #{$border-subtle};
+  --border-muted:    #{$border-muted};
+  --border-strong:   #{$border-strong};
+  --border-accent:   #{$border-accent};
+  --border-dark:     #{$border-dark};
+
+  --text-primary:        #{$text-primary};
+  --text-secondary:      #{$text-secondary};
+  --text-tertiary:       #{$text-tertiary};
+  --text-muted:          #{$text-muted};
+  --text-inverse:        #{$text-inverse};
+  --text-inverse-muted:  #{$text-inverse-muted};
+  --text-accent:         #{$text-accent};
+  --text-success:        #{$text-success};
+  --text-warning:        #{$text-warning};
+  --text-danger:         #{$text-danger};
+}

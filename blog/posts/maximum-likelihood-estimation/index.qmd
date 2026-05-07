@@ -1,0 +1,132 @@
+---
+title: "An Introduction to Maximum Likelihood Estimation"
+subtitle: "A closer look at how to derive the estimator for the Binomial model"
+description: | 
+  Categories
+author: "Rob Taylor, PhD"
+date: "2022-08-10"
+draft: false
+categories:
+  - statistics
+  - maximum likelihood
+  - data analysis
+image: 0_gL1OJ2wDj_CBTJYO.jpg
+image-alt: ""
+notes: "Photo by Codioful (Formerly Gradienta) on Unsplash"
+---
+
+### Introduction
+
+In a previous [post](https://medium.com/@dataforyou/on-probability-versus-likelihood-83386b81ad83), I spoke about the difference between probability and likelihood and touched on the subject of maximum likelihood estimation (MLE). Here we’ll take a closer look at MLE and derive the maximum likelihood estimator for the Binomial model from first principles.
+
+### More Coin Flipping
+
+Often when we compute simple statistics from data we’re actually doing MLE without even knowing it. I’ve always found this somewhat delightful; I’m not sure why, but I do. By way of example, suppose I flip a fair coin ten times and observe the following outcomes:
+
+$$
+Y = \{ H, T, H, H, T, H, T, T, H, H\}
+$$
+
+Suppose I now ask you to summarise this data by giving me the proportion of “heads” that resulted. Once you’re done thinking I’m a moron, you’ll say something like: “Well, out of ten throws there were a total of six heads; therefore, the proportion of heads is 6 over 10, which is 0.60, or 60 per cent”.
+
+And you’d be right.
+
+But it also turns out that this rather innocuous little calculation is precisely the solution you’d get by stepping through the MLE process. Crazy, huh? Let’s see how this works.
+
+### What is Maximum Likelihood Estimation?
+
+Maximum likelihood estimation is a way of estimating unknown parameters using observed data. The way it works is by finding combinations of parameters that maximize the *likelihood function* so that, given the assumed model, the data you have observed is most probable. If you imagine parameters like dials, what this boils down to is finding the dial settings that give the best fit to your data.
+
+Symbolically, we can express our goals as follows:
+
+$$
+\hat{\theta} = \argmax_{\theta \ \in \ \Theta} \ \mathcal{L}\left(\theta \ | \ X \right)
+$$
+
+All this is saying is we want to find the unique set of parameters (denoted by the lowercase Greek letter $\theta$) existing within the parameter space (denoted by the uppercase Greek letter $\Theta$) that maximizes the likelihood function, which itself is defined as:
+
+$$
+\mathcal{L}\left(\theta \ | \ X \right) = P \left(X \ | \ \theta \right)
+$$
+
+The term on the right-hand side is the probability mass function. More generally, it is a model function that describes how the data is distributed given certain parameter settings.
+
+### Throw a Log on the Likelihood
+
+Okay, so let's now connect these ideas with the coin flip data described above. But first, I’m just going to make a little change and replace all “H’s” with a 1 and all “T’s” with a 0. This means we can now take the sum over $X$ to get the total number of “heads”. Let’s call this $K$. The Binomial likelihood function can then be written as:
+
+$$
+\mathcal{L}\left(\theta \ | \ X \right) = \binom{N}{K} \ p^K \left( 1 - p \right)^{N - k}
+$$
+
+where the unknown rate parameter $p$ is what we are trying to estimate. When approaching these types of problems it is often more convenient (at least mathematically) to work with the log of the likelihood. So let’s do that by taking the natural log of both sides:
+
+$$
+\ln \mathcal{L}\left(\theta \ | \ X \right) = \ln \binom{N}{K} + K \ln p + \left( N - K\right)  \ln \left(1 - p \right)
+$$
+
+The first term on the right-hand side — the log of the binomial coefficient — is typically dropped because it’s a constant term that doesn’t affect parameter estimation. For present purposes, it really doesn’t matter whether you log transform the likelihood function or not. Because both functions are monotonically related you can maximize either one and arrive at the same result. In general, though, it’s a good idea to work with logs.
+
+### Taking Derivatives
+
+Right. So we now have our log-likelihood function. Now what?
+
+Well, you could take a brute force approach and simply try a whole bunch of values and see which gives the highest likelihood value. Given there is only one parameter to estimate — and it’s bounded between zero and one — this is actually a plausible approach. But such shenanigans will not be entertained here! So let’s be smart.
+
+What we really need to understand is how the log-likelihood function changes when we adjust our parameter value. Conveniently, we can get this information by taking the first derivative of the log-likelihood function with respect to *p* (assuming, of course, that the function is differentiable; which in this case it is). Furthermore, *if* a solution exists — by which I mean, there is a parameter that maximizes the log-likelihood — then it must satisfy the following partial differential equation:
+
+$$
+\frac{\partial\ln \mathcal{L}(\theta \ | \ X)}{\partial\theta} = 0
+$$
+
+Okay, so what does this mean?
+
+For MLE purposes, we typically expect the log-likelihood to be a differentiable, continuous function. If this expectation holds then, definitionally, the maximum (or minimum) of such a function implies that its first derivative goes to zero at these points. What the equation above is stating is that, if we have successfully found the parameter that maximizes our target function, then the derivative of the log-likelihood should be zero.
+
+The cool thing is that if we set the derivative of the log-likelihood to zero, we can solve for the unknown parameter. Let’s try this with our coin flip data.
+
+First, let’s take a look at the first derivative of the Binomial likelihood function:
+
+$$
+\frac{d\ln \mathcal{L}(\theta \ | \ X)}{d\theta} = \frac{K}{p} - \frac{N - K}{1 - p}
+$$
+
+If you’re not sure how I got to this expression, that’s okay. In another [post](https://medium.com/@dataforyou/maximum-likelihood-estimation-part-2-the-deriving-49900b9ea427), I’ll show you how to derive this. But for now, all you need to know is that this *is* the first derivative. Next, we want to set this to zero like so:
+
+$$
+\frac{K}{p} - \frac{N - K}{1 - p} = 0
+$$
+
+With a little bit of algebra we can solve for *p* (again, I’ll derive this explicitly in another [post](https://medium.com/@dataforyou/maximum-likelihood-estimation-part-2-the-deriving-49900b9ea427)). Doing so reveals the maximum likelihood estimator:
+
+$$
+\hat{p} = \frac{K}{N}
+$$
+
+This is exactly what you calculated earlier! Remember, *K* is just the number of “heads” we observed and *N* was the total number of throws, which gives us 0.60. Amazing.
+
+### Finishing on a High
+
+We’re not quite done, though.
+
+There is an additional condition that needs to be met to ensure that we have encountered a maximum and not a minimum. Remember, both minimum and maximum values will result in the first derivative going to zero, so we need to be sure the log-likelihood is *concave* in the neighborhood of the estimate. That is, we want our estimate to be sitting on top of a peak, and not located at the bottom of a valley. To check this we must ensure the following condition is also true:
+
+$$
+\frac{\partial^2\ln \mathcal{L}(\theta \ | \ X)}{\partial\theta^2} \ < \ 0
+$$
+
+In very simple terms, what this says is that we should expect the *second* derivative of the log-likelihood to be less than zero in and around the maximum likelihood estimate. Let’s try this by plugging in our estimated value of 0.60:
+
+$$
+\frac{K}{p^2} - \frac{N - K}{(1 - p)^2} = \frac{6}{0.60^2} - \frac{10 - 6}{(1 - 0.60^2)} = -8.33
+$$
+
+which is less than zero. Happy days.
+
+### Final Points
+
+I should make clear that not all MLE problems can be solved this way. For this post, I deliberately picked an example where a unique solution exists. However, in the wild, this need not be the case. Moreover, real-world models typically have several parameters and produce distributions that are not necessarily linear. This often means simple analytical solutions are not obtainable and solutions must be obtained numerically using non-linear optimization algorithms.
+
+Nevertheless, I hope this was useful and provided you with a foundational idea of how MLE works. At the very least, next time you compute a binomial proportion, you can casually drop in that you just maximized the log-likelihood function.
+
+I hope you enjoyed this post!

@@ -1,0 +1,8 @@
+---
+title: "Resources"
+subtitle: "Technical notes, code, and presentations"
+page-layout: full
+toc: false
+title-block-banner: true
+search: false
+---

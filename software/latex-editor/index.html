@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Medium LaTeX Equation Exporter</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: #f5f5f0;
+    color: #1a1a1a;
+    min-height: 100vh;
+    padding: 2rem 1rem;
+  }
+
+  .container { max-width: 760px; margin: 0 auto; }
+  h1 { font-size: 18px; font-weight: 500; margin-bottom: 4px; }
+  .subtitle { font-size: 13px; color: #888; margin-bottom: 1.5rem; }
+
+  .card {
+    background: #fff;
+    border: 0.5px solid #e0e0d8;
+    border-radius: 12px;
+    padding: 1.25rem;
+    margin-bottom: 1rem;
+  }
+
+  .section-label {
+    font-size: 12px;
+    font-weight: 500;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 10px;
+  }
+
+  textarea {
+    width: 100%;
+    min-height: 100px;
+    padding: 10px 12px;
+    font-family: 'Menlo', 'Consolas', monospace;
+    font-size: 13px;
+    border: 0.5px solid #d8d8d0;
+    border-radius: 8px;
+    background: #fafaf8;
+    color: #1a1a1a;
+    resize: vertical;
+    line-height: 1.6;
+  }
+  textarea:focus { outline: none; border-color: #aaa; background: #fff; }
+
+  .tip { font-size: 12px; color: #aaa; margin-top: 6px; line-height: 1.6; }
+
+  .controls {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: 1rem;
+  }
+  .control-group { display: flex; align-items: center; gap: 8px; }
+  label { font-size: 13px; color: #666; white-space: nowrap; }
+
+  select {
+    padding: 6px 10px;
+    border: 0.5px solid #d8d8d0;
+    border-radius: 8px;
+    background: #fff;
+    color: #1a1a1a;
+    font-size: 13px;
+    cursor: pointer;
+  }
+  select:focus { outline: none; border-color: #aaa; }
+
+  input[type=range] { width: 90px; accent-color: #555; cursor: pointer; }
+  .range-val { font-size: 13px; font-weight: 500; min-width: 40px; }
+
+  .btn {
+    padding: 8px 18px;
+    border: 0.5px solid #d8d8d0;
+    border-radius: 8px;
+    background: #fff;
+    color: #1a1a1a;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.1s;
+  }
+  .btn:hover { background: #f5f5f0; }
+  .btn:active { transform: scale(0.98); }
+  .btn:disabled { opacity: 0.45; cursor: not-allowed; transform: none; }
+  .btn-primary { background: #1a1a1a; color: #fff; border-color: #1a1a1a; }
+  .btn-primary:hover { background: #333; }
+
+  #status {
+    font-size: 13px;
+    color: #888;
+    margin-bottom: 10px;
+    min-height: 20px;
+  }
+
+  #preview-wrap {
+    min-height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    background: #fafaf8;
+    border: 0.5px solid #e8e8e0;
+    border-radius: 8px;
+    overflow-x: auto;
+  }
+  #preview-wrap svg { max-width: 100%; height: auto; display: block; }
+  .placeholder { font-size: 13px; color: #bbb; }
+
+  #error-msg {
+    font-size: 13px;
+    color: #c0392b;
+    margin-top: 8px;
+    display: none;
+    padding: 8px 12px;
+    background: #fdf0ef;
+    border-radius: 6px;
+    border: 0.5px solid #f5c6c2;
+  }
+
+  #export-result { display: none; margin-top: 16px; }
+  .result-label { font-size: 12px; color: #aaa; margin-bottom: 8px; }
+
+  #export-img {
+    max-width: 100%;
+    border: 0.5px solid #e0e0d8;
+    border-radius: 8px;
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  #download-link {
+    display: inline-block;
+    padding: 8px 18px;
+    border: 0.5px solid #d8d8d0;
+    border-radius: 8px;
+    background: #fff;
+    color: #1a1a1a;
+    font-size: 14px;
+    text-decoration: none;
+    transition: background 0.1s;
+  }
+  #download-link:hover { background: #f5f5f0; }
+
+  @media (max-width: 500px) {
+    .controls { flex-direction: column; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>Medium LaTeX Equation Exporter</h1>
+  <p class="subtitle">Render LaTeX equations and export as PNG sized for Medium's content column.</p>
+
+  <div class="card">
+    <div class="section-label">LaTeX input</div>
+    <textarea id="latex-input"></textarea>
+    <p class="tip">Supports full amsmath: \begin{align}, \begin{align*}, \begin{gather}, \begin{cases}, etc. — Ctrl+Enter to render.</p>
+    <div class="controls">
+      <div class="control-group">
+        <label>Mode</label>
+        <select id="mode-select">
+          <option value="true" selected>Display block</option>
+          <option value="false">Inline</option>
+        </select>
+      </div>
+      <div class="control-group">
+        <label>Size</label>
+        <input type="range" min="6" max="24" step="1" value="12" id="size-slider">
+        <span class="range-val" id="size-val">12</span>
+      </div>
+      <button class="btn btn-primary" id="render-btn">Render</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="section-label">Preview</div>
+    <p id="status">Loading MathJax…</p>
+    <div id="preview-wrap"><span class="placeholder">Preview will appear here</span></div>
+    <div id="error-msg"></div>
+  </div>
+
+  <div class="card">
+    <div class="section-label">Export</div>
+    <div class="controls">
+      <div class="control-group">
+        <label>Width (px)</label>
+        <input type="range" min="200" max="700" step="10" value="680" id="width-slider" style="width:110px;">
+        <span class="range-val" id="width-val">680px</span>
+      </div>
+      <div class="control-group">
+        <label>Padding</label>
+        <select id="padding-select">
+          <option value="12">Compact</option>
+          <option value="24" selected>Normal</option>
+          <option value="40">Spacious</option>
+        </select>
+      </div>
+      <div class="control-group">
+        <label>Background</label>
+        <select id="bg-select">
+          <option value="white">White</option>
+          <option value="transparent">Transparent</option>
+        </select>
+      </div>
+      <button class="btn" id="export-btn">Export PNG ↓</button>
+    </div>
+    <p class="tip" style="margin-top:10px;">680px fills Medium's content column. Reduce width to scale equations down on mobile.</p>
+    <div id="export-result">
+      <p class="result-label">PNG preview — right-click to save, or use the download button.</p>
+      <img id="export-img" src="" alt="Exported equation">
+      <a id="download-link" href="" download="equation.png">Download equation.png</a>
+    </div>
+  </div>
+</div>
+
+<!-- MathJax config MUST come before the MathJax script -->
+<script>
+window.MathJax = {
+  tex: {
+    packages: {'[+]': ['ams']},
+    inlineMath:  [['\\(', '\\)']],
+    displayMath: [['\\[', '\\]']],
+  },
+  svg: {
+    fontCache: 'none',   // embed all glyph data inline — no external fetches
+    scale: 1,
+  },
+  options: {
+    skipHtmlTags: ['script','noscript','style','textarea','pre'],
+  },
+  startup: {
+    typeset: false,      // we call MathJax ourselves
+  },
+};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<script>
+const elInput    = document.getElementById('latex-input');
+const elMode     = document.getElementById('mode-select');
+const elSize     = document.getElementById('size-slider');
+const elSizeVal  = document.getElementById('size-val');
+const elRender   = document.getElementById('render-btn');
+const elStatus   = document.getElementById('status');
+const elPreview  = document.getElementById('preview-wrap');
+const elError    = document.getElementById('error-msg');
+const elWidth    = document.getElementById('width-slider');
+const elWidthVal = document.getElementById('width-val');
+const elPad      = document.getElementById('padding-select');
+const elBg       = document.getElementById('bg-select');
+const elExport   = document.getElementById('export-btn');
+const elResult   = document.getElementById('export-result');
+const elImg      = document.getElementById('export-img');
+const elDl       = document.getElementById('download-link');
+
+elSize.addEventListener('input',  () => elSizeVal.textContent  = elSize.value);
+elWidth.addEventListener('input', () => elWidthVal.textContent = elWidth.value + 'px');
+
+// Store the last rendered SVG node for export
+let lastSvg = null;
+
+// ── wait for MathJax ─────────────────────────────────────────────────────────
+MathJax.startup.promise.then(() => {
+  elStatus.textContent = '';
+  render();
+}).catch(e => {
+  elStatus.textContent = 'MathJax failed to load: ' + e.message;
+});
+
+// ── render ────────────────────────────────────────────────────────────────────
+function render() {
+  const latex   = elInput.value.trim();
+  const display = elMode.value === 'true';
+  const sizePx  = parseInt(elSize.value);  // desired font size in px
+
+  elError.style.display = 'none';
+  elPreview.innerHTML   = '<span class="placeholder">Rendering…</span>';
+  lastSvg = null;
+
+  try {
+    // tex2svg returns a <mjx-container> element wrapping an <svg>
+    // The em option does not affect visual size — we control that via CSS instead
+    const container = MathJax.tex2svg(latex, { display });
+    const svgEl     = container.querySelector('svg');
+
+    if (!svgEl) throw new Error('MathJax did not produce an SVG node.');
+
+    // MathJax sizes the SVG in ex units relative to the surrounding font-size.
+    // Wrapping it in a div with our chosen font-size scales the whole equation.
+    const wrapper = document.createElement('div');
+    wrapper.style.fontSize = sizePx + 'px';
+    wrapper.style.lineHeight = '1';
+
+    svgEl.style.maxWidth = '100%';
+    svgEl.style.height   = 'auto';
+    svgEl.style.display  = 'block';
+
+    wrapper.appendChild(svgEl);
+    elPreview.innerHTML = '';
+    elPreview.appendChild(wrapper);
+
+    // Store the SVG and chosen size for export
+    lastSvg = { el: svgEl.cloneNode(true), sizePx };
+
+  } catch (e) {
+    elError.textContent   = 'Error: ' + (e.message || e);
+    elError.style.display = 'block';
+    elPreview.innerHTML   = '<span class="placeholder">Fix the error above and re-render.</span>';
+  }
+}
+
+elRender.addEventListener('click', render);
+elInput.addEventListener('keydown', e => {
+  if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') render();
+});
+
+// ── export ────────────────────────────────────────────────────────────────────
+elExport.addEventListener('click', () => {
+  if (!lastSvg) { alert('Render an equation first.'); return; }
+
+  const canvasW = parseInt(elWidth.value);
+  const pad     = parseInt(elPad.value);
+  const bgWhite = elBg.value === 'white';
+  const dpr     = 2;
+  const sizePx  = lastSvg.sizePx;  // font-size used during render
+
+  // Re-render fresh (MathJax caches so this is instant)
+  let exportSvg;
+  try {
+    const c = MathJax.tex2svg(elInput.value.trim(), {
+      display: elMode.value === 'true',
+    });
+    exportSvg = c.querySelector('svg');
+    if (!exportSvg) throw new Error('No SVG produced.');
+  } catch(e) {
+    alert('Export render error: ' + e.message);
+    return;
+  }
+
+  // MathJax dimensions are in ex/em units relative to the surrounding font-size.
+  // 1ex ≈ 0.5 × font-size (px);  1em = font-size (px).
+  // We use the sizePx chosen by the slider for the conversion, then scale up
+  // by dpr for retina sharpness.
+  function exToPx(val, fontPx) {
+    if (!val) return 0;
+    const num = parseFloat(val);
+    if (val.endsWith('ex')) return num * fontPx * 0.5;
+    if (val.endsWith('em')) return num * fontPx;
+    return num;
+  }
+
+  const rawW  = exportSvg.getAttribute('width')  || '10ex';
+  const rawH  = exportSvg.getAttribute('height') || '4ex';
+  const natW  = exToPx(rawW, sizePx) * dpr;
+  const natH  = exToPx(rawH, sizePx) * dpr;
+
+  const innerW = canvasW - pad * 2;
+  const scale  = natW > innerW ? innerW / natW : 1;
+  const drawW  = Math.round(natW * scale);
+  const drawH  = Math.round(natH * scale);
+  const xOff   = Math.round((canvasW - drawW) / 2);
+  const totalH = drawH + pad * 2;
+
+  // Stamp explicit pixel dimensions before serialising
+  exportSvg.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
+  exportSvg.setAttribute('width',  natW);
+  exportSvg.setAttribute('height', natH);
+
+  const svgStr  = new XMLSerializer().serializeToString(exportSvg);
+  const dataUri = 'data:image/svg+xml;base64,' + btoa(unescape(encodeURIComponent(svgStr)));
+
+  elExport.disabled    = true;
+  elExport.textContent = 'Exporting…';
+  elResult.style.display = 'none';
+
+  const img = new Image();
+
+  img.onload = () => {
+    const canvas  = document.createElement('canvas');
+    canvas.width  = canvasW * dpr;
+    canvas.height = totalH  * dpr;
+
+    const ctx = canvas.getContext('2d');
+    ctx.scale(dpr, dpr);
+
+    if (bgWhite) {
+      ctx.fillStyle = '#ffffff';
+      ctx.fillRect(0, 0, canvasW, totalH);
+    }
+
+    ctx.drawImage(img, xOff, pad, drawW, drawH);
+
+    const pngUrl = canvas.toDataURL('image/png');
+    elImg.src = pngUrl;
+    elDl.href = pngUrl;
+    elResult.style.display = 'block';
+    elResult.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+    elExport.disabled    = false;
+    elExport.textContent = 'Export PNG ↓';
+  };
+
+  img.onerror = () => {
+    elExport.disabled    = false;
+    elExport.textContent = 'Export PNG ↓';
+    // Offer SVG as fallback — Medium accepts SVG uploads
+    const a    = document.createElement('a');
+    a.href     = dataUri;
+    a.download = 'equation.svg';
+    a.click();
+    alert('PNG conversion failed. An SVG file was downloaded instead — Medium accepts SVG image uploads.');
+  };
+
+  img.src = dataUri;
+});
+</script>
+</body>
+</html>

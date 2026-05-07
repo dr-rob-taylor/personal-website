@@ -1,0 +1,56 @@
+---
+title: "Rob Taylor"
+subtitle: "Psychologist, statistician, and writer"
+about:
+  template: trestles
+  image: ../images/profile.jpg
+  image-alt: "Profile picture"
+  image-width: 10rem
+  image-shape: round
+  links: 
+    - icon: bluesky
+      text: Bluesky
+      href: https://bsky.app/profile/dataforyou.bsky.social
+      target: _blank
+    - icon: linkedin
+      text: LinkedIn
+      href: https://www.linkedin.com/in/dr-rob-taylor/
+      target: _blank
+    - icon: github
+      text: GitHub
+      href: https://github.com/dr-rob-taylor
+      target: _blank
+page-layout: full
+toc: false
+---
+
+::: about-content
+### Why dataforyou?
+
+Statistics is one of the most powerful tools for understanding the world — and one of the most poorly taught. Too often it's presented as a collection of procedures to follow rather than a coherent way of thinking about uncertainty. The mechanics get taught; the intuition doesn't.
+
+**dataforyou** exists to change that, at least in a small way. Every post here is written with a single goal: to help you understand not just *how* a method works, but *why* it works and *when* you should trust it. The mathematics is taken seriously, but it's always in service of understanding — never an end in itself.
+
+If you leave a post feeling like something that was previously opaque has genuinely clicked, that's the goal achieved.
+
+### Background
+
+My path to statistics was not a straight line. I trained originally as a cognitive psychologist, completing a PhD focused on psychophysics, visual memory, and perception. Much of that work involved building and fitting mathematical models to understand how humans process sensory information — which meant getting very comfortable with probability, inference, and the question of what data can and cannot tell you.
+
+That work was published in tier-one journals and gave me a deep appreciation for rigorous quantitative reasoning in the service of real scientific questions.
+
+From academia I moved into applied data science, working for New Zealand Police where the stakes of analytical decisions are very real. That experience — taking statistical thinking out of the controlled environment of a research lab and into messy, consequential, real-world problems — sharpened my understanding of where methods work, where they break down, and where good judgement has to fill the gap.
+
+### On Bayesian Inference
+
+If there is a thread running through most of what I write, it is probability as a language for uncertainty. Bayesian inference is not just a set of methods to me — it is a coherent framework for reasoning under uncertainty that I find both intellectually compelling and practically powerful.
+
+A recurring theme here will be building Bayesian intuition from the ground up: what it means to have a prior, what it means to update on evidence, and why that way of thinking changes how you approach data problems.
+
+### Get in Touch
+
+If you have questions, suggestions, or just want to talk statistics, I'd love to hear from you.
+
+[Email me](mailto:rob@robtaylor.co.nz) · [GitHub](https://github.com/yourusername)
+:::
+

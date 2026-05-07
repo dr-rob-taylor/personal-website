@@ -1,0 +1,57 @@
+---
+title: "Publications"
+subtitle: "Peer reviewed papers and works"
+page-layout: full
+toc: false
+title-block-banner: true
+search: false
+---
+
+::: about-content
+### 2022
+:::
+
+<p>[Taylor, R.]{.text-primary}, Tomić, I., Aagten-Murphy, D., & Bays, P. M. (2022). Working memory is updated by reallocation of resources from obsolete to new items. <em>Attention, Perception, & Psychophysics</em>, 1-15 (<a href="https://link.springer.com/article/10.3758/s13414-022-02584-2">pdf</a>)</p>
+
+::: about-content
+### 2020
+:::
+
+<p>Schneegans, S., [Taylor, R.]{.text-primary}, & Bays, P. M. (2020). Stochastic sampling provides a unifying account of visual working memory limits. <em>Proceedings of the National Academy of Sciences, 117(34)</em>, 20959-20968 (<a
+href="https://www.pnas.org/doi/epdf/10.1073/pnas.2004306117">pdf</a>)</p>
+
+<p>[Taylor, R.]{.text-primary}, & Bays, P. M. (2020). Theory of neural coding predicts an upper bound on estimates of memory variability. <em>Psychological Review, 127(5)</em>, 700 (<a
+href="https://psycnet.apa.org/fulltext/2020-19842-001.pdf">pdf</a>)</p>
+
+::: about-content
+### 2018
+::: 
+
+<p>[Taylor, R.]{.text-primary}, & Bays, P. M. (2018). Efficient coding in visual working memory accounts for stimulus-specific variations in recall. <em>Journal of Neuroscience, 38(32)</em>, 7132-7142 (<a
+href="https://www.jneurosci.org/content/jneuro/38/32/7132.full.pdf">pdf</a>)</p>
+
+<p>Bays, P. M., & [Taylor, R.]{.text-primary} (2018). A neural model of retrospective attention in visual working memory. <em>Cognitive Psychology, 100</em>, 43-52 (<a
+href="https://reader.elsevier.com/reader/sd/pii/S0010028517302645?token=2D25E60E7FA2ECFBE59E34B2372E0935898A6081D8FC2722E3E3A46C748A91DF118921F2113E17AC3B42881C4EFE39DF&amp;originRegion=us-east-1&amp;originCreation=20230507084750">pdf</a>)</p>
+
+::: about-content
+### 2017
+::: 
+
+<p>[Taylor, R.]{.text-primary}, Thomson, H., Sutton, D., & Donkin, C. (2017). Does working memory have a single capacity limit?. <em>Journal of Memory and Language, 93</em>, 67-81 (<a
+href="http://www2.psy.unsw.edu.au/users/cdonkin/publications/jml17.pdf">pdf</a>)</p>
+
+<p>Konstantinidis, E., [Taylor, R. T.]{.text-primary}, & Newell, B. R. (2018). Magnitude and incentives: revisiting the overweighting of extreme events in risky decisions from experience. <em>Psychonomic Bulletin & Review, 25(5)</em>, 1925-1933 (<a
+href="https://link.springer.com/article/10.3758/s13423-017-1383-8">pdf</a>)</p>
+
+<p>Hayes, B. K., Dunn, J. C., Joubert, A., & [Taylor, R.]{.text-primary} (2017). Comparing single‐and dual‐process models of memory development. <em>Developmental Science, 20(6)</em>, e12469 (<a
+href="https://onlinelibrary.wiley.com/doi/am-pdf/10.1111/desc.12469">pdf</a>)</p>
+
+::: about-content
+### 2016
+::: 
+
+<p>Kary, A., [Taylor, R.]{.text-primary}, & Donkin, C. (2016). Using Bayes factors to test the predictions of models: A case study in visual working memory. <em>Journal of Mathematical Psychology, 72</em>, 210-219 (<a
+href="http://www2.psy.unsw.edu.au/users/cdonkin/publications/jmp16.pdf">pdf</a>)</p>
+
+<p>Donkin, C., Kary, A., Tahir, F., & [Taylor, R.]{.text-primary} (2016). Resources masquerading as slots: Flexible allocation of visual working memory. <em>Cognitive Psychology, 85</em>, 30-42 (<a
+href="https://d1wqtxts1xzle7.cloudfront.net/47290784/cp16b-libre.pdf?1468742742=&amp;response-content-disposition=inline%3B+filename%3DResources_masquerading_as_slots_Flexible.pdf&amp;Expires=1683453391&amp;Signature=Y46~9NuEgvRcXssJKWAX8F9nTHXu8Ch4XLcTx41Q5T2vgF-geMaLmLLRQgj~zb3RQsyVdO2CGhuoakLbfQ7u-ju~2PdQoUbJxTOF6Eiy~rHXFuA3DOgQjROCWdMFcZah18e0~cqJ3qvXK65VzY1A0MyzBnLa~QhpzdciZrXdSyl20DRpsVmPYknxRTwdeHYP5oxtTjcjcch0LZlqx2uU9Hf5evtPoIa1aGvjiJmSFfx9azJV4AzScZ16uTbiPCTMOKNRbyrilhnOSnLXQyzl~wG7v4awBdEIznv8zQzFs~Ajs-WefaPWPaxQHvrubaWE5q-~G83I3usz9KSlsk-quQ__&amp;Key-Pair-Id=APKAJLOHF5GGSLRBV4ZA">pdf</a>)</p>

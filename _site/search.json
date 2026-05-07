@@ -1,0 +1,23 @@
+[
+  {
+    "objectID": "about/index.html",
+    "href": "about/index.html",
+    "title": "Rob Taylor",
+    "section": "",
+    "text": "Why dataforyou?\nStatistics is one of the most powerful tools for understanding the world — and one of the most poorly taught. Too often it’s presented as a collection of procedures to follow rather than a coherent way of thinking about uncertainty. The mechanics get taught; the intuition doesn’t.\ndataforyou exists to change that, at least in a small way. Every post here is written with a single goal: to help you understand not just how a method works, but why it works and when you should trust it. The mathematics is taken seriously, but it’s always in service of understanding — never an end in itself.\nIf you leave a post feeling like something that was previously opaque has genuinely clicked, that’s the goal achieved.\n\n\nBackground\nMy path to statistics was not a straight line. I trained originally as a cognitive psychologist, completing a PhD focused on psychophysics, visual memory, and perception. Much of that work involved building and fitting mathematical models to understand how humans process sensory information — which meant getting very comfortable with probability, inference, and the question of what data can and cannot tell you.\nThat work was published in tier-one journals and gave me a deep appreciation for rigorous quantitative reasoning in the service of real scientific questions.\nFrom academia I moved into applied data science, working for New Zealand Police where the stakes of analytical decisions are very real. That experience — taking statistical thinking out of the controlled environment of a research lab and into messy, consequential, real-world problems — sharpened my understanding of where methods work, where they break down, and where good judgement has to fill the gap.\n\n\nOn Bayesian Inference\nIf there is a thread running through most of what I write, it is probability as a language for uncertainty. Bayesian inference is not just a set of methods to me — it is a coherent framework for reasoning under uncertainty that I find both intellectually compelling and practically powerful.\nA recurring theme here will be building Bayesian intuition from the ground up: what it means to have a prior, what it means to update on evidence, and why that way of thinking changes how you approach data problems.\n\n\nGet in Touch\nIf you have questions, suggestions, or just want to talk statistics, I’d love to hear from you.\nEmail me · GitHub"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "robtaylor",
+    "section": "",
+    "text": "Statistics has a reputation for being intimidating. It doesn’t have to be.\nThe content on this site is written for anyone who works with data and wants to go beyond the mechanics — to understand not just how the methods work, but why they work, and when to trust them. Every post aims to build genuine intuition from first principles, with mathematics that illuminates rather than obscures.\nLearn more\n\n\n\n\n\n\n\n\n\n\n\n\n\nRob Taylor\n\n\nMay 22, 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nA closer look at how to derive the estimator for the Binomial model\n\n\n\nRob Taylor, PhD\n\n\nAug 10, 2022\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nA discussion about two terms that are often used interchangeably, but are mathematically distinct\n\n\n\nRob Taylor, PhD\n\n\nAug 8, 2022\n\n\n\n\n\n\nNo matching items\n\nSee more\n\n\nNew posts straight to your inbox. No paywalls, ever."
+  },
+  {
+    "objectID": "index.html#stay-in-the-loop",
+    "href": "index.html#stay-in-the-loop",
+    "title": "robtaylor",
+    "section": "",
+    "text": "New posts straight to your inbox. No paywalls, ever."
+  }
+]
