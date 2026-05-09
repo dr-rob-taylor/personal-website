@@ -1,0 +1,151 @@
+---
+title: "Maximum Likelihood Estimation: Part 2"
+subtitle: "Deriving the Binomial estimator from first principles"
+description: |
+author: "Rob Taylor, PhD"
+date: "2022-08-27"
+draft: false
+categories:
+  - statistics
+  - maximum likelihood estimation
+  - binomial model
+notes: "Photo by Joel Filipe on Unsplash"
+image: joel-filipe-k8apfKm-Md4-unsplash.jpg
+image-alt: "photo by Joel Filipe"
+---
+
+### Introduction
+
+In an earlier [post](https://medium.com/@dataforyou/maximum-likelihood-estimation-cd9fd068e9a8), I stepped through maximum likelihood estimation and showed how to derive the estimator for the Binomial model from first principles. It was a bit of a whirlwind, for sure, and I threw a lot of equations at you. If you were left wondering where those equations came from you’ve come to the right place!
+
+In this post, I’ll take you through some of the math in greater detail. This post does assume that you’re comfortable with some calculus and algebra. If these topics aren’t really your thing, fear not — I’ll try not to get too bogged down in the weeds so you can still follow along. However, I do run through some elements rather quickly, so if you find yourself getting lost, that's okay. I will provide links to resources where I can.
+
+Okay, back to coin flips.
+
+### Deriving the Log-Likelihood
+
+Let’s assume we have flipped a coin $N$ times and have observed a total of $K$ heads. Strictly speaking, each coin flip is a [Bernoulli](https://en.wikipedia.org/wiki/Bernoulli_trial) trial that can take on values of either 0 or 1. The probability for each of these outcomes is governed by the rate parameter, $p$, where $P(X = 1) = p$ and $P(X = 0) = 1-p$. We can arbitrarily assign heads (or tails) to either 0 or 1 so in keeping with the previous post we’ll let heads = 1 and tails = 0.
+
+Our sequence of coin flips will now be a series of 0’s and 1’s, which is convenient because we can derive the number of observed heads using a simple summation:
+
+$$
+K = \sum_{i=1}^N X_i
+$$
+
+Having the situation set up in this way simplifies things somewhat and means the likelihood function can be expressed in the usual way:
+
+$$
+\begin{align}
+\mathcal{L}(p \ | \ K, \ N) &= P(K \ | \ p, \ N) \\[.5em]
+&= \binom{N}{K} \ p^K \ (1 - p)^{N - K}
+\end{align}
+$$
+
+where $p$ is the unknown parameter to be estimated.
+
+Now that we have the likelihood function we typically want to work with the log of this function. Why? Well, two reasons (actually, it’s just one reason…).
+
+If you take a small value — a value less than 1 — and multiply it by itself many times, the returned value becomes smaller and smaller, and pretty soon you’ll be drowning in a sea of significant digits and scientific notation. Not ideal. If you take a look at the likelihood function above, you’ll see that we have small values raised to the power of $K$ and $N-K$. The log transformation helps with this by essentially expanding the range between 0 and 1. It allows smaller values to take on increasingly negative values.
+
+The flip side of this case is where you multiply a large value — values greater than 1 — by itself many times. Here, the returned value grows larger and larger, which means you can be dealing with some pretty heavy numbers. In this case, the log transformation compresses these growing values, bringing them down to a more manageable range.
+
+That was a very quick and dirty digression, but hopefully, it provided enough of a rationale for why we like [log transformations](https://en.wikipedia.org/wiki/Logarithm). Speaking of, let’s now derive the log-likelihood function. To do so we just need to take the log of both sides and simplify:
+
+$$
+\begin{align}
+\mathcal{L}(p \ | \ K, \ N) &= \ln \left[\binom{N}{K} p^K (1 - p)^{N - K} \right]\\[2em]
+&= \ln\binom{N}{K} + \ln p^K + \ln \left[(1 - p)^{N - K}\right]\\[2em]
+&= \ln\binom{N}{K} + K \ \ln p + (N - K) \ln (1 - p)
+\end{align}
+$$
+
+So, all that’s happening here is that each term in the likelihood function is log-transformed.
+
+For those who are still a little unsure of what has happened here, there are two things you need to know. First, if you take the log of the product of two values (actually, you can take any number of terms), that’s the same as adding the log-transformed values:
+
+$$
+\ln\left[a \cdot b\right] = \ln a + \ln b
+$$
+
+The second is what happens when you take the log of values that have been raised to some power:
+
+$$
+\ln\left[ a^b\right] = b \cdot \ln a
+$$
+
+If you equate $b$ with $K$ and $N-K$, and $a$ with $p$ and $1-p$, hopefully, you can see where the terms in log-likelihood come from.
+
+Onward!
+
+### First Derivative of Log-Likelihood Function
+
+Right. To find the maximum likelihood estimate we need the first derivative of the likelihood function with respect to $p$. Remember, the derivative should have a value of zero when $p$ is at a minimum or maximum value. Now, because we know the likelihood function for this example is a concave function of $p$, we know that a global maximum exists for some value of $p$*,* which will the point at which the derivative is zero.
+
+So, let’s take the first derivative of the log-likelihood function with respect to $p$*:*
+
+$$
+\begin{align}
+\frac{\mathrm{d} \ln \mathcal{L}(p \ | \ K,N)}{\mathrm{d}p} &= \frac{\mathrm{d}}{\mathrm{d}p} \left[ \ln\binom{N}{K} + K \ \ln p + (N - K) \ln (1 - p) \right] \\[2em]
+&= \frac{\mathrm{d}}{\mathrm{d}p} \ln \binom{N}{K} + K \frac{\mathrm{d}}{\mathrm{d}p} \ln p + (N - K)\frac{\mathrm{d}}{\mathrm{d}p} \ln (1 - p)\\[2em]
+&= 0 + K\frac{1}{p} + (N - K)\left[ \frac{1}{1 - p}(0-1)\right]\\[2em]
+&= \frac{K}{p} + \frac{N - K}{1 - p}
+\end{align}
+$$
+
+If all these hieroglyphics seem like gobbledegook to you, all that’s happening here is the application of certain [derivative rules](https://www.math.ucdavis.edu/~kouba/Math17BHWDIRECTORY/Derivatives.pdf). If the rules are unfamiliar to you I have provided a very quick primer in the appendix below. But all that matters, really, is the result in the bottom line, because that *is* the derivative.
+
+### Deriving the Maximum Likelihood Estimate
+
+Okay. so we now have an expression for the derivative. The next step is to actually find the value that reduces this expression to zero. So, how do we do that?
+
+Well, one method is trial and error: just plug in different values for *p* and see what you get. That’d get tedious pretty quickly and fortunately, there’s a better way. Remember, we want the value of $p$that coincides with the zero point of the derivative. This means that if we set the derivative to zero we can then solve for $p$. So let’s do that.
+
+But before we do, I always found it helpful to note the following equality:
+
+$$
+\frac{K}{p} - \frac{N - K}{1 - p} = \frac{K(1-p)}{p(1-p)} - \frac{p(N - K)}{p(1-p)}
+$$
+
+If we then set the left-hand side to zero and do some algebra we obtain the following:
+
+$$
+\begin{align}
+0 &= \frac{K(1-p)}{p(1-p)} - \frac{p(N - K)}{p(1-p)}\\[2em]
+\frac{p(N - K)}{p(1-p)} &= \frac{K(1-p)}{p(1-p)} \\[2em]
+p(N - K) &= K(1-p) \\[1em]
+pN - pK &= K - Kp \\[1em]
+pN &= K \\[1em]
+p &= \frac{K}{N}
+\end{align}
+$$
+
+and ta-da! We have the result:
+
+$$
+\hat{p}_{MLE} = \frac{K}{N}
+$$
+
+You can check this result by plugging the MLE into the first derivative. It should return a value of zero. But just to be sure, suppose we observe $K = 7$ heads out of $N = 10$ throws. The MLE for this data is therefore 0.7. Let’s plug these values in and see what happens:
+
+$$
+\begin{align}
+\frac{K}{p} - \frac{N - K}{1 - p} &= \frac{7}{.7} - \frac{10 - 7}{1 - .7} \\[0.75em]
+&= \frac{7}{.7} - \frac{3}{.3} \\[0.75em]
+&= 10 - 10 \\[0.75em]
+&= 0
+\end{align}
+$$
+
+Happy days.
+
+### A Note on Second Derivatives
+
+In my earlier post, I mentioned that it is also necessary to check the second derivative of the likelihood function to ensure that a global maximum has been obtained. This is generally a good practice — but I’m not going to do that here. Given that we know the likelihood function is concave the solution we have derived is unique. However, for models with several parameters and complex likelihood functions, it’s probably a good idea to check your solutions — so long as an analytical solution exists. If not, you’ll likely need to use numerical methods to estimate the parameters of your model. All of this is a little beyond the scope of this post, but down the line, I’ll discuss some of these methods.
+
+### Summing Up
+
+If you’ve got to this point, thanks for hanging in there.
+
+I covered a lot of rather technical stuff in this post and, to be fair, it was pitched with a more technical audience in mind. Nevertheless, even if calculus and algebra aren’t your strong suit, I’m hoping you got something useful out of this demonstration. I’m not sure how successful I was in avoiding the weeds but hopefully, the slight digressions helped you navigate them in some way.
+
+Thanks for reading, and as always, feel free to reach out, or leave a comment.
