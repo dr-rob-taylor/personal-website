@@ -1,8 +1,9 @@
 [
   {
-    "listing": "/blog/index.html",
+    "listing": "/index.html",
     "items": [
       "/blog/posts/second-blog/second-blog.html",
+      "/blog/posts/primer-on-p-values/index.html",
       "/blog/posts/maximum-likelihood-estimation/index.html",
       "/blog/posts/probability-versus-likelihood/index.html",
       "/blog/posts/dual-axis-plots/index.html",
@@ -10,9 +11,10 @@
     ]
   },
   {
-    "listing": "/index.html",
+    "listing": "/blog/index.html",
     "items": [
       "/blog/posts/second-blog/second-blog.html",
+      "/blog/posts/primer-on-p-values/index.html",
       "/blog/posts/maximum-likelihood-estimation/index.html",
       "/blog/posts/probability-versus-likelihood/index.html",
       "/blog/posts/dual-axis-plots/index.html",
