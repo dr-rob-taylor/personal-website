@@ -1,6 +1,0 @@
----
-title: "test"
-bibliography: references.bib
----
-
-[@shaw2019]

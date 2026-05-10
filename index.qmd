@@ -33,12 +33,12 @@ The content on this site is written for anyone who works with data and wants to 
 <a role="button" class="btn btn-outline-primary" href="blog/">See more</a>
 
 ::: newsletter-section
-## Stay in the Loop
+<!-- ## Stay in the Loop -->
 
-New posts straight to your inbox. No paywalls, ever.
+<!-- New posts straight to your inbox. No paywalls, ever. -->
 
-<iframe scrolling="no" style="width:100%!important;height:220px;border:1px #ccc solid !important" src="https://buttondown.email/YOURNAME?as_embed=true">
+<!-- <iframe scrolling="no" style="width:100%!important;height:220px;border:1px #ccc solid !important" src="https://buttondown.email/YOURNAME?as_embed=true"> -->
 
-</iframe>
+<!-- </iframe> -->
 :::
 :::::::
