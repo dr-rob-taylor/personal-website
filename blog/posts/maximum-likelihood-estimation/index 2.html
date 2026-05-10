@@ -6,8 +6,11 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Rob Taylor, PhD">
+<meta name="dcterms.date" content="2022-08-10">
+<meta name="description" content="Categories">
 
-<title>Publications – robtaylor</title>
+<title>An Introduction to Maximum Likelihood Estimation – robtaylor</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,23 +26,23 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../">
-<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
-<script src="../site_libs/quarto-html/popper.min.js"></script>
-<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
-<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-8bc69f571828cfa0f3b3588179e129ec.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-8bc69f571828cfa0f3b3588179e129ec.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -69,20 +72,63 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 <style>html{ scroll-behavior: smooth; }</style>
 
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
 
-<link rel="stylesheet" href="../styles.css">
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../../styles.css">
 </head>
 
-<body class="nav-fixed quarto-light">
+<body class="floating nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top quarto-banner">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <a href="../../../index.html" class="navbar-brand navbar-brand-logo">
     </a>
-    <a class="navbar-brand" href="../index.html">
+    <a class="navbar-brand" href="../../../index.html">
     <span class="navbar-title">rob taylor</span>
     </a>
   </div>
@@ -93,27 +139,27 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../index.html"> 
+    <a class="nav-link" href="../../../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../about/"> 
+    <a class="nav-link" href="../../../about/"> 
 <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../blog/"> 
+    <a class="nav-link" href="../../../blog/"> 
 <span class="menu-text">Blog</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../software/"> 
+    <a class="nav-link" href="../../../software/"> 
 <span class="menu-text">Software</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../resources/"> 
+    <a class="nav-link" href="../../../resources/"> 
 <span class="menu-text">Resources</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../publications/"> 
+    <a class="nav-link" href="../../../publications/"> 
 <span class="menu-text">Publications</span></a>
   </li>  
 </ul>
@@ -124,81 +170,158 @@ ul.task-list li input[type="checkbox"] {
     </nav>
 </header>
 <!-- content -->
-<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+<header id="title-block-header" class="quarto-title-block default toc-left page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
-    <div class="quarto-title column-page">
-      <h1 class="title">Publications</h1>
-            <p class="subtitle lead">Peer reviewed papers and works</p>
-                      </div>
+    <div class="quarto-title column-body">
+      <h1 class="title">An Introduction to Maximum Likelihood Estimation</h1>
+            <p class="subtitle lead">A closer look at how to derive the estimator for the Binomial model</p>
+                  <div>
+        <div class="description">
+          <p>Categories</p>
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">statistics</div>
+                <div class="quarto-category">maximum likelihood</div>
+                <div class="quarto-category">data analysis</div>
+              </div>
+                  </div>
   </div>
     
   
-  <div class="quarto-title-meta column-page">
+  <div class="quarto-title-meta">
 
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Rob Taylor, PhD </p>
+            </div>
+    </div>
       
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">August 10, 2022</p>
+      </div>
+    </div>
     
       
     </div>
     
   
-  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#more-coin-flipping" id="toc-more-coin-flipping" class="nav-link" data-scroll-target="#more-coin-flipping">More Coin Flipping</a></li>
+  <li><a href="#what-is-maximum-likelihood-estimation" id="toc-what-is-maximum-likelihood-estimation" class="nav-link" data-scroll-target="#what-is-maximum-likelihood-estimation">What is Maximum Likelihood Estimation?</a></li>
+  <li><a href="#throw-a-log-on-the-likelihood" id="toc-throw-a-log-on-the-likelihood" class="nav-link" data-scroll-target="#throw-a-log-on-the-likelihood">Throw a Log on the Likelihood</a></li>
+  <li><a href="#taking-derivatives" id="toc-taking-derivatives" class="nav-link" data-scroll-target="#taking-derivatives">Taking Derivatives</a></li>
+  <li><a href="#finishing-on-a-high" id="toc-finishing-on-a-high" class="nav-link" data-scroll-target="#finishing-on-a-high">Finishing on a High</a></li>
+  <li><a href="#final-points" id="toc-final-points" class="nav-link" data-scroll-target="#final-points">Final Points</a></li>
+  </ul>
+</nav>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+    </div>
 <!-- main -->
-<main class="content quarto-banner-title-block column-page" id="quarto-document-content">
+<main class="content quarto-banner-title-block" id="quarto-document-content">
 
 
 
 
 
-<section id="section" class="level3 about-content">
-<h3 data-anchor-id="section">2022</h3>
+<section id="introduction" class="level3">
+<h3 data-anchor-id="introduction">Introduction</h3>
+<p>In a previous <a href="https://medium.com/@dataforyou/on-probability-versus-likelihood-83386b81ad83">post</a>, I spoke about the difference between probability and likelihood and touched on the subject of maximum likelihood estimation (MLE). Here we’ll take a closer look at MLE and derive the maximum likelihood estimator for the Binomial model from first principles.</p>
 </section>
-<p>
-<span class="text-primary">Taylor, R.</span>, Tomić, I., Aagten-Murphy, D., &amp; Bays, P. M. (2022). Working memory is updated by reallocation of resources from obsolete to new items. <em>Attention, Perception, &amp; Psychophysics</em>, 1-15 (<a href="https://link.springer.com/article/10.3758/s13414-022-02584-2">pdf</a>)
-</p>
-<section id="section-1" class="level3 about-content">
-<h3 data-anchor-id="section-1">2020</h3>
+<section id="more-coin-flipping" class="level3">
+<h3 data-anchor-id="more-coin-flipping">More Coin Flipping</h3>
+<p>Often when we compute simple statistics from data we’re actually doing MLE without even knowing it. I’ve always found this somewhat delightful; I’m not sure why, but I do. By way of example, suppose I flip a fair coin ten times and observe the following outcomes:</p>
+<p><span class="math display">
+Y = \{ H, T, H, H, T, H, T, T, H, H\}
+</span></p>
+<p>Suppose I now ask you to summarise this data by giving me the proportion of “heads” that resulted. Once you’re done thinking I’m a moron, you’ll say something like: “Well, out of ten throws there were a total of six heads; therefore, the proportion of heads is 6 over 10, which is 0.60, or 60 per cent”.</p>
+<p>And you’d be right.</p>
+<p>But it also turns out that this rather innocuous little calculation is precisely the solution you’d get by stepping through the MLE process. Crazy, huh? Let’s see how this works.</p>
 </section>
-<p>
-Schneegans, S., <span class="text-primary">Taylor, R.</span>, &amp; Bays, P. M. (2020). Stochastic sampling provides a unifying account of visual working memory limits. <em>Proceedings of the National Academy of Sciences, 117(34)</em>, 20959-20968 (<a href="https://www.pnas.org/doi/epdf/10.1073/pnas.2004306117">pdf</a>)
-</p>
-<p>
-<span class="text-primary">Taylor, R.</span>, &amp; Bays, P. M. (2020). Theory of neural coding predicts an upper bound on estimates of memory variability. <em>Psychological Review, 127(5)</em>, 700 (<a href="https://psycnet.apa.org/fulltext/2020-19842-001.pdf">pdf</a>)
-</p>
-<section id="section-2" class="level3 about-content">
-<h3 data-anchor-id="section-2">2018</h3>
+<section id="what-is-maximum-likelihood-estimation" class="level3">
+<h3 data-anchor-id="what-is-maximum-likelihood-estimation">What is Maximum Likelihood Estimation?</h3>
+<p>Maximum likelihood estimation is a way of estimating unknown parameters using observed data. The way it works is by finding combinations of parameters that maximize the <em>likelihood function</em> so that, given the assumed model, the data you have observed is most probable. If you imagine parameters like dials, what this boils down to is finding the dial settings that give the best fit to your data.</p>
+<p>Symbolically, we can express our goals as follows:</p>
+<p><span class="math display">
+\hat{\theta} = \argmax_{\theta \ \in \ \Theta} \ \mathcal{L}\left(\theta \ | \ X \right)
+</span></p>
+<p>All this is saying is we want to find the unique set of parameters (denoted by the lowercase Greek letter <span class="math inline">\theta</span>) existing within the parameter space (denoted by the uppercase Greek letter <span class="math inline">\Theta</span>) that maximizes the likelihood function, which itself is defined as:</p>
+<p><span class="math display">
+\mathcal{L}\left(\theta \ | \ X \right) = P \left(X \ | \ \theta \right)
+</span></p>
+<p>The term on the right-hand side is the probability mass function. More generally, it is a model function that describes how the data is distributed given certain parameter settings.</p>
 </section>
-<p>
-<span class="text-primary">Taylor, R.</span>, &amp; Bays, P. M. (2018). Efficient coding in visual working memory accounts for stimulus-specific variations in recall. <em>Journal of Neuroscience, 38(32)</em>, 7132-7142 (<a href="https://www.jneurosci.org/content/jneuro/38/32/7132.full.pdf">pdf</a>)
-</p>
-<p>
-Bays, P. M., &amp; <span class="text-primary">Taylor, R.</span> (2018). A neural model of retrospective attention in visual working memory. <em>Cognitive Psychology, 100</em>, 43-52 (<a href="https://reader.elsevier.com/reader/sd/pii/S0010028517302645?token=2D25E60E7FA2ECFBE59E34B2372E0935898A6081D8FC2722E3E3A46C748A91DF118921F2113E17AC3B42881C4EFE39DF&amp;originRegion=us-east-1&amp;originCreation=20230507084750">pdf</a>)
-</p>
-<section id="section-3" class="level3 about-content">
-<h3 data-anchor-id="section-3">2017</h3>
+<section id="throw-a-log-on-the-likelihood" class="level3">
+<h3 data-anchor-id="throw-a-log-on-the-likelihood">Throw a Log on the Likelihood</h3>
+<p>Okay, so let’s now connect these ideas with the coin flip data described above. But first, I’m just going to make a little change and replace all “H’s” with a 1 and all “T’s” with a 0. This means we can now take the sum over <span class="math inline">X</span> to get the total number of “heads”. Let’s call this <span class="math inline">K</span>. The Binomial likelihood function can then be written as:</p>
+<p><span class="math display">
+\mathcal{L}\left(\theta \ | \ X \right) = \binom{N}{K} \ p^K \left( 1 - p \right)^{N - k}
+</span></p>
+<p>where the unknown rate parameter <span class="math inline">p</span> is what we are trying to estimate. When approaching these types of problems it is often more convenient (at least mathematically) to work with the log of the likelihood. So let’s do that by taking the natural log of both sides:</p>
+<p><span class="math display">
+\ln \mathcal{L}\left(\theta \ | \ X \right) = \ln \binom{N}{K} + K \ln p + \left( N - K\right)  \ln \left(1 - p \right)
+</span></p>
+<p>The first term on the right-hand side — the log of the binomial coefficient — is typically dropped because it’s a constant term that doesn’t affect parameter estimation. For present purposes, it really doesn’t matter whether you log transform the likelihood function or not. Because both functions are monotonically related you can maximize either one and arrive at the same result. In general, though, it’s a good idea to work with logs.</p>
 </section>
-<p>
-<span class="text-primary">Taylor, R.</span>, Thomson, H., Sutton, D., &amp; Donkin, C. (2017). Does working memory have a single capacity limit?. <em>Journal of Memory and Language, 93</em>, 67-81 (<a href="http://www2.psy.unsw.edu.au/users/cdonkin/publications/jml17.pdf">pdf</a>)
-</p>
-<p>
-Konstantinidis, E., <span class="text-primary">Taylor, R. T.</span>, &amp; Newell, B. R. (2018). Magnitude and incentives: revisiting the overweighting of extreme events in risky decisions from experience. <em>Psychonomic Bulletin &amp; Review, 25(5)</em>, 1925-1933 (<a href="https://link.springer.com/article/10.3758/s13423-017-1383-8">pdf</a>)
-</p>
-<p>
-Hayes, B. K., Dunn, J. C., Joubert, A., &amp; <span class="text-primary">Taylor, R.</span> (2017). Comparing single‐and dual‐process models of memory development. <em>Developmental Science, 20(6)</em>, e12469 (<a href="https://onlinelibrary.wiley.com/doi/am-pdf/10.1111/desc.12469">pdf</a>)
-</p>
-<section id="section-4" class="level3 about-content">
-<h3 data-anchor-id="section-4">2016</h3>
+<section id="taking-derivatives" class="level3">
+<h3 data-anchor-id="taking-derivatives">Taking Derivatives</h3>
+<p>Right. So we now have our log-likelihood function. Now what?</p>
+<p>Well, you could take a brute force approach and simply try a whole bunch of values and see which gives the highest likelihood value. Given there is only one parameter to estimate — and it’s bounded between zero and one — this is actually a plausible approach. But such shenanigans will not be entertained here! So let’s be smart.</p>
+<p>What we really need to understand is how the log-likelihood function changes when we adjust our parameter value. Conveniently, we can get this information by taking the first derivative of the log-likelihood function with respect to <em>p</em> (assuming, of course, that the function is differentiable; which in this case it is). Furthermore, <em>if</em> a solution exists — by which I mean, there is a parameter that maximizes the log-likelihood — then it must satisfy the following partial differential equation:</p>
+<p><span class="math display">
+\frac{\partial\ln \mathcal{L}(\theta \ | \ X)}{\partial\theta} = 0
+</span></p>
+<p>Okay, so what does this mean?</p>
+<p>For MLE purposes, we typically expect the log-likelihood to be a differentiable, continuous function. If this expectation holds then, definitionally, the maximum (or minimum) of such a function implies that its first derivative goes to zero at these points. What the equation above is stating is that, if we have successfully found the parameter that maximizes our target function, then the derivative of the log-likelihood should be zero.</p>
+<p>The cool thing is that if we set the derivative of the log-likelihood to zero, we can solve for the unknown parameter. Let’s try this with our coin flip data.</p>
+<p>First, let’s take a look at the first derivative of the Binomial likelihood function:</p>
+<p><span class="math display">
+\frac{d\ln \mathcal{L}(\theta \ | \ X)}{d\theta} = \frac{K}{p} - \frac{N - K}{1 - p}
+</span></p>
+<p>If you’re not sure how I got to this expression, that’s okay. In another <a href="https://medium.com/@dataforyou/maximum-likelihood-estimation-part-2-the-deriving-49900b9ea427">post</a>, I’ll show you how to derive this. But for now, all you need to know is that this <em>is</em> the first derivative. Next, we want to set this to zero like so:</p>
+<p><span class="math display">
+\frac{K}{p} - \frac{N - K}{1 - p} = 0
+</span></p>
+<p>With a little bit of algebra we can solve for <em>p</em> (again, I’ll derive this explicitly in another <a href="https://medium.com/@dataforyou/maximum-likelihood-estimation-part-2-the-deriving-49900b9ea427">post</a>). Doing so reveals the maximum likelihood estimator:</p>
+<p><span class="math display">
+\hat{p} = \frac{K}{N}
+</span></p>
+<p>This is exactly what you calculated earlier! Remember, <em>K</em> is just the number of “heads” we observed and <em>N</em> was the total number of throws, which gives us 0.60. Amazing.</p>
 </section>
-<p>
-Kary, A., <span class="text-primary">Taylor, R.</span>, &amp; Donkin, C. (2016). Using Bayes factors to test the predictions of models: A case study in visual working memory. <em>Journal of Mathematical Psychology, 72</em>, 210-219 (<a href="http://www2.psy.unsw.edu.au/users/cdonkin/publications/jmp16.pdf">pdf</a>)
-</p>
-<p>
-Donkin, C., Kary, A., Tahir, F., &amp; <span class="text-primary">Taylor, R.</span> (2016). Resources masquerading as slots: Flexible allocation of visual working memory. <em>Cognitive Psychology, 85</em>, 30-42 (<a href="https://d1wqtxts1xzle7.cloudfront.net/47290784/cp16b-libre.pdf?1468742742=&amp;response-content-disposition=inline%3B+filename%3DResources_masquerading_as_slots_Flexible.pdf&amp;Expires=1683453391&amp;Signature=Y46~9NuEgvRcXssJKWAX8F9nTHXu8Ch4XLcTx41Q5T2vgF-geMaLmLLRQgj~zb3RQsyVdO2CGhuoakLbfQ7u-ju~2PdQoUbJxTOF6Eiy~rHXFuA3DOgQjROCWdMFcZah18e0~cqJ3qvXK65VzY1A0MyzBnLa~QhpzdciZrXdSyl20DRpsVmPYknxRTwdeHYP5oxtTjcjcch0LZlqx2uU9Hf5evtPoIa1aGvjiJmSFfx9azJV4AzScZ16uTbiPCTMOKNRbyrilhnOSnLXQyzl~wG7v4awBdEIznv8zQzFs~Ajs-WefaPWPaxQHvrubaWE5q-~G83I3usz9KSlsk-quQ__&amp;Key-Pair-Id=APKAJLOHF5GGSLRBV4ZA">pdf</a>)
-</p>
+<section id="finishing-on-a-high" class="level3">
+<h3 data-anchor-id="finishing-on-a-high">Finishing on a High</h3>
+<p>We’re not quite done, though.</p>
+<p>There is an additional condition that needs to be met to ensure that we have encountered a maximum and not a minimum. Remember, both minimum and maximum values will result in the first derivative going to zero, so we need to be sure the log-likelihood is <em>concave</em> in the neighborhood of the estimate. That is, we want our estimate to be sitting on top of a peak, and not located at the bottom of a valley. To check this we must ensure the following condition is also true:</p>
+<p><span class="math display">
+\frac{\partial^2\ln \mathcal{L}(\theta \ | \ X)}{\partial\theta^2} \ &lt; \ 0
+</span></p>
+<p>In very simple terms, what this says is that we should expect the <em>second</em> derivative of the log-likelihood to be less than zero in and around the maximum likelihood estimate. Let’s try this by plugging in our estimated value of 0.60:</p>
+<p><span class="math display">
+\frac{K}{p^2} - \frac{N - K}{(1 - p)^2} = \frac{6}{0.60^2} - \frac{10 - 6}{(1 - 0.60^2)} = -8.33
+</span></p>
+<p>which is less than zero. Happy days.</p>
+</section>
+<section id="final-points" class="level3">
+<h3 data-anchor-id="final-points">Final Points</h3>
+<p>I should make clear that not all MLE problems can be solved this way. For this post, I deliberately picked an example where a unique solution exists. However, in the wild, this need not be the case. Moreover, real-world models typically have several parameters and produce distributions that are not necessarily linear. This often means simple analytical solutions are not obtainable and solutions must be obtained numerically using non-linear optimization algorithms.</p>
+<p>Nevertheless, I hope this was useful and provided you with a foundational idea of how MLE works. At the very least, next time you compute a binomial proportion, you can casually drop in that you just maximized the log-likelihood function.</p>
+<p>I hope you enjoyed this post!</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -267,7 +390,7 @@ Donkin, C., Kary, A., Tahir, F., &amp; <span class="text-primary">Taylor, R.</sp
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp("https:\/\/robtaylor\.co\.nz");
+        var filterRegex = new RegExp('/' + window.location.host + '/');
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
@@ -612,5 +735,5 @@ Donkin, C., Kary, A., Tahir, F., &amp; <span class="text-primary">Taylor, R.</sp
 
 
 
-<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+<script src="../../../site_libs/quarto-html/zenscroll-min.js"></script>
 </body></html>

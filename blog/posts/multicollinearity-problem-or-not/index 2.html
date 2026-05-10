@@ -6,8 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Rob Taylor, PhD">
+<meta name="dcterms.date" content="2022-06-25">
 
-<title>Publications – robtaylor</title>
+<title>Multicollinearity: Problem, or Not? – robtaylor</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,23 +25,23 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../">
-<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
-<script src="../site_libs/quarto-html/popper.min.js"></script>
-<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
-<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-8bc69f571828cfa0f3b3588179e129ec.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-8bc69f571828cfa0f3b3588179e129ec.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -69,20 +71,63 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 <style>html{ scroll-behavior: smooth; }</style>
 
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
 
-<link rel="stylesheet" href="../styles.css">
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../../styles.css">
 </head>
 
-<body class="nav-fixed quarto-light">
+<body class="floating nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top quarto-banner">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <a href="../../../index.html" class="navbar-brand navbar-brand-logo">
     </a>
-    <a class="navbar-brand" href="../index.html">
+    <a class="navbar-brand" href="../../../index.html">
     <span class="navbar-title">rob taylor</span>
     </a>
   </div>
@@ -93,27 +138,27 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../index.html"> 
+    <a class="nav-link" href="../../../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../about/"> 
+    <a class="nav-link" href="../../../about/"> 
 <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../blog/"> 
+    <a class="nav-link" href="../../../blog/"> 
 <span class="menu-text">Blog</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../software/"> 
+    <a class="nav-link" href="../../../software/"> 
 <span class="menu-text">Software</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../resources/"> 
+    <a class="nav-link" href="../../../resources/"> 
 <span class="menu-text">Resources</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../publications/"> 
+    <a class="nav-link" href="../../../publications/"> 
 <span class="menu-text">Publications</span></a>
   </li>  
 </ul>
@@ -124,81 +169,142 @@ ul.task-list li input[type="checkbox"] {
     </nav>
 </header>
 <!-- content -->
-<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+<header id="title-block-header" class="quarto-title-block default toc-left page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
-    <div class="quarto-title column-page">
-      <h1 class="title">Publications</h1>
-            <p class="subtitle lead">Peer reviewed papers and works</p>
-                      </div>
+    <div class="quarto-title column-body">
+      <h1 class="title">Multicollinearity: Problem, or Not?</h1>
+            <p class="subtitle lead">A brief guide on multicollinearity and how it affects multiple regression models</p>
+                                <div class="quarto-categories">
+                <div class="quarto-category">statistics</div>
+                <div class="quarto-category">linear regression</div>
+                <div class="quarto-category">data science</div>
+              </div>
+                  </div>
   </div>
     
   
-  <div class="quarto-title-meta column-page">
+  <div class="quarto-title-meta">
 
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Rob Taylor, PhD </p>
+            </div>
+    </div>
       
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">June 25, 2022</p>
+      </div>
+    </div>
     
       
     </div>
     
   
-  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#collinearity-and-multicollinearity" id="toc-collinearity-and-multicollinearity" class="nav-link" data-scroll-target="#collinearity-and-multicollinearity">Collinearity and Multicollinearity</a></li>
+  <li><a href="#breaking-ranks" id="toc-breaking-ranks" class="nav-link" data-scroll-target="#breaking-ranks">Breaking Ranks</a></li>
+  <li><a href="#imperfect-associations" id="toc-imperfect-associations" class="nav-link" data-scroll-target="#imperfect-associations">Imperfect Associations</a></li>
+  <li><a href="#inflated-models" id="toc-inflated-models" class="nav-link" data-scroll-target="#inflated-models">Inflated Models</a></li>
+  <li><a href="#design-issues" id="toc-design-issues" class="nav-link" data-scroll-target="#design-issues">Design Issues</a></li>
+  </ul>
+</nav>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+    </div>
 <!-- main -->
-<main class="content quarto-banner-title-block column-page" id="quarto-document-content">
+<main class="content quarto-banner-title-block" id="quarto-document-content">
 
 
 
 
 
-<section id="section" class="level3 about-content">
-<h3 data-anchor-id="section">2022</h3>
+<section id="introduction" class="level3">
+<h3 data-anchor-id="introduction">Introduction</h3>
+<p>You may have vague recollections from your university statistics courses that multicollinearity is a problem for multiple regression models. But just how problematic <em>is</em> multicollinearity? Well, like many topics in statistics, the answer isn’t entirely straightforward and depends on what you’re wanting to do with your model.</p>
+<p>In this post, I’ll step through some of the challenges that multicollinearity presents in multiple regression models, and provide some intuition for why it can be problematic.</p>
 </section>
-<p>
-<span class="text-primary">Taylor, R.</span>, Tomić, I., Aagten-Murphy, D., &amp; Bays, P. M. (2022). Working memory is updated by reallocation of resources from obsolete to new items. <em>Attention, Perception, &amp; Psychophysics</em>, 1-15 (<a href="https://link.springer.com/article/10.3758/s13414-022-02584-2">pdf</a>)
-</p>
-<section id="section-1" class="level3 about-content">
-<h3 data-anchor-id="section-1">2020</h3>
+<section id="collinearity-and-multicollinearity" class="level3">
+<h3 data-anchor-id="collinearity-and-multicollinearity">Collinearity and Multicollinearity</h3>
+<p>Before moving on, it’s a good idea to first nail down what collinearity and multicollinearity are. Luckily, if you’re familiar with regression the concepts are quite straightforward.</p>
+<p><em>Collinearity</em> exists if there is a linear association between <em>two</em> explanatory variables. What this implies is, for all observations <span class="math inline">i</span>, the following holds true:</p>
+<p><span class="math display">
+X_{2,i} = \alpha_0 + \alpha_1X_{1,i}
+</span></p>
+<p><em>Multicollinearity</em> is an extension of this idea and exists if there are linear associations between <em>more than two</em> explanatory variables. For example, you might have a situation where one variable is linearly associated with two other variables in your design matrix, like so:</p>
+<p><span class="math display">
+X_{3,i} = \alpha_0 + \alpha_1X_{1,i} + \alpha_2X_{2,i}
+</span></p>
+<p>Strictly speaking, multicollinearity is <em>not</em> correlation: rather, it implies the presence of <em>linear dependencies</em> between several explanatory variables. This is a nuanced point — but an important one — and what both examples illustrate is a <em>deterministic</em> association between predictors. This means there are simple transforms that can be applied to one variable to compute the exact value for another. If this is possible, then we say we have <em>perfect collinearity</em> or <em>perfect multicollinearity</em>.</p>
+<p>When fitting multiple regression models, it is exactly this that we need to avoid. Specifically, a critical assumption for multiple regression is that there is no <em>perfect</em> multicollinearity. So, we now know what perfect multicollinearity is, but <em>why</em> is it a problem?</p>
 </section>
-<p>
-Schneegans, S., <span class="text-primary">Taylor, R.</span>, &amp; Bays, P. M. (2020). Stochastic sampling provides a unifying account of visual working memory limits. <em>Proceedings of the National Academy of Sciences, 117(34)</em>, 20959-20968 (<a href="https://www.pnas.org/doi/epdf/10.1073/pnas.2004306117">pdf</a>)
-</p>
-<p>
-<span class="text-primary">Taylor, R.</span>, &amp; Bays, P. M. (2020). Theory of neural coding predicts an upper bound on estimates of memory variability. <em>Psychological Review, 127(5)</em>, 700 (<a href="https://psycnet.apa.org/fulltext/2020-19842-001.pdf">pdf</a>)
-</p>
-<section id="section-2" class="level3 about-content">
-<h3 data-anchor-id="section-2">2018</h3>
+<section id="breaking-ranks" class="level3">
+<h3 data-anchor-id="breaking-ranks">Breaking Ranks</h3>
+<p>In a nutshell, the problem is <em>redundancy</em> becauseperfectly multicollinear variables provide the same information.</p>
+<p>For example, consider the <em>dummy variable trap.</em> Suppose we are provided with a design matrix that includes two dummy coded {0, 1} columns. In the first column rows corresponding with “yes” responses are given a value of one. In the second column, however, rows that have “no” responses are assigned a value of one. In this example, the “no” column is completely redundant because it can be computed from the “yes” column ( “No” = 1 — “Yes”). Therefore, we don’t require a separate column to encode “no” responses because the zeroes in the “yes” column provide the same information.</p>
+<p>Let’s extend this idea of redundancy a little further by considering the matrix below:</p>
+<p><span class="math display">
+A = \begin{pmatrix}
+6 &amp; 7 &amp; 13 \\
+7 &amp; 4 &amp; 11 \\
+7 &amp; 2 &amp; 9
+\end{pmatrix}
+</span></p>
+<p>Here, the first two columns are linearly independent; however, the <em>third</em> is actually a linear combination of columns one and two (the third column is the sum of the first two). What this means is, if columns one and three, or columns two and three, are known, the remaining column can always be computed. The upshot here is that, at most, there can only be two columns that make genuinely independent contributions — the third will always be redundant.</p>
+<p>The downstream effect of redundancy is that it makes the estimation of model parameters impossible. Before explaining why it’ll be useful to quickly define the <em>moments matrix</em>:</p>
+<p><span class="math display">
+r = X^TX
+</span></p>
+<p>Critically, to derive the ordinary least squares (OLS) estimators <strong><em>r</em></strong> must be <em>invertible</em>, which means the matrix must have <em>full rank</em>. If the matrix is <em>rank deficient</em> then the OLS estimator does not exist because the matrix cannot be inverted.</p>
+<p>Okay, so what does this all mean?</p>
+<p>Without going into too much detail, the <a href="https://en.wikipedia.org/wiki/Rank_(linear_algebra)">rank</a> of a matrix is the dimension of the vector space spanned by its columns. The simplest way to parse this definition is as follows: if your design matrix contains <span class="math inline">k</span> independent explanatory variables, then <span class="math inline">\mathrm{rank}(r)</span> should equal <span class="math inline">k</span>. The effect of perfect multicollinearity is to reduce the rank of <strong><em>r</em></strong> to some value less than the maximum number of columns in the design matrix. The matrix <strong>A</strong> above, then, only has a rank of 2 and is rank deficient.</p>
+<p>Intuitively, if you’re throwing <span class="math inline">k</span> pieces of information into the model, you ideally want each to make a useful contribution. Each variable should carry its own weight. If you instead have a variable that is completely dependent on another then it won’t be contributing anything useful, which will cause <strong><em>r</em></strong> to become degenerate.</p>
 </section>
-<p>
-<span class="text-primary">Taylor, R.</span>, &amp; Bays, P. M. (2018). Efficient coding in visual working memory accounts for stimulus-specific variations in recall. <em>Journal of Neuroscience, 38(32)</em>, 7132-7142 (<a href="https://www.jneurosci.org/content/jneuro/38/32/7132.full.pdf">pdf</a>)
-</p>
-<p>
-Bays, P. M., &amp; <span class="text-primary">Taylor, R.</span> (2018). A neural model of retrospective attention in visual working memory. <em>Cognitive Psychology, 100</em>, 43-52 (<a href="https://reader.elsevier.com/reader/sd/pii/S0010028517302645?token=2D25E60E7FA2ECFBE59E34B2372E0935898A6081D8FC2722E3E3A46C748A91DF118921F2113E17AC3B42881C4EFE39DF&amp;originRegion=us-east-1&amp;originCreation=20230507084750">pdf</a>)
-</p>
-<section id="section-3" class="level3 about-content">
-<h3 data-anchor-id="section-3">2017</h3>
+<section id="imperfect-associations" class="level3">
+<h3 data-anchor-id="imperfect-associations">Imperfect Associations</h3>
+<p>Up until this point, we have been discussing the worst-case scenario where variables are perfectly multicollinear. In the real world, however, it’s pretty rare that you’ll encounter this problem. More realistically you’ll encounter situations where there are <em>approximate</em> linear associations between two or more variables. In this case, the linear association is not deterministic, but instead <em>stochastic</em>. This can be described by rewriting the equation above and introducing an error term:</p>
+<p><span class="math display">
+X_{3,i} = \alpha_0 + \alpha_1X_{1,i} + \alpha_2X_{2,i} + \nu_i
+</span></p>
+<p>This situation is more manageable and doesn’t necessarily result in the degeneracy of <span class="math inline">r</span>. But, if the error term is small, the associations between variables may be <em>nearly</em> perfectly multicollinear. In this case, though it’s true that <span class="math inline">\mathrm{rank}(r) = k</span><em>,</em> model fitting may become computationally unstable and produce coefficients that behave quite erratically. For example, fairly small changes in your data can have huge effects on coefficient estimates, thereby reducing their statistical reliability.</p>
 </section>
-<p>
-<span class="text-primary">Taylor, R.</span>, Thomson, H., Sutton, D., &amp; Donkin, C. (2017). Does working memory have a single capacity limit?. <em>Journal of Memory and Language, 93</em>, 67-81 (<a href="http://www2.psy.unsw.edu.au/users/cdonkin/publications/jml17.pdf">pdf</a>)
-</p>
-<p>
-Konstantinidis, E., <span class="text-primary">Taylor, R. T.</span>, &amp; Newell, B. R. (2018). Magnitude and incentives: revisiting the overweighting of extreme events in risky decisions from experience. <em>Psychonomic Bulletin &amp; Review, 25(5)</em>, 1925-1933 (<a href="https://link.springer.com/article/10.3758/s13423-017-1383-8">pdf</a>)
-</p>
-<p>
-Hayes, B. K., Dunn, J. C., Joubert, A., &amp; <span class="text-primary">Taylor, R.</span> (2017). Comparing single‐and dual‐process models of memory development. <em>Developmental Science, 20(6)</em>, e12469 (<a href="https://onlinelibrary.wiley.com/doi/am-pdf/10.1111/desc.12469">pdf</a>)
-</p>
-<section id="section-4" class="level3 about-content">
-<h3 data-anchor-id="section-4">2016</h3>
+<section id="inflated-models" class="level3">
+<h3 data-anchor-id="inflated-models">Inflated Models</h3>
+<p>Okay, so stochastic multicollinearity presents some hurdles if you’re wanting to make statistical inferences about your explanatory variables. Specifically, what it does is <em>inflate</em> the standard errors around your estimated coefficients which can result in a failure to reject the null hypothesis when a true effect is present (Type II error). Fortunately, statisticians have come to the rescue and have created some very useful tools to help diagnose multicollinearity.</p>
+<p>One such tool is the <em>variance inflation factor</em> (VIF) which quantifies the severity of multicollinearity in a multiple regression model. Functionally, it measures the increase in the variance of an estimated coefficient when collinearity is present. So, for covariate <span class="math inline">j</span><em>,</em> the VIF is defined as follows:</p>
+<p><span class="math display">
+VIF = \frac{1}{1 - R^2_j}
+</span></p>
+<p>Here, the coefficient of determination is derived from the regression of covariate <span class="math inline">j</span>against the remaining <span class="math inline">k — 1</span> variables.</p>
+<p>The interpretation of the VIF is fairly straightforward, too. If the VIF is close to one this implies that covariate <em>j</em> is linearly independent of all other variables. Values greater than one are indicative of some degree of multicollinearity, whereas values between one and five are considered to exhibit mild to moderate multicollinearity. These variables may be left in the model, though some caution is required when interpreting their coefficients. I’ll get to this shortly. If the VIF is greater than five this suggests moderate to high multicollinearity, and you might want to consider leaving these variables out. If, however, the VIF &gt; 10, you’d probably have a reasonable basis for dumping that variable.</p>
+<p>A very nice property of the VIF is that its square root indexes the increase in the coefficient’s standard error. For example, if a variable has a VIF of 4, then its standard error will be 2 times larger than if it had zero correlation with all other predictors.</p>
+<p>Okay, now the cautionary bit: if you <em>do</em> decide to retain variables that have a VIF &gt; 1 then the magnitudes of the estimated coefficients no longer provide an entirely precise measure of impact. Recall that the regression coefficient for variable <span class="math inline">j</span> reflects the expected change in the response, per unit increase in <span class="math inline">j</span> alone, <em>while holding all other variables constant.</em> This interpretation breaks down if an association exists between explanatory variable <span class="math inline">j</span> and several others because any change in<span class="math inline">j</span> will not independently influence the response variable. The extent of this, of course, depends on how high the VIF is but it is certainly something to be aware of.</p>
 </section>
-<p>
-Kary, A., <span class="text-primary">Taylor, R.</span>, &amp; Donkin, C. (2016). Using Bayes factors to test the predictions of models: A case study in visual working memory. <em>Journal of Mathematical Psychology, 72</em>, 210-219 (<a href="http://www2.psy.unsw.edu.au/users/cdonkin/publications/jmp16.pdf">pdf</a>)
-</p>
-<p>
-Donkin, C., Kary, A., Tahir, F., &amp; <span class="text-primary">Taylor, R.</span> (2016). Resources masquerading as slots: Flexible allocation of visual working memory. <em>Cognitive Psychology, 85</em>, 30-42 (<a href="https://d1wqtxts1xzle7.cloudfront.net/47290784/cp16b-libre.pdf?1468742742=&amp;response-content-disposition=inline%3B+filename%3DResources_masquerading_as_slots_Flexible.pdf&amp;Expires=1683453391&amp;Signature=Y46~9NuEgvRcXssJKWAX8F9nTHXu8Ch4XLcTx41Q5T2vgF-geMaLmLLRQgj~zb3RQsyVdO2CGhuoakLbfQ7u-ju~2PdQoUbJxTOF6Eiy~rHXFuA3DOgQjROCWdMFcZah18e0~cqJ3qvXK65VzY1A0MyzBnLa~QhpzdciZrXdSyl20DRpsVmPYknxRTwdeHYP5oxtTjcjcch0LZlqx2uU9Hf5evtPoIa1aGvjiJmSFfx9azJV4AzScZ16uTbiPCTMOKNRbyrilhnOSnLXQyzl~wG7v4awBdEIznv8zQzFs~Ajs-WefaPWPaxQHvrubaWE5q-~G83I3usz9KSlsk-quQ__&amp;Key-Pair-Id=APKAJLOHF5GGSLRBV4ZA">pdf</a>)
-</p>
+<section id="design-issues" class="level3">
+<h3 data-anchor-id="design-issues">Design Issues</h3>
+<p>So far we have explored two rather problematic facets of multicollinearity:</p>
+<ol type="1">
+<li><em>Perfect multicollinearity:</em> defines a deterministic relationship between covariates and produces a degenerate moments matrix, thereby making estimation via OLS impossible; and</li>
+<li><em>Stochastic multicollinearity:</em> covariates are approximately linearly dependent but the rank of the moments matrix is not affected. It does create some headaches in interpreting model coefficients and statistical inferences about them, particularly when the error term is small.</li>
+</ol>
+<p>You’ll notice, though, that these issues only concern calculations about <em>predictors</em> — nothing has been said about the model itself. That’s because multicollinearity <em>only affects the design matrix</em> and not the overall fit of the model.</p>
+<p>So…..problem, or not? Well, as I said at the beginning, it depends.</p>
+<p>If all you’re interested in is how well your <em>collection</em> of explanatory variables predicts the response variable, then the model will still yield valid results, even if multicollinearity is present. However, if you want to make specific claims about <em>individual predictor</em>s then multicollinearity is more of a problem; but if you’re aware of it you can take actions to mitigate its influence, and in a later post I’ll outline what those actions are.</p>
+<p>In the meantime, I hope you found something useful in this post. If you have any questions, thoughts, or feedback, feel free to reach out.</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -267,7 +373,7 @@ Donkin, C., Kary, A., Tahir, F., &amp; <span class="text-primary">Taylor, R.</sp
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp("https:\/\/robtaylor\.co\.nz");
+        var filterRegex = new RegExp('/' + window.location.host + '/');
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
@@ -612,5 +718,5 @@ Donkin, C., Kary, A., Tahir, F., &amp; <span class="text-primary">Taylor, R.</sp
 
 
 
-<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+<script src="../../../site_libs/quarto-html/zenscroll-min.js"></script>
 </body></html>
