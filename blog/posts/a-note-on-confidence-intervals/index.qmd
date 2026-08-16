@@ -1,0 +1,91 @@
+---
+title: "A Note on Confidence Intervals"
+subtitle: "What a confidence interval is - but more importantly, what it is not."
+description: |
+author: "Rob Taylor, PhD"
+date: "2022-11-07"
+draft: false
+categories:
+  - statistics
+  - probability
+  - confidence intervals
+  - hypothesis testing
+notes: "Photo by Joel Henry on Unsplash"
+image: joel-henry-fU-oPNhdsO8-unsplash.jpg
+image-alt: "cosmic texture"
+bibliography: references.bib
+---
+
+### Introduction
+
+Statisticians like to estimate things — and fair enough. We’re often interested in some property that exists within a population but cannot actually observe the entire populace — without, you know, infinite time and money. The best we can do is draw a sample from it and hope that our estimation procedure yields a statistic that isn’t too far away from the truth.
+
+It’s then quite natural to want to include some metric of uncertainty in our results. Since first introduced by Jerzy Neyman in 1937, confidence intervals have increasingly filled this need and provide an intuitive metric for how uncertain we can be about our estimated value.
+
+Wait — does it?
+
+Well, no.
+
+Actually, confidence intervals don’t provide the answer we often think it does. That’s not to say that confidence intervals aren’t useful — they can be — but they’re often *interpreted* incorrectly.
+
+Frankly, the name doesn’t help. The choice to use “confidence” is unfortunate in that it encourages misinterpretation, and the most common trap that many fall into is what @morey2016fallacy call the “Fundamental Confidence Fallacy”. As described by Morey and colleagues, the fallacy involves making claims such as the below:
+
+> “If the probability that a random interval contains the true value is X%, then the plausibility or probability that a particular observed interval contains the true value is also X%; or, alternatively, we can have X% confidence that the observed interval contains the true value.” (p. 104).
+
+If it’s not clear where the error in reasoning is, read on.
+
+### What’s the Issue?
+
+Where the error lies is in the tendency to conflate “confidence” with one’s own belief about, or perceived plausibility of, the values contained within the interval. Given the intent of the confidence procedure — that is, the procedure through which confidence intervals are computed — such interpretations are simply not permitted.
+
+I’ll explain why a little later, but to help us along the way let’s first look at the definition of a confidence interval:
+
+> An X% confidence interval is a range of estimates for an unknown parameter that will, in the long run, contain the true parameter value X% of the time.
+
+Let’s break this down.
+
+First, *X* denotes the *confidence level* which is one minus the Type 1 error rate, $\alpha$. Next, the *range of estimates* refer to values on either side of the point estimate and are computed using the confidence interval equation for the sample in hand. Mathematically, the confidence interval is computed as:
+
+$$CI = \hat{X} \pm z(p) \cdot \frac{\hat{S}}{\sqrt n} $$
+
+where $\hat{X}$ is the same mean, $\hat{S}$ the sample standard deviation, and $z$ is the percentile function of the normal distribution with argument $p = 1 - \frac{\alpha}{2}$. By convention $\alpha = .05$, so $z$ is evaluated at $p = .975$ which yields the multiplier 1.96. Now, this is actually the *asymptotic* multiplier — the value you would use *if* you had an infinite sample size (or, to be fair, a sufficiently large one).
+
+More realistically, we have a *finite* sample and so need to make an adjustment to account for this. Specifically, we use Student’s $t$ distribution with $n -1$ degrees of freedom instead of the normal (remember, the $t$ distribution tends toward the normal as the degrees of freedom go toward infinity). We can then rewrite the CI equation as:
+
+$$CI = \hat{X} \pm \mathcal{T}_{n-1}(p) \cdot \frac{\hat{S}}{\sqrt n} $$
+
+where $\mathcal{T}_{\nu}$ denotes the percentile function for a $t$ distribution with $\nu$ degrees of freedom. For example, if you had a sample of 100 observations, the multiplier would be 1.98; however, once the sample size gets over \~400 1.96 becomes a valid approximation.
+
+Okay, so that’s how the interval is computed, but what does it mean to say that it *contains the true parameter value X% of the time*?
+
+The important concept to grasp here is that a confidence interval is a *random variable,* whereas the population parameter is treated as an *unknown constant*. Therefore, we *cannot* make any probabilistic statements about the parameter (because it is fixed) but we *can* make a probabilistic statement about the confidence intervals themselves.
+
+Within the frequentist framework probability arises through observing the long-run behaviour of a random process and essentially counting how often particular outcomes occur. Critical here is the fact that we need to have a repeatable process through which outcomes are observed. Then, based on the limiting behaviour of that process, it is reasonable to assign a probability to each observable possibility. What this means is, before any data is observed, we can’t know for certain what will happen, only that one of the possible outcomes will occur with some probability.
+
+Confidence intervals are no different in this respect. Like all random variables, the computation of confidence intervals is a repeatable process from which we can assign probabilities to particular events. Critically, because the population parameter is assumed fixed, the event of interest is whether a computed confidence interval *contains* the parameter or not. Mathematically, this probability is:
+
+$$P\left[ \hat{X} - \frac{c \cdot \hat{S}}{\sqrt n} \le \mu \le \hat{X} + \frac{c \cdot \hat{S}}{\sqrt n}  \right] = 1 - \alpha$$
+
+where $c$ simply denotes the sample-specific multiplier. So, if we’re working with 95% confidence intervals (implying an error rate of 5%), this is an interval that will contain the true population parameter 95% of the time. Another way to think about it is that a single confidence interval reflects a randomly drawn interval from the set of *all* possible intervals calculated at the *X*% level, of which only *X*% will actually contain the true parameter value.
+
+For example, if we let $Z$ be a binary random variable that denotes whether a randomly drawn CI contains the true population parameter (\$*Z = 1\$*) or not (\$*Z = 0\$*), then every CI drawn can be viewed as a Bernoulli trial with success parameter $p = 1 - \alpha$:
+
+$$P\left( Z = 1 \ | \ CI\right) = p^Z \cdot (1 - p)^{1 - Z}$$
+
+It is therefore perfectly reasonable to state — *before any data is collected*— that the probability of any yet-to-be-computed confidence interval containing the true population parameter is 95%. However, once the interval has been calculated, *no further probabilistic judgements can be made:* either the interval contains the parameter or it doesn’t.
+
+None of this, however, concerns the parameter itself which is where the error in reasoning occurs. The *X%* part refers to the reliability of the procedure in capturing the unknown population value yet most interpret it as the probability of the population parameter finding itself within the confidence bounds.
+
+As Jerzy Neyman (1937) himself puts it:
+
+> It will be noticed that in the above description, the probability statements refer to the problems of estimation with which the statistician will be concerned in the future. In fact, I have repeatedly stated that the frequency of correct results will tend to *α*. Consider now the case when a sample is already drawn, and the calculations have given \[particular limits\]. Can we say that in this particular case the probability of the true value \[falling between these limits\] is equal to *α*? The answer is obviously in the negative. The parameter is an unknown constant, and no probability statement concerning its value may be made…[@neyman1937outline]
+
+### Bayesian versus Frequentist Interpretations
+
+The problem we’re faced with is that we *can’t* know whether an observed interval contains the true parameter value, yet we want to make some statement about this uncertainty. The desire to use a probabilistic interpretation is a very understandable one, and it is almost instinctual to claim that there is a 95% probability that the parameter lies within a computed range. The problem the confidence fallacy introduces, however, is *incoherence.*
+
+Specifically, applying one's own *personal belief* about the value of the unknown parameter is a fundamentally *Bayesian* idea, and simply not allowed given how frequentists view probability. Remember, frequentists need repeatable processes — population parameters are treated as fixed; therefore, they cannot be replicated and *cannot* have a probabilistic interpretation. But procedures *are* repeatable, which means probabilistic statements *can* be made about those. But my own personal belief about the population parameter is an entirely different thing.
+
+For example, I could only be 20% confident that a fair coin will produce heads approximately half the time after 100 throws. I might also be 100% confident that a *single* throw is going to come up tails — though that’d perhaps be foolish. Regardless, both of these statements are perfectly valid within the Bayesian framework. But the Bayesian framework is a completely different piece of statistical machinery and confidence intervals are *not* Bayesian tools. Therefore, we cannot use Bayesian interpretations when using frequentist tools.
+
+Just before I sign off, there is a Bayesian version of confidence intervals: these are called *Credible Intervals.* I won’t get into these today, but you should know that in some applications both confidence and credible intervals agree, but they can differ quite considerably in others. Also, the mathematics are quite different which is why we must be careful about how each is interpreted. I’ll discuss credible intervals in another post.
