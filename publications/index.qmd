@@ -25,7 +25,7 @@ href="https://psycnet.apa.org/fulltext/2020-19842-001.pdf">pdf</a>)</p>
 
 ::: about-content
 ### 2018
-::: 
+:::
 
 <p>[Taylor, R.]{.text-primary}, & Bays, P. M. (2018). Efficient coding in visual working memory accounts for stimulus-specific variations in recall. <em>Journal of Neuroscience, 38(32)</em>, 7132-7142 (<a
 href="https://www.jneurosci.org/content/jneuro/38/32/7132.full.pdf">pdf</a>)</p>
@@ -35,7 +35,7 @@ href="https://reader.elsevier.com/reader/sd/pii/S0010028517302645?token=2D25E60E
 
 ::: about-content
 ### 2017
-::: 
+:::
 
 <p>[Taylor, R.]{.text-primary}, Thomson, H., Sutton, D., & Donkin, C. (2017). Does working memory have a single capacity limit?. <em>Journal of Memory and Language, 93</em>, 67-81 (<a
 href="http://www2.psy.unsw.edu.au/users/cdonkin/publications/jml17.pdf">pdf</a>)</p>
@@ -48,7 +48,7 @@ href="https://onlinelibrary.wiley.com/doi/am-pdf/10.1111/desc.12469">pdf</a>)</p
 
 ::: about-content
 ### 2016
-::: 
+:::
 
 <p>Kary, A., [Taylor, R.]{.text-primary}, & Donkin, C. (2016). Using Bayes factors to test the predictions of models: A case study in visual working memory. <em>Journal of Mathematical Psychology, 72</em>, 210-219 (<a
 href="http://www2.psy.unsw.edu.au/users/cdonkin/publications/jmp16.pdf">pdf</a>)</p>

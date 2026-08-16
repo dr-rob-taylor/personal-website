@@ -28,15 +28,11 @@ What you need to know is that *likelihood* — though to be specific, I’m actu
 
 We know that this is a Binomial process that is governed by a rate parameter $p$ that defines the expected probability of throwing $K$ heads (or tails — it doesn’t matter which) out of a total of $N$ throws. Here, the number of observed heads, $K$, is a random variable that changes in response to different values of $p$. For any fixed parameter value (e.g., $p = 0.7$), the *probability* of observing $K$ heads is given by the probability mass function (PMF):
 
-$$
-P(K = k) = \binom{N}{k} \ p^k \ \left( 1 - p\right)^{N - k}
-$$
+$$P(K = k) = \binom{N}{k} \ p^k \ \left( 1 - p\right)^{N - k}$$
 
 where
 
-$$
-\binom{N}{k} = \frac{N!}{k! \ (N - k)!}
-$$
+$$\binom{N}{k} = \frac{N!}{k! \ (N - k)!}$$
 
 Now, because I said the coin is fair, and it was tossed ten times, we can let $p = 0.5$ and $N = 10$. If we then plug these values into the equation above — and let $K$ vary — we get something that looks like the left panel of Figure 1. Based upon this, we can see that $K = 5$ is the most probable outcome, which should make sense: if the coin is fair, and we toss it ten times, we should expect that — in the long run — we’ll get 5 heads and 5 tails more often than not. But you should also note that getting 4 or 6 heads isn’t all that uncommon, either.
 
@@ -50,9 +46,7 @@ Okay, so what if instead, I tell you that I already flipped the coin ten times a
 
 What’s important to note is that, in this case, $K$ is no longer random — we have an *observed* realization of the Binomial process meaning it is now a fixed value. Given this information, the likelihood function for the Binomial model can be written as:
 
-$$
-\mathcal{L}( \theta \ | \ K = \hat{k}) = P(K = \hat{k})
-$$
+$$\mathcal{L}( \theta \ | \ K = \hat{k}) = P(K = \hat{k})$$
 
 Here, I’m using “hat” notation to make it clear that $K$ is the observed number of heads from ten throws. Now, this just looks like I’m saying that the likelihood function is the same thing as the PMF — well, I kind of *am* saying that. But, the difference here is that now the *data is fixed* and it is the model parameter, $p$, that is free to vary.
 
@@ -68,17 +62,15 @@ Remember when I said that the likelihood function is interpreted as a measure? W
 
 I need to introduce a couple of things:
 
--   **The Likelihood Principle** states that, for a given statistical model, all the evidence relevant to model parameters exists within the sampled (observed) data itself.
+- **The Likelihood Principle** states that, for a given statistical model, all the evidence relevant to model parameters exists within the sampled (observed) data itself.
 
--   **The Law of Likelihood** states that the extent to which the evidence supports one parameter value over another is determined by the ratio of their respective likelihoods.
+- **The Law of Likelihood** states that the extent to which the evidence supports one parameter value over another is determined by the ratio of their respective likelihoods.
 
 Taking these ideas together implies that looking at a single likelihood in isolation tells us very little. Yes, it provides a measure of evidence, but relative to what? The definitions above tell us that likelihoods are more useful when they’re compared to *other* likelihoods. That’s why we typically prefer relative measures such as *likelihood ratios*.
 
 With this in mind, recall my question to you was whether, based on the data you have, the coin I tossed was fair. To properly address this question we also require the likelihood of observing the data if $p = 0.5$, which is approximately .12. Note that both these points are marked on the likelihood function in Figure 1. Given these two pieces of information we can now compute the likelihood ratio:
 
-$$
-\Lambda = \frac{\mathcal{L}(\theta_0 \ | \ K = k)}{\mathcal{L}(\theta_1 \ | \ K = k)} = \frac{\mathcal{L}(p = 0.5 \ | \ K = 7)}{\mathcal{L}(p = 0.7 \ | \ K = 7)}
-$$
+$$\Lambda = \frac{\mathcal{L}(\theta_0 \ | \ K = k)}{\mathcal{L}(\theta_1 \ | \ K = k)} = \frac{\mathcal{L}(p = 0.5 \ | \ K = 7)}{\mathcal{L}(p = 0.7 \ | \ K = 7)}$$
 
 What does this give us? Approximately 0.44. You’ll need some context.
 
