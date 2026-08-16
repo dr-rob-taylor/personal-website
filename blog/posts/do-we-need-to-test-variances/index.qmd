@@ -1,0 +1,126 @@
+---
+title: "Do We Really Need to Test Variances Anymore?"
+subtitle: "Why classical assumption checks are no longer gatekeepers, and how modern ANOVA methods handle heterogeneity directly."
+description: |
+author: "Rob Taylor, PhD"
+date: "2026-04-15"
+draft: false
+categories:
+  - statistics
+  - ANOVA
+  - hypothesis testing
+  - inference
+notes: "Photo by Joel Henry on Unsplash"
+image: joel-henry-dZ7cpFw5MD4-unsplash.jpg
+image-alt: "cosmic texture"
+---
+
+### Introduction
+
+There was a familiar ritual to statistical analysis that many of us were taught: collect data under a set of assumptions about how that data should look, test those assumptions, and — if they held — use a parametric test; if not, switch to a non-parametric alternative. As an undergraduate, this process was a major source of anxiety for me, often tipping into a kind of low-level existential angst.
+
+Consider the case of comparing multiple conditions or groups. The standard tool here was Analysis of Variance (ANOVA), which comes with a core assumption that group variances are equal. This assumption therefore had to be checked explicitly. If the variances were found to be unequal — or *heteroscedastic* — the prescribed move was to abandon ANOVA in favour of a non-parametric alternative such as the Kruskal–Wallis test.
+
+There was a clear logic to this approach. It was data-driven and mirrored the structure of hypothesis testing itself: perform a test, then make a decision based on the result. As a teaching device, this decision-tree logic made sense. But as statistical methods and computational tools have evolved, so too has our relationship with assumptions — and with the need to test them so explicitly.
+
+In this post, I’ll revisit why assumption checking played such a central role in classical statistics, focus on how equality of variances was assessed in the context of ANOVA, and argue that modern statistical workflows have made these tests far less central than they once were.
+
+### Why ANOVA cared about equal variances in the first place
+
+When we do an ANOVA, what we’re asking is whether the groups means are more spread out than we’d expect from random variation alone. To answer this question, ANOVA compares variability *between* group means to variability *within* groups. The *F*-statistic is then the ratio of these two sources of variability:
+
+$$F = \frac{\mathrm{between-group \ variability}}{\mathrm{within-group \ variability}}$$
+
+If the variation between group means is large relative to the background noise within groups, we take this as evidence that the means differ. Crucially, classical ANOVA assumes that this background noise can be summarised by a single pooled estimate of variance, shared across all groups:
+
+$$\hat{\sigma}^2_w = \frac{\sum_i^k \sum^{n_i}_j \left( Y_{ij} - \bar{Y}_i\right)^2}{N - k}$$
+
+This pooling only makes sense if the groups truly have the same variance. Under that assumption, each group provides another noisy glimpse of the *same* underlying variability, and combining them improves precision. The resulting *F-*statistic then has a known sampling distribution, which is what allows us to compute *p*-values.
+
+Unequal variances break this logic in two related ways. First, there is no longer a single, well-defined noise level to pool. Second, the group means are not equally precise. If either the variance or the sample size differs between groups then some group means will be noisier than others. Classical ANOVA nevertheless treats all group means as if they were measured with the same uncertainty. They all receive equal weighting when computing the between-group sums of squares because the grand mean is computed as the average of the means:
+
+$$\hat{\sigma}^2_b = \frac{\sum^k_i \left( \bar{Y}_i - \bar{Y}_G\right)^2}{k - 1}$$
+
+where
+
+$$\bar{Y}_G = \frac{1}{k} \sum^k_i \bar{Y}_i$$
+
+Fundamentally, the equal-variance assumption is what makes the classical ANOVA mathematically coherent. When variances and sample sizes differ, this mismatch can distort the test. Groups with high variance and small sample sizes can exert disproportionate influence on the between-group variability, while the pooled variance in the denominator no longer reflects the true uncertainty in the means. The result is not just a loss of efficiency, but a breakdown in the calibration of the test itself: the *F-*statistic no longer follows the reference distribution it is compared against.
+
+### Checking equality of variances: Bartlett, Levene, and friends
+
+When it comes to assessing whether group variances are equal, statisticians have several tools at their disposal, each built on different assumptions and suited to different circumstances. Understanding these differences helps clarify why variance tests are not interchangeable and why their role has shifted in modern workflows.
+
+*Bartlett’s test* is perhaps the most traditional. It is most powerful under the assumption that each group is normally distributed, effectively comparing the observed group variances to what would be expected under a common variance. However, its sensitivity to deviations from normality is extreme: even mild skew or heavy tails can inflate Type I error, making Bartlett’s test unreliable when real data depart from idealised assumptions.
+
+*Levene’s test* takes a more robust approach by focusing on the absolute deviations of observations from their group mean. By transforming the data in this way, it reduces the impact of non-normality while still providing a clear signal when variances differ:
+
+$$Z_{ij} = | Y_{ij} - \bar{Y}_i |$$
+
+If a group has larger variance, its deviations are larger, and we can test the equality of the mean deviations via ANOVA. That’s what Levene’s test is: an ANOVA on the absolute deviations from the group mean.
+
+Levene’s test is the method most commonly used as a general check in applied work, though variants such as the *Brown–Forsythe test* further increase robustness when distributions are skewed or contain outliers. Like Levene’s test, Brown–Forsythe works with absolute deviations, but computed as the distance from the median instead of the mean:
+
+$$Z_{ij} = | Y_{ij} - \tilde{Y}_i |$$
+
+*Fligner–Killeen* takes the absolute deviation step even further. It is fully rank-based and essentially distribution-free, comparing the relative rank of the deviations from the median across groups. This makes it extremely robust to both skew and heavy tails, but it can be less powerful than Bartlett’s test when the data are in fact perfectly normal.
+
+The key difference among these tests lies in the trade-off between robustness and power. Bartlett is most powerful under perfect normality but collapses when normality is violated. Both Levene and Brown–Forsythe balance robustness and sensitivity, whereas Fligner–Killeen prioritises robustness at the expense of power under ideal conditions. In practice, this means that any single test result should not be treated as the decision gate.
+
+By comparing them in this way, we can see how each test embodies a philosophy of inference. Bartlett asks us to trust the normal model, Levene and Brown–Forsythe hedge against absolute deviations, and Fligner–Killeen ignores distributional assumptions entirely. Each test, then, embodies a different philosophy of inference — and none of them is well-suited to the role of a compulsory decision gate.
+
+### Why assumption tests make poor decision rules
+
+If assumption checks were merely descriptive, they would be relatively uncontroversial. The problem arises when they are treated as *decision rules* — formal gates that determine which analysis is *allowed* and which is not. That may not have been the intent, at least initially, but the way statistical methods have been taught has had unintended consequences.
+
+The first issue is statistical power. Assumption tests such as Levene’s test are often least informative in exactly the situations where their results matter most. With small samples, these tests have very low power to detect meaningful violations, so assumptions can appear satisfactory even when they are not. With large samples, the opposite occurs — even trivial departures from idealised assumptions are detected with high confidence, leading to rejections that have little practical consequence for inference.
+
+This creates an uncomfortable paradox. When the consequences of assumption violations are potentially serious, some tests tend to be silent. When the violations are negligible, others tend to be loud. As a result, passing or failing an arbitrary test often tells us more about sample size than about the suitability of a method.
+
+A second issue is that assumption tests answer the wrong question. Failing a homogeneity of variances test does not tell us that ANOVA is invalid in any absolute sense; it tells us only that the data are inconsistent with a very specific simplifying assumption. That assumption may be violated in degrees, not absolutes, and the practical impact of that violation depends on the structure of the data and the robustness of the analysis. For example, classical *F*-tests are robust to variance inequalities if the sample sizes in each group are approximately equal.
+
+But there is also a deeper logical concern. When assumption tests are used to *choose* an analysis, the data are effectively used twice: once to select a test and again to perform inference. This conditionality is rarely acknowledged, but it undermines the clean interpretation of *p*-values that the decision-tree workflow is meant to protect.
+
+Taken together, these issues make assumption tests ill-suited to the role they are often given. They are blunt instruments pressed into service as arbiters of validity, when in reality they provide only coarse, sample-size–dependent signals about idealised model conditions. This doesn’t mean assumption tests are useless — but they shouldn’t be treated as authoritative when it comes to selecting inferential tests.
+
+### How modern methods address unequal variances directly
+
+One reason assumption testing has faded somewhat is that modern statistical methods no longer require us to pretend that variances are equal. We can simply incorporate heterogeneity into the analysis itself.
+
+A straightforward example is Welch’s ANOVA. Instead of pooling variances across groups, Welch’s approach allows each group to retain its own variance estimate and weights group means by its precision (or inverse variance):
+
+$$\omega_i = \frac{1}{\nu_i} = \frac{n_i}{s_i^2}$$
+
+where
+
+$$\nu_i = \frac{s_i^2}{n_i}$$
+
+The grand mean is then no longer a simple average, but instead a precision-weighted mean:
+
+$$\bar{Y}_W = \frac{\sum_i \omega_i\bar{Y}_i}{\sum_i \omega_i}$$
+
+Ultimately, the hypothesis being tested is the same — whether group means differ — but the test no longer relies on the assumption that all means are equally noisy. Unequal variances are accommodated by *design*, not treated as a problem to be diagnosed in advance.
+
+A similar shift appears in regression-based frameworks, too. Heteroskedasticity-robust standard errors relax the assumption of constant variance without changing the model for the mean, allowing valid inference even when variability differs across observations or groups. Here again, the emphasis is on protecting inference against plausible departures from idealised assumptions rather than policing those assumptions with preliminary tests.
+
+More explicitly, variance can be modelled rather than ignored. Generalised least squares, mixed-effects models, and Bayesian hierarchical models all allow variance to vary across groups, conditions, or levels of a hierarchy. In these approaches, unequal variances are not violations at all — they are parameters to be estimated, often with partial pooling that stabilises inference when data are sparse.
+
+What unites these methods is a change in mindset. Instead of asking whether the data satisfy the assumptions required by a particular test, we choose analyses that remain valid across a range of realistic data-generating processes. Equality of variances then becomes a special case, not a prerequisite.
+
+### What role do assumption tests play now?
+
+In contemporary statistical workflows, tests for equality of variances have a role, but it is more subtle than the decision-rule function they once served. Rather than acting as formal gates that determine which analysis is permitted, they function as diagnostic and descriptive tools. The information they provide is *contextual* rather than prescriptive — offering insight without imposing a mandatory course of action.
+
+Testing for equality of variance can still highlight heterogeneity that warrants attention, and can inform choices about whether to adopt variance-weighted methods, consider transformations, or explore models that explicitly account for differing variability. The specific test selected still matters in this context: Bartlett remains a reasonable choice when normality is well-established, Levene and Brown–Forsythe offer greater robustness for typical applied data, and Fligner–Killeen suits situations where distributional assumptions are difficult to justify. But regardless of which test is used, and regardless of whether its result is significant, modern analyses are designed to produce valid inference even in the presence of unequal variances.
+
+These tests also retain genuine value in communicating data structure to others and, in teaching contexts, in demonstrating heteroskedasticity and its potential consequences. All of this matters — but it does reduce the burden placed on any single test to determine a primary analytic approach.
+
+### Wrapping up
+
+The story of variance testing reflects a broader evolution in statistical thinking. Classical workflows emphasised procedural checks that determined next steps — a structure that provided clarity, particularly for students, but that often conflated idealised model conditions with the practical requirements of inference.
+
+Today, statistical practice emphasises robustness, flexibility, and explicit modelling. Variance inequality, once a technical violation requiring a workaround, can now be incorporated directly into the model. Tests like Levene’s no longer function as gatekeepers prescribing which analysis is permitted; instead, they serve as descriptive companions — helping analysts characterise their data, communicate patterns to others, and, in teaching contexts, illustrate the nature and consequences of heteroskedasticity.
+
+This shift is not about abandoning rigour. On the contrary, it reflects a deeper commitment to inference that is both principled and resilient: principled, because methods are mathematically coherent across plausible scenarios; resilient, because they do not crumble in the face of minor or unavoidable departures from ideal assumptions. Assumption tests have moved from arbiters of analytic validity to tools that illuminate rather than dictate — informing understanding and guiding interpretation without imposing a mandatory course of action.
+
+What remains unchanged is the goal: inference that is honest about uncertainty, sensitive to data structure, and robust to the messiness of the real world. The methods for achieving that goal have simply grown more capable of meeting it.
