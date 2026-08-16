@@ -1,3 +1,13 @@
 title-block-banner: true
 toc-location: left
 search: false
+comments:
+  giscus:
+    repo: dr-rob-taylor/personal-website
+    repo-id: R_kgDOSWqKZQ
+    category: Blog Comments
+    category-id: DIC_kwDOSWqKZc4DDfQ_
+    mapping: pathname
+    reactions-enabled: true
+    loading: lazy
+    input-position: bottom
