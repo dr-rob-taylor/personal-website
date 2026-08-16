@@ -1,0 +1,48 @@
+---
+title: "Stop Pretending Data Roles Are Separate"
+subtitle: 'My push back against the “data trinity”'
+description: |
+author: "Rob Taylor, PhD"
+date: "2025-08-23"
+draft: false
+categories:
+  - data analysis
+  - data science
+  - data engineering
+  - gripe
+notes: "Photo by Joel Henry on Unsplash"
+image: joel-henry-iuU0Ikb2U9E-unsplash.jpg
+image-alt: "cosmic texture"
+---
+
+### Introduction
+
+As someone who’s worked across different data roles, my feeds are full of posts about what I think of as the “data trinity”: the engineer, the scientist, and the analyst. These posts usually frame the three as cleanly separated and clearly defined. But in practice, the boundaries are far less rigid.
+
+There’s a conceptual convenience in treating them as separate, for sure. It helps organisations write job descriptions and structure teams. But in reality, these roles share more in common than they don’t.
+
+### The Data Trinity
+
+Let’s start with the “official” distinctions.
+
+- The **data engineer** builds and maintains the infrastructure: pipelines, warehouses, APIs, orchestration, and performance systems.
+
+- The **data scientist** designs and tests models: statistics, machine learning, experimentation, and prediction.
+
+- The **data analyst** makes data understandable: querying, dashboards, business intelligence, and insights.
+
+Stated this way, they sound like very different professions. And to an extent, that’s the point. Clear labels help companies signal what kind of expertise they’re hiring for — an engineer to move data around, a scientist to model it, an analyst to interpret it. But those clean lines blur almost immediately.
+
+At a basic level, everyone in data writes SQL, cleans messy datasets, and interprets results. The idea that these processes belong exclusively to one role feels artificial. A scientist might prototype their own ETL pipeline; an engineer might check a dashboard for validity; an analyst might apply statistical methods to simplify a large dataset.
+
+Team size also changes the picture. In small companies, one “data person” may wear all three hats. Conversely, larger companies may distill roles into even narrower specialties — for example, you might see machine learning engineers, analytics engineers, and BI developers. And then there’s the reality of problem-solving: data is rarely neat, and the problems don’t announce themselves in advance. Professionals working with real world data often have to cross the boundaries of their title to get the job done.
+
+### A Broader View
+
+Rather than rigid boxes, I think of these roles as points on a triangle. Engineers emphasise scalability and reliability. Scientists emphasise experimentation and modeling. Analysts emphasise insight and decision-making. But most professionals and teams sit somewhere *inside* the triangle, not at a single vertex. These distinctions are less about separate professions and more about emphasis — where the work leans, not where it begins and ends.
+
+Taken together, all three roles serve the same mission: turning raw data into trustworthy, usable knowledge that drives action. Engineers make data available. Scientists make data interpretable. Analysts make data actionable. But titles and boundaries are helpful only if they don’t produce operational silos. The strongest data teams recognise that capable professionals move between roles, collaborate deeply, and respect each other’s emphases without being limited by them.
+
+In the end, the measure of a data professional isn’t the label they carry — it’s their ability to turn information into value. The triangle is useful, but the best work happens in the overlaps.
+
+### 
