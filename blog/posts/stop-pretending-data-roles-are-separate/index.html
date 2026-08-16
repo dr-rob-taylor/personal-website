@@ -6,8 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Rob Taylor, PhD">
+<meta name="dcterms.date" content="2025-08-23">
 
-<title>robtaylor</title>
+<title>Stop Pretending Data Roles Are Separate – robtaylor</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -26,24 +28,22 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-listing/list.min.js"></script>
-<script src="site_libs/quarto-listing/quarto-listing.js"></script>
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-0ad9529d9b98df856f3841d955a8d299.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-0ad9529d9b98df856f3841d955a8d299.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -71,92 +71,20 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
-
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-featured-posts .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-title','listing-subtitle','listing-author','listing-date','listing-image',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: ["listing-title","listing-author","listing-date","listing-image","listing-description"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-featured-posts'] = new List('listing-featured-posts', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
 <style>html{ scroll-behavior: smooth; }</style>
 
-  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
-  <script>document.addEventListener("DOMContentLoaded", function () {
- var mathElements = document.getElementsByClassName("math");
- var macros = [];
- for (var i = 0; i < mathElements.length; i++) {
-  var texText = mathElements[i].firstChild;
-  if (mathElements[i].tagName == "SPAN") {
-   katex.render(texText.data, mathElements[i], {
-    displayMode: mathElements[i].classList.contains('display'),
-    throwOnError: false,
-    macros: macros,
-    fleqn: false
-   });
-}}});
-  </script>
-  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
 
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
-
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="../../../styles.css">
 </head>
 
-<body class="nav-fixed quarto-light">
+<body class="floating nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../../../index.html">
     <span class="navbar-title">rob taylor</span>
     </a>
   </div>
@@ -167,27 +95,27 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page"> 
+    <a class="nav-link" href="../../../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./about/"> 
+    <a class="nav-link" href="../../../about/"> 
 <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./blog/"> 
+    <a class="nav-link" href="../../../blog/"> 
 <span class="menu-text">Blog</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./software/"> 
+    <a class="nav-link" href="../../../software/"> 
 <span class="menu-text">Software</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./resources/"> 
+    <a class="nav-link" href="../../../resources/"> 
 <span class="menu-text">Resources</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./publications/"> 
+    <a class="nav-link" href="../../../publications/"> 
 <span class="menu-text">Publications</span></a>
   </li>  
 </ul>
@@ -198,114 +126,94 @@ window.Quarto = {
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
-<!-- sidebar -->
-<!-- margin-sidebar -->
+<header id="title-block-header" class="quarto-title-block default toc-left page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Stop Pretending Data Roles Are Separate</h1>
+            <p class="subtitle lead">My push back against the “data trinity”</p>
+                                <div class="quarto-categories">
+                <div class="quarto-category">data analysis</div>
+                <div class="quarto-category">data science</div>
+                <div class="quarto-category">data engineering</div>
+                <div class="quarto-category">gripe</div>
+              </div>
+                  </div>
+  </div>
     
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Rob Taylor, PhD </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">August 23, 2025</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#the-data-trinity" id="toc-the-data-trinity" class="nav-link" data-scroll-target="#the-data-trinity">The Data Trinity</a></li>
+  <li><a href="#a-broader-view" id="toc-a-broader-view" class="nav-link" data-scroll-target="#a-broader-view">A Broader View</a></li>
+  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"></a></li>
+  </ul>
+</nav>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+    </div>
 <!-- main -->
-<main class="content page-columns page-full column-page" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+<main class="content quarto-banner-title-block" id="quarto-document-content">
 
 
 
 
-<div class="column-body-outset">
-<section id="welcome" class="level2 section-heading">
-<h2 data-anchor-id="welcome">Welcome!</h2>
+
+<section id="introduction" class="level3">
+<h3 data-anchor-id="introduction">Introduction</h3>
+<p>As someone who’s worked across different data roles, my feeds are full of posts about what I think of as the “data trinity”: the engineer, the scientist, and the analyst. These posts usually frame the three as cleanly separated and clearly defined. But in practice, the boundaries are far less rigid.</p>
+<p>There’s a conceptual convenience in treating them as separate, for sure. It helps organisations write job descriptions and structure teams. But in reality, these roles share more in common than they don’t.</p>
 </section>
-<p>Statistics has a reputation for being intimidating. It doesn’t have to be.</p>
-<p>The content on this site is written for anyone who works with data and wants to go beyond the mechanics — to understand not just <em>how</em> the methods work, but <em>why</em> they work, and <em>when</em> to trust them. Every post aims to build genuine intuition from first principles, with mathematics that illuminates rather than obscures.</p>
-<p><a role="button" class="btn btn-outline-primary" href="about/index.html">Learn more</a></p>
-<section id="featured-posts" class="level2 section-heading">
-<h2 data-anchor-id="featured-posts">Featured Posts</h2>
+<section id="the-data-trinity" class="level3">
+<h3 data-anchor-id="the-data-trinity">The Data Trinity</h3>
+<p>Let’s start with the “official” distinctions.</p>
+<ul>
+<li><p>The <strong>data engineer</strong> builds and maintains the infrastructure: pipelines, warehouses, APIs, orchestration, and performance systems.</p></li>
+<li><p>The <strong>data scientist</strong> designs and tests models: statistics, machine learning, experimentation, and prediction.</p></li>
+<li><p>The <strong>data analyst</strong> makes data understandable: querying, dashboards, business intelligence, and insights.</p></li>
+</ul>
+<p>Stated this way, they sound like very different professions. And to an extent, that’s the point. Clear labels help companies signal what kind of expertise they’re hiring for — an engineer to move data around, a scientist to model it, an analyst to interpret it. But those clean lines blur almost immediately.</p>
+<p>At a basic level, everyone in data writes SQL, cleans messy datasets, and interprets results. The idea that these processes belong exclusively to one role feels artificial. A scientist might prototype their own ETL pipeline; an engineer might check a dashboard for validity; an analyst might apply statistical methods to simplify a large dataset.</p>
+<p>Team size also changes the picture. In small companies, one “data person” may wear all three hats. Conversely, larger companies may distill roles into even narrower specialties — for example, you might see machine learning engineers, analytics engineers, and BI developers. And then there’s the reality of problem-solving: data is rarely neat, and the problems don’t announce themselves in advance. Professionals working with real world data often have to cross the boundaries of their title to get the job done.</p>
 </section>
-<div id="listing-featured-posts" class="quarto-listing quarto-listing-container-grid">
-<div class="list grid quarto-listing-cols-3">
-<div class="g-col-1" data-index="0" data-categories="c3RhdGlzdGljcyUyQ3Byb2JhYmlsaXR5JTJDdGVhY2hpbmc=" data-listing-date-sort="1776945600000" data-listing-file-modified-sort="1786848497002" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="883">
-<a href="./blog/posts/statistical-technicians/index.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img loading="lazy" src="./blog/posts/statistical-technicians/jules-paulin-rql5V72dc0k-unsplash.jpg" class="thumbnail-image card-img" style="height: 150px;" alt="cosmic texture">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Statistical Technicians
-</h5>
-<div class="card-subtitle listing-subtitle">
-The case for teaching statistics as reasoning, not procedure
-</div>
-<div class="card-attribution card-text-small justify">
-<div class="listing-author">
-Rob Taylor, PhD
-</div>
-<div class="listing-date">
-Apr 24, 2026
-</div>
-</div>
-</div>
-</div></a>
-</div>
-<div class="g-col-1" data-index="1" data-categories="c3RhdGlzdGljcyUyQ0FOT1ZBJTJDaHlwb3RoZXNpcyUyMHRlc3RpbmclMkNpbmZlcmVuY2U=" data-listing-date-sort="1776168000000" data-listing-file-modified-sort="1786851443307" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="11" data-listing-word-count-sort="2160">
-<a href="./blog/posts/do-we-need-to-test-variances/index.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img loading="lazy" src="./blog/posts/do-we-need-to-test-variances/joel-henry-dZ7cpFw5MD4-unsplash.jpg" class="thumbnail-image card-img" style="height: 150px;" alt="cosmic texture">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Do We Really Need to Test Variances Anymore?
-</h5>
-<div class="card-subtitle listing-subtitle">
-Why classical assumption checks are no longer gatekeepers, and how modern ANOVA methods handle heterogeneity directly.
-</div>
-<div class="card-attribution card-text-small justify">
-<div class="listing-author">
-Rob Taylor, PhD
-</div>
-<div class="listing-date">
-Apr 15, 2026
-</div>
-</div>
-</div>
-</div></a>
-</div>
-<div class="g-col-1" data-index="2" data-categories="ZGF0YSUyMGFuYWx5c2lzJTJDZGF0YSUyMHNjaWVuY2UlMkNkYXRhJTIwZW5naW5lZXJpbmclMkNncmlwZQ==" data-listing-date-sort="1755864000000" data-listing-file-modified-sort="1786852120408" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="482">
-<a href="./blog/posts/stop-pretending-data-roles-are-separate/index.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img loading="lazy" src="./blog/posts/stop-pretending-data-roles-are-separate/joel-henry-iuU0Ikb2U9E-unsplash.jpg" class="thumbnail-image card-img" style="height: 150px;" alt="cosmic texture">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Stop Pretending Data Roles Are Separate
-</h5>
-<div class="card-subtitle listing-subtitle">
-My push back against the “data trinity”
-</div>
-<div class="card-attribution card-text-small justify">
-<div class="listing-author">
-Rob Taylor, PhD
-</div>
-<div class="listing-date">
-Aug 23, 2025
-</div>
-</div>
-</div>
-</div></a>
-</div>
-</div>
-<div class="listing-no-matching d-none">No matching items</div>
-</div>
-<p><a role="button" class="btn btn-outline-primary" href="blog/">See more</a></p>
-<div class="newsletter-section">
-<!-- ## Stay in the Loop -->
-<!-- New posts straight to your inbox. No paywalls, ever. -->
-<!-- <iframe scrolling="no" style="width:100%!important;height:220px;border:1px #ccc solid !important" src="https://buttondown.email/YOURNAME?as_embed=true"> -->
-<!-- </iframe> -->
-</div>
-</div>
+<section id="a-broader-view" class="level3">
+<h3 data-anchor-id="a-broader-view">A Broader View</h3>
+<p>Rather than rigid boxes, I think of these roles as points on a triangle. Engineers emphasise scalability and reliability. Scientists emphasise experimentation and modeling. Analysts emphasise insight and decision-making. But most professionals and teams sit somewhere <em>inside</em> the triangle, not at a single vertex. These distinctions are less about separate professions and more about emphasis — where the work leans, not where it begins and ends.</p>
+<p>Taken together, all three roles serve the same mission: turning raw data into trustworthy, usable knowledge that drives action. Engineers make data available. Scientists make data interpretable. Analysts make data actionable. But titles and boundaries are helpful only if they don’t produce operational silos. The strongest data teams recognise that capable professionals move between roles, collaborate deeply, and respect each other’s emphases without being limited by them.</p>
+<p>In the end, the measure of a data professional isn’t the label they carry — it’s their ability to turn information into value. The triangle is useful, but the best work happens in the overlaps.</p>
+</section>
+<section id="section" class="level3">
+<h3 data-anchor-id="section"></h3>
 
 
-
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -719,5 +627,5 @@ Aug 23, 2025
 
 
 
-<script src="site_libs/quarto-html/zenscroll-min.js"></script>
+<script src="../../../site_libs/quarto-html/zenscroll-min.js"></script>
 </body></html>
