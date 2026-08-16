@@ -9,9 +9,9 @@ categories:
   - statistics
   - probability
   - likelihood
-notes: "Photo by Austrian National Library on Unsplash"
-image: austrian-national-library-h39HBKBclNM-unsplash.jpg
-image-alt: "austrian national library boxing"
+notes: "Photo by Scott Lord on Unsplash"
+image: scott-lord-tQLIYGBQkh8-unsplash.jpg
+image-alt: "cosmic texture"
 ---
 
 ### Introduction

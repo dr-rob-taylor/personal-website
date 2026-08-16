@@ -10,9 +10,9 @@ categories:
   - data visualisation
   - ggplot
   - data analysis
-image: codioful-formerly-gradienta-gfJXeuIl5IM-unsplash.jpg
-image-alt: ""
-notes: "Photo by Codioful (Formerly Gradienta) on Unsplash"
+image: nathan-anderson-KvgB81s4dF0-unsplash.jpg
+image-alt: "space texture"
+notes: "Photo by Nathan Anderson on Unsplash"
 ---
 
 ### Introduction

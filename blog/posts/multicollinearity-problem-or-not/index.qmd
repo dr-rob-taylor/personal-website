@@ -8,9 +8,9 @@ categories:
   - statistics
   - linear regression
   - data science
-notes: Photo by kylie De Guia on Unsplash
-image: kylie-de-guia-0FQK9CPw02E-unsplash.jpg
-image-alt: "kylie-de-guia sudney opera house"
+notes: Photo by Max McKinnon on Unsplash
+image: max-mckinnon-c9OCWLka764-unsplash.jpg
+image-alt: "space texture"
 ---
 
 ### Introduction
@@ -25,15 +25,11 @@ Before moving on, it’s a good idea to first nail down what collinearity and mu
 
 *Collinearity* exists if there is a linear association between *two* explanatory variables. What this implies is, for all observations $i$, the following holds true:
 
-$$
-X_{2,i} = \alpha_0 + \alpha_1X_{1,i}
-$$
+$$X_{2,i} = \alpha_0 + \alpha_1X_{1,i}$$
 
 *Multicollinearity* is an extension of this idea and exists if there are linear associations between *more than two* explanatory variables. For example, you might have a situation where one variable is linearly associated with two other variables in your design matrix, like so:
 
-$$
-X_{3,i} = \alpha_0 + \alpha_1X_{1,i} + \alpha_2X_{2,i}
-$$
+$$X_{3,i} = \alpha_0 + \alpha_1X_{1,i} + \alpha_2X_{2,i}$$
 
 Strictly speaking, multicollinearity is *not* correlation: rather, it implies the presence of *linear dependencies* between several explanatory variables. This is a nuanced point — but an important one — and what both examples illustrate is a *deterministic* association between predictors. This means there are simple transforms that can be applied to one variable to compute the exact value for another. If this is possible, then we say we have *perfect collinearity* or *perfect multicollinearity*.
 
@@ -47,21 +43,17 @@ For example, consider the *dummy variable trap.* Suppose we are provided with a 
 
 Let’s extend this idea of redundancy a little further by considering the matrix below:
 
-$$
-A = \begin{pmatrix}
+$$A = \begin{pmatrix}
 6 & 7 & 13 \\
 7 & 4 & 11 \\
 7 & 2 & 9
-\end{pmatrix}
-$$
+\end{pmatrix}$$
 
 Here, the first two columns are linearly independent; however, the *third* is actually a linear combination of columns one and two (the third column is the sum of the first two). What this means is, if columns one and three, or columns two and three, are known, the remaining column can always be computed. The upshot here is that, at most, there can only be two columns that make genuinely independent contributions — the third will always be redundant.
 
 The downstream effect of redundancy is that it makes the estimation of model parameters impossible. Before explaining why it’ll be useful to quickly define the *moments matrix*:
 
-$$
-r = X^TX
-$$
+$$r = X^TX$$
 
 Critically, to derive the ordinary least squares (OLS) estimators ***r*** must be *invertible*, which means the matrix must have *full rank*. If the matrix is *rank deficient* then the OLS estimator does not exist because the matrix cannot be inverted.
 
@@ -75,9 +67,7 @@ Intuitively, if you’re throwing $k$ pieces of information into the model, you 
 
 Up until this point, we have been discussing the worst-case scenario where variables are perfectly multicollinear. In the real world, however, it’s pretty rare that you’ll encounter this problem. More realistically you’ll encounter situations where there are *approximate* linear associations between two or more variables. In this case, the linear association is not deterministic, but instead *stochastic*. This can be described by rewriting the equation above and introducing an error term:
 
-$$
-X_{3,i} = \alpha_0 + \alpha_1X_{1,i} + \alpha_2X_{2,i} + \nu_i
-$$
+$$X_{3,i} = \alpha_0 + \alpha_1X_{1,i} + \alpha_2X_{2,i} + \nu_i$$
 
 This situation is more manageable and doesn’t necessarily result in the degeneracy of $r$. But, if the error term is small, the associations between variables may be *nearly* perfectly multicollinear. In this case, though it’s true that $\mathrm{rank}(r) = k$*,* model fitting may become computationally unstable and produce coefficients that behave quite erratically. For example, fairly small changes in your data can have huge effects on coefficient estimates, thereby reducing their statistical reliability.
 
@@ -87,9 +77,7 @@ Okay, so stochastic multicollinearity presents some hurdles if you’re wanting 
 
 One such tool is the *variance inflation factor* (VIF) which quantifies the severity of multicollinearity in a multiple regression model. Functionally, it measures the increase in the variance of an estimated coefficient when collinearity is present. So, for covariate $j$*,* the VIF is defined as follows:
 
-$$
-VIF = \frac{1}{1 - R^2_j}
-$$
+$$VIF = \frac{1}{1 - R^2_j}$$
 
 Here, the coefficient of determination is derived from the regression of covariate $j$against the remaining $k — 1$ variables.
 

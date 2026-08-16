@@ -10,9 +10,9 @@ categories:
   - probability
   - null hypothesis testing
   - methods
-notes: "Photo by Joel Filipe on Unsplash"
-image: joel-filipe-k8apfKm-Md4-unsplash.jpg
-image-alt: "photo by Joel Filipe"
+notes: "Photo by Joel Henry on Unsplash"
+image: joel-henry-jERNVfvVofQ-unsplash.jpg
+image-alt: "photo by Joel Henry"
 bibliography: references.bib
 ---
 
@@ -66,27 +66,19 @@ The data we collect for the purpose of testing a hypothesis represent a collecti
 
 This then brings us to the second part, which is the *at least as extreme* part. What this is stating is that the *p*-value is *not* the probability of observing the test statistic itself, but instead the probability of observing that particular statistic, *plus* any other result more extreme than it. For example, if we let *T* be the random test statistic under the null hypothesis, and *t* be a computed test statistic based upon some observed sample of data, *X*, we can define the *p*-value in three ways, depending on the directionality of the test. For a *one-tailed* hypothesis test, in which we assume the test statistic is either smaller or larger than some reference value, the lower tail *p*-value is defined as:
 
-$$
-p_{lower} = P(T \leq t \ | \ H_0)
-$$
+$$p_{lower} = P(T \leq t \ | \ H_0)$$
 
 with the upper tail
 
-$$
-p_{upper} = P(T \geq t \ | \ H_0)
-$$
+$$p_{upper} = P(T \geq t \ | \ H_0)$$
 
 where $H_0$ denotes the null hypothesis. For *two-tailed* hypothesis test the *p*-value is defined as:
 
-$$
-p = 2 \cdot \min\left[ p_{lower}, \ p_{upper}\right]
-$$
+$$p = 2 \cdot \min\left[ p_{lower}, \ p_{upper}\right]$$
 
 In the two-tailed case we can see that either the upper or lower tail *p*-value is used, depending on whichever is smaller, and is then multiplied by 2. If the sampling distribution is symmetrical, however, this can be simplified because then:
 
-$$
-p = P(|T| \geq |t| \ | \ H_0)
-$$
+$$p = P(|T| \geq |t| \ | \ H_0)$$
 
 Hopefully this makes clear how the *at least as extreme* factors in. From the equations above we can see that the *p*-value is the probability that, all things being equal, we would observe a value *T* that is more extreme than the value of *t* we have already observed. More formally, it is the area to the left (or right) of *t* beneath the sampling distribution assumed under the null hypothesis. If the sampling distribution is a continuous function — which it often is — you may recall from your calculus studies that the probability of observing a single point value is zero. The best we can do is compute some arbitrarily small area beneath the distribution between *t* and another value that is shifted closer and closer toward it.
 
@@ -104,9 +96,7 @@ But we must be careful not to conflate surprise with finding. Paraphrasing Fishe
 
 Fundamentally, the *p*-value is a statement about *data* that is *conditional* on a certain hypothesis being true. While low *p*-values can be used to *reject* a hypothesis, it is not a measure of the probability that the hypothesis itself is true. This misconception amounts to accepting that the following equality is true:
 
-$$
-P(|T| \geq |t| \ | \ H_0) = P(H_0 \ | \ |T| \geq |t|)
-$$
+$$P(|T| \geq |t| \ | \ H_0) = P(H_0 \ | \ |T| \geq |t|)$$
 
 The left hand side of the equality is the *p*-value as defined above. However, on the right hand side we have the *posterior probability* of the null hypothesis given the observed test result. We often want to know the probability on the right hand side but conflate the *p*-value with the posterior probability. The issue is that there is no reason to expect that these two probabilities are identical, and falsely equating the two is known as the *fallacy of the inverse*, or the *conditional probability fallacy*.
 
