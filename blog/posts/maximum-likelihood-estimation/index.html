@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.25">
+<meta name="generator" content="quarto-1.9.38">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -12,6 +12,9 @@
 
 <title>An Introduction to Maximum Likelihood Estimation – robtaylor</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -35,14 +38,13 @@ ul.task-list li input[type="checkbox"] {
 <meta name="quarto:offset" content="../../../">
 <script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-8bc69f571828cfa0f3b3588179e129ec.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-0ad9529d9b98df856f3841d955a8d299.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -126,8 +128,6 @@ window.Quarto = {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="../../../index.html" class="navbar-brand navbar-brand-logo">
-    </a>
     <a class="navbar-brand" href="../../../index.html">
     <span class="navbar-title">rob taylor</span>
     </a>
@@ -182,7 +182,7 @@ window.Quarto = {
       </div>
                           <div class="quarto-categories">
                 <div class="quarto-category">statistics</div>
-                <div class="quarto-category">maximum likelihood</div>
+                <div class="quarto-category">maximum likelihood estimation</div>
                 <div class="quarto-category">data analysis</div>
               </div>
                   </div>
@@ -244,9 +244,7 @@ window.Quarto = {
 <section id="more-coin-flipping" class="level3">
 <h3 data-anchor-id="more-coin-flipping">More Coin Flipping</h3>
 <p>Often when we compute simple statistics from data we’re actually doing MLE without even knowing it. I’ve always found this somewhat delightful; I’m not sure why, but I do. By way of example, suppose I flip a fair coin ten times and observe the following outcomes:</p>
-<p><span class="math display">
-Y = \{ H, T, H, H, T, H, T, T, H, H\}
-</span></p>
+<p><span class="math display">Y = \{ H, T, H, H, T, H, T, T, H, H\}</span></p>
 <p>Suppose I now ask you to summarise this data by giving me the proportion of “heads” that resulted. Once you’re done thinking I’m a moron, you’ll say something like: “Well, out of ten throws there were a total of six heads; therefore, the proportion of heads is 6 over 10, which is 0.60, or 60 per cent”.</p>
 <p>And you’d be right.</p>
 <p>But it also turns out that this rather innocuous little calculation is precisely the solution you’d get by stepping through the MLE process. Crazy, huh? Let’s see how this works.</p>
@@ -255,25 +253,17 @@ Y = \{ H, T, H, H, T, H, T, T, H, H\}
 <h3 data-anchor-id="what-is-maximum-likelihood-estimation">What is Maximum Likelihood Estimation?</h3>
 <p>Maximum likelihood estimation is a way of estimating unknown parameters using observed data. The way it works is by finding combinations of parameters that maximize the <em>likelihood function</em> so that, given the assumed model, the data you have observed is most probable. If you imagine parameters like dials, what this boils down to is finding the dial settings that give the best fit to your data.</p>
 <p>Symbolically, we can express our goals as follows:</p>
-<p><span class="math display">
-\hat{\theta} = \argmax_{\theta \ \in \ \Theta} \ \mathcal{L}\left(\theta \ | \ X \right)
-</span></p>
+<p><span class="math display">\hat{\theta} = \argmax_{\theta \ \in \ \Theta} \ \mathcal{L}\left(\theta \ | \ X \right)</span></p>
 <p>All this is saying is we want to find the unique set of parameters (denoted by the lowercase Greek letter <span class="math inline">\theta</span>) existing within the parameter space (denoted by the uppercase Greek letter <span class="math inline">\Theta</span>) that maximizes the likelihood function, which itself is defined as:</p>
-<p><span class="math display">
-\mathcal{L}\left(\theta \ | \ X \right) = P \left(X \ | \ \theta \right)
-</span></p>
+<p><span class="math display">\mathcal{L}\left(\theta \ | \ X \right) = P \left(X \ | \ \theta \right)</span></p>
 <p>The term on the right-hand side is the probability mass function. More generally, it is a model function that describes how the data is distributed given certain parameter settings.</p>
 </section>
 <section id="throw-a-log-on-the-likelihood" class="level3">
 <h3 data-anchor-id="throw-a-log-on-the-likelihood">Throw a Log on the Likelihood</h3>
 <p>Okay, so let’s now connect these ideas with the coin flip data described above. But first, I’m just going to make a little change and replace all “H’s” with a 1 and all “T’s” with a 0. This means we can now take the sum over <span class="math inline">X</span> to get the total number of “heads”. Let’s call this <span class="math inline">K</span>. The Binomial likelihood function can then be written as:</p>
-<p><span class="math display">
-\mathcal{L}\left(\theta \ | \ X \right) = \binom{N}{K} \ p^K \left( 1 - p \right)^{N - k}
-</span></p>
+<p><span class="math display">\mathcal{L}\left(\theta \ | \ X \right) = \binom{N}{K} \ p^K \left( 1 - p \right)^{N - k}</span></p>
 <p>where the unknown rate parameter <span class="math inline">p</span> is what we are trying to estimate. When approaching these types of problems it is often more convenient (at least mathematically) to work with the log of the likelihood. So let’s do that by taking the natural log of both sides:</p>
-<p><span class="math display">
-\ln \mathcal{L}\left(\theta \ | \ X \right) = \ln \binom{N}{K} + K \ln p + \left( N - K\right)  \ln \left(1 - p \right)
-</span></p>
+<p><span class="math display">\ln \mathcal{L}\left(\theta \ | \ X \right) = \ln \binom{N}{K} + K \ln p + \left( N - K\right)  \ln \left(1 - p \right)</span></p>
 <p>The first term on the right-hand side — the log of the binomial coefficient — is typically dropped because it’s a constant term that doesn’t affect parameter estimation. For present purposes, it really doesn’t matter whether you log transform the likelihood function or not. Because both functions are monotonically related you can maximize either one and arrive at the same result. In general, though, it’s a good idea to work with logs.</p>
 </section>
 <section id="taking-derivatives" class="level3">
@@ -281,37 +271,25 @@ Y = \{ H, T, H, H, T, H, T, T, H, H\}
 <p>Right. So we now have our log-likelihood function. Now what?</p>
 <p>Well, you could take a brute force approach and simply try a whole bunch of values and see which gives the highest likelihood value. Given there is only one parameter to estimate — and it’s bounded between zero and one — this is actually a plausible approach. But such shenanigans will not be entertained here! So let’s be smart.</p>
 <p>What we really need to understand is how the log-likelihood function changes when we adjust our parameter value. Conveniently, we can get this information by taking the first derivative of the log-likelihood function with respect to <em>p</em> (assuming, of course, that the function is differentiable; which in this case it is). Furthermore, <em>if</em> a solution exists — by which I mean, there is a parameter that maximizes the log-likelihood — then it must satisfy the following partial differential equation:</p>
-<p><span class="math display">
-\frac{\partial\ln \mathcal{L}(\theta \ | \ X)}{\partial\theta} = 0
-</span></p>
+<p><span class="math display">\frac{\partial\ln \mathcal{L}(\theta \ | \ X)}{\partial\theta} = 0</span></p>
 <p>Okay, so what does this mean?</p>
 <p>For MLE purposes, we typically expect the log-likelihood to be a differentiable, continuous function. If this expectation holds then, definitionally, the maximum (or minimum) of such a function implies that its first derivative goes to zero at these points. What the equation above is stating is that, if we have successfully found the parameter that maximizes our target function, then the derivative of the log-likelihood should be zero.</p>
 <p>The cool thing is that if we set the derivative of the log-likelihood to zero, we can solve for the unknown parameter. Let’s try this with our coin flip data.</p>
 <p>First, let’s take a look at the first derivative of the Binomial likelihood function:</p>
-<p><span class="math display">
-\frac{d\ln \mathcal{L}(\theta \ | \ X)}{d\theta} = \frac{K}{p} - \frac{N - K}{1 - p}
-</span></p>
+<p><span class="math display">\frac{d\ln \mathcal{L}(\theta \ | \ X)}{d\theta} = \frac{K}{p} - \frac{N - K}{1 - p}</span></p>
 <p>If you’re not sure how I got to this expression, that’s okay. In another <a href="https://medium.com/@dataforyou/maximum-likelihood-estimation-part-2-the-deriving-49900b9ea427">post</a>, I’ll show you how to derive this. But for now, all you need to know is that this <em>is</em> the first derivative. Next, we want to set this to zero like so:</p>
-<p><span class="math display">
-\frac{K}{p} - \frac{N - K}{1 - p} = 0
-</span></p>
+<p><span class="math display">\frac{K}{p} - \frac{N - K}{1 - p} = 0</span></p>
 <p>With a little bit of algebra we can solve for <em>p</em> (again, I’ll derive this explicitly in another <a href="https://medium.com/@dataforyou/maximum-likelihood-estimation-part-2-the-deriving-49900b9ea427">post</a>). Doing so reveals the maximum likelihood estimator:</p>
-<p><span class="math display">
-\hat{p} = \frac{K}{N}
-</span></p>
+<p><span class="math display">\hat{p} = \frac{K}{N}</span></p>
 <p>This is exactly what you calculated earlier! Remember, <em>K</em> is just the number of “heads” we observed and <em>N</em> was the total number of throws, which gives us 0.60. Amazing.</p>
 </section>
 <section id="finishing-on-a-high" class="level3">
 <h3 data-anchor-id="finishing-on-a-high">Finishing on a High</h3>
 <p>We’re not quite done, though.</p>
 <p>There is an additional condition that needs to be met to ensure that we have encountered a maximum and not a minimum. Remember, both minimum and maximum values will result in the first derivative going to zero, so we need to be sure the log-likelihood is <em>concave</em> in the neighborhood of the estimate. That is, we want our estimate to be sitting on top of a peak, and not located at the bottom of a valley. To check this we must ensure the following condition is also true:</p>
-<p><span class="math display">
-\frac{\partial^2\ln \mathcal{L}(\theta \ | \ X)}{\partial\theta^2} \ &lt; \ 0
-</span></p>
+<p><span class="math display">\frac{\partial^2\ln \mathcal{L}(\theta \ | \ X)}{\partial\theta^2} \ &lt; \ 0</span></p>
 <p>In very simple terms, what this says is that we should expect the <em>second</em> derivative of the log-likelihood to be less than zero in and around the maximum likelihood estimate. Let’s try this by plugging in our estimated value of 0.60:</p>
-<p><span class="math display">
-\frac{K}{p^2} - \frac{N - K}{(1 - p)^2} = \frac{6}{0.60^2} - \frac{10 - 6}{(1 - 0.60^2)} = -8.33
-</span></p>
+<p><span class="math display">\frac{K}{p^2} - \frac{N - K}{(1 - p)^2} = \frac{6}{0.60^2} - \frac{10 - 6}{(1 - 0.60^2)} = -8.33</span></p>
 <p>which is less than zero. Happy days.</p>
 </section>
 <section id="final-points" class="level3">

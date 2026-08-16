@@ -2,50 +2,54 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://robtaylor.co.nz/blog/index.html</loc>
-    <lastmod>2026-05-10T00:35:43.949Z</lastmod>
+    <lastmod>2026-08-16T02:48:16.923Z</lastmod>
   </url>
   <url>
     <loc>https://robtaylor.co.nz/blog/posts/dual-axis-plots/index.html</loc>
-    <lastmod>2026-05-10T00:35:43.952Z</lastmod>
+    <lastmod>2026-08-16T02:48:16.924Z</lastmod>
   </url>
   <url>
     <loc>https://robtaylor.co.nz/blog/posts/probability-versus-likelihood/index.html</loc>
-    <lastmod>2026-05-10T00:35:43.977Z</lastmod>
+    <lastmod>2026-08-16T02:48:16.994Z</lastmod>
   </url>
   <url>
-    <loc>https://robtaylor.co.nz/blog/posts/primer-on-p-values/index.html</loc>
-    <lastmod>2026-05-10T00:35:43.961Z</lastmod>
-  </url>
-  <url>
-    <loc>https://robtaylor.co.nz/index.html</loc>
-    <lastmod>2026-05-10T00:35:43.982Z</lastmod>
-  </url>
-  <url>
-    <loc>https://robtaylor.co.nz/resources/index.html</loc>
-    <lastmod>2026-05-10T00:35:43.985Z</lastmod>
-  </url>
-  <url>
-    <loc>https://robtaylor.co.nz/publications/index.html</loc>
-    <lastmod>2026-05-10T00:35:43.983Z</lastmod>
-  </url>
-  <url>
-    <loc>https://robtaylor.co.nz/about/index.html</loc>
-    <lastmod>2026-05-10T00:35:43.948Z</lastmod>
+    <loc>https://robtaylor.co.nz/blog/posts/statistical-technicians/index.html</loc>
+    <lastmod>2026-08-16T02:48:17.002Z</lastmod>
   </url>
   <url>
     <loc>https://robtaylor.co.nz/software/index.html</loc>
-    <lastmod>2026-05-10T00:35:43.985Z</lastmod>
+    <lastmod>2026-08-16T02:48:17.013Z</lastmod>
+  </url>
+  <url>
+    <loc>https://robtaylor.co.nz/about/index.html</loc>
+    <lastmod>2026-08-16T02:48:16.922Z</lastmod>
+  </url>
+  <url>
+    <loc>https://robtaylor.co.nz/publications/index.html</loc>
+    <lastmod>2026-08-16T02:48:17.010Z</lastmod>
+  </url>
+  <url>
+    <loc>https://robtaylor.co.nz/resources/index.html</loc>
+    <lastmod>2026-08-16T02:48:17.013Z</lastmod>
+  </url>
+  <url>
+    <loc>https://robtaylor.co.nz/index.html</loc>
+    <lastmod>2026-08-16T02:48:17.009Z</lastmod>
+  </url>
+  <url>
+    <loc>https://robtaylor.co.nz/blog/posts/primer-on-p-values/index.html</loc>
+    <lastmod>2026-08-16T02:48:16.975Z</lastmod>
   </url>
   <url>
     <loc>https://robtaylor.co.nz/blog/posts/maximum-likelihood-estimation-part-2/index.html</loc>
-    <lastmod>2026-05-10T00:35:43.952Z</lastmod>
+    <lastmod>2026-08-16T02:48:16.944Z</lastmod>
   </url>
   <url>
     <loc>https://robtaylor.co.nz/blog/posts/maximum-likelihood-estimation/index.html</loc>
-    <lastmod>2026-05-10T00:35:43.954Z</lastmod>
+    <lastmod>2026-08-16T02:48:16.945Z</lastmod>
   </url>
   <url>
     <loc>https://robtaylor.co.nz/blog/posts/multicollinearity-problem-or-not/index.html</loc>
-    <lastmod>2026-05-10T00:35:43.954Z</lastmod>
+    <lastmod>2026-08-16T02:48:16.961Z</lastmod>
   </url>
 </urlset>

@@ -2,15 +2,18 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.25">
+<meta name="generator" content="quarto-1.9.38">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Rob Taylor, PhD">
-<meta name="dcterms.date" content="2022-08-08">
+<meta name="dcterms.date" content="2026-04-24">
 
-<title>On Probability versus Likelihood – robtaylor</title>
+<title>Statistical Technicians – robtaylor</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -34,14 +37,13 @@ ul.task-list li input[type="checkbox"] {
 <meta name="quarto:offset" content="../../../">
 <script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-8bc69f571828cfa0f3b3588179e129ec.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-0ad9529d9b98df856f3841d955a8d299.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -71,49 +73,6 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 <style>html{ scroll-behavior: smooth; }</style>
 
-  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
-  <script>document.addEventListener("DOMContentLoaded", function () {
- var mathElements = document.getElementsByClassName("math");
- var macros = [];
- for (var i = 0; i < mathElements.length; i++) {
-  var texText = mathElements[i].firstChild;
-  if (mathElements[i].tagName == "SPAN") {
-   katex.render(texText.data, mathElements[i], {
-    displayMode: mathElements[i].classList.contains('display'),
-    throwOnError: false,
-    macros: macros,
-    fleqn: false
-   });
-}}});
-  </script>
-  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 <link rel="stylesheet" href="../../../styles.css">
 </head>
@@ -125,8 +84,6 @@ window.Quarto = {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="../../../index.html" class="navbar-brand navbar-brand-logo">
-    </a>
     <a class="navbar-brand" href="../../../index.html">
     <span class="navbar-title">rob taylor</span>
     </a>
@@ -172,12 +129,12 @@ window.Quarto = {
 <header id="title-block-header" class="quarto-title-block default toc-left page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">On Probability versus Likelihood</h1>
-            <p class="subtitle lead">A discussion about two terms that are often used interchangeably, but are mathematically distinct</p>
+      <h1 class="title">Statistical Technicians</h1>
+            <p class="subtitle lead">The case for teaching statistics as reasoning, not procedure</p>
                                 <div class="quarto-categories">
                 <div class="quarto-category">statistics</div>
                 <div class="quarto-category">probability</div>
-                <div class="quarto-category">likelihood</div>
+                <div class="quarto-category">teaching</div>
               </div>
                   </div>
   </div>
@@ -195,7 +152,7 @@ window.Quarto = {
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">August 8, 2022</p>
+        <p class="date">April 24, 2026</p>
       </div>
     </div>
     
@@ -211,10 +168,9 @@ window.Quarto = {
    
   <ul>
   <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
-  <li><a href="#probability" id="toc-probability" class="nav-link" data-scroll-target="#probability">Probability</a></li>
-  <li><a href="#likelihood" id="toc-likelihood" class="nav-link" data-scroll-target="#likelihood">Likelihood</a></li>
-  <li><a href="#statistical-evidence" id="toc-statistical-evidence" class="nav-link" data-scroll-target="#statistical-evidence">Statistical Evidence</a></li>
-  <li><a href="#wrapping-up" id="toc-wrapping-up" class="nav-link" data-scroll-target="#wrapping-up">Wrapping Up</a></li>
+  <li><a href="#the-logic-gate-curriculum" id="toc-the-logic-gate-curriculum" class="nav-link" data-scroll-target="#the-logic-gate-curriculum">The logic gate curriculum</a></li>
+  <li><a href="#a-philosophical-narrowing" id="toc-a-philosophical-narrowing" class="nav-link" data-scroll-target="#a-philosophical-narrowing">A philosophical narrowing</a></li>
+  <li><a href="#what-was-lost" id="toc-what-was-lost" class="nav-link" data-scroll-target="#what-was-lost">What was lost</a></li>
   </ul>
 </nav>
 </nav>
@@ -231,62 +187,28 @@ window.Quarto = {
 
 <section id="introduction" class="level3">
 <h3 data-anchor-id="introduction">Introduction</h3>
-<p>From the perspective of machine learning and data science, probabilities and likelihoods are used to quantify uncertainty, or perhaps how probable it is that an observation belongs to one class or another. They crop up when looking at confusion matrices; and indeed, algorithms like Naive Bayes classification are pretty much probabilistic models. The reality is that data scientists cannot escape these concepts.</p>
-<p>In everyday language, though, we tend to use the terms probability and likelihood almost interchangeably. Indeed, it’s not uncommon to hear things like ‘how likely is it to rain today?’ or ‘what are the chances of this or that happening?’ And I’ll be honest; it wasn’t a distinction that was initially apparent to me, but probability and likelihood are <em>different</em> (albeit related) concepts. This interchangeability can often creep into our work as data scientists, so it’s important to be clear about the distinction between the two terms. So, in this post, I thought I’d have a crack at illustrating the difference between these two ideas.</p>
+<p>There is a familiar ritual to the undergraduate statistics course. You’re handed a decision tree, invited to follow its branches, and eventually arrive at a test and a <em>p</em>-value to report. The process is tidy, sequential, and almost entirely thoughtless. At no point are you asked to reflect seriously on what you are doing, or why, or whether the question you are answering bears any resemblance to the question you started with.</p>
+<p>My degree was in psychology; a field that relies heavily on statistical inference, and one that has paid a very public price for treating it carelessly. Yet even there, statistics was something to endure rather than be enlightened by. The implicit mantra was that mathematics is hard, the procedures are unpleasant, and the sooner it is over the better. It was a checkbox that needed ticking to get your degree, not a way of thinking that might change how you understood the world.</p>
+<p>That has frustrated me for nearly two decades. And I don’t think the frustration is misplaced.</p>
 </section>
-<section id="probability" class="level3">
-<h3 data-anchor-id="probability">Probability</h3>
-<p>In a nutshell, the fundamental difference between probability and likelihood lies in what is allowed to <em>vary —</em> let me explain.</p>
-<p>What you need to know is that <em>likelihood</em> — though to be specific, I’m actually talking about the <em>likelihood function</em> — is actually derived from a statistical model and is considered a function over the parameters that generate data from that model. Confused? Don’t worry — let’s be a little more concrete and consider tossing a fair coin ten times.</p>
-<p>We know that this is a Binomial process that is governed by a rate parameter <span class="math inline">p</span> that defines the expected probability of throwing <span class="math inline">K</span> heads (or tails — it doesn’t matter which) out of a total of <span class="math inline">N</span> throws. Here, the number of observed heads, <span class="math inline">K</span>, is a random variable that changes in response to different values of <span class="math inline">p</span>. For any fixed parameter value (e.g., <span class="math inline">p = 0.7</span>), the <em>probability</em> of observing <span class="math inline">K</span> heads is given by the probability mass function (PMF):</p>
-<p><span class="math display">
-P(K = k) = \binom{N}{k} \ p^k \ \left( 1 - p\right)^{N - k}
-</span></p>
-<p>where</p>
-<p><span class="math display">
-\binom{N}{k} = \frac{N!}{k! \ (N - k)!}
-</span></p>
-<p>Now, because I said the coin is fair, and it was tossed ten times, we can let <span class="math inline">p = 0.5</span> and <span class="math inline">N = 10</span>. If we then plug these values into the equation above — and let <span class="math inline">K</span> vary — we get something that looks like the left panel of Figure 1. Based upon this, we can see that <span class="math inline">K = 5</span> is the most probable outcome, which should make sense: if the coin is fair, and we toss it ten times, we should expect that — in the long run — we’ll get 5 heads and 5 tails more often than not. But you should also note that getting 4 or 6 heads isn’t all that uncommon, either.</p>
-<p>So, what the PMF tells us is how probable particular realisations of the random process are <em>given</em> a fixed set of model parameters. In this instance, we assume the model parameters are <em>fixed</em> and it is the data that is free to <em>vary</em>. The takeaway here is that, if the model parameters are known, then we are asking questions about the kinds of data that might be observed.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="prob_v_like.png" class="img-fluid figure-img"></p>
-<figcaption>Figure 1: A) The probability mass function for the Binomial model; B) the Binomial likelihood function. Points denote the likelihood for different parameter values.</figcaption>
-</figure>
-</div>
+<section id="the-logic-gate-curriculum" class="level3">
+<h3 data-anchor-id="the-logic-gate-curriculum">The logic gate curriculum</h3>
+<p>The procedural presentation gives the impression that statistical analysis is a series of objective logic gates requiring no creativity and very little judgment. Follow the steps, obtain the answer. The methods are presented as a toolkit – seemingly fixed, finite, and authoritative – rather than as a set of imperfect instruments for reasoning under uncertainty.</p>
+<p>What this produces is a generation of statistical technicians. They can run the tests they were taught. They know which boxes to check. But they have outsourced their thinking and judgment, and are entirely at the whim of the sampling process as a result. The more difficult and more illuminating methods are withheld to postgraduate courses, leaving undergraduates with a perfunctory understanding of statistical analysis that can take years of subsequent practice to unlearn.</p>
+<p>The <em>p</em>-value is perhaps the clearest illustration of the problem. It survives in the curriculum not because it is the most useful or the most interpretable quantity, but because it is procedurally convenient. It collapses a genuinely difficult inferential question into a binary, and students learn to report it because it feels like an answer. The irony is that the <em>p</em>-value is one of the most routinely misunderstood concepts in all of science, yet it remains the centrepiece of undergraduate statistical education.</p>
+<p>But the distortion cuts deeper than just the analysis stage. When students are trained on a fixed menu of tests, they learn — implicitly, if not explicitly — to design experiments that those tests can handle. In some cases that is perfectly reasonable. But it can perniciously narrow the scope of scientific enquiry, bending the question to fit the method rather than the other way around. Worse, a design chosen for its statistical convenience may not actually answer the question the researcher started with, yet the results get interpreted as though it did. The curriculum doesn’t just shape how scientists analyse data — it shapes what they <em>think</em> to ask.</p>
 </section>
-<section id="likelihood" class="level3">
-<h3 data-anchor-id="likelihood">Likelihood</h3>
-<p>Okay, so what if instead, I tell you that I already flipped the coin ten times and got <span class="math inline">K = 7</span> heads? My question to you is whether the coin I threw was fair or not.</p>
-<p>What’s important to note is that, in this case, <span class="math inline">K</span> is no longer random — we have an <em>observed</em> realization of the Binomial process meaning it is now a fixed value. Given this information, the likelihood function for the Binomial model can be written as:</p>
-<p><span class="math display">
-\mathcal{L}( \theta \ | \ K = \hat{k}) = P(K = \hat{k})
-</span></p>
-<p>Here, I’m using “hat” notation to make it clear that <span class="math inline">K</span> is the observed number of heads from ten throws. Now, this just looks like I’m saying that the likelihood function is the same thing as the PMF — well, I kind of <em>am</em> saying that. But, the difference here is that now the <em>data is fixed</em> and it is the model parameter, <span class="math inline">p</span>, that is free to vary.</p>
-<p>What the likelihood function gives us is a <em>measure</em> of how likely any particular value of <span class="math inline">p</span> is given that we know that <span class="math inline">K</span> equals some observed value. Just like above, if we plug <span class="math inline">K = 7</span> into the equation above — letting <span class="math inline">p</span> take on all possible values — we’d get something like the right panel in the above figure. Note that here the likelihood function is not symmetrical; rather, it is peaked over <span class="math inline">p = .7</span>. Specifically, the <em>mode</em> of this distribution (i.e., the peak itself) coincides with something called the <em>maximum likelihood estimate</em> (MLE). What’s that? Well, it’s the value of <span class="math inline">p</span> that is most likely given the observed data — the name sort of gives it away, really. I’ll talk more about MLE in another post, but for now, all that you need to know is that value of the likelihood function at the MLE is approximately .27.</p>
-<p>Okay, before moving on, a note of caution: I know the likelihood function looks like a distribution function, but it is <strong>not</strong> a proper probability density function (i.e., it typically doesn’t integrate to 1). More importantly, the likelihood function is <strong>not</strong> the probability that <em>p</em> equals a particular value (for that you’ll need to compute the posterior distribution. I’ll talk about that in another post).</p>
-<p>Right, moving on.</p>
+<section id="a-philosophical-narrowing" class="level3">
+<h3 data-anchor-id="a-philosophical-narrowing">A philosophical narrowing</h3>
+<p>The standard undergraduate curriculum is not just procedurally impoverished, it’s philosophically blinkered in a way that most students never realise.</p>
+<p>Almost universally, undergraduates are taught frequentist statistics and nothing else. No alternatives are mentioned, let alone explored. This would be defensible if frequentism were the only coherent framework for statistical inference, but it isn’t. Bayesian statistics – in which probability represents a degree of belief updated in light of evidence – offers a fundamentally different and, to many scientists, more natural way of thinking about what data can and cannot tell us.</p>
+<p>The Bayesian framework maps directly onto how scientists actually reason. We have prior knowledge. We collect data. We update our beliefs accordingly. That is science. The frequentist framework, by contrast, asks us to reason about the long-run behaviour of a procedure across hypothetical repeated samples – a construction that is philosophically coherent but considerably more remote from the questions researchers often want answers to. Students trained exclusively in frequentist methods don’t just lack a set of tools, they leave university without knowing that a different way of thinking about evidence exists at all.</p>
 </section>
-<section id="statistical-evidence" class="level3">
-<h3 data-anchor-id="statistical-evidence">Statistical Evidence</h3>
-<p>Remember when I said that the likelihood function is interpreted as a measure? Well, specifically, it can be used to quantify statistical evidence. I also said that all you needed to know about the MLE is that it has a likelihood value of approximately .27. But what does this tell us? What does it mean to say that the likelihood is approximately .27? It certainly doesn’t tell us whether or not the coin I used was fair or not — so where to from here?</p>
-<p>I need to introduce a couple of things:</p>
-<ul>
-<li><p><strong>The Likelihood Principle</strong> states that, for a given statistical model, all the evidence relevant to model parameters exists within the sampled (observed) data itself.</p></li>
-<li><p><strong>The Law of Likelihood</strong> states that the extent to which the evidence supports one parameter value over another is determined by the ratio of their respective likelihoods.</p></li>
-</ul>
-<p>Taking these ideas together implies that looking at a single likelihood in isolation tells us very little. Yes, it provides a measure of evidence, but relative to what? The definitions above tell us that likelihoods are more useful when they’re compared to <em>other</em> likelihoods. That’s why we typically prefer relative measures such as <em>likelihood ratios</em>.</p>
-<p>With this in mind, recall my question to you was whether, based on the data you have, the coin I tossed was fair. To properly address this question we also require the likelihood of observing the data if <span class="math inline">p = 0.5</span>, which is approximately .12. Note that both these points are marked on the likelihood function in Figure 1. Given these two pieces of information we can now compute the likelihood ratio:</p>
-<p><span class="math display">
-\Lambda = \frac{\mathcal{L}(\theta_0 \ | \ K = k)}{\mathcal{L}(\theta_1 \ | \ K = k)} = \frac{\mathcal{L}(p = 0.5 \ | \ K = 7)}{\mathcal{L}(p = 0.7 \ | \ K = 7)}
-</span></p>
-<p>What does this give us? Approximately 0.44. You’ll need some context.</p>
-<p>In this example, the likelihood ratio quantifies the degree to which the data supports the claim that <span class="math inline">p = 0.5</span> (fair coin). If this ratio is 1, there is no evidence either way. If the ratio is greater than 1, then the evidence is in favor of the numerator (here, <span class="math inline">p = 0.5</span>). However, if the ratio is less than 1, then the evidence supports the denominator (here, <span class="math inline">p = 0.7</span>). So, it appears we have evidence against the fair coin hypothesis. In fact, if we take the reciprocal (i.e., 1 / .44) we see that <span class="math inline">p = 0.7</span> is approximately 2.3 times more likely than <span class="math inline">p = 0.5</span> (bear in mind that is a comparison with only one alternative— there are other possibilities other than <span class="math inline">p = 0.7</span>).</p>
-<p>In reality, this is a trivial result, and the likelihood principle, along with the law of likelihood, means that the parameter value that maximizes the likelihood function is the value most supported by the data. The question is then whether this is convincing enough evidence that the coin I flipped was unfair. That’s a topic for another day.</p>
-</section>
-<section id="wrapping-up" class="level3">
-<h3 data-anchor-id="wrapping-up">Wrapping Up</h3>
-<p>I hope that this post made clear the difference between probability and likelihood. To recap: <em>probability</em> is generally something we consider when we have a model with a fixed set of parameters and we are interested in the types of data that might be generated. Conversely, <em>likelihood</em> comes into play when we have already observed data and we want to examine how likely certain model parameters are. In particular, we can use likelihood ratios to quantify the evidence in favor of one value over another.</p>
+<section id="what-was-lost" class="level3">
+<h3 data-anchor-id="what-was-lost">What was lost</h3>
+<p>The cost of this is difficult to quantify, but it is real. The replication crisis — which hit psychology particularly hard — had many causes. But it’s hard to ignore that researchers trained to treat statistical significance as a destination, rather than as one imperfect signal among many, were not well placed to resist its pull. They followed the procedures they had been taught, reported the numbers they had been trained to report, and drew conclusions the framework encouraged them to draw. The curriculum may not have caused these errors, but it did little to equip researchers to avoid them.</p>
+<p>A more honest pedagogical approach would ask something harder of students. It would treat inference as a genuinely difficult problem rather than a set of tasks to be executed. It would introduce the idea that there are multiple coherent frameworks for reasoning about evidence, that judgment cannot be fully automated, and that uncertainty is something to be characterised rather than resolved by crossing a threshold.</p>
+<p>Statistics, taught well, is not something to endure. It is one of the most powerful tools we have for understanding the world – imperfect, contested, and endlessly interesting. That is what the curriculum could have conveyed. For most students, it didn’t come close.</p>
 
 
 </section>
@@ -358,7 +280,7 @@ P(K = k) = \binom{N}{k} \ p^k \ \left( 1 - p\right)^{N - k}
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp('/' + window.location.host + '/');
+        var filterRegex = new RegExp("https:\/\/robtaylor\.co\.nz");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }

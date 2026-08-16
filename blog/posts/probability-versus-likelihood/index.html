@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.25">
+<meta name="generator" content="quarto-1.9.38">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -11,6 +11,9 @@
 
 <title>On Probability versus Likelihood – robtaylor</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -34,14 +37,13 @@ ul.task-list li input[type="checkbox"] {
 <meta name="quarto:offset" content="../../../">
 <script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-8bc69f571828cfa0f3b3588179e129ec.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-0ad9529d9b98df856f3841d955a8d299.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -125,8 +127,6 @@ window.Quarto = {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="../../../index.html" class="navbar-brand navbar-brand-logo">
-    </a>
     <a class="navbar-brand" href="../../../index.html">
     <span class="navbar-title">rob taylor</span>
     </a>
@@ -239,13 +239,9 @@ window.Quarto = {
 <p>In a nutshell, the fundamental difference between probability and likelihood lies in what is allowed to <em>vary —</em> let me explain.</p>
 <p>What you need to know is that <em>likelihood</em> — though to be specific, I’m actually talking about the <em>likelihood function</em> — is actually derived from a statistical model and is considered a function over the parameters that generate data from that model. Confused? Don’t worry — let’s be a little more concrete and consider tossing a fair coin ten times.</p>
 <p>We know that this is a Binomial process that is governed by a rate parameter <span class="math inline">p</span> that defines the expected probability of throwing <span class="math inline">K</span> heads (or tails — it doesn’t matter which) out of a total of <span class="math inline">N</span> throws. Here, the number of observed heads, <span class="math inline">K</span>, is a random variable that changes in response to different values of <span class="math inline">p</span>. For any fixed parameter value (e.g., <span class="math inline">p = 0.7</span>), the <em>probability</em> of observing <span class="math inline">K</span> heads is given by the probability mass function (PMF):</p>
-<p><span class="math display">
-P(K = k) = \binom{N}{k} \ p^k \ \left( 1 - p\right)^{N - k}
-</span></p>
+<p><span class="math display">P(K = k) = \binom{N}{k} \ p^k \ \left( 1 - p\right)^{N - k}</span></p>
 <p>where</p>
-<p><span class="math display">
-\binom{N}{k} = \frac{N!}{k! \ (N - k)!}
-</span></p>
+<p><span class="math display">\binom{N}{k} = \frac{N!}{k! \ (N - k)!}</span></p>
 <p>Now, because I said the coin is fair, and it was tossed ten times, we can let <span class="math inline">p = 0.5</span> and <span class="math inline">N = 10</span>. If we then plug these values into the equation above — and let <span class="math inline">K</span> vary — we get something that looks like the left panel of Figure 1. Based upon this, we can see that <span class="math inline">K = 5</span> is the most probable outcome, which should make sense: if the coin is fair, and we toss it ten times, we should expect that — in the long run — we’ll get 5 heads and 5 tails more often than not. But you should also note that getting 4 or 6 heads isn’t all that uncommon, either.</p>
 <p>So, what the PMF tells us is how probable particular realisations of the random process are <em>given</em> a fixed set of model parameters. In this instance, we assume the model parameters are <em>fixed</em> and it is the data that is free to <em>vary</em>. The takeaway here is that, if the model parameters are known, then we are asking questions about the kinds of data that might be observed.</p>
 <div class="quarto-figure quarto-figure-center">
@@ -259,9 +255,7 @@ P(K = k) = \binom{N}{k} \ p^k \ \left( 1 - p\right)^{N - k}
 <h3 data-anchor-id="likelihood">Likelihood</h3>
 <p>Okay, so what if instead, I tell you that I already flipped the coin ten times and got <span class="math inline">K = 7</span> heads? My question to you is whether the coin I threw was fair or not.</p>
 <p>What’s important to note is that, in this case, <span class="math inline">K</span> is no longer random — we have an <em>observed</em> realization of the Binomial process meaning it is now a fixed value. Given this information, the likelihood function for the Binomial model can be written as:</p>
-<p><span class="math display">
-\mathcal{L}( \theta \ | \ K = \hat{k}) = P(K = \hat{k})
-</span></p>
+<p><span class="math display">\mathcal{L}( \theta \ | \ K = \hat{k}) = P(K = \hat{k})</span></p>
 <p>Here, I’m using “hat” notation to make it clear that <span class="math inline">K</span> is the observed number of heads from ten throws. Now, this just looks like I’m saying that the likelihood function is the same thing as the PMF — well, I kind of <em>am</em> saying that. But, the difference here is that now the <em>data is fixed</em> and it is the model parameter, <span class="math inline">p</span>, that is free to vary.</p>
 <p>What the likelihood function gives us is a <em>measure</em> of how likely any particular value of <span class="math inline">p</span> is given that we know that <span class="math inline">K</span> equals some observed value. Just like above, if we plug <span class="math inline">K = 7</span> into the equation above — letting <span class="math inline">p</span> take on all possible values — we’d get something like the right panel in the above figure. Note that here the likelihood function is not symmetrical; rather, it is peaked over <span class="math inline">p = .7</span>. Specifically, the <em>mode</em> of this distribution (i.e., the peak itself) coincides with something called the <em>maximum likelihood estimate</em> (MLE). What’s that? Well, it’s the value of <span class="math inline">p</span> that is most likely given the observed data — the name sort of gives it away, really. I’ll talk more about MLE in another post, but for now, all that you need to know is that value of the likelihood function at the MLE is approximately .27.</p>
 <p>Okay, before moving on, a note of caution: I know the likelihood function looks like a distribution function, but it is <strong>not</strong> a proper probability density function (i.e., it typically doesn’t integrate to 1). More importantly, the likelihood function is <strong>not</strong> the probability that <em>p</em> equals a particular value (for that you’ll need to compute the posterior distribution. I’ll talk about that in another post).</p>
@@ -277,9 +271,7 @@ P(K = k) = \binom{N}{k} \ p^k \ \left( 1 - p\right)^{N - k}
 </ul>
 <p>Taking these ideas together implies that looking at a single likelihood in isolation tells us very little. Yes, it provides a measure of evidence, but relative to what? The definitions above tell us that likelihoods are more useful when they’re compared to <em>other</em> likelihoods. That’s why we typically prefer relative measures such as <em>likelihood ratios</em>.</p>
 <p>With this in mind, recall my question to you was whether, based on the data you have, the coin I tossed was fair. To properly address this question we also require the likelihood of observing the data if <span class="math inline">p = 0.5</span>, which is approximately .12. Note that both these points are marked on the likelihood function in Figure 1. Given these two pieces of information we can now compute the likelihood ratio:</p>
-<p><span class="math display">
-\Lambda = \frac{\mathcal{L}(\theta_0 \ | \ K = k)}{\mathcal{L}(\theta_1 \ | \ K = k)} = \frac{\mathcal{L}(p = 0.5 \ | \ K = 7)}{\mathcal{L}(p = 0.7 \ | \ K = 7)}
-</span></p>
+<p><span class="math display">\Lambda = \frac{\mathcal{L}(\theta_0 \ | \ K = k)}{\mathcal{L}(\theta_1 \ | \ K = k)} = \frac{\mathcal{L}(p = 0.5 \ | \ K = 7)}{\mathcal{L}(p = 0.7 \ | \ K = 7)}</span></p>
 <p>What does this give us? Approximately 0.44. You’ll need some context.</p>
 <p>In this example, the likelihood ratio quantifies the degree to which the data supports the claim that <span class="math inline">p = 0.5</span> (fair coin). If this ratio is 1, there is no evidence either way. If the ratio is greater than 1, then the evidence is in favor of the numerator (here, <span class="math inline">p = 0.5</span>). However, if the ratio is less than 1, then the evidence supports the denominator (here, <span class="math inline">p = 0.7</span>). So, it appears we have evidence against the fair coin hypothesis. In fact, if we take the reciprocal (i.e., 1 / .44) we see that <span class="math inline">p = 0.7</span> is approximately 2.3 times more likely than <span class="math inline">p = 0.5</span> (bear in mind that is a comparison with only one alternative— there are other possibilities other than <span class="math inline">p = 0.7</span>).</p>
 <p>In reality, this is a trivial result, and the likelihood principle, along with the law of likelihood, means that the parameter value that maximizes the likelihood function is the value most supported by the data. The question is then whether this is convincing enough evidence that the coin I flipped was unfair. That’s a topic for another day.</p>
