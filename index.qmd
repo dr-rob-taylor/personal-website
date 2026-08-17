@@ -13,6 +13,8 @@ listing:
 ---
 
 ::::::: column-body-outset
+
+:::: welcome-panel
 ::: section-heading
 ## Welcome!
 :::
@@ -22,6 +24,7 @@ Statistics has a reputation for being intimidating. It doesn't have to be.
 The content on this site is written for anyone who works with data and wants to go beyond the mechanics — to understand not just *how* the methods work, but *why* they work, and *when* to trust them. Every post aims to build genuine intuition from first principles, with mathematics that illuminates rather than obscures.
 
 <a role="button" class="btn btn-outline-primary" href="about/index.html">Learn more</a>
+::::
 
 ::: section-heading
 ## Featured Posts

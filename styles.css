@@ -8,12 +8,14 @@
   border: 0.5px solid var(--bs-secondary);*/
   border-top: 2px solid var(--bs-primary);
   border-radius: 0 0 8px 8px;
-  transition: transform 0.2s ease, border-color 0.2s ease;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .quarto-listing .card:hover {
   transform: translateY(-2px);
   border-top-color: var(--bs-secondary);
+  box-shadow: var(--shadow-md);
 }
 
 .quarto-listing .card-title {
@@ -88,6 +90,7 @@ div.quarto-post .listing-categories .listing-category:hover {
 
 .navbar {
   border-bottom: 1px solid var(--bs-primary);
+  box-shadow: var(--shadow-sm);
 }
 
 pre code {
@@ -97,6 +100,8 @@ pre code {
 pre {
   line-height: 1.6;
   background: var(--surface-sunken) !important;
+  box-shadow: var(--shadow-inset);
+  border: 1px solid var(--border-subtle);
 }
 
 .math.inline {
@@ -109,6 +114,13 @@ pre {
 
 .btn {
   border-radius: 3px;
+  box-shadow: var(--shadow-xs);
+  transition: box-shadow 0.2s ease, transform 0.15s ease,
+              color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.btn:hover {
+  box-shadow: var(--shadow-sm);
 }
 
 .about-content h3 {
@@ -119,6 +131,46 @@ pre {
   margin-bottom: 0.9rem;
   padding-bottom: 0.4rem;
   border-bottom: 1.5px solid var(--bs-primary);
+}
+
+/* ---- Center body-outset on full-width pages ---- */
+/* Quarto's grid reserves an asymmetric right margin for the TOC area  */
+/* even when toc: false, so body-outset content drifts left of centre. */
+/* Fix: span it across the full page columns and auto-centre.          */
+.page-layout-full .page-columns > .column-body-outset {
+  grid-column: page-start / page-end;
+  max-width: 920px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ---- Welcome panel (landing page) ---- */
+.welcome-panel {
+  background: var(--surface-raised);
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
+  padding: 1rem 2.5rem 2rem;
+  margin-bottom: 1rem;
+  box-shadow: var(--shadow-md);
+}
+
+.welcome-panel .section-heading {
+  margin-top: 1.5rem;
+}
+
+/* ---- About page content panel ---- */
+/* Scoped to the trestles about template so it doesn't hit publications */
+.about-entity .about-content {
+  background: var(--surface-raised);
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
+  padding: 0.5rem 2rem 2rem;
+  box-shadow: var(--shadow-sm);
+}
+
+/* ---- Blog title banner ---- */
+.quarto-title-banner {
+  box-shadow: var(--shadow-md);
 }
 
 /* ---- Section headings ---- */
@@ -143,11 +195,18 @@ pre {
 
 /* ---- Newsletter ---- */
 .newsletter-section {
-  /*background: var(--bg-surface);
-  border-left: 3px solid var(--accent);*/
   border-radius: 0 8px 8px 0;
+  padding: 0;
+  margin: 0;
+}
+
+/* Only show styled surface when there is visible content */
+.newsletter-section:has(h2, p, iframe, form) {
+  background: var(--surface-raised);
+  border-left: 3px solid var(--bs-primary);
   padding: 2rem 2rem;
   margin: 2rem 0;
+  box-shadow: var(--shadow-sm);
 }
 
 .newsletter-section h2 {
@@ -499,4 +558,32 @@ span.color-box {
   height: 1em; /* Height of the color box */
   margin-right: 0.2em; /* Space between box and text */
   border: 1px solid #000; /* Border color */
+}
+
+/* ---- Dark mode depth overrides ---- */
+body.quarto-dark {
+  --shadow-xs:   0 1px 2px rgba(0, 0, 0, 0.20);
+  --shadow-sm:   0 1px 3px rgba(0, 0, 0, 0.25),
+                 0 1px 2px rgba(0, 0, 0, 0.15);
+  --shadow-md:   0 4px 6px -1px rgba(0, 0, 0, 0.30),
+                 0 2px 4px -2px rgba(0, 0, 0, 0.18);
+  --shadow-lg:   0 10px 15px -3px rgba(0, 0, 0, 0.30),
+                 0 4px 6px -4px rgba(0, 0, 0, 0.15);
+  --shadow-inset: inset 0 2px 4px rgba(0, 0, 0, 0.20);
+
+  --surface-raised:  #3a3838;
+  --surface-overlay: #444242;
+  --surface-sunken:  #2a2929;
+  --border-subtle:   rgba(255, 249, 249, 0.06);
+}
+
+body.quarto-dark .welcome-panel,
+body.quarto-dark .about-entity .about-content {
+  background: var(--surface-raised);
+  border-color: var(--border-subtle);
+}
+
+body.quarto-dark pre {
+  background: var(--surface-sunken) !important;
+  border-color: var(--border-subtle);
 }

@@ -44,7 +44,7 @@ I’ll explain why a little later, but to help us along the way let’s first lo
 
 Let’s break this down.
 
-First, *X* denotes the *confidence level* which is one minus the Type 1 error rate, $\alpha$. Next, the *range of estimates* refer to values on either side of the point estimate and are computed using the confidence interval equation for the sample in hand. Mathematically, the confidence interval is computed as:
+First, *X* denotes the *confidence level* which is one minus the Type 1 error rate, $\alpha$\$\\alpha\$. Next, the *range of estimates* refer to values on either side of the point estimate and are computed using the confidence interval equation for the sample in hand. Mathematically, the confidence interval is computed as:
 
 $$CI = \hat{X} \pm z(p) \cdot \frac{\hat{S}}{\sqrt n} $$
 
