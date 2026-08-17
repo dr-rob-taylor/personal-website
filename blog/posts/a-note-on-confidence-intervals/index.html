@@ -62,7 +62,7 @@ div.csl-indent {
 <link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-0ad9529d9b98df856f3841d955a8d299.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-773c3bb633b259146a05fb45e4da5169.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -268,7 +268,7 @@ window.Quarto = {
 <p>An X% confidence interval is a range of estimates for an unknown parameter that will, in the long run, contain the true parameter value X% of the time.</p>
 </blockquote>
 <p>Let’s break this down.</p>
-<p>First, <em>X</em> denotes the <em>confidence level</em> which is one minus the Type 1 error rate, <span class="math inline">\alpha</span>. Next, the <em>range of estimates</em> refer to values on either side of the point estimate and are computed using the confidence interval equation for the sample in hand. Mathematically, the confidence interval is computed as:</p>
+<p>First, <em>X</em> denotes the <em>confidence level</em> which is one minus the Type 1 error rate, <span class="math inline">\alpha</span>$\alpha$. Next, the <em>range of estimates</em> refer to values on either side of the point estimate and are computed using the confidence interval equation for the sample in hand. Mathematically, the confidence interval is computed as:</p>
 <p><span class="math display">CI = \hat{X} \pm z(p) \cdot \frac{\hat{S}}{\sqrt n} </span></p>
 <p>where <span class="math inline">\hat{X}</span> is the same mean, <span class="math inline">\hat{S}</span> the sample standard deviation, and <span class="math inline">z</span> is the percentile function of the normal distribution with argument <span class="math inline">p = 1 - \frac{\alpha}{2}</span>. By convention <span class="math inline">\alpha = .05</span>, so <span class="math inline">z</span> is evaluated at <span class="math inline">p = .975</span> which yields the multiplier 1.96. Now, this is actually the <em>asymptotic</em> multiplier — the value you would use <em>if</em> you had an infinite sample size (or, to be fair, a sufficiently large one).</p>
 <p>More realistically, we have a <em>finite</em> sample and so need to make an adjustment to account for this. Specifically, we use Student’s <span class="math inline">t</span> distribution with <span class="math inline">n -1</span> degrees of freedom instead of the normal (remember, the <span class="math inline">t</span> distribution tends toward the normal as the degrees of freedom go toward infinity). We can then rewrite the CI equation as:</p>
