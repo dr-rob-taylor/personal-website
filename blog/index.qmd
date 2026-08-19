@@ -1,16 +1,44 @@
 ---
-title: "Blogs"
-subtitle: "Statistics, probability, and Bayesian thinking — built from the ground up"
+title: ""
 page-layout: full
 toc: false
-title-block-banner: true
+title-block-banner: false
 search: false
+format:
+  html:
+    body-classes: writing-index
 listing:
   id: all-posts
   contents: posts
   sort: "date desc"
   categories: true
   sort-ui: false
-  filter-ui: false
-  fields: [title, subtitle, author, date, image, categories]
+  filter-ui: true
+  type: grid
+  grid-columns: 3
+  fields: [image, title, subtitle, date, categories]
+  grid-item-border: true
 ---
+
+::: {.page-header}
+# Writing
+
+Statistics, probability, and Bayesian thinking — built from the ground up.
+:::
+
+::: {#all-posts}
+:::
+
+```{=html}
+<script>
+// Move category pills from the margin sidebar to above the listing grid
+document.addEventListener('DOMContentLoaded', function() {
+  var cats = document.querySelector('.quarto-listing-category');
+  var listing = document.querySelector('#all-posts');
+  if (cats && listing) {
+    // Move the category element right before the listing
+    listing.parentElement.insertBefore(cats, listing);
+  }
+});
+</script>
+```

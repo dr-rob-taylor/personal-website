@@ -1,14 +1,50 @@
 ---
-title: "Software"
-subtitle: "Web applications, R packages, and code"
+title: ""
 page-layout: full
 toc: false
-title-block-banner: true
 search: false
 ---
 
-### Medium LaTeX Editor
+:::::::::::: column-body-outset
+::: page-header
+# Software
 
-I got fed up with Medium's lack of LaTeX support and the third party applications, so I created my own. If you publish mathematical content on Medium you might find this useful.
+Web applications, R packages, and code. Tools I built because I needed them.
+:::
 
-<a role="button" class="btn btn-outline-primary" href="latex-editor/" target="_blank">Open App</a>
+:::::::::: software-stack
+:::::: sw-card
+::: sw-card-header
+## Medium LaTeX Editor
+
+[Live]{.sw-badge .live}
+:::
+
+I got fed up with Medium's lack of LaTeX support — and with the third-party tools around it — so I built my own. If you publish mathematical content on Medium, you might find this useful.
+
+::: sw-meta
+*Type* — Web application \| *Stack* — HTML / CSS / JavaScript
+:::
+
+::: sw-actions
+<a class="btn btn-primary" href="latex-editor/" target="_blank">Open app</a> <a class="btn btn-secondary" href="https://github.com/dr-rob-taylor" target="_blank">Source</a>
+:::
+::::::
+
+::::: sw-card
+::: sw-card-header
+## StatsLearnR
+
+[In progress]{.sw-badge .wip}
+:::
+
+An interactive Shiny application for teaching the fundamentals of statistics — sampling, estimation, and inference explored by moving the parts rather than reading about them. Built for the students I keep meeting who can run the test but can't say what it assumes.
+
+::: sw-meta
+*Type* — R package & Shiny app \| *Stack* — R / Shiny
+:::
+
+[In development — I'll post here and to the newsletter when there's something to try.]{.sw-note}
+:::::
+::::::::::
+::::::::::::

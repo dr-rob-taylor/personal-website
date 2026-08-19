@@ -1,129 +1,145 @@
 /*-- scss:defaults --*/
 
-/* ---- Bootstrap core ---- */
-$primary:   #98776f;
-$secondary: #c79478;
-$tertiary:  #b1a49a;
-$success:   #73a75c;
-$info:      #625d5a;
-$warning:   #f19724;
-$danger:    #f44336;
-$light:     #fff9f9;
-$dark:      #454444;
+/* ═══════════════════════════════════════════
+   Classical design system — design tokens
+   ═══════════════════════════════════════════ */
 
-/* ---- Extended accent colours ---- */
-$accent-warm:    #d4956a;   /* warmer nudge from secondary */
-$accent-cool:    #7a9e8e;   /* muted teal complement */
-$accent-muted:   #a89890;   /* desaturated primary for subtle highlights */
-$accent-earth:   #8b6f5e;   /* deeper earth tone */
+/* ---- Bootstrap palette mapping ---- */
+$primary:   #7d5411;
+$secondary: #605d5d;
+$success:   #4a7a3a;
+$info:      #444141;
+$warning:   #b68235;
+$danger:    #9a3b28;
+$light:     #f8f4f4;
+$dark:      #201f1d;
 
-/* ---- Surface colours ---- */
-$surface-base:     #fff9f9;   /* matches $light — page background */
-$surface-raised:   #f5eeeb;   /* slightly warmer — cards, panels */
-$surface-overlay:  #ede4e0;   /* modals, dropdowns, hover states */
-$surface-sunken:   #e8ddd9;   /* inputs, code blocks, inset areas */
-$surface-dark:     #454444;   /* matches $dark — inverted surfaces */
-$surface-darker:   #2f2e2e;   /* deeper dark — footer, code bg */
-$surface-darkest:  #1f1e1e;   /* deepest dark layer */
+/* ---- Typography ---- */
+$font-family-base:      "Lora", Georgia, serif;
+$headings-font-family:  "Cormorant Garamond", Georgia, serif;
+$headings-font-weight:  400;
+$headings-margin-bottom: 0.6em;
 
-/* ---- Border colours ---- */
-$border-subtle:    rgba(152, 119, 111, 0.12);  /* barely visible */
-$border-muted:     rgba(152, 119, 111, 0.25);  /* default borders */
-$border-strong:    rgba(152, 119, 111, 0.45);  /* emphasis borders */
-$border-accent:    $primary;                    /* accent bordered elements */
-$border-dark:      rgba(255, 249, 249, 0.08);  /* borders on dark surfaces */
+$font-size-base:          1rem;
+$line-height-base:        1.6;
+$paragraph-margin-bottom: 1.15rem;
 
-/* ---- Text colours ---- */
-$text-primary:     #2c2928;   /* near-black with warm undertone */
-$text-secondary:   #5c5250;   /* muted body text */
-$text-tertiary:    #8c7e7a;   /* captions, metadata, placeholders */
-$text-muted:       #a89890;   /* very muted, hints */
-$text-inverse:     #fff9f9;   /* text on dark surfaces */
-$text-inverse-muted: #c4b5b0; /* muted text on dark surfaces */
-$text-accent:      $primary;  /* highlighted or linked text */
-$text-success:     #4e7a3d;   /* darker success for readable text */
-$text-warning:     #b87010;   /* darker warning for readable text */
-$text-danger:      #c1281e;   /* darker danger for readable text */
+$h1-font-size: 2.2rem;
+$h2-font-size: 1.6rem;
+$h3-font-size: 1.25rem;
+$h4-font-size: 1.05rem;
 
-/* ---- Bootstrap overrides using extended palette ---- */
-$body-bg:          $surface-base;
-$body-color:       $text-primary;
-$link-color:       $primary;
-$link-hover-color: $accent-earth;
+/* ---- Surfaces ---- */
+$body-bg:    #f8f4f4;
+$body-color: #201f1d;
 
-$card-bg:          $surface-raised;
-$card-border-color: $border-muted;
+/* ---- Links ---- */
+$link-color:       #7d5411;
+$link-hover-color: #a06f24;
+$link-decoration:  none;
 
-$input-bg:         $surface-sunken;
-$input-border-color: $border-muted;
-$input-focus-border-color: $primary;
-$input-color:      $text-primary;
+/* ---- Borders & radius ---- */
+$border-radius:    4px;
+$border-radius-sm: 2px;
+$border-radius-lg: 4px;
+$border-color:     rgba(32, 31, 29, 0.14);
 
-$navbar-light-color:        $text-secondary;
-$navbar-light-hover-color:  $primary;
-$navbar-light-active-color: $primary;
+/* ---- Remove all shadows ---- */
+$box-shadow:       none;
+$box-shadow-sm:    none;
+$box-shadow-lg:    none;
+$box-shadow-inset: none;
+$btn-box-shadow:   none;
+$btn-focus-box-shadow: none;
+$btn-active-box-shadow: none;
+$input-btn-focus-box-shadow: none;
 
-$dropdown-bg:              $surface-overlay;
-$dropdown-border-color:    $border-muted;
-$dropdown-link-color:      $text-primary;
-$dropdown-link-hover-bg:   $surface-raised;
-$dropdown-link-hover-color: $primary;
+/* ---- Cards ---- */
+$card-bg:            transparent;
+$card-border-color:  rgba(32, 31, 29, 0.14);
+$card-border-radius: 4px;
+$card-cap-bg:        transparent;
 
-$code-color:       $accent-earth;
-$code-bg:          $surface-sunken;
-$pre-bg:           $surface-sunken;
+/* ---- Inputs ---- */
+$input-bg:                transparent;
+$input-border-color:      rgba(32, 31, 29, 0.14);
+$input-focus-border-color: #b68235;
+$input-color:             #201f1d;
+$input-focus-box-shadow:  none;
 
-$table-border-color:      $border-muted;
-$table-striped-bg:        $surface-raised;
-$table-hover-bg:          $surface-overlay;
+/* ---- Navbar ---- */
+$navbar-light-color:        #201f1d;
+$navbar-light-hover-color:  #7d5411;
+$navbar-light-active-color: #201f1d;
+$navbar-padding-y:          0;
 
-$badge-border-radius:     3px;
+/* ---- Code ---- */
+$code-color: #201f1d;
+$code-bg:    #f8f4f4;
+$pre-bg:     #f8f4f4;
 
-$hr-color:         $border-muted;
-$hr-opacity:       1;
+/* ---- Tables ---- */
+$table-border-color:  rgba(32, 31, 29, 0.14);
+$table-striped-bg:    transparent;
+$table-hover-bg:      rgba(225, 173, 102, 0.08);
+
+/* ---- HR ---- */
+$hr-color:   rgba(32, 31, 29, 0.14);
+$hr-opacity: 1;
+
+/* ---- Buttons ---- */
+$btn-border-radius:    4px;
+$btn-border-radius-sm: 4px;
+$btn-border-radius-lg: 4px;
 
 /*-- scss:rules --*/
 
-/* ---- Expose custom variables as CSS custom properties ---- */
-/* This makes them available to your styles.css as well */
+/* ═══════════════════════════════════════════
+   CSS custom properties — Classical tokens
+   ═══════════════════════════════════════════ */
+
 :root {
-  --accent-warm:    #{$accent-warm};
-  --accent-cool:    #{$accent-cool};
-  --accent-muted:   #{$accent-muted};
-  --accent-earth:   #{$accent-earth};
+  --cl-ground:         #f8f4f4;
+  --cl-surface:        #f3f2f2;
+  --cl-text:           #201f1d;
+  --cl-text-secondary: #444141;
+  --cl-text-muted:     #605d5d;
+  --cl-text-quiet:     #6a6666;
+  --cl-accent:         #b68235;
+  --cl-accent-light:   #e1ad66;
+  --cl-accent-text:    #7d5411;
+  --cl-accent-pressed: #5e3f0c;
+  --cl-accent-tint:    rgba(225, 173, 102, 0.22);
+  --cl-row-hover:      rgba(225, 173, 102, 0.12);
+  --cl-divider:        rgba(32, 31, 29, 0.14);
+  --cl-divider-strong: rgba(32, 31, 29, 0.2);
+  --cl-error:          #9a3b28;
 
-  --surface-base:    #{$surface-base};
-  --surface-raised:  #{$surface-raised};
-  --surface-overlay: #{$surface-overlay};
-  --surface-sunken:  #{$surface-sunken};
-  --surface-dark:    #{$surface-dark};
-  --surface-darker:  #{$surface-darker};
-  --surface-darkest: #{$surface-darkest};
+  /* Spacing */
+  --cl-gutter:      clamp(18px, 4vw, 32px);
+  --cl-content-max: 1040px;
+  --cl-prose-max:   700px;
+  --cl-section-pad: clamp(34px, 5vw, 64px);
 
-  --border-subtle:   #{$border-subtle};
-  --border-muted:    #{$border-muted};
-  --border-strong:   #{$border-strong};
-  --border-accent:   #{$border-accent};
-  --border-dark:     #{$border-dark};
+  /* Transitions */
+  --cl-transition: 0.18s ease;
+}
 
-  --text-primary:        #{$text-primary};
-  --text-secondary:      #{$text-secondary};
-  --text-tertiary:       #{$text-tertiary};
-  --text-muted:          #{$text-muted};
-  --text-inverse:        #{$text-inverse};
-  --text-inverse-muted:  #{$text-inverse-muted};
-  --text-accent:         #{$text-accent};
-  --text-success:        #{$text-success};
-  --text-warning:        #{$text-warning};
-  --text-danger:         #{$text-danger};
+/* Focus ring — accent, never blue */
+:focus-visible {
+  outline: 2px solid var(--cl-accent) !important;
+  outline-offset: 2px !important;
+  border-radius: 2px;
+}
 
-  /* ---- Shadows (warm-toned to match palette) ---- */
-  --shadow-xs:   0 1px 2px rgba(100, 70, 60, 0.06);
-  --shadow-sm:   0 1px 3px rgba(100, 70, 60, 0.08),
-                 0 1px 2px rgba(100, 70, 60, 0.04);
-  --shadow-md:   0 4px 6px -1px rgba(100, 70, 60, 0.08),
-                 0 2px 4px -2px rgba(100, 70, 60, 0.05);
-  --shadow-lg:   0 10px 15px -3px rgba(100, 70, 60, 0.08),
-                 0 4px 6px -4px rgba(100, 70, 60, 0.04);
-  --shadow-inset: inset 0 2px 4px rgba(100, 70, 60, 0.05);
+/* Selection highlight */
+::selection {
+  background: rgba(225, 173, 102, 0.35);
+}
+
+/* Base link styling */
+a {
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  transition: color var(--cl-transition);
 }

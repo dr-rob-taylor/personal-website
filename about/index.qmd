@@ -1,31 +1,53 @@
 ---
-title: "Rob Taylor"
-subtitle: "Psychologist, statistician, and writer"
-about:
-  template: trestles
-  image: ../images/profile.jpg
-  image-alt: "Profile picture"
-  image-width: 10rem
-  image-shape: round
-  links: 
-    - icon: bluesky
-      text: Bluesky
-      href: https://bsky.app/profile/dataforyou.bsky.social
-      target: _blank
-    - icon: linkedin
-      text: LinkedIn
-      href: https://www.linkedin.com/in/dr-rob-taylor/
-      target: _blank
-    - icon: github
-      text: GitHub
-      href: https://github.com/dr-rob-taylor
-      target: _blank
+title: ""
 page-layout: full
 toc: false
+search: false
 ---
 
-::: about-content
-### Motivation
+::: {.column-body-outset}
+
+::: {.about-layout}
+
+::: {.about-profile-rail}
+
+![](../images/profile.jpg){.profile-photo alt="Rob Taylor"}
+
+# Rob Taylor
+
+[Psychologist, statistician, and writer]{.profile-role}
+
+::: {.profile-divider}
+:::
+
+::: {.profile-links}
+<a href="https://bsky.app/profile/dataforyou.bsky.social" target="_blank"><span class="link-rule"></span>Bluesky</a>
+<a href="https://www.linkedin.com/in/dr-rob-taylor/" target="_blank"><span class="link-rule"></span>LinkedIn</a>
+<a href="https://github.com/dr-rob-taylor" target="_blank"><span class="link-rule"></span>GitHub</a>
+<a href="mailto:rob@robtaylor.co.nz"><span class="link-rule"></span>Email</a>
+:::
+
+::: {.profile-expertise}
+### Expertise
+
+::: {.tag-list}
+[Bayesian Inference]{.expertise-tag .primary}
+[Probability Theory]{.expertise-tag .primary}
+[Mathematical Modelling]{.expertise-tag .primary}
+[Psychophysics]{.expertise-tag .secondary}
+[Visual Cognition]{.expertise-tag .secondary}
+[Applied Data Science]{.expertise-tag .secondary}
+[Statistical Education]{.expertise-tag .secondary}
+[Food Systems]{.expertise-tag .secondary}
+[R / Python]{.expertise-tag .secondary}
+:::
+:::
+
+:::
+
+::: {.about-main}
+
+## Motivation
 
 Statistics is one of the most powerful tools for understanding the world — and one of the most poorly taught. Too often it's presented as a collection of procedures to follow rather than a coherent way of thinking about uncertainty. The mechanics get taught; the intuition doesn't.
 
@@ -33,7 +55,7 @@ Much of my writing exists to change that, at least in a small way. Every post he
 
 If you leave a post feeling like something that was previously opaque has genuinely clicked, that's the goal achieved.
 
-### Background
+## Background
 
 My path to statistics was not a straight line. I trained originally as a cognitive psychologist, completing a PhD focused on psychophysics, visual memory, and perception. Much of that work involved building and fitting mathematical models to understand how humans process sensory information — which meant getting very comfortable with probability, inference, and the question of what data can and cannot tell you.
 
@@ -41,13 +63,103 @@ From academia I moved into applied data science, working for New Zealand Police 
 
 I recently returned to academia and am building models of food systems.
 
-### On Bayesian Inference
+## On Bayesian inference
 
 If there is one thread running through most of what I write, it is probability as a language for uncertainty. Bayesian inference is not just a set of methods to me — it is a coherent framework for reasoning under uncertainty that I find both intellectually compelling and practically powerful.
 
 A recurring theme here will be building Bayesian intuition from the ground up: what it means to have a prior, what it means to update on evidence, and why that way of thinking changes how you approach data problems.
 
-### Get in Touch
+::: {.cv-section}
 
-If you have questions, suggestions, or just want to talk statistics, I'd love to hear from you.
+## Short CV
+
+::: {.cv-entry}
+::: {.cv-when}
+2025 --
+:::
+::: {.cv-what}
+[Research Fellow]{.cv-title}\
+[Massey University · Food systems modelling]{.cv-place}
+:::
+:::
+
+::: {.cv-entry}
+::: {.cv-when}
+2021 -- 2024
+:::
+::: {.cv-what}
+[Senior Analyst]{.cv-title}\
+[New Zealand Police · Applied data science]{.cv-place}
+:::
+:::
+
+::: {.cv-entry}
+::: {.cv-when}
+2018 -- 2021
+:::
+::: {.cv-what}
+[Postdoctoral Research Associate]{.cv-title}\
+[University of Cambridge · Visual working memory]{.cv-place}
+:::
+:::
+
+::: {.cv-entry}
+::: {.cv-when}
+2013 -- 2017
+:::
+::: {.cv-what}
+[PhD Psychology]{.cv-title}\
+[University of New South Wales · Psychophysics]{.cv-place}
+:::
+:::
+
+:::
+
+::: {.selected-pubs}
+
+::: {.pubs-header}
+## Selected publications
+
+[All 10 papers](../publications/){.pubs-see-all}
+:::
+
+::: {.pub-entry}
+::: {.pub-citation}
+[Taylor, R.]{.pub-author-highlight}, Tomić, I., Aagten-Murphy, D., & Bays, P. M. (2022). Working memory is updated by reallocation of resources from obsolete to new items. [*Attention, Perception, & Psychophysics*]{.pub-venue}, 1--15.
+:::
+::: {.pub-links}
+[PDF](https://link.springer.com/article/10.3758/s13414-022-02584-2)
+:::
+:::
+
+::: {.pub-entry}
+::: {.pub-citation}
+[Taylor, R.]{.pub-author-highlight}, & Bays, P. M. (2020). Theory of neural coding predicts an upper bound on estimates of memory variability. [*Psychological Review, 127(5)*]{.pub-venue}, 700.
+:::
+::: {.pub-links}
+[PDF](https://psycnet.apa.org/fulltext/2020-19842-001.pdf)
+:::
+:::
+
+::: {.pub-entry}
+::: {.pub-citation}
+[Taylor, R.]{.pub-author-highlight}, & Bays, P. M. (2018). Efficient coding in visual working memory accounts for stimulus-specific variations in recall. [*Journal of Neuroscience, 38(32)*]{.pub-venue}, 7132--7142.
+:::
+::: {.pub-links}
+[PDF](https://www.jneurosci.org/content/jneuro/38/32/7132.full.pdf)
+:::
+:::
+
+:::
+
+::: {.contact-card}
+### Get in touch
+
+Questions, suggestions, or you just want to talk statistics — I'd love to hear from you.
+:::
+
+:::
+
+:::
+
 :::

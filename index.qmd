@@ -3,45 +3,83 @@ title: ""
 page-layout: full
 toc: false
 listing:
-  - id: featured-posts
+  - id: recent-posts
     contents: blog/posts
     sort: "date desc"
-    max-items: 3
-    type: grid
-    grid-columns: 3
-    fields: [title, subtitle, author, date, image]
+    max-items: 5
+    type: default
+    fields: [title, subtitle, date, categories]
 ---
 
-::::::: column-body-outset
+:::::: home-lead
+::::: lead-inner
+[Statistics · Probability · Bayesian thinking]{.lead-kicker}
 
-:::: welcome-panel
-::: section-heading
-## Welcome!
+# Understanding uncertainty, from first principles.
+
+::: lead-body
+I'm a psychologist writing about statistics, probability and mathematical modelling — for people in data, and for anyone who wants the intuition and not just the procedure.
 :::
 
-Statistics has a reputation for being intimidating. It doesn't have to be.
+::: lead-buttons
+<a class="btn btn-primary" href="blog/">Read the writing</a> <a class="btn btn-secondary" href="about/">About me</a>
+:::
+:::::
+::::::
 
-The content on this site is written for anyone who works with data and wants to go beyond the mechanics — to understand not just *how* the methods work, but *why* they work, and *when* to trust them. Every post aims to build genuine intuition from first principles, with mathematics that illuminates rather than obscures.
+::::::::::: home-content
+::::: home-posts
+::: posts-header
+## Latest posts
 
-<a role="button" class="btn btn-outline-primary" href="about/index.html">Learn more</a>
-::::
-
-::: section-heading
-## Featured Posts
+[All posts](blog/){.posts-all-link}
 :::
 
-::: {#featured-posts}
+::: {#recent-posts}
+:::
+:::::
+
+::::::: home-rail
+[Recently]{.rail-heading}
+
+::: news-item-classical
+[2025]{.news-date} [Returned to academic research, building models of food systems.]{.news-text}
 :::
 
-<a role="button" class="btn btn-outline-primary" href="blog/">See more</a>
+::: news-item-classical
+[2025]{.news-date} [Multi-part series on Maximum Likelihood Estimation underway — theory from first principles through to practical applications.]{.news-text}
+:::
 
-::: newsletter-section
-<!-- ## Stay in the Loop -->
+::: news-item-classical
+[2024]{.news-date} [Site launched. Publishing on statistics, probability, and Bayesian inference.]{.news-text}
+:::
 
-<!-- New posts straight to your inbox. No paywalls, ever. -->
+::: elsewhere-links
+[Elsewhere]{.rail-heading}
 
-<!-- <iframe scrolling="no" style="width:100%!important;height:220px;border:1px #ccc solid !important" src="https://buttondown.email/YOURNAME?as_embed=true"> -->
-
-<!-- </iframe> -->
+<a href="https://bsky.app/profile/dataforyou.bsky.social" target="_blank">Bluesky</a> <a href="https://www.linkedin.com/in/dr-rob-taylor/" target="_blank">LinkedIn</a> <a href="https://github.com/dr-rob-taylor" target="_blank">GitHub</a>
 :::
 :::::::
+:::::::::::
+
+:::::: newsletter-card
+::::: newsletter-inner
+::: newsletter-copy
+### Get new posts by email
+
+One email per post. Statistics, probability, and the occasional gripe about how they're taught.
+:::
+
+::: newsletter-form-wrap
+<form class="newsletter-form" id="newsletter-form">
+
+<input type="email" id="newsletter-email" placeholder="you@example.com" aria-label="Email address" required> <button type="submit" class="btn btn-primary">Subscribe</button>
+
+</form>
+
+<p class="newsletter-msg" id="newsletter-msg">
+
+</p>
+:::
+:::::
+::::::

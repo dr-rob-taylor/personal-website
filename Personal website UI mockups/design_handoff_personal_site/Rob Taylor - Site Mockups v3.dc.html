@@ -1,0 +1,1243 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/classical-551acb5c-b4e2-4f0f-b679-b9353de39bed/styles.css">
+<script>window.MathJax={tex:{packages:{'[+]':['ams']},inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']]},svg:{fontCache:'none',scale:1},options:{skipHtmlTags:['script','noscript','style','textarea','pre']},startup:{typeset:false}};</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<script src="_ds/classical-551acb5c-b4e2-4f0f-b679-b9353de39bed/_ds_bundle.js"></script>
+<style>
+@keyframes scrFade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+body{margin:0;background:#f8f4f4;color:#201f1d;font-family:"Cormorant Garamond",Georgia,serif}
+a{color:#7d5411;text-decoration-thickness:1px;text-underline-offset:3px}
+a:hover{color:#a06f24}
+:focus-visible{outline:2px solid #7d5411;outline-offset:2px;border-radius:2px}
+::selection{background:rgba(225,173,102,0.35)}
+@media (max-width:900px){[data-rail]{position:static !important;top:auto !important}}
+@container site (max-width:900px){[data-rail]{position:static !important;top:auto !important}}
+</style>
+</helmet>
+<div style="min-height:100vh;background:#f8f4f4;color:#201f1d;font-family:'Cormorant Garamond',Georgia,serif;container-type:inline-size;container-name:site">
+
+<div style="position:sticky;top:0;z-index:20;background:rgba(248,244,244,0.94);backdrop-filter:blur(6px);border-bottom:1px solid rgba(32,31,29,0.14)">
+<div style="max-width:1040px;margin:0 auto;padding:8px clamp(14px,4vw,32px);display:flex;align-items:center;justify-content:space-between;gap:clamp(14px,3vw,32px);flex-wrap:nowrap">
+<a href="#" onClick="{{ goHome }}" style="text-decoration:none;color:#201f1d;font-family:'Cormorant Garamond',Georgia,serif;font-size:23px;letter-spacing:-0.01em;white-space:nowrap;flex:none;min-height:44px;display:flex;align-items:center">rob taylor<span style="color:#b68235">.</span></a>
+<div style="display:flex;align-items:center;gap:clamp(15px,2.4vw,28px);flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;font-family:'Cormorant Garamond',Georgia,serif;font-size:16px;letter-spacing:0.02em">
+<a href="#" onClick="{{ goHome }}" style="text-decoration:none;color:#201f1d;white-space:nowrap;min-height:44px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:5px">Home<sc-if value="{{ isHome }}" hint-placeholder-val="{{ false }}"><span style="display:block;width:100%;height:1px;background:#e1ad66"></span></sc-if></a>
+<a href="#" onClick="{{ goBlog }}" style="text-decoration:none;color:#201f1d;white-space:nowrap;min-height:44px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:5px">Writing<sc-if value="{{ isBlogish }}" hint-placeholder-val="{{ false }}"><span style="display:block;width:100%;height:1px;background:#e1ad66"></span></sc-if></a>
+<a href="#" onClick="{{ goCode }}" style="text-decoration:none;color:#201f1d;white-space:nowrap;min-height:44px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:5px">Software<sc-if value="{{ isCode }}" hint-placeholder-val="{{ false }}"><span style="display:block;width:100%;height:1px;background:#e1ad66"></span></sc-if></a>
+<a href="#" onClick="{{ goPubs }}" style="text-decoration:none;color:#201f1d;white-space:nowrap;min-height:44px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:5px">Publications<sc-if value="{{ isPubs }}" hint-placeholder-val="{{ false }}"><span style="display:block;width:100%;height:1px;background:#e1ad66"></span></sc-if></a>
+<a href="#" onClick="{{ goAbout }}" style="text-decoration:none;color:#201f1d;white-space:nowrap;min-height:44px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:5px">About<sc-if value="{{ isAbout }}" hint-placeholder-val="{{ false }}"><span style="display:block;width:100%;height:1px;background:#e1ad66"></span></sc-if></a>
+</div>
+</div>
+</div>
+
+<!-- ══ HOME ══ -->
+<sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
+<div data-screen-label="Home" style="animation:scrFade .35s ease">
+
+<sc-if value="{{ homeEditorial }}" hint-placeholder-val="{{ true }}">
+<div style="max-width:1040px;margin:0 auto;padding:clamp(44px,8vw,96px) clamp(18px,4vw,32px) clamp(40px,6vw,72px);border-bottom:1px solid rgba(32,31,29,0.14)">
+<div style="max-width:760px;display:flex;flex-direction:column;gap:28px">
+<div style="font-family:'Cormorant Garamond',Georgia,serif;font-size:13px;letter-spacing:0.2em;text-transform:uppercase;color:#6a6666;font-feature-settings:'tnum'">Statistics · Probability · Bayesian thinking</div>
+<h1 style="margin:0;font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;font-size:clamp(35px,7.6vw,68px);line-height:1.04;letter-spacing:-0.02em">Understanding uncertainty, from first principles.</h1>
+<p style="margin:0;max-width:620px;font-size:clamp(17px,0.5vw + 15px,20px);line-height:1.65;color:#444141;text-wrap:pretty">I'm a psychologist writing about statistics, probability and mathematical modelling — for people in data, and for anyone who wants the intuition and not just the procedure.</p>
+<div style="display:flex;gap:12px;padding-top:4px">
+<a href="#" onClick="{{ goBlog }}" style="text-decoration:none;font-family:'Cormorant Garamond',Georgia,serif;font-size:15px;padding:10px 20px;border:1px solid #7d5411;color:#7d5411;border-radius:4px" style-hover="background:rgba(225,173,102,0.22)">Read the writing</a>
+<a href="#" onClick="{{ goAbout }}" style="text-decoration:none;font-family:'Cormorant Garamond',Georgia,serif;font-size:15px;min-height:44px;display:inline-flex;align-items:center;padding:0 20px;border:1px solid rgba(32,31,29,0.14);color:#201f1d;border-radius:4px" style-hover="background:rgba(32,31,29,0.07)">About me</a>
+</div>
+
+</div>
+</div>
+
+<div style="max-width:1040px;margin:0 auto;padding:clamp(34px,5vw,56px) clamp(18px,4vw,32px) 0;display:flex;flex-wrap:wrap;gap:clamp(32px,5vw,64px);align-items:flex-start">
+<div style="flex:3 1 380px;min-width:0">
+<div style="display:flex;align-items:baseline;justify-content:space-between;border-bottom:1px solid rgba(32,31,29,0.14);padding-bottom:10px;margin-bottom:8px">
+<h2 style="margin:0;font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;font-size:clamp(24px,3.4vw,30px)">Latest posts</h2>
+<a href="#" onClick="{{ goBlog }}" style="font-family:'Cormorant Garamond',Georgia,serif;font-size:14px;color:#7d5411;text-decoration:none">All posts&nbsp;<span style="display:inline-block;width:16px;height:1px;background:#e1ad66;vertical-align:middle"></span></a>
+</div>
+<sc-for list="{{ recentPosts }}" as="post" hint-placeholder-count="4">
+<a href="#" onClick="{{ post.open }}" onMouseEnter="{{ post.enter }}" onMouseLeave="{{ post.leave }}" style="display:flex;flex-wrap:wrap;column-gap:20px;row-gap:8px;align-items:flex-start;padding:22px 0;border-bottom:1px solid rgba(32,31,29,0.14);text-decoration:none;color:#201f1d" style-hover="background:rgba(225,173,102,0.12)">
+<span style="flex:none;width:40px;font-family:'Cormorant Garamond',Georgia,serif;font-size:13px;color:#6a6666;letter-spacing:0.1em;font-feature-settings:'tnum';padding-top:6px">{{ post.num }}</span>
+<span style="flex:1 1 220px;min-width:0;display:flex;flex-direction:column;gap:6px">
+<span style="font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(21px,2.9vw,26px);line-height:1.18;letter-spacing:-0.01em">{{ post.title }}</span>
+<span style="font-size:17px;line-height:1.55;color:#605d5d;max-width:56ch">{{ post.subtitle }}</span>
+<span style="font-family: 'Cormorant Garamond',Georgia,serif; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-accent-700)">{{ post.catLine }}</span>
+</span>
+<span style="flex:none;margin-left:auto;display:flex;flex-direction:column;align-items:flex-end;gap:8px;padding-top:6px;font-family:'Cormorant Garamond',Georgia,serif;font-size:14.5px;color:#6a6666;font-feature-settings:'tnum'">{{ post.date }}
+<sc-if value="{{ post.hovered }}" hint-placeholder-val="{{ false }}"><span style="display:flex;align-items:center;gap:7px;font-size:11.5px;letter-spacing:0.14em;text-transform:uppercase;color:#7d5411"><span style="width:18px;height:1px;background:#e1ad66"></span>Read</span></sc-if>
+</span>
+</a>
+</sc-for>
+</div>
+
+<div data-rail="home-news" style="display:flex;flex-direction:column;gap:30px;position:sticky;top:88px;flex:1 1 230px;min-width:0">
+<sc-if value="{{ newsOn }}" hint-placeholder-val="{{ true }}">
+<div>
+<h3 style="margin:0 0 12px;font-family:'Cormorant Garamond',Georgia,serif;font-size:13px;letter-spacing:0.12em;text-transform:uppercase;font-weight:600;color:#605d5d">Recently</h3>
+<div style="display:flex;flex-direction:column;gap:16px">
+<sc-for list="{{ news }}" as="n" hint-placeholder-count="3">
+<div style="display:flex;flex-direction:column;gap:4px;padding-bottom:15px;border-bottom:1px solid rgba(32,31,29,0.1)">
+<span style="font-family:'Cormorant Garamond',Georgia,serif;font-size:11.5px;letter-spacing:0.14em;text-transform:uppercase;color:#6a6666;font-feature-settings:'tnum'">{{ n.dateLabel }}</span>
+<span style="font-size:16.5px;line-height:1.55;color:#444141;text-wrap:pretty">{{ n.text }}</span>
+<sc-if value="{{ n.hasLink }}" hint-placeholder-val="{{ false }}">
+<a href="{{ n.href }}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:6px;align-self:flex-start;margin-top:2px;font-size:15px;color:#7d5411;text-decoration:none;border-bottom:1px solid rgba(125,84,17,0.4)" style-hover="border-bottom-color:#b68235">{{ n.linkLabel }}<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#7d5411" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg></a>
+</sc-if>
+</div>
+</sc-for>
+</div>
+</div>
+</sc-if>
+<div style="border-top:1px solid rgba(32,31,29,0.14);padding-top:20px">
+<h3 style="margin:0 0 10px;font-family:'Cormorant Garamond',Georgia,serif;font-size:13px;letter-spacing:0.12em;text-transform:uppercase;font-weight:600;color:#605d5d">Elsewhere</h3>
+<div style="display:flex;flex-direction:column;gap:9px;font-size:16.5px">
+<sc-for list="{{ links }}" as="l" hint-placeholder-count="3">
+<a href="{{ l.href }}" style="text-decoration:none;color:#7d5411;display:flex;align-items:center;gap:9px;min-height:44px">
+<sc-if value="{{ markRule }}" hint-placeholder-val="{{ true }}"><span style="width:16px;height:1px;background:#e1ad66;flex:none"></span></sc-if>
+<sc-if value="{{ markUnderline }}" hint-placeholder-val="{{ false }}"><span style="border-bottom:1px solid rgba(125,84,17,0.45);padding-bottom:1px" style-hover="border-bottom-color:#b68235">{{ l.label }}</span></sc-if>
+<sc-if value="{{ notUnderline }}" hint-placeholder-val="{{ true }}"><span>{{ l.label }}</span></sc-if>
+<sc-if value="{{ markDomain }}" hint-placeholder-val="{{ false }}"><span style="font-family:'Cormorant Garamond',Georgia,serif;font-size:11.5px;letter-spacing:0.1em;text-transform:uppercase;color:#6a6666">{{ l.domain }}</span></sc-if>
+<sc-if value="{{ markIcon }}" hint-placeholder-val="{{ false }}"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#7d5411" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg></sc-if>
+</a>
+</sc-for>
+</div>
+</div>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ homeIndex }}" hint-placeholder-val="{{ false }}">
+<div style="max-width:1040px;margin:0 auto;padding:clamp(34px,5vw,64px) clamp(18px,4vw,32px) 0;display:flex;flex-wrap:wrap-reverse;gap:clamp(30px,5vw,72px);align-items:flex-start">
+<div data-rail="home-index" style="position:sticky;top:88px;display:flex;flex-direction:column;gap:22px;flex:1 1 270px;min-width:0">
+<h1 style="margin:0;font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;font-size:clamp(29px,6vw,44px);line-height:1.06;letter-spacing:-0.02em">Rob Taylor</h1>
+<div style="height:1px;background:#e1ad66;width:52px"></div>
+<p style="margin:0;font-size:18px;line-height:1.6;color:#444141">Computational modeller. I write about statistics, probability and mathematical modelling, and build small tools for thinking with them.</p>
+<div style="font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-size:19px;color:#605d5d;font-feature-settings:'tnum'">P(θ | D) ∝ ℒ(θ) π(θ)</div>
+<div style="display:flex;flex-direction:column;gap:6px;font-size:14px;padding-top:6px">
+<a href="#" onClick="{{ goAbout }}" style="color:#7d5411;text-decoration:none">About&nbsp;<span style="display:inline-block;width:16px;height:1px;background:#e1ad66;vertical-align:middle"></span></a>
+<a href="#" onClick="{{ goCode }}" style="color:#7d5411;text-decoration:none">Software&nbsp;<span style="display:inline-block;width:16px;height:1px;background:#e1ad66;vertical-align:middle"></span></a>
+<a href="https://github.com/dr-rob-taylor" style="color:#7d5411;text-decoration:none">GitHub</a>
+</div>
+</div>
+<div style="flex:3 1 340px;min-width:0">
+<div style="display:flex;align-items:baseline;justify-content:space-between;border-bottom:1px solid #201f1d;padding-bottom:8px">
+<span style="font-family:'Cormorant Garamond',Georgia,serif;font-size:12px;letter-spacing:0.2em;text-transform:uppercase;color:#605d5d">Index of writing</span>
+<span style="font-family:'Cormorant Garamond',Georgia,serif;font-size:12px;letter-spacing:0.2em;color:#6a6666;font-feature-settings:'tnum'">{{ postCount }} posts</span>
+</div>
+<sc-for list="{{ posts }}" as="post" hint-placeholder-count="8">
+<a href="#" onClick="{{ post.open }}" style="display:flex;flex-wrap:wrap;column-gap:18px;row-gap:4px;align-items:baseline;padding:13px 0;border-bottom:1px solid rgba(32,31,29,0.14);text-decoration:none;color:#201f1d" style-hover="background:rgba(225,173,102,0.12)">
+<span style="flex:none;width:30px;font-family:'Cormorant Garamond',Georgia,serif;font-size:12px;color:#6a6666;font-feature-settings:'tnum'">{{ post.num }}</span>
+<span style="flex:1 1 200px;min-width:0;font-family:'Cormorant Garamond',Georgia,serif;font-size:20px;line-height:1.25">{{ post.title }}</span>
+<span style="flex:none;margin-left:auto;font-family:'Cormorant Garamond',Georgia,serif;font-size:12px;color:#6a6666;text-align:right;font-feature-settings:'tnum'">{{ post.date }}</span>
+</a>
+</sc-for>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ newsletterOn }}" hint-placeholder-val="{{ true }}">
+<div style="max-width:1040px;margin:clamp(48px,7vw,72px) auto 0;padding:0 clamp(18px,4vw,32px)">
+<div style="border:1px solid rgba(32,31,29,0.14);border-radius:4px;padding:clamp(22px,3vw,36px) clamp(20px,3vw,40px);display:flex;flex-wrap:wrap;gap:clamp(20px,3vw,48px);align-items:center">
+<div style="flex:1 1 280px;min-width:0">
+<h3 style="margin:0 0 8px;font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;font-size:28px">Get new posts by email</h3>
+<p style="margin:0;font-size:17px;line-height:1.55;color:#605d5d">One email per post. Statistics, probability, and the occasional gripe about how they're taught.</p>
+</div>
+<div style="flex:1 1 300px;min-width:0">
+<sc-if value="{{ subFormOn }}" hint-placeholder-val="{{ true }}">
+<div style="display:flex;gap:10px">
+<input value="{{ subEmail }}" onChange="{{ onSubEmail }}" onKeyDown="{{ onSubKey }}" placeholder="you@example.com" style="flex:1;min-width:0;min-height:44px;padding:8px 12px;font-family:'Cormorant Garamond',Georgia,serif;font-size:15px;background:transparent;border:{{ subInputBorder }};border-radius:4px;color:#201f1d">
+<button onClick="{{ doSubscribe }}" style="cursor:pointer;font-family:'Cormorant Garamond',Georgia,serif;font-size:14.5px;min-height:44px;padding:0 18px;border:1px solid #7d5411;color:#7d5411;background:transparent;border-radius:4px;white-space:nowrap" style-hover="background:rgba(225,173,102,0.22)" style-active="border-color:#5e3f0c;color:#5e3f0c">Subscribe</button>
+</div>
+<sc-if value="{{ hasSubErr }}" hint-placeholder-val="{{ false }}">
+<p style="margin:9px 0 0;font-size:14.5px;line-height:1.45;color:#9a3b28">{{ subErrMsg }}</p>
+</sc-if>
+</sc-if>
+<sc-if value="{{ subOk }}" hint-placeholder-val="{{ false }}">
+<div style="border-left:1px solid #b68235;padding:2px 0 2px 16px">
+<p style="margin:0 0 5px;font-family:'Cormorant Garamond',Georgia,serif;font-size:21px;line-height:1.3">Check your inbox.</p>
+<p style="margin:0;font-size:15.5px;line-height:1.5;color:#605d5d">A confirmation went to {{ subSentTo }}. Click the link in it and you’re on the list.</p>
+<a href="#" onClick="{{ resetSub }}" style="display:inline-block;margin-top:9px;font-size:14.5px;color:#7d5411;text-decoration:none;border-bottom:1px solid rgba(182,130,53,0.5)" style-hover="border-bottom-color:#7d5411">Use a different address</a>
+</div>
+</sc-if>
+</div>
+</div>
+</div>
+</sc-if>
+</div>
+</sc-if>
+
+<!-- ══ BLOG INDEX ══ -->
+<sc-if value="{{ isBlog }}" hint-placeholder-val="{{ false }}">
+<div data-screen-label="Blog index" style="max-width:1040px;margin:0 auto;padding:clamp(34px,5vw,64px) clamp(18px,4vw,32px) 0;animation:scrFade .35s ease">
+<div style="border-bottom:1px solid rgba(32,31,29,0.14);padding-bottom:26px;margin-bottom:26px">
+<h1 style="margin:0 0 10px;font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;font-size:clamp(30px,6.4vw,52px);letter-spacing:-0.02em">Writing</h1>
+<p style="margin: 0; font-size: 19px; color: #605d5d; max-width: 65ch">Statistics, probability, and Bayesian thinking — built from the ground up.</p>
+</div>
+
+<div style="display:flex;align-items:center;gap:14px;margin-bottom:22px;max-width:440px">
+<input value="{{ query }}" onChange="{{ onQuery }}" placeholder="Search the writing" style="flex:1;min-height:44px;padding:0 12px;font-family:'Cormorant Garamond',Georgia,serif;font-size:17px;background:transparent;border:1px solid rgba(32,31,29,0.14);border-bottom-color:#e1ad66;border-radius:4px;color:#201f1d">
+</div>
+<div style="display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-bottom:30px">
+<div style="display:flex;flex-wrap:wrap;gap:8px">
+<sc-for list="{{ cats }}" as="cat" hint-placeholder-count="6">
+<span>
+<sc-if value="{{ cat.active }}" hint-placeholder-val="{{ false }}">
+<button onClick="{{ cat.select }}" style="cursor:pointer;font-family:'Cormorant Garamond',Georgia,serif;font-size:14px;letter-spacing:0.04em;min-height:44px;display:inline-flex;align-items:center;padding:0 15px;border:1px solid #7d5411;background:#fff3e4;color:#7d5411;border-radius:4px">{{ cat.name }}</button>
+</sc-if>
+<sc-if value="{{ cat.inactive }}" hint-placeholder-val="{{ true }}">
+<button onClick="{{ cat.select }}" style="cursor:pointer;font-family:'Cormorant Garamond',Georgia,serif;font-size:14px;letter-spacing:0.04em;min-height:44px;display:inline-flex;align-items:center;padding:0 15px;border:1px solid rgba(32,31,29,0.14);background:transparent;color:#444141;border-radius:4px" style-hover="background:rgba(32,31,29,0.07)">{{ cat.name }}</button>
+</sc-if>
+</span>
+</sc-for>
+</div>
+<span style="font-family:'Cormorant Garamond',Georgia,serif;font-size:13px;letter-spacing:0.1em;text-transform:uppercase;color:#6a6666;font-feature-settings:'tnum'">{{ filteredLabel }}</span>
+</div>
+
+<sc-if value="{{ noResults }}" hint-placeholder-val="{{ false }}">
+<div style="border-top:1px solid rgba(32,31,29,0.14);padding:clamp(40px,7vw,72px) 0;display:flex;flex-direction:column;align-items:flex-start;gap:14px;max-width:56ch">
+<span style="font-family:'Cormorant Garamond',Georgia,serif;font-size:11.5px;letter-spacing:0.2em;text-transform:uppercase;color:#6a6666">Nothing here</span>
+<p style="margin:0;font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(21px,2.6vw,27px);line-height:1.3;color:#201f1d">{{ emptyLine }}</p>
+<p style="margin:0;font-family:'Cormorant Garamond',Georgia,serif;font-size:17px;line-height:1.6;color:#605d5d">Try a broader term, or browse everything — there are only {{ postCount }} posts, so nothing is far away.</p>
+<button onClick="{{ clearFilters }}" style="cursor:pointer;font-family:'Cormorant Garamond',Georgia,serif;font-size:15px;min-height:44px;padding:0 20px;border:1px solid #7d5411;color:#7d5411;background:transparent;border-radius:4px" style-hover="background:rgba(225,173,102,0.22)">Clear search and filters</button>
+</div>
+</sc-if>
+<sc-if value="{{ blogList }}" hint-placeholder-val="{{ true }}">
+<div>
+<sc-for list="{{ filteredPosts }}" as="post" hint-placeholder-count="6">
+<a href="#" onClick="{{ post.open }}" onMouseEnter="{{ post.enter }}" onMouseLeave="{{ post.leave }}" style="display:flex;flex-wrap:wrap;column-gap:24px;row-gap:12px;align-items:flex-start;padding:26px 0;border-top:1px solid rgba(32,31,29,0.14);text-decoration:none;color:#201f1d" style-hover="background:rgba(225,173,102,0.12)">
+<sc-if value="{{ post.hasImg }}" hint-placeholder-val="{{ false }}"><img src="{{ post.img }}" alt="" class="plate" style="flex:none;width:104px;height:78px;object-fit:cover;border-radius:2px"></sc-if>
+<span style="flex:1 1 240px;min-width:0;display:flex;flex-direction:column;gap:7px">
+<span style="font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(22px,3vw,27px);line-height:1.16;letter-spacing:-0.01em">{{ post.title }}</span>
+<span style="font-size:17.5px;line-height:1.55;color:#605d5d;max-width:62ch">{{ post.subtitle }}</span>
+<span style="font-family:'Cormorant Garamond',Georgia,serif;font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:#6a6666">{{ post.catLine }}</span>
+</span>
+<span style="flex:none;margin-left:auto;display:flex;flex-direction:column;align-items:flex-end;gap:8px;font-family:'Cormorant Garamond',Georgia,serif;font-size:14.5px;color:#6a6666;font-feature-settings:'tnum'">{{ post.date }}
+<sc-if value="{{ post.hovered }}" hint-placeholder-val="{{ false }}"><span style="display:flex;align-items:center;gap:7px;font-size:11.5px;letter-spacing:0.14em;text-transform:uppercase;color:#7d5411"><span style="width:18px;height:1px;background:#e1ad66"></span>Read</span></sc-if>
+</span>
+</a>
+</sc-for>
+<div style="border-top:1px solid rgba(32,31,29,0.14)"></div>
+</div>
+</sc-if>
+
+<sc-if value="{{ blogCards }}" hint-placeholder-val="{{ false }}">
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr));gap:clamp(20px,3vw,28px)">
+<sc-for list="{{ filteredPosts }}" as="post" hint-placeholder-count="6">
+<a href="#" onClick="{{ post.open }}" style="display:flex;flex-direction:column;gap:12px;text-decoration:none;color:#201f1d;border:1px solid rgba(32,31,29,0.14);border-radius:4px;padding:16px;background:transparent" style-hover="border-color:#b68235">
+<sc-if value="{{ post.hasImg }}" hint-placeholder-val="{{ false }}"><img src="{{ post.img }}" alt="" class="plate" style="width:100%;height:150px;object-fit:cover;border-radius:2px"></sc-if>
+<span style="font-family:'Cormorant Garamond',Georgia,serif;font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:#6a6666;font-feature-settings:'tnum'">{{ post.date }}</span>
+<span style="font-family:'Cormorant Garamond',Georgia,serif;font-size:23px;line-height:1.15">{{ post.title }}</span>
+<span style="font-size:14px;line-height:1.6;color:#605d5d">{{ post.subtitle }}</span>
+</a>
+</sc-for>
+</div>
+</sc-if>
+</div>
+</sc-if>
+
+<!-- ══ POST ══ -->
+<sc-if value="{{ isPost }}" hint-placeholder-val="{{ false }}">
+<div data-screen-label="Blog post" style="animation:scrFade .35s ease">
+<div style="max-width:1040px;margin:0 auto;padding:clamp(34px,5vw,56px) clamp(18px,4vw,32px) 0">
+<a href="#" onClick="{{ goBlog }}" style="font-family:'Cormorant Garamond',Georgia,serif;font-size:13px;letter-spacing:0.08em;text-transform:uppercase;color:#7d5411;text-decoration:none"><span style="display:inline-block;width:16px;height:1px;background:#e1ad66;vertical-align:middle"></span>&nbsp;All writing</a>
+<div style="max-width:760px;margin-top:26px;display:flex;flex-direction:column;gap:16px">
+<div style="font-family:'Cormorant Garamond',Georgia,serif;font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:#6a6666">{{ post.catLine }}</div>
+<h1 style="margin:0;font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;font-size:clamp(31px,6.4vw,56px);line-height:1.06;letter-spacing:-0.02em;text-wrap:pretty">{{ post.title }}</h1>
+<p style="margin:0;font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-size:clamp(19px,2.6vw,24px);line-height:1.4;color:#605d5d">{{ post.subtitle }}</p>
+<div style="display:flex;align-items:center;gap:14px;padding-top:6px;font-size:15px;color:#6a6666;font-feature-settings:'tnum'">
+<span>Rob Taylor, PhD</span><span style="color:#d7d3d3">/</span><span>{{ post.date }}</span><span style="color:#d7d3d3">/</span><span>{{ post.readTime }}</span>
+</div>
+</div>
+<figure style="margin:36px 0 0">
+<sc-if value="{{ post.hasImg }}" hint-placeholder-val="{{ false }}"><img src="{{ post.img }}" alt="" class="plate" style="width:100%;height:340px;object-fit:cover;border-radius:2px"></sc-if>
+<figcaption style="margin-top:8px;font-size:11.5px;color:#6a6666">{{ post.credit }}</figcaption>
+</figure>
+</div>
+
+<div style="max-width:1040px;margin:0 auto;padding:clamp(30px,4vw,48px) clamp(18px,4vw,32px) 0;display:flex;flex-wrap:wrap;gap:clamp(26px,4vw,56px);align-items:flex-start">
+<div data-rail="post-toc" style="position:sticky;top:96px;display:flex;flex-direction:column;gap:10px;flex:1 1 170px;min-width:0;border-left:1px solid rgba(32,31,29,0.14);padding-left:18px">
+<span style="font-family:'Cormorant Garamond',Georgia,serif;font-size:11.5px;letter-spacing:0.2em;text-transform:uppercase;color:#6a6666">On this page</span>
+<sc-for list="{{ post.toc }}" as="item" hint-placeholder-count="3">
+<a href="{{ item.href }}" onClick="{{ item.go }}" style="display:flex;align-items:baseline;gap:7px;font-size:13.5px;line-height:1.5;color:{{ item.color }};text-decoration:none;transition:color .18s ease" style-hover="color:#7d5411"><span style="flex:none;width:{{ item.markW }};height:1px;margin-top:8px;background:#b68235;transition:width .18s ease"></span>{{ item.label }}</a>
+</sc-for>
+</div>
+<div style="flex:3 1 400px;min-width:0;max-width:700px">
+<sc-if value="{{ post.inSeries }}" hint-placeholder-val="{{ false }}">
+<div style="margin:0 0 34px;border:1px solid rgba(32,31,29,0.14);border-top:2px solid #e1ad66;border-radius:4px;padding:20px 24px">
+<div style="display:flex;align-items:baseline;justify-content:space-between;gap:16px;margin-bottom:4px">
+<span style="font-family:'Cormorant Garamond',Georgia,serif;font-size:11.5px;letter-spacing:0.2em;text-transform:uppercase;color:#7d5411">Part of a series</span>
+<span style="font-family:'Cormorant Garamond',Georgia,serif;font-size:11.5px;letter-spacing:0.14em;text-transform:uppercase;color:#6a6666;font-feature-settings:'tnum'">2 parts</span>
+</div>
+<h3 style="margin:0 0 4px;font-family:'Cormorant Garamond',Georgia,serif;font-weight:600;font-size:23px">{{ post.seriesName }}</h3>
+<p style="margin:0 0 14px;font-family:'Cormorant Garamond',Georgia,serif;font-size:17px;line-height:1.55;color:#605d5d">{{ post.seriesBlurb }}</p>
+<div style="display:flex;flex-direction:column">
+<sc-for list="{{ post.seriesParts }}" as="part" hint-placeholder-count="2">
+<div style="display:grid;grid-template-columns:34px 1fr;gap:12px;align-items:baseline;padding:9px 0;border-top:1px solid rgba(32,31,29,0.14)">
+<span style="font-family:'Cormorant Garamond',Georgia,serif;font-size:13px;letter-spacing:0.1em;color:#6a6666;font-feature-settings:'tnum'">{{ part.n }}</span>
+<sc-if value="{{ part.current }}" hint-placeholder-val="{{ true }}"><span style="font-family:'Cormorant Garamond',Georgia,serif;font-size:18px;color:#201f1d">{{ part.label }} <em style="font-size:13px;color:#7d5411">— you are here</em></span></sc-if>
+<sc-if value="{{ part.other }}" hint-placeholder-val="{{ false }}"><a href="#" onClick="{{ part.open }}" style="font-family:'Cormorant Garamond',Georgia,serif;font-size:18px;color:#7d5411;text-decoration:none;border-bottom:1px solid rgba(125,84,17,0.35);width:fit-content">{{ part.label }}</a></sc-if>
+</div>
+</sc-for>
+</div>
+</div>
+</sc-if>
+<sc-for list="{{ post.blocks }}" as="b" hint-placeholder-count="5">
+<div>
+<sc-if value="{{ b.isH }}" hint-placeholder-val="{{ false }}">
+<h2 id="{{ b.slug }}" data-sec="{{ b.slug }}" style="margin:34px 0 12px;scroll-margin-top:110px;font-family:'Cormorant Garamond',Georgia,serif;font-weight:600;font-size:27px;letter-spacing:-0.01em">{{ b.text }}</h2>
+</sc-if>
+<sc-if value="{{ b.isP }}" hint-placeholder-val="{{ true }}">
+<p style="margin:0 0 18px;font-size:clamp(17px,0.5vw + 15px,20px);line-height:1.65;text-align:justify;hyphens:auto;color:#201f1d">{{ b.text }}</p>
+</sc-if>
+<sc-if value="{{ b.isMath }}" hint-placeholder-val="{{ false }}">
+<div style="margin:24px 0 26px;display:flex;justify-content:center;overflow-x:auto">
+{{ b.texEl }}
+</div>
+</sc-if>
+<sc-if value="{{ b.isInline }}" hint-placeholder-val="{{ false }}">
+<p style="margin:0 0 18px;font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(17px,0.5vw + 15px,20px);line-height:1.7;text-align:justify;hyphens:auto;color:#201f1d">{{ b.pre }} {{ b.inlineEl }} {{ b.post }}</p>
+</sc-if>
+<sc-if value="{{ b.isNoted }}" hint-placeholder-val="{{ false }}">
+<p style="margin:0 0 18px;font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(17px,0.5vw + 15px,20px);line-height:1.65;text-align:justify;hyphens:auto;color:#201f1d">{{ b.text }}<sup style="font-size:12px;color:#7d5411;padding-left:2px;font-feature-settings:'tnum'">{{ b.sup }}</sup></p>
+</sc-if>
+<sc-if value="{{ b.isFig }}" hint-placeholder-val="{{ false }}">
+<figure style="margin:28px 0">
+<img src="{{ b.text }}" alt="" style="width:100%;border:6px solid #f3f2f2;outline:1px solid rgba(32,31,29,0.14);border-radius:2px">
+<figcaption style="margin-top:9px;font-family:'Cormorant Garamond',Georgia,serif;font-size:15px;line-height:1.45;color:#6a6666"><em style="font-style:normal;letter-spacing:0.1em;text-transform:uppercase;font-size:11.5px;color:#7d5411;padding-right:8px;font-feature-settings:'tnum'">{{ b.figLabel }}</em>{{ b.caption }}</figcaption>
+</figure>
+</sc-if>
+<sc-if value="{{ b.isFigSlot }}" hint-placeholder-val="{{ false }}">
+<figure style="margin:28px 0">
+<div style="width:100%;height:300px;border:6px solid #f3f2f2;outline:1px solid rgba(32,31,29,0.14);border-radius:2px;background:repeating-linear-gradient(135deg,#f8f4f4 0 10px,#f3efe9 10px 20px);display:flex;align-items:center;justify-content:center">
+<span style="font-family:ui-monospace,Menlo,monospace;font-size:12px;letter-spacing:0.04em;color:#6a6666;background:#f8f4f4;padding:6px 10px;border:1px solid rgba(32,31,29,0.14);border-radius:4px">{{ b.placeholder }}</span>
+</div>
+<figcaption style="margin-top:9px;font-family:'Cormorant Garamond',Georgia,serif;font-size:15px;line-height:1.45;color:#6a6666"><em style="font-style:normal;letter-spacing:0.1em;text-transform:uppercase;font-size:11.5px;color:#7d5411;padding-right:8px;font-feature-settings:'tnum'">{{ b.figLabel }}</em>{{ b.caption }}</figcaption>
+</figure>
+</sc-if>
+<sc-if value="{{ b.isCode }}" hint-placeholder-val="{{ false }}">
+<div style="margin:26px 0 0">
+<div style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding:0 2px 7px">
+<span style="font-family:'Cormorant Garamond',Georgia,serif;font-size:11.5px;letter-spacing:0.2em;text-transform:uppercase;color:#7d5411">{{ b.lang }}</span>
+<span style="font-family:'Cormorant Garamond',Georgia,serif;font-size:11.5px;letter-spacing:0.14em;text-transform:uppercase;color:#6a6666;cursor:pointer" style-hover="color:#7d5411">Copy</span>
+</div>
+<pre style="margin:0;padding:16px 18px;background:#f8f4f4;border:1px solid rgba(32,31,29,0.14);border-top:2px solid #e1ad66;border-radius:4px;overflow-x:auto;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13px;line-height:1.7;color:#201f1d">{{ b.code }}</pre>
+</div>
+</sc-if>
+<sc-if value="{{ b.isOut }}" hint-placeholder-val="{{ false }}">
+<pre style="margin:10px 0 24px;padding:12px 16px;border-left:1px solid rgba(32,31,29,0.2);overflow-x:auto;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:12.5px;line-height:1.7;color:#605d5d">{{ b.text }}</pre>
+</sc-if>
+<sc-if value="{{ b.isRich }}" hint-placeholder-val="{{ false }}">
+<p style="margin:0 0 18px;font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(17px,0.5vw + 15px,20px);line-height:1.65;text-align:justify;hyphens:auto;color:#201f1d">
+<sc-for list="{{ b.parts }}" as="s" hint-placeholder-count="1">
+<sc-if value="{{ s.isText }}" hint-placeholder-val="{{ true }}">{{ s.text }}</sc-if>
+<sc-if value="{{ s.isLink }}" hint-placeholder-val="{{ false }}"><a href="{{ s.href }}" style="color:#7d5411;text-decoration:none;border-bottom:1px solid rgba(125,84,17,0.4)" style-hover="border-bottom-color:#7d5411;background:rgba(225,173,102,0.16)">{{ s.text }}</a></sc-if>
+</sc-for>
+</p>
+</sc-if>
+<sc-if value="{{ b.isList }}" hint-placeholder-val="{{ false }}">
+<div style="margin:0 0 22px;display:flex;flex-direction:column;gap:11px">
+<sc-for list="{{ b.items }}" as="item" hint-placeholder-count="3">
+<div style="display:flex;gap:14px;align-items:flex-start">
+<span style="flex:none;width:16px;height:1px;background:#e1ad66;margin-top:15px"></span>
+<span style="flex:1 1 auto;min-width:0;font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(17px,0.5vw + 15px,20px);line-height:1.6;color:#201f1d">{{ item.text }}</span>
+</div>
+</sc-for>
+</div>
+</sc-if>
+<sc-if value="{{ b.isOlist }}" hint-placeholder-val="{{ false }}">
+<div style="margin:0 0 22px;display:flex;flex-direction:column">
+<sc-for list="{{ b.items }}" as="item" hint-placeholder-count="2">
+<div style="display:flex;gap:16px;align-items:flex-start;padding:12px 0;border-top:1px solid rgba(32,31,29,0.14)">
+<span style="flex:none;width:24px;font-family:'Cormorant Garamond',Georgia,serif;font-size:17px;color:#7d5411;font-feature-settings:'tnum';padding-top:2px">{{ item.n }}</span>
+<span style="flex:1 1 auto;min-width:0;font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(17px,0.5vw + 15px,20px);line-height:1.6;color:#201f1d">{{ item.text }}</span>
+</div>
+</sc-for>
+</div>
+</sc-if>
+<sc-if value="{{ b.isQuote }}" hint-placeholder-val="{{ false }}">
+<blockquote style="margin:28px 0;padding:4px 0 4px 24px;border-left:2px solid #e1ad66;font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-size:clamp(20px,2.4vw,26px);line-height:1.42;color:#201f1d;text-wrap:pretty">{{ b.text }}</blockquote>
+</sc-if>
+<sc-if value="{{ b.isTable }}" hint-placeholder-val="{{ false }}">
+<div style="margin:26px 0;overflow-x:auto">
+<table style="width:100%;border-collapse:collapse;font-family:'Cormorant Garamond',Georgia,serif">
+<thead>
+<tr>
+<sc-for list="{{ b.head }}" as="h" hint-placeholder-count="3">
+<th style="text-align:left;padding:0 16px 9px 0;border-bottom:1px solid #201f1d;font-weight:600;font-size:11.5px;letter-spacing:0.2em;text-transform:uppercase;color:#605d5d;white-space:nowrap">{{ h }}</th>
+</sc-for>
+</tr>
+</thead>
+<tbody>
+<sc-for list="{{ b.rows }}" as="row" hint-placeholder-count="4">
+<tr>
+<sc-for list="{{ row.cells }}" as="cell" hint-placeholder-count="3">
+<td style="padding:11px 16px 11px 0;border-bottom:1px solid rgba(32,31,29,0.14);font-size:17px;line-height:1.5;color:#201f1d;vertical-align:top;font-feature-settings:'tnum'">{{ cell }}</td>
+</sc-for>
+</tr>
+</sc-for>
+</tbody>
+</table>
+</div>
+</sc-if>
+</div>
+</sc-for>
+<p style="margin:30px 0 0;font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-size:15px;color:#6a6666;border-top:1px solid rgba(32,31,29,0.14);padding-top:16px">Excerpt — the full post continues on the live site.</p>
+
+<sc-if value="{{ post.hasNotes }}" hint-placeholder-val="{{ false }}">
+<div style="margin-top:36px">
+<h3 style="margin:0 0 12px;font-family:'Cormorant Garamond',Georgia,serif;font-size:11.5px;letter-spacing:0.2em;text-transform:uppercase;font-weight:600;color:#605d5d">Notes</h3>
+<sc-for list="{{ post.notes }}" as="note" hint-placeholder-count="1">
+<div style="display:grid;grid-template-columns:24px 1fr;gap:10px;padding:12px 0;border-top:1px solid rgba(32,31,29,0.14)">
+<span style="font-family:'Cormorant Garamond',Georgia,serif;font-size:14px;color:#7d5411;font-feature-settings:'tnum'">{{ note.n }}</span>
+<span style="font-family:'Cormorant Garamond',Georgia,serif;font-size:17px;line-height:1.55;color:#444141;text-align:justify;hyphens:auto">{{ note.text }}</span>
+</div>
+</sc-for>
+</div>
+</sc-if>
+
+<div style="margin-top:36px;border:1px solid rgba(32,31,29,0.14);border-radius:4px;padding:20px 24px;display:flex;flex-wrap:wrap;gap:20px;align-items:center;justify-content:space-between">
+<div>
+<span style="display:block;font-family:'Cormorant Garamond',Georgia,serif;font-size:11.5px;letter-spacing:0.2em;text-transform:uppercase;color:#605d5d;margin-bottom:7px">Cite this post</span>
+<span style="display:block;font-family:'Cormorant Garamond',Georgia,serif;font-size:16.5px;line-height:1.5;color:#201f1d">{{ post.bib }}</span>
+</div>
+<div style="display:flex;gap:9px">
+<span style="font-family:'Cormorant Garamond',Georgia,serif;font-size:14.5px;min-height:44px;display:inline-flex;align-items:center;padding:0 16px;border:1px solid rgba(32,31,29,0.14);border-radius:4px;cursor:pointer;white-space:nowrap" style-hover="background:rgba(32,31,29,0.07)">Copy</span>
+<span style="font-family:'Cormorant Garamond',Georgia,serif;font-size:14.5px;min-height:44px;display:inline-flex;align-items:center;padding:0 16px;border:1px solid #7d5411;color:#7d5411;border-radius:4px;cursor:pointer;white-space:nowrap" style-hover="background:rgba(225,173,102,0.22)">Share</span>
+</div>
+</div>
+
+<div style="margin-top:36px;border-top:1px solid rgba(32,31,29,0.14);padding-top:22px">
+<div style="display:flex;align-items:baseline;justify-content:space-between;gap:16px;margin-bottom:14px">
+<h3 style="margin:0;font-family:'Cormorant Garamond',Georgia,serif;font-weight:600;font-size:23px">Comments</h3>
+<span style="font-family:'Cormorant Garamond',Georgia,serif;font-size:11.5px;letter-spacing:0.14em;text-transform:uppercase;color:#6a6666">via giscus · sign in with GitHub</span>
+</div>
+<div style="display:flex;flex-direction:column;gap:16px">
+<div style="display:grid;grid-template-columns:38px 1fr;gap:14px;padding-bottom:16px;border-bottom:1px solid rgba(32,31,29,0.14)">
+<span style="width:38px;height:38px;border-radius:50%;background:#fff3e4;outline:1px solid rgba(32,31,29,0.14)"></span>
+<span>
+<span style="display:flex;align-items:baseline;gap:10px;margin-bottom:4px"><em style="font-family:'Cormorant Garamond',Georgia,serif;font-size:17px;font-style:normal;color:#201f1d">m-hargreaves</em><span style="font-size:13px;color:#6a6666;font-feature-settings:'tnum'">2 days ago</span></span>
+<span style="display:block;font-family:'Cormorant Garamond',Georgia,serif;font-size:17px;line-height:1.55;color:#444141">This is the framing I've been missing when teaching first-years — the decision tree really does do the thinking for them.</span>
+</span>
+</div>
+<div style="display:grid;grid-template-columns:38px 1fr;gap:14px">
+<span style="width:38px;height:38px;border-radius:50%;background:transparent;outline:1px solid rgba(32,31,29,0.14)"></span>
+<span style="display:flex;flex-direction:column;gap:10px">
+<span style="min-height:64px;border:1px solid rgba(32,31,29,0.14);border-radius:4px;padding:10px 12px;font-family:'Cormorant Garamond',Georgia,serif;font-size:17px;color:#6a6666">Write a comment…</span>
+<span style="font-family:'Cormorant Garamond',Georgia,serif;font-size:14.5px;min-height:44px;display:inline-flex;align-items:center;padding:0 16px;border:1px solid #7d5411;color:#7d5411;border-radius:4px;width:fit-content;cursor:pointer" style-hover="background:rgba(225,173,102,0.22)">Comment</span>
+</span>
+</div>
+</div>
+</div>
+
+<div style="margin-top:44px;display:flex;flex-wrap:wrap;gap:24px;border-top:1px solid rgba(32,31,29,0.14);padding-top:24px">
+<a href="#" onClick="{{ post.openPrev }}" style="flex:1 1 220px;min-width:0;text-decoration:none;color:#201f1d;display:flex;flex-direction:column;gap:6px">
+<span style="font-family:'Cormorant Garamond',Georgia,serif;font-size:11.5px;letter-spacing:0.12em;text-transform:uppercase;color:#6a6666">Previous</span>
+<span style="font-family:'Cormorant Garamond',Georgia,serif;font-size:19px;line-height:1.25">{{ post.prevTitle }}</span>
+</a>
+<a href="#" onClick="{{ post.openNext }}" style="flex:1 1 220px;min-width:0;text-decoration:none;color:#201f1d;display:flex;flex-direction:column;gap:6px;text-align:right">
+<span style="font-family:'Cormorant Garamond',Georgia,serif;font-size:11.5px;letter-spacing:0.12em;text-transform:uppercase;color:#6a6666">Next</span>
+<span style="font-family:'Cormorant Garamond',Georgia,serif;font-size:19px;line-height:1.25">{{ post.nextTitle }}</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+</sc-if>
+
+<!-- ══ LATEX EDITOR APP ══ -->
+<sc-if value="{{ isApp }}" hint-placeholder-val="{{ false }}">
+<div data-screen-label="LaTeX editor" style="max-width:1040px;margin:0 auto;padding:clamp(34px,5vw,56px) clamp(18px,4vw,32px) 0;animation:scrFade .35s ease">
+<a href="#" onClick="{{ goCode }}" style="font-family:'Cormorant Garamond',Georgia,serif;font-size:13px;letter-spacing:0.1em;text-transform:uppercase;color:#7d5411;text-decoration:none"><span style="display:inline-block;width:16px;height:1px;background:#e1ad66;vertical-align:middle"></span>&nbsp;Software</a>
+<div style="display:flex;align-items:baseline;justify-content:space-between;gap:24px;flex-wrap:wrap;border-bottom:1px solid rgba(32,31,29,0.14);padding-bottom:22px;margin:22px 0 32px">
+<div>
+<h1 style="margin:0 0 6px;font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;font-size:clamp(29px,6vw,46px);letter-spacing:-0.02em">Medium LaTeX Exporter</h1>
+<p style="margin:0;font-family:'Cormorant Garamond',Georgia,serif;font-size:19px;color:#605d5d">Render an equation, export a PNG sized for Medium's content column.</p>
+</div>
+<span style="font-family:'Cormorant Garamond',Georgia,serif;font-size:11.5px;letter-spacing:0.14em;text-transform:uppercase;color:#7d5411;border:1px solid rgba(125,84,17,0.45);border-radius:4px;padding:4px 10px">Live tool</span>
+</div>
+
+<div style="display:flex;flex-wrap:wrap;gap:clamp(24px,3vw,32px);align-items:flex-start">
+<div style="flex:1 1 320px;min-width:0;display:flex;flex-direction:column;gap:24px">
+<div>
+<label style="display:block;font-family:'Cormorant Garamond',Georgia,serif;font-size:11.5px;letter-spacing:0.2em;text-transform:uppercase;color:#605d5d;margin-bottom:9px">LaTeX input</label>
+<textarea value="{{ latex }}" onChange="{{ onLatex }}" onKeyDown="{{ onLatexKey }}" spellcheck="false" style="width:100%;min-height:150px;padding:14px 16px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13.5px;line-height:1.65;color:#201f1d;background:#fff3e4;border:1px solid rgba(32,31,29,0.14);border-radius:4px;resize:vertical"></textarea>
+<p style="margin:8px 0 0;font-family:'Cormorant Garamond',Georgia,serif;font-size:15px;line-height:1.5;color:#6a6666">Full amsmath: <em>align</em>, <em>gather</em>, <em>cases</em>. ⌘/Ctrl + Enter to render.</p>
+</div>
+
+<div style="display:flex;flex-wrap:wrap;gap:22px;align-items:center;border-top:1px solid rgba(32,31,29,0.14);padding-top:20px">
+<div style="display:flex;align-items:center;gap:10px">
+<label style="font-family:'Cormorant Garamond',Georgia,serif;font-size:15px;color:#605d5d">Mode</label>
+<select value="{{ modeStr }}" onChange="{{ onMode }}" style="font-family:'Cormorant Garamond',Georgia,serif;font-size:15px;min-height:44px;padding:0 12px;color:#201f1d;background:transparent;border:1px solid rgba(32,31,29,0.14);border-radius:4px;cursor:pointer">
+<option value="true">Display block</option>
+<option value="false">Inline</option>
+</select>
+</div>
+<div style="display:flex;align-items:center;gap:10px">
+<label style="font-family:'Cormorant Garamond',Georgia,serif;font-size:15px;color:#605d5d">Size</label>
+<input type="range" min="6" max="24" step="1" value="{{ size }}" onChange="{{ onSize }}" style="width:110px;height:44px;accent-color:#7d5411;cursor:pointer">
+<span style="font-family:'Cormorant Garamond',Georgia,serif;font-size:15px;min-width:42px;font-feature-settings:'tnum'">{{ sizeLabel }}</span>
+</div>
+<button onClick="{{ doRender }}" style="cursor:pointer;font-family:'Cormorant Garamond',Georgia,serif;font-size:15px;min-height:44px;padding:0 20px;border:1px solid #7d5411;color:#7d5411;background:transparent;border-radius:4px" style-hover="background:rgba(225,173,102,0.22)">Render</button>
+</div>
+
+<div style="border-top:1px solid rgba(32,31,29,0.14);padding-top:20px;display:flex;flex-direction:column;gap:16px">
+<span style="font-family:'Cormorant Garamond',Georgia,serif;font-size:11.5px;letter-spacing:0.2em;text-transform:uppercase;color:#605d5d">Export</span>
+<div style="display:flex;flex-wrap:wrap;gap:22px;align-items:center">
+<div style="display:flex;align-items:center;gap:10px">
+<label style="font-family:'Cormorant Garamond',Georgia,serif;font-size:15px;color:#605d5d">Width</label>
+<input type="range" min="200" max="700" step="10" value="{{ exWidth }}" onChange="{{ onWidth }}" style="width:120px;height:44px;accent-color:#7d5411;cursor:pointer">
+<span style="font-family:'Cormorant Garamond',Georgia,serif;font-size:15px;min-width:50px;font-feature-settings:'tnum'">{{ widthLabel }}</span>
+</div>
+<div style="display:flex;align-items:center;gap:10px">
+<label style="font-family:'Cormorant Garamond',Georgia,serif;font-size:15px;color:#605d5d">Padding</label>
+<select value="{{ padStr }}" onChange="{{ onPad }}" style="font-family:'Cormorant Garamond',Georgia,serif;font-size:15px;min-height:44px;padding:0 12px;color:#201f1d;background:transparent;border:1px solid rgba(32,31,29,0.14);border-radius:4px;cursor:pointer">
+<option value="12">Compact</option>
+<option value="24">Normal</option>
+<option value="40">Spacious</option>
+</select>
+</div>
+<div style="display:flex;align-items:center;gap:10px">
+<label style="font-family:'Cormorant Garamond',Georgia,serif;font-size:15px;color:#605d5d">Ground</label>
+<select value="{{ bgStr }}" onChange="{{ onBg }}" style="font-family:'Cormorant Garamond',Georgia,serif;font-size:15px;min-height:44px;padding:0 12px;color:#201f1d;background:transparent;border:1px solid rgba(32,31,29,0.14);border-radius:4px;cursor:pointer">
+<option value="white">White</option>
+<option value="transparent">Transparent</option>
+</select>
+</div>
+<button onClick="{{ doExport }}" style="cursor:pointer;font-family:'Cormorant Garamond',Georgia,serif;font-size:15px;min-height:44px;padding:0 20px;border:1px solid rgba(32,31,29,0.35);color:#201f1d;background:transparent;border-radius:4px" style-hover="background:rgba(32,31,29,0.07)">Export PNG</button>
+</div>
+<p style="margin:0;font-family:'Cormorant Garamond',Georgia,serif;font-size:15px;line-height:1.5;color:#6a6666">680px fills Medium's content column. Reduce the width to scale equations down on mobile.</p>
+</div>
+</div>
+
+<div style="flex:1 1 320px;min-width:0;display:flex;flex-direction:column;gap:20px">
+<div>
+<div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:9px">
+<span style="font-family:'Cormorant Garamond',Georgia,serif;font-size:11.5px;letter-spacing:0.2em;text-transform:uppercase;color:#605d5d">Preview</span>
+<span style="font-family:'Cormorant Garamond',Georgia,serif;font-size:14px;color:#6a6666">{{ mjStatus }}</span>
+</div>
+<div style="min-height:170px;display:flex;align-items:center;justify-content:center;padding:28px;background:#fff;border:6px solid #f3f2f2;outline:1px solid rgba(32,31,29,0.14);border-radius:2px;overflow-x:auto">
+{{ previewEl }}
+<sc-if value="{{ noPreview }}" hint-placeholder-val="{{ false }}"><span style="font-family:'Cormorant Garamond',Georgia,serif;font-size:16px;color:#bab6b6">Preview will appear here</span></sc-if>
+</div>
+<sc-if value="{{ hasMjError }}" hint-placeholder-val="{{ false }}">
+<p style="margin:12px 0 0;font-family:'Cormorant Garamond',Georgia,serif;font-size:15px;color:#a83328;border-left:2px solid #a83328;padding-left:10px">{{ mjError }}</p>
+</sc-if>
+</div>
+
+<sc-if value="{{ hasExport }}" hint-placeholder-val="{{ false }}">
+<div style="border-top:1px solid rgba(32,31,29,0.14);padding-top:18px">
+<span style="display:block;font-family:'Cormorant Garamond',Georgia,serif;font-size:11.5px;letter-spacing:0.2em;text-transform:uppercase;color:#605d5d;margin-bottom:10px">Exported PNG</span>
+{{ exportEl }}
+<a href="{{ exportUrl }}" download="equation.png" style="text-decoration:none;font-family:'Cormorant Garamond',Georgia,serif;font-size:15px;min-height:44px;display:inline-flex;align-items:center;padding:0 20px;border:1px solid #7d5411;color:#7d5411;border-radius:4px" style-hover="background:rgba(225,173,102,0.22)">Download equation.png</a>
+</div>
+</sc-if>
+</div>
+</div>
+</div>
+</sc-if>
+
+<!-- ══ PUBLICATIONS ══ -->
+<sc-if value="{{ isPubs }}" hint-placeholder-val="{{ false }}">
+<div data-screen-label="Publications" style="max-width:1040px;margin:0 auto;padding:clamp(34px,5vw,64px) clamp(18px,4vw,32px) 0;animation:scrFade .35s ease">
+<div style="border-bottom:1px solid rgba(32,31,29,0.14);padding-bottom:26px;margin-bottom:36px">
+<h1 style="margin:0 0 10px;font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;font-size:clamp(30px,6.4vw,52px);letter-spacing:-0.02em">Publications</h1>
+<p style="margin: 0; font-size: 19px; color: #605d5d; max-width: 60ch">Peer-reviewed work, mostly on visual working memory, neural coding, and model-based inference.</p>
+</div>
+<div style="display:flex;flex-wrap:wrap;gap:clamp(30px,5vw,64px);align-items:flex-start">
+<div style="flex:3 1 380px;min-width:0">
+<sc-for list="{{ pubYears }}" as="group" hint-placeholder-count="4">
+<div style="margin-bottom:34px">
+<div style="display:flex;align-items:baseline;gap:16px;margin-bottom:10px">
+<span style="font-family:'Cormorant Garamond',Georgia,serif;font-size:30px;color:#201f1d;font-feature-settings:'tnum'">{{ group.year }}</span>
+<span style="flex:1;height:1px;background:#e1ad66"></span>
+</div>
+<sc-for list="{{ group.items }}" as="pub" hint-placeholder-count="2">
+<div style="padding:14px 0;border-bottom:1px solid rgba(32,31,29,0.14);display:flex;flex-wrap:wrap;column-gap:20px;row-gap:7px;align-items:baseline">
+<span style="flex:1 1 320px;min-width:0;font-family:'Cormorant Garamond',Georgia,serif;font-size:18px;line-height:1.55;color:#201f1d">{{ pub.text }} <em style="color:#605d5d">{{ pub.venue }}</em></span>
+<span style="flex:none;display:flex;gap:16px;font-family:'Cormorant Garamond',Georgia,serif;font-size:12px;letter-spacing:0.12em;text-transform:uppercase">
+<a href="{{ pub.doi }}" target="_blank" rel="noopener" style="color:#7d5411;text-decoration:none;border-bottom:1px solid rgba(125,84,17,0.3)" style-hover="border-bottom-color:#b68235">doi</a>
+<a href="{{ pub.pdf }}" target="_blank" rel="noopener" style="color:#7d5411;text-decoration:none;border-bottom:1px solid rgba(125,84,17,0.3)" style-hover="border-bottom-color:#b68235">pdf</a>
+</span>
+</div>
+</sc-for>
+</div>
+</sc-for>
+</div>
+<div data-rail="pubs-glance" style="position:sticky;top:96px;border-left:1px solid rgba(32,31,29,0.14);padding-left:20px;display:flex;flex-direction:column;gap:16px;flex:1 1 210px;min-width:0">
+<span style="font-family:'Cormorant Garamond',Georgia,serif;font-size:11.5px;letter-spacing:0.2em;text-transform:uppercase;color:#6a6666">At a glance</span>
+<div style="display:flex;flex-direction:column;gap:3px">
+<span style="font-family:'Cormorant Garamond',Georgia,serif;font-size:38px;line-height:1;font-feature-settings:'tnum'">10</span>
+<span style="font-family:'Cormorant Garamond',Georgia,serif;font-size:15px;color:#605d5d">peer-reviewed papers</span>
+</div>
+<div style="display:flex;flex-direction:column;gap:3px">
+<span style="font-family:'Cormorant Garamond',Georgia,serif;font-size:38px;line-height:1;font-feature-settings:'tnum'">2016–22</span>
+<span style="font-family:'Cormorant Garamond',Georgia,serif;font-size:15px;color:#605d5d">publication window</span>
+</div>
+<p style="margin:0;font-family:'Cormorant Garamond',Georgia,serif;font-size:16px;line-height:1.55;color:#605d5d">Full list also on <a href="#" style="color:#7d5411;text-decoration:none;border-bottom:1px solid rgba(125,84,17,0.35)">Google Scholar</a>.</p>
+</div>
+</div>
+</div>
+</sc-if>
+
+<!-- ══ 404 ══ -->
+<sc-if value="{{ isLost }}" hint-placeholder-val="{{ false }}">
+<div data-screen-label="404" style="max-width:1040px;margin:0 auto;padding:clamp(40px,7vw,90px) clamp(18px,4vw,32px) 0;animation:scrFade .35s ease">
+<div style="display:flex;flex-wrap:wrap;gap:clamp(30px,5vw,64px);align-items:flex-start">
+<div style="flex:2 1 380px;min-width:0;max-width:56ch">
+<span style="font-family:'Cormorant Garamond',Georgia,serif;font-size:11.5px;letter-spacing:0.24em;text-transform:uppercase;color:#6a6666;font-feature-settings:'tnum'">Error 404</span>
+<h1 style="margin:14px 0 0;font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;font-size:clamp(32px,6.4vw,54px);line-height:1.08;letter-spacing:-0.02em">This page has been mislaid.</h1>
+<div style="height:1px;background:#e1ad66;width:72px;margin:26px 0"></div>
+<p style="margin:0;font-size:18.5px;line-height:1.65;color:#444141;text-wrap:pretty">Either the address is wrong, or something that once lived here has since moved. Neither is your fault. The writing is all still on the site — try the index.</p>
+<div style="display:flex;flex-wrap:wrap;gap:12px;margin-top:26px">
+<a href="#" onClick="{{ goBlog }}" style="text-decoration:none;font-family:'Cormorant Garamond',Georgia,serif;font-size:15px;min-height:44px;display:inline-flex;align-items:center;padding:0 20px;border:1px solid #7d5411;color:#7d5411;border-radius:4px" style-hover="background:rgba(225,173,102,0.22)">All writing</a>
+<a href="#" onClick="{{ goHome }}" style="text-decoration:none;font-family:'Cormorant Garamond',Georgia,serif;font-size:15px;min-height:44px;display:inline-flex;align-items:center;padding:0 20px;border:1px solid rgba(32,31,29,0.2);color:#201f1d;border-radius:4px" style-hover="border-color:#b68235">Home</a>
+</div>
+</div>
+<div style="flex:1 1 240px;min-width:0;border-left:1px solid rgba(32,31,29,0.14);padding-left:20px">
+<span style="font-family:'Cormorant Garamond',Georgia,serif;font-size:11.5px;letter-spacing:0.2em;text-transform:uppercase;color:#6a6666">Recent posts</span>
+<div style="display:flex;flex-direction:column;margin-top:12px">
+<sc-for list="{{ lostPosts }}" as="post" hint-placeholder-count="3">
+<a href="#" onClick="{{ post.open }}" style="display:flex;flex-direction:column;gap:3px;padding:11px 0;border-top:1px solid rgba(32,31,29,0.14);text-decoration:none;color:#201f1d" style-hover="color:#7d5411">
+<span style="font-family:'Cormorant Garamond',Georgia,serif;font-size:11.5px;letter-spacing:0.12em;text-transform:uppercase;color:#6a6666;font-feature-settings:'tnum'">{{ post.date }}</span>
+<span style="font-family:'Cormorant Garamond',Georgia,serif;font-size:18px;line-height:1.25">{{ post.title }}</span>
+</a>
+</sc-for>
+</div>
+</div>
+</div>
+</div>
+</sc-if>
+
+<!-- ══ SOFTWARE ══ -->
+<sc-if value="{{ isCode }}" hint-placeholder-val="{{ false }}">
+<div data-screen-label="Software" style="max-width:1040px;margin:0 auto;padding:clamp(34px,5vw,64px) clamp(18px,4vw,32px) 0;animation:scrFade .35s ease">
+<div style="border-bottom:1px solid rgba(32,31,29,0.14);padding-bottom:26px;margin-bottom:36px">
+<h1 style="margin:0 0 10px;font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;font-size:clamp(30px,6.4vw,52px);letter-spacing:-0.02em">Software</h1>
+<p style="margin: 0; font-size: 19px; color: #605d5d; max-width: 65ch">Web applications, R packages, and code. Tools I built because I needed them.</p>
+</div>
+
+<div style="display:flex;flex-direction:column;gap:28px;max-width:800px">
+<div style="border:1px solid rgba(32,31,29,0.14);border-radius:4px;padding:clamp(20px,3vw,28px) clamp(20px,3vw,30px);display:flex;flex-direction:column;gap:16px" style-hover="border-color:#b68235">
+<div style="display:flex;align-items:baseline;justify-content:space-between;gap:16px">
+<h2 style="margin:0;font-family:'Cormorant Garamond',Georgia,serif;font-weight:600;font-size:clamp(24px,3.4vw,30px)">Medium LaTeX Editor</h2>
+<span style="font-family:'Cormorant Garamond',Georgia,serif;font-size:11.5px;letter-spacing:0.1em;text-transform:uppercase;color:#7d5411;border:1px solid rgba(125,84,17,0.45);border-radius:4px;padding:3px 9px;white-space:nowrap">Live</span>
+</div>
+
+<p style="margin:0;font-size:18px;line-height:1.6;color:#444141;text-align:justify">I got fed up with Medium's lack of LaTeX support — and with the third-party tools around it — so I built my own. If you publish mathematical content on Medium, you might find this useful.</p>
+<div style="display:flex;gap:26px;font-size:15px;color:#6a6666">
+<span><em style="color:#201f1d">Type</em> — Web application</span>
+<span><em style="color:#201f1d">Stack</em> — HTML / CSS / JavaScript</span>
+</div>
+<div style="display:flex;gap:10px;padding-top:4px">
+<a href="#" onClick="{{ goApp }}" style="text-decoration:none;font-family:'Cormorant Garamond',Georgia,serif;font-size:14.5px;min-height:44px;display:inline-flex;align-items:center;padding:0 18px;border:1px solid #7d5411;color:#7d5411;border-radius:4px" style-hover="background:rgba(225,173,102,0.22)">Open app</a>
+<a href="https://github.com/dr-rob-taylor" style="text-decoration:none;font-family:'Cormorant Garamond',Georgia,serif;font-size:14.5px;min-height:44px;display:inline-flex;align-items:center;padding:0 18px;border:1px solid rgba(32,31,29,0.14);color:#201f1d;border-radius:4px" style-hover="background:rgba(32,31,29,0.07)">Source</a>
+</div>
+</div>
+
+<div style="border:1px solid rgba(32,31,29,0.14);border-radius:4px;padding:clamp(20px,3vw,28px) clamp(20px,3vw,30px);display:flex;flex-direction:column;gap:16px" style-hover="border-color:#b68235">
+<div style="display:flex;align-items:baseline;justify-content:space-between;gap:16px">
+<h2 style="margin:0;font-family:'Cormorant Garamond',Georgia,serif;font-weight:600;font-size:clamp(24px,3.4vw,30px)">StatsLearnR</h2>
+<span style="font-family:'Cormorant Garamond',Georgia,serif;font-size:11.5px;letter-spacing:0.1em;text-transform:uppercase;color:#605d5d;border:1px solid rgba(32,31,29,0.2);border-radius:4px;padding:3px 9px;white-space:nowrap">In progress</span>
+</div>
+<p style="margin:0;font-size:18px;line-height:1.6;color:#444141;text-align:justify">An interactive Shiny application for teaching the fundamentals of statistics — sampling, estimation, and inference explored by moving the parts rather than reading about them. Built for the students I keep meeting who can run the test but can't say what it assumes.</p>
+<div style="display:flex;flex-wrap:wrap;gap:26px;font-size:15px;color:#6a6666">
+<span><em style="color:#201f1d">Type</em> — R package &amp; Shiny app</span>
+<span><em style="color:#201f1d">Stack</em> — R / Shiny</span>
+</div>
+<p style="margin:0;font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-size:16px;color:#6a6666">In development — I'll post here and to the newsletter when there's something to try.</p>
+</div>
+</div>
+</div>
+</sc-if>
+
+<!-- ══ ABOUT ══ -->
+<sc-if value="{{ isAbout }}" hint-placeholder-val="{{ false }}">
+<div data-screen-label="About" style="max-width:1040px;margin:0 auto;padding:clamp(34px,5vw,64px) clamp(18px,4vw,32px) 0;animation:scrFade .35s ease">
+<div style="display:flex;flex-wrap:wrap;gap:clamp(28px,5vw,64px);align-items:flex-start">
+<div data-rail="about-profile" style="position:sticky;top:88px;display:flex;flex-direction:column;gap:20px;flex:1 1 250px;max-width:300px;min-width:0">
+<img src="assets/profile.jpg" alt="Rob Taylor" class="plate" style="width:100%;aspect-ratio:1;object-fit:cover;border-radius:50%">
+<div>
+<h1 style="margin:0 0 4px;font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;font-size:clamp(28px,5vw,36px);letter-spacing:-0.02em">Rob Taylor</h1>
+<p style="margin:0;font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-size:17px;color:#605d5d">Psychologist, statistician, and writer</p>
+</div>
+<div style="height:1px;background:rgba(32,31,29,0.14)"></div>
+<div style="display:flex;flex-direction:column;gap:9px;font-size:16.5px">
+<sc-for list="{{ links }}" as="l" hint-placeholder-count="3">
+<a href="{{ l.href }}" style="text-decoration:none;color:#7d5411;display:flex;align-items:center;gap:9px;min-height:44px">
+<sc-if value="{{ markRule }}" hint-placeholder-val="{{ true }}"><span style="width:16px;height:1px;background:#e1ad66;flex:none"></span></sc-if>
+<sc-if value="{{ markUnderline }}" hint-placeholder-val="{{ false }}"><span style="border-bottom:1px solid rgba(125,84,17,0.45);padding-bottom:1px" style-hover="border-bottom-color:#b68235">{{ l.label }}</span></sc-if>
+<sc-if value="{{ notUnderline }}" hint-placeholder-val="{{ true }}"><span>{{ l.label }}</span></sc-if>
+<sc-if value="{{ markDomain }}" hint-placeholder-val="{{ false }}"><span style="font-family:'Cormorant Garamond',Georgia,serif;font-size:11.5px;letter-spacing:0.1em;text-transform:uppercase;color:#6a6666">{{ l.domain }}</span></sc-if>
+<sc-if value="{{ markIcon }}" hint-placeholder-val="{{ false }}"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#7d5411" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg></sc-if>
+</a>
+</sc-for>
+</div>
+<div style="border-top:1px solid rgba(32,31,29,0.14);padding-top:16px">
+<h3 style="margin:0 0 10px;font-family:'Cormorant Garamond',Georgia,serif;font-size:11.5px;letter-spacing:0.12em;text-transform:uppercase;font-weight:600;color:#605d5d">Expertise</h3>
+<div style="display:flex;flex-wrap:wrap;gap:6px">
+<span style="font-family:'Cormorant Garamond',Georgia,serif;font-size:12.5px;padding:3px 9px;border:1px solid rgba(125,84,17,0.45);color:#7d5411;border-radius:4px">Bayesian inference</span>
+<span style="font-family:'Cormorant Garamond',Georgia,serif;font-size:12.5px;padding:3px 9px;border:1px solid rgba(125,84,17,0.45);color:#7d5411;border-radius:4px">Probability theory</span>
+<span style="font-family:'Cormorant Garamond',Georgia,serif;font-size:12.5px;padding:3px 9px;border:1px solid rgba(125,84,17,0.45);color:#7d5411;border-radius:4px">Mathematical modelling</span>
+<span style="font-family:'Cormorant Garamond',Georgia,serif;font-size:12.5px;padding:3px 9px;border:1px solid rgba(32,31,29,0.14);color:#444141;border-radius:4px">Psychophysics</span>
+<span style="font-family:'Cormorant Garamond',Georgia,serif;font-size:12.5px;padding:3px 9px;border:1px solid rgba(32,31,29,0.14);color:#444141;border-radius:4px">Visual cognition</span>
+<span style="font-family:'Cormorant Garamond',Georgia,serif;font-size:12.5px;padding:3px 9px;border:1px solid rgba(32,31,29,0.14);color:#444141;border-radius:4px">Applied data science</span>
+<span style="font-family:'Cormorant Garamond',Georgia,serif;font-size:12.5px;padding:3px 9px;border:1px solid rgba(32,31,29,0.14);color:#444141;border-radius:4px">Statistical education</span>
+<span style="font-family:'Cormorant Garamond',Georgia,serif;font-size:12.5px;padding:3px 9px;border:1px solid rgba(32,31,29,0.14);color:#444141;border-radius:4px">Food systems</span>
+<span style="font-family:'Cormorant Garamond',Georgia,serif;font-size:12.5px;padding:3px 9px;border:1px solid rgba(32,31,29,0.14);color:#444141;border-radius:4px">R / Python</span>
+</div>
+</div>
+</div>
+
+<div style="flex:3 1 400px;min-width:0;max-width:700px">
+<h2 style="margin:0 0 12px;font-family:'Cormorant Garamond',Georgia,serif;font-weight:600;font-size:28px">Motivation</h2>
+<p style="margin:0 0 18px;font-size:clamp(17px,0.5vw + 15px,20px);line-height:1.65;text-align:justify;hyphens:auto;color:#201f1d">Statistics is one of the most powerful tools for understanding the world — and one of the most poorly taught. Too often it's presented as a collection of procedures to follow rather than a coherent way of thinking about uncertainty. The mechanics get taught; the intuition doesn't.</p>
+<p style="margin:0 0 18px;font-size:clamp(17px,0.5vw + 15px,20px);line-height:1.65;text-align:justify;hyphens:auto;color:#201f1d">Much of my writing exists to change that, at least in a small way. Every post here is written with a single goal: to help you understand not just <em>how</em> a method works, but <em>why</em> it works and <em>when</em> you should trust it. The mathematics is taken seriously, but it's always in service of understanding — never an end in itself.</p>
+
+<h2 style="margin:34px 0 12px;font-family:'Cormorant Garamond',Georgia,serif;font-weight:600;font-size:28px">Background</h2>
+<p style="margin:0 0 18px;font-size:clamp(17px,0.5vw + 15px,20px);line-height:1.65;text-align:justify;hyphens:auto;color:#201f1d">My path to statistics was not a straight line. I trained originally as a cognitive psychologist, completing a PhD focused on psychophysics, visual memory, and perception. Much of that work involved building and fitting mathematical models to understand how humans process sensory information — which meant getting very comfortable with probability, inference, and the question of what data can and cannot tell you.</p>
+<p style="margin:0 0 18px;font-size:clamp(17px,0.5vw + 15px,20px);line-height:1.65;text-align:justify;hyphens:auto;color:#201f1d">From academia I moved into applied data science, working for New Zealand Police, where the stakes of analytical decisions are very real. That experience sharpened my understanding of where methods work, where they break down, and where good judgement has to fill the gap. I recently returned to academia and am building models of food systems.</p>
+
+<h2 style="margin:34px 0 12px;font-family:'Cormorant Garamond',Georgia,serif;font-weight:600;font-size:28px">On Bayesian inference</h2>
+<p style="margin:0 0 18px;font-size:clamp(17px,0.5vw + 15px,20px);line-height:1.65;text-align:justify;hyphens:auto;color:#201f1d">If there is one thread running through most of what I write, it is probability as a language for uncertainty. Bayesian inference is not just a set of methods to me — it is a coherent framework for reasoning under uncertainty that I find both intellectually compelling and practically powerful. A recurring theme here will be building that intuition from the ground up: what it means to have a prior, what it means to update on evidence, and why that changes how you approach data problems.</p>
+
+<div style="margin-top:38px;border-top:1px solid rgba(32,31,29,0.14);padding-top:22px">
+<h2 style="margin:0 0 16px;font-family:'Cormorant Garamond',Georgia,serif;font-weight:600;font-size:24px">Short CV</h2>
+<sc-for list="{{ cv }}" as="row" hint-placeholder-count="4">
+<div style="display:flex;flex-wrap:wrap;column-gap:20px;row-gap:6px;padding:15px 0;border-top:1px solid rgba(32,31,29,0.14)">
+<span style="flex:none;width:112px;font-family:'Cormorant Garamond',Georgia,serif;font-size:15px;letter-spacing:0.04em;color:#7d5411;font-feature-settings:'tnum'">{{ row.when }}</span>
+<span style="flex:1 1 240px;min-width:0;display:flex;flex-direction:column;gap:4px">
+<span style="font-family:'Cormorant Garamond',Georgia,serif;font-size:19px;line-height:1.3;color:#201f1d">{{ row.what }}</span>
+<span style="font-family:'Cormorant Garamond',Georgia,serif;font-size:16.5px;line-height:1.5;color:#605d5d">{{ row.where }}</span>
+</span>
+</div>
+</sc-for>
+</div>
+
+<div style="margin-top:38px;border-top:1px solid rgba(32,31,29,0.14);padding-top:22px">
+<div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:8px">
+<h2 style="margin:0;font-family:'Cormorant Garamond',Georgia,serif;font-weight:600;font-size:24px">Selected publications</h2>
+<a href="#" onClick="{{ goPubs }}" style="font-family:'Cormorant Garamond',Georgia,serif;font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:#7d5411;text-decoration:none;border-bottom:1px solid rgba(125,84,17,0.35);font-feature-settings:'tnum'">All 10 papers</a>
+</div>
+<sc-for list="{{ selectedPubs }}" as="pub" hint-placeholder-count="3">
+<div style="display:grid;grid-template-columns:56px 1fr;gap:16px;padding:14px 0;border-top:1px solid rgba(32,31,29,0.14)">
+<span style="font-family:'Cormorant Garamond',Georgia,serif;font-size:14px;color:#6a6666;font-feature-settings:'tnum'">{{ pub.year }}</span>
+<span style="font-size:17px;line-height:1.55;color:#201f1d">{{ pub.text }} <em style="color:#605d5d">{{ pub.venue }}</em> <a href="#" style="color:#7d5411;text-decoration:none">pdf</a></span>
+</div>
+</sc-for>
+</div>
+
+<div style="margin-top:34px;border:1px solid rgba(32,31,29,0.14);border-radius:4px;padding:24px 26px">
+<h3 style="margin:0 0 6px;font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;font-size:24px">Get in touch</h3>
+<p style="margin:0;font-size:18px;line-height:1.6;color:#605d5d">Questions, suggestions, or you just want to talk statistics — I'd love to hear from you.</p>
+</div>
+</div>
+</div>
+</div>
+</sc-if>
+
+<div style="max-width:1040px;margin:clamp(52px,8vw,80px) auto 0;padding:0 clamp(18px,4vw,32px)">
+<div style="border-top:1px solid rgba(32,31,29,0.14);padding:22px 0 40px;display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;font-size:14.5px;color:#6a6666">
+<span>© Rob Taylor</span>
+<span style="font-family:'Cormorant Garamond',Georgia,serif;letter-spacing:0.06em">Statistics, probability, and Bayesian thinking</span>
+<a href="#" style="color:#7d5411;text-decoration:none">robtaylor.co.nz</a>
+</div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;homeLayout&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;editorial&quot;,&quot;index&quot;],&quot;default&quot;:&quot;editorial&quot;,&quot;tsType&quot;:&quot;'editorial' | 'index'&quot;},&quot;blogView&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;list&quot;,&quot;cards&quot;],&quot;default&quot;:&quot;cards&quot;,&quot;tsType&quot;:&quot;'list' | 'cards'&quot;},&quot;showNewsletter&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;},&quot;linkMark&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;rule&quot;,&quot;underline&quot;,&quot;icon&quot;,&quot;domain&quot;],&quot;default&quot;:&quot;domain&quot;,&quot;tsType&quot;:&quot;'rule' | 'underline' | 'icon' | 'domain'&quot;,&quot;section&quot;:&quot;Links&quot;}}">
+const NEWS = [
+  {date:'2026-08-04', text:'Returning to academia — building models of food systems.', linkLabel:'', href:''},
+  {date:'2026-06-12', text:'New series on maximum likelihood estimation, theory through practice.', linkLabel:'Start here', href:'#'},
+  {date:'2026-04-02', text:'Talk at the Bayesian Methods workshop, Manchester.', linkLabel:'Slides', href:'https://example.com/slides'},
+  {date:'2025-11-18', text:'Site launch — publishing regularly on statistics and inference.', linkLabel:'', href:''}
+];
+
+const POSTS = [
+  {id:'technicians', title:'Statistical Technicians', subtitle:'The case for teaching statistics as reasoning, not procedure', date:'24 Apr 2026', cats:['statistics','probability','teaching'], img:'assets/post-technicians.jpg', credit:'Photo by Jules Paulin on Unsplash', readTime:'9 min',
+   blocks:[
+     {t:'h', text:'Introduction'},
+     {t:'p', text:'There is a familiar ritual to the undergraduate statistics course. You are handed a decision tree, invited to follow its branches, and eventually arrive at a test and a p-value to report. The process is tidy, sequential, and almost entirely thoughtless. At no point are you asked to reflect seriously on what you are doing, or why, or whether the question you are answering bears any resemblance to the question you started with.'},
+     {t:'p', text:'My degree was in psychology; a field that relies heavily on statistical inference, and one that has paid a very public price for treating it carelessly. Yet even there, statistics was something to endure rather than be enlightened by. The implicit mantra was that mathematics is hard, the procedures are unpleasant, and the sooner it is over the better.'},
+     {t:'h', text:'The logic gate curriculum'},
+     {t:'quote', text:'What the decision tree teaches is not reasoning under uncertainty but a route through a flowchart — and a flowchart cannot tell you whether the question is worth asking.'},
+     {t:'p', text:'That has frustrated me for nearly two decades, and I do not think the frustration is misplaced. Statistics taught as a sequence of gates produces technicians: people who can execute a procedure faithfully and cannot say what it assumes, what it licenses, or when it should have been abandoned three steps earlier.'}
+   ]},
+  {id:'variances', title:'Do We Really Need to Test Variances Anymore?', subtitle:'Why classical assumption checks are no longer gatekeepers, and how modern ANOVA methods handle heterogeneity directly.', date:'15 Apr 2026', cats:['statistics','ANOVA','hypothesis testing','inference'], img:'assets/post-variances.jpg', credit:'Photo by Joel Henry on Unsplash', readTime:'12 min',
+   blocks:[
+     {t:'h', text:'Introduction'},
+     {t:'p', text:'There was a familiar ritual to statistical analysis that many of us were taught: collect data under a set of assumptions about how that data should look, test those assumptions, and — if they held — use a parametric test; if not, switch to a non-parametric alternative. As an undergraduate, this process was a major source of anxiety for me, often tipping into a kind of low-level existential angst.'},
+     {t:'p', text:'Consider the case of comparing multiple conditions or groups. The standard tool here was Analysis of Variance, which comes with a core assumption that group variances are equal. If the variances were found to be unequal — or heteroscedastic — the prescribed move was to abandon ANOVA in favour of a non-parametric alternative such as the Kruskal–Wallis test.'},
+     {t:'p', text:'In this post, I revisit why assumption checking played such a central role in classical statistics, focus on how equality of variances was assessed in the context of ANOVA, and argue that modern statistical workflows have made these tests far less central than they once were.'}
+   ]},
+  {id:'roles', title:'Stop Pretending Data Roles Are Separate', subtitle:'My push back against the “data trinity”', date:'23 Aug 2025', cats:['data analysis','data science','data engineering','gripe'], img:'assets/post-ci.jpg', credit:'Photo by Joel Henry on Unsplash', readTime:'6 min',
+   blocks:[
+     {t:'h', text:'Introduction'},
+     {t:'p', text:'As someone who has worked across different data roles, my feeds are full of posts about what I think of as the “data trinity”: the engineer, the scientist, and the analyst. These posts usually frame the three as cleanly separated and clearly defined. But in practice, the boundaries are far less rigid.'},
+     {t:'p', text:'There is a conceptual convenience in treating them as separate, for sure. It helps organisations write job descriptions and structure teams. But in reality, these roles share more in common than they do not.'},
+     {t:'h', text:'The data trinity'},
+     {t:'p', text:'Let us start with the “official” distinctions — and with how quickly they dissolve the moment a pipeline breaks or a stakeholder asks what the number actually means.'}
+   ]},
+  {id:'ci', title:'A Note on Confidence Intervals', subtitle:'What a confidence interval is — but more importantly, what it is not.', date:'7 Nov 2022', cats:['statistics','probability','confidence intervals'], img:'assets/post-ci.jpg', credit:'Photo by Joel Henry on Unsplash', readTime:'10 min',
+   blocks:[
+     {t:'h', text:'Introduction'},
+     {t:'p', text:'Statisticians like to estimate things — and fair enough. We are often interested in some property that exists within a population but cannot actually observe the entire populace, without, you know, infinite time and money. The best we can do is draw a sample from it and hope that our estimation procedure yields a statistic that is not too far away from the truth.'},
+     {t:'p', text:'It is then quite natural to want to include some metric of uncertainty in our results. Since first introduced by Jerzy Neyman in 1937, confidence intervals have increasingly filled this need and provide an intuitive metric for how uncertain we can be about our estimated value. Wait — does it?'}
+   ]},
+  {id:'pvalues', title:'A Brief Primer on p-values', subtitle:'An article to help build an understanding of this common, yet misunderstood, measure', date:'17 Sep 2022', cats:['statistics','probability','null hypothesis testing','methods'], img:'assets/post-prob.jpg', credit:'Photo by Joel Henry on Unsplash', readTime:'14 min',
+   blocks:[
+     {t:'h', text:'Introduction'},
+     {t:'p', text:'Null hypothesis significance testing is a fundamental approach to drawing inferences about unknown population parameters. While its origins can be traced back as far as the 18th century, modern applications were largely formalised by Ronald Fisher in 1925 with the publication of Statistical Methods for Research Workers. Alongside estimation, it is one of the pillars of statistical science.'},
+     {t:'noted', text:'The core tenet involves computing the probability of some observed data assuming a hypothesis of interest is true. The hypothesis under examination is almost always one that assumes no effect is present, and for this reason is referred to as the null hypothesis. Under such assumptions extreme data points ought to be observed infrequently; therefore, if the computed probability of the data under the null is low, the results cast doubt on its veracity — and the data are considered statistically significant.', sup:'1'},
+     {t:'inline', pre:'Formally, the p-value is the probability of data at least as extreme as the observed data under the null:', tex:'p = \\Pr(T \\geq t_{\\text{obs}} \\mid H_0)', post:'— a statement about the data given a hypothesis, and never the reverse.'}
+   ]},
+  {id:'mle2', title:'Maximum Likelihood Estimation: Part 2', subtitle:'Deriving the Binomial estimator from first principles', date:'27 Aug 2022', cats:['statistics','maximum likelihood estimation','binomial model'], img:'assets/post-mle.jpg', credit:'Photo by Anders Drange on Unsplash', readTime:'16 min',
+   blocks:[
+     {t:'h', text:'Introduction'},
+     {t:'p', text:'In an earlier post, I stepped through maximum likelihood estimation and showed how to derive the estimator for the Binomial model from first principles. It was a bit of a whirlwind, for sure, and I threw a lot of equations at you. If you were left wondering where those equations came from, you have come to the right place.'},
+     {t:'p', text:'This post assumes you are comfortable with some calculus and algebra. If these topics are not really your thing, fear not — I will try not to get too bogged down in the weeds so you can still follow along.'},
+     {t:'h', text:'Deriving the log-likelihood'},
+     {t:'math', tex:'\\ell(\\theta) = y\\log\\theta + (n - y)\\log(1 - \\theta)'},
+     {t:'p', text:'Okay, back to coin flips. Taking logarithms turns the product into a sum, and the sum is what we can differentiate cleanly.'}
+   ]},
+  {id:'mle1', title:'An Introduction to Maximum Likelihood Estimation', subtitle:'A closer look at how to derive the estimator for the Binomial model', date:'10 Aug 2022', cats:['statistics','maximum likelihood estimation','data analysis'], img:'assets/post-mle.jpg', credit:'Photo by Jeremy Thomas on Unsplash', readTime:'11 min',
+   blocks:[
+     {t:'h', text:'Introduction'},
+     {t:'p', text:'In a previous post, I spoke about the difference between probability and likelihood and touched on the subject of maximum likelihood estimation. Here we take a closer look at MLE and derive the maximum likelihood estimator for the Binomial model from first principles.'},
+     {t:'h', text:'More coin flipping'},
+     {t:'p', text:'Often when we compute simple statistics from data we are actually doing MLE without even knowing it. I have always found this somewhat delightful; I am not sure why, but I do. By way of example, suppose I flip a fair coin ten times and observe the following outcomes:'},
+     {t:'math', tex:'Y = \\{H, T, H, H, T, H, T, T, H, H\\}'},
+     {t:'p', text:'Suppose I now ask you to summarise this data by giving me the proportion of heads that resulted. You will say something like: out of ten throws there were six heads; therefore, the proportion is 6/10, or 60 per cent. And you would be right.'}
+   ]},
+  {id:'probvlike', title:'On Probability versus Likelihood', subtitle:'A discussion about two terms that are often used interchangeably, but are mathematically distinct', date:'8 Aug 2022', cats:['statistics','probability','likelihood'], img:'assets/post-prob.jpg', credit:'Photo by Scott Lord on Unsplash', readTime:'8 min',
+   blocks:[
+     {t:'h', text:'Introduction'},
+     {t:'p', text:'From the perspective of machine learning and data science, probabilities and likelihoods are used to quantify uncertainty, or perhaps how probable it is that an observation belongs to one class or another. They crop up when looking at confusion matrices, and algorithms like Naive Bayes classification are pretty much probabilistic models. The reality is that data scientists cannot escape these concepts.'},
+     {t:'p', text:'In everyday language, though, we tend to use the terms probability and likelihood almost interchangeably. But probability and likelihood are different, albeit related, concepts — and the interchangeability can creep into our work.'},
+     {t:'h', text:'Probability'},
+     {t:'inline', pre:'In a nutshell, the difference lies in what is allowed to vary. Probability fixes the parameter and varies the data,', tex:'\\Pr(y \\mid \\theta)', post:'while likelihood fixes the data and varies the parameter.'},
+     {t:'fig', text:'assets/fig-prob-v-like.png', caption:'Probability fixes the parameter and varies the data; likelihood fixes the data and varies the parameter.'}
+   ]},
+  {id:'dualaxis', title:'Data Visualisation: A Case for Dual-axis Plots', subtitle:'A quick case study for when a dual-axis plot is actually useful', date:'5 Jul 2022', cats:['data visualisation','ggplot','data analysis'], img:'assets/post-variances.jpg', credit:'Photo by Nathan Anderson on Unsplash', readTime:'7 min',
+   blocks:[
+     {t:'h', text:'Introduction'},
+     {t:'p', text:'Dual-axis plots are often used to jointly display time-series data that differ in magnitude — and in some cases, each axis may exist on completely different scales altogether. For this reason, dual-axis plots are generally discouraged because they require readers to interpret two, sometimes very disparate, axes.'},
+     {t:'rich', parts:[
+       {text:'Now, these are not the only problems that can arise — and for a very nice blog on the issues with dual-axis plots you should check out '},
+       {link:'this piece from Datawrapper', href:'https://blog.datawrapper.de/dualaxis/'},
+       {text:' — but I am not here to discuss what is wrong with dual-axis plots. Instead, I want to share an example where having two axes is actually useful. I found the code for this while tidying up some coursework and thought it was pretty cool.'}
+     ]},
+     {t:'list', items:[
+       'Readers must track two axes at once, and may read the rates of change as similar when they are not.',
+       'Points that coincide in space invite false equivalence between series with very different values.',
+       'Both problems ease when the two scales measure the same quantity — which is the case worth making.'
+     ]},
+     {t:'h', text:'Warming up'},
+     {t:'p', text:'This example looks at the case for two axes when data can be expressed using two monotonic scales, like temperature. To illustrate, we will use the airquality dataset in R to plot daily temperature readings recorded between May and September, 1973, in New York. Before getting under way, make sure you have the tidyverse and lubridate packages loaded. Once that is done, we will first need to create a date column:'},
+     {t:'code', lang:'R', code: '# Formatting to create Date column\nairquality_dt <- airquality %>%\n                 mutate( Date = dmy( str_c( Day, Month, "1973", sep = "/")) )'},
+     {t:'p', text:'Now that you have a proper date variable, you can use this to plot a time series of the daily recorded temperatures. We will use the code below to create a base plot which we will add to shortly:'},
+     {t:'code', lang:'R', code: '# Create a base plot that will later be added to\nbase_plot <- ggplot( airquality_dt,\n                     aes( x = Date, y = Temp )) +\n             geom_line( alpha = .9 ) +\n             coord_fixed( ratio =  1.78 ) +\n             labs( x = "Date",\n                   y = "Fahrenheit",\n                   title = "New York Air Quality Measurements",\n                   subtitle = "Daily temperature during May - September, 1973.") +\n             theme_bw()'},
+     {t:'p', text:'There should not be anything mysterious going on here. I am just using geom_line to generate a bulk standard time series plot, though I did tweak the transparency slightly. Note, however, the use of coord_fixed, where I have specified a 16:9 aspect ratio. Personally I think this ratio works really well, but feel free to select an alternative that works for you.'},
+     {t:'fig', text:'assets/plot-base.png', caption:'The base plot — daily temperature in Fahrenheit, at a 16:9 ratio.'},
+     {t:'p', text:'Here is the issue, though. For those of us living in the Antipodes, we are accustomed to using the Celsius scale, meaning the current y-axis leaves us utterly perplexed. It would be great if we could include the Celsius scale alongside the original Fahrenheit temperatures, so we Kiwis can appreciate how hot things are getting.'},
+     {t:'h', text:'Scales and degrees'},
+     {t:'p', text:'The first thing we need to do is specify some break points along the original y-axis. We then transform those points onto the Celsius scale and use them to label the second axis. The code below does just that:'},
+     {t:'code', lang:'R', code: '# Specify break points in Fahrenheit and transform labels to Celsius\ny_breaks <- c(59, 68, 77, 86, 95, 104)\ny_labels <- (y_breaks - 32) * 5 / 9\n\n# Initialize the second axis\nsecondary_y_axis <- sec_axis(\n  trans  = identity,\n  name   = "Celsius",\n  breaks = y_breaks,\n  labels = y_labels\n)'},
+     {t:'p', text:'This is not the only way to initialise the secondary axis, but I find it neater to pull the sec_axis definition out from the plot call. The important thing to note is that the transformation argument is set to identity. The break points are defined on the original scale, and the transformation is only applied to derive the new labels. With the secondary axis built, we simply add it to the base plot and print:'},
+     {t:'code', lang:'R', code: '# Add second axis to base plot to produce final plot\nfinal_plot <- base_plot +\n              scale_y_continuous( sec.axis = secondary_y_axis ) +\n              theme( axis.title.x = element_text( size = 12 ),\n                     axis.title.y = element_text( size = 12 ))'},
+     {t:'fig', text:'assets/plot-final.png', caption:'The same single scale, labelled twice — Fahrenheit left, Celsius right.'},
+     {t:'p', text:'That is looking pretty good to me. And now I finally understand just how hot 90 degrees Fahrenheit is. Good thing we added that second axis.'}
+   ]},
+  {id:'multicollinearity', title:'Multicollinearity: Problem, or Not?', subtitle:'A brief guide on multicollinearity and how it affects multiple regression models', date:'25 Jun 2022', cats:['statistics','linear regression','data science'], img:'assets/post-technicians.jpg', credit:'Photo by Max McKinnon on Unsplash', readTime:'9 min',
+   blocks:[
+     {t:'h', text:'Introduction'},
+     {t:'p', text:'You may have vague recollections from your university statistics courses that multicollinearity is a problem for multiple regression models. But just how problematic is multicollinearity? Well, like many topics in statistics, the answer is not entirely straightforward and depends on what you want to do with your model.'},
+     {t:'h', text:'Collinearity and multicollinearity'},
+     {t:'p', text:'Before moving on, it is a good idea to first nail down what collinearity and multicollinearity are. Luckily, if you are familiar with regression the concepts are quite straightforward.'},
+     {t:'p', text:'Collinearity exists if there is a linear association between two explanatory variables. What this implies is that, for all observations i, the following holds true:'},
+     {t:'math', tex:'X_{2,i} = \\alpha_0 + \\alpha_1X_{1,i}'},
+     {t:'p', text:'Multicollinearity is an extension of this idea and exists if there are linear associations between more than two explanatory variables. Strictly speaking, multicollinearity is not correlation: rather, it implies the presence of linear dependencies between several explanatory variables. This is a nuanced point, but an important one, and what it illustrates is a deterministic association between predictors.'},
+     {t:'h', text:'Inflated models'},
+     {t:'p', text:'Stochastic multicollinearity inflates the standard errors around your estimated coefficients, which can result in a failure to reject the null hypothesis when a true effect is present. One tool for diagnosing it is the variance inflation factor, which for covariate j is defined as:'},
+     {t:'math', tex:'VIF = \\frac{1}{1 - R^2_j}'},
+     {t:'p', text:'A very nice property of the VIF is that its square root indexes the increase in the coefficient standard error. For example, if a variable has a VIF of four, then its standard error will be two times larger than if it had zero correlation with all other predictors. Interpretation is fairly straightforward, too:'},
+     {t:'table', head:['VIF', 'Reading', 'What to do'], rows:[
+       ['≈ 1', 'Linearly independent of all other variables', 'Nothing'],
+       ['1 – 5', 'Mild to moderate multicollinearity', 'Retain, interpret coefficients with care'],
+       ['5 – 10', 'Moderate to high', 'Consider leaving the variable out'],
+       ['> 10', 'High', 'Reasonable basis for dumping it']
+     ]},
+     {t:'h', text:'Design issues'},
+     {t:'p', text:'So far we have explored two rather problematic facets of multicollinearity:'},
+     {t:'olist', items:[
+       'Perfect multicollinearity defines a deterministic relationship between covariates and produces a degenerate moments matrix, making estimation via OLS impossible.',
+       'Stochastic multicollinearity means covariates are approximately linearly dependent, but the rank of the moments matrix is not affected. It does create headaches in interpreting coefficients and inferences about them, particularly when the error term is small.'
+     ]},
+     {t:'rich', parts:[
+       {text:'You will notice, though, that these issues only concern calculations about predictors — nothing has been said about the model itself. That is because multicollinearity only affects the design matrix and not the overall fit of the model. If you need the formal statement, the '},
+       {link:'rank', href:'https://en.wikipedia.org/wiki/Rank_(linear_algebra)'},
+       {text:' of a matrix is the dimension of the vector space spanned by its columns.'}
+     ]},
+     {t:'quote', text:'So… problem, or not? Well, as I said at the beginning, it depends.'}
+   ]}
+];
+
+const SERIES = {
+  name: 'Maximum Likelihood Estimation',
+  blurb: 'A two-part treatment: the estimator first, then the calculus behind it.',
+  parts: [{id:'mle1', n:'I', label:'An Introduction to Maximum Likelihood Estimation'},
+          {id:'mle2', n:'II', label:'Maximum Likelihood Estimation: Part 2'}]
+};
+
+const NOTES = {
+  pvalues: ['This is a good example of how modern parlance clashes with the more statistically exact definition of significant. In statistics, significant refers to a sufficiently low probability computed under the null hypothesis. It simply means that the data signified something important and that there may be justification to reject the null hypothesis — not that the result is important, or worthy of attention.'],
+  ci: ['Neyman, J. (1937). Outline of a theory of statistical estimation based on the classical theory of probability.']
+};
+
+const PUBS = [
+  {year:'2022', text:'Taylor, R., Tomić, I., Aagten-Murphy, D., & Bays, P. M. Working memory is updated by reallocation of resources from obsolete to new items.', venue:'Attention, Perception, & Psychophysics.'},
+  {year:'2020', text:'Schneegans, S., Taylor, R., & Bays, P. M. Stochastic sampling provides a unifying account of visual working memory limits.', venue:'PNAS, 117(34).'},
+  {year:'2020', text:'Taylor, R., & Bays, P. M. Theory of neural coding predicts an upper bound on estimates of memory variability.', venue:'Psychological Review, 127(5).'},
+  {year:'2018', text:'Taylor, R., & Bays, P. M. Efficient coding in visual working memory accounts for stimulus-specific variations in recall.', venue:'Journal of Neuroscience, 38(32).'},
+  {year:'2018', text:'Bays, P. M., & Taylor, R. A neural model of retrospective attention in visual working memory.', venue:'Cognitive Psychology, 100.'},
+  {year:'2018', text:'Konstantinidis, E., Taylor, R. T., & Newell, B. R. Magnitude and incentives: revisiting the overweighting of extreme events in risky decisions from experience.', venue:'Psychonomic Bulletin & Review, 25(5).'},
+  {year:'2017', text:'Taylor, R., Thomson, H., Sutton, D., & Donkin, C. Does working memory have a single capacity limit?', venue:'Journal of Memory and Language, 93.'},
+  {year:'2017', text:'Hayes, B. K., Dunn, J. C., Joubert, A., & Taylor, R. Comparing single- and dual-process models of memory development.', venue:'Developmental Science, 20(6).'},
+  {year:'2016', text:'Kary, A., Taylor, R., & Donkin, C. Using Bayes factors to test the predictions of models: a case study in visual working memory.', venue:'Journal of Mathematical Psychology, 72.'},
+  {year:'2016', text:'Donkin, C., Kary, A., Tahir, F., & Taylor, R. Resources masquerading as slots: flexible allocation of visual working memory.', venue:'Cognitive Psychology, 85.'}
+];
+
+const CV = [
+  {when:'2025 —', what:'Research fellow, Massey University', where:'Building food system models and web applications with the Sustainable Nutrition Initiative.'},
+  {when:'2019 – 2025', what:'Data scientist, New Zealand Police', where:'Applied statistics and modelling where analytical decisions carry real consequences.'},
+  {when:'2015 – 2019', what:'Postdoctoral research, visual working memory', where:'Computational models of visual memory precision and capacity. Neural coding models. '},
+  {when:'2011 – 2015', what:'PhD, cognitive psychology', where:'Psychophysics and Bayesian signal detection models. Examined how feedback influences judgements of auditory stimuli.'}
+];
+
+class Component extends DCLogic {
+  state = { screen: 'home', postId: 'technicians', cat: 'All', query: '', hovered: null,
+    latex: '\\frac{1}{\\sigma\\sqrt{2\\pi}}\\, e^{-\\frac{(x-\\mu)^2}{2\\sigma^2}}',
+    display: true, size: 12, exWidth: 680, pad: 24, bg: 'white',
+    mjStatus: 'Loading MathJax…', mjError: '', exportUrl: '', previewUrl: '', previewW: 0, previewH: 0 };
+
+  componentDidMount() {
+    window.addEventListener('scroll', this.spy, { passive: true });
+    const h = (location.hash || '').replace('#', '');
+    const known = ['home', 'blog', 'post', 'code', 'about', 'pubs', 'app', '404'];
+    if (known.indexOf(h) > -1) this.setState({ screen: h });
+    else if (h) this.setState({ screen: '404' });
+    let tries = 0;
+    this.mjTimer = setInterval(() => {
+      tries += 1;
+      if (window.MathJax && window.MathJax.tex2svg) {
+        clearInterval(this.mjTimer);
+        this.setState({ mjStatus: '' }, () => this.renderMath());
+      } else if (tries > 80) {
+        clearInterval(this.mjTimer);
+        this.setState({ mjStatus: 'MathJax failed to load.' });
+      }
+    }, 150);
+  }
+
+  componentWillUnmount() { clearInterval(this.mjTimer); window.removeEventListener('scroll', this.spy); }
+
+  spy = () => {
+    if (this.state.screen !== 'post') return;
+    const hs = Array.from(document.querySelectorAll('[data-sec]'));
+    if (!hs.length) return;
+    let active = hs[0].getAttribute('data-sec');
+    for (const h of hs) { if (h.getBoundingClientRect().top <= 140) active = h.getAttribute('data-sec'); }
+    if (active !== this.state.activeSec) this.setState({ activeSec: active });
+  };
+
+  goSec = (slug) => (e) => {
+    if (e) e.preventDefault();
+    const el = document.querySelector('[data-sec="' + slug + '"]');
+    if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 110, behavior: 'smooth' });
+    this.setState({ activeSec: slug });
+  };
+
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.screen === 'app' && prevState.screen !== 'app') {
+      setTimeout(this.renderMath, 0);
+    }
+  }
+
+  toPx = (v, fontPx) => {
+    if (!v) return 0;
+    const n = parseFloat(v);
+    if (v.endsWith('ex')) return n * fontPx * 0.5;
+    if (v.endsWith('em')) return n * fontPx;
+    return n;
+  };
+
+  texToImg = (tex, display, fontPx) => {
+    if (!tex || !window.MathJax || !window.MathJax.tex2svg) return { url: '', w: 0, h: 0 };
+    try {
+      const svg = window.MathJax.tex2svg(tex, { display: !!display }).querySelector('svg');
+      if (!svg) return { url: '', w: 0, h: 0 };
+      const w = Math.round(this.toPx(svg.getAttribute('width') || '10ex', fontPx));
+      const h = Math.round(this.toPx(svg.getAttribute('height') || '4ex', fontPx));
+      svg.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
+      svg.setAttribute('width', w); svg.setAttribute('height', h);
+      const str = new XMLSerializer().serializeToString(svg);
+      return { url: 'data:image/svg+xml;base64,' + btoa(unescape(encodeURIComponent(str))), w, h };
+    } catch (e) { return { url: '', w: 0, h: 0 }; }
+  };
+
+  renderMath = () => {
+    if (!window.MathJax || !window.MathJax.tex2svg) return;
+    try {
+      const svg = window.MathJax.tex2svg(this.state.latex.trim(), { display: this.state.display }).querySelector('svg');
+      if (!svg) throw new Error('MathJax did not produce an SVG node.');
+      const size = this.state.size;
+      const w = Math.round(this.toPx(svg.getAttribute('width') || '10ex', size));
+      const h = Math.round(this.toPx(svg.getAttribute('height') || '4ex', size));
+      svg.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
+      svg.setAttribute('width', w); svg.setAttribute('height', h);
+      const str = new XMLSerializer().serializeToString(svg);
+      this.setState({
+        previewUrl: 'data:image/svg+xml;base64,' + btoa(unescape(encodeURIComponent(str))),
+        previewW: w, previewH: h, mjError: ''
+      });
+    } catch (e) {
+      this.setState({ previewUrl: '', mjError: 'Error: ' + (e.message || e) });
+    }
+  };
+
+  exportPng = () => {
+    if (!window.MathJax || !window.MathJax.tex2svg) return;
+    const { size, exWidth, pad, bg } = this.state;
+    const dpr = 2;
+    let svg;
+    try {
+      svg = window.MathJax.tex2svg(this.state.latex.trim(), { display: this.state.display }).querySelector('svg');
+      if (!svg) throw new Error('No SVG produced.');
+    } catch (e) { this.setState({ mjError: 'Export error: ' + e.message }); return; }
+
+    const toPx = (v) => {
+      if (!v) return 0;
+      const n = parseFloat(v);
+      if (v.endsWith('ex')) return n * size * 0.5;
+      if (v.endsWith('em')) return n * size;
+      return n;
+    };
+    const natW = toPx(svg.getAttribute('width') || '10ex') * dpr;
+    const natH = toPx(svg.getAttribute('height') || '4ex') * dpr;
+    const innerW = exWidth - pad * 2;
+    const scale = natW > innerW ? innerW / natW : 1;
+    const drawW = Math.round(natW * scale), drawH = Math.round(natH * scale);
+    const xOff = Math.round((exWidth - drawW) / 2), totalH = drawH + pad * 2;
+
+    svg.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
+    svg.setAttribute('width', natW); svg.setAttribute('height', natH);
+    const str = new XMLSerializer().serializeToString(svg);
+    const uri = 'data:image/svg+xml;base64,' + btoa(unescape(encodeURIComponent(str)));
+
+    const img = new Image();
+    img.onload = () => {
+      const canvas = document.createElement('canvas');
+      canvas.width = exWidth * dpr; canvas.height = totalH * dpr;
+      const ctx = canvas.getContext('2d');
+      ctx.scale(dpr, dpr);
+      if (bg === 'white') { ctx.fillStyle = '#ffffff'; ctx.fillRect(0, 0, exWidth, totalH); }
+      ctx.drawImage(img, xOff, pad, drawW, drawH);
+      this.setState({ exportUrl: canvas.toDataURL('image/png') });
+    };
+    img.onerror = () => this.setState({ mjError: 'Export failed while rasterising the SVG.' });
+    img.src = uri;
+  };
+
+  go = (screen) => (e) => {
+    if (e) e.preventDefault();
+    window.scrollTo(0, 0);
+    this.setState({ screen });
+    try { history.replaceState(null, '', '#' + screen); } catch (err) {}
+    if (screen === 'app') { setTimeout(this.renderMath, 60); setTimeout(this.renderMath, 400); }
+  };
+  openPost = (id) => (e) => { if (e) e.preventDefault(); window.scrollTo(0, 0); this.setState({ screen: 'post', postId: id }); };
+
+  decorate(p, i) {
+    return Object.assign({}, p, {
+      num: String(i + 1).padStart(2, '0'),
+      catLine: p.cats.slice(0, 3).join(' · '),
+      open: this.openPost(p.id),
+      hasImg: !!p.img,
+      hovered: this.state.hovered === p.id,
+      enter: () => this.setState({ hovered: p.id }),
+      leave: () => this.setState({ hovered: null })
+    });
+  }
+
+  doSubscribe() {
+    const v = (this.state.subEmail || '').trim();
+    if (!v) return this.setState({ subState: 'error', subErrMsg: 'Enter an email address.' });
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v)) return this.setState({ subState: 'error', subErrMsg: 'That doesn’t look like an email address.' });
+    if (/@example\.(com|org)$/i.test(v)) return this.setState({ subState: 'error', subErrMsg: 'That address is already on the list.' });
+    this.setState({ subState: 'ok' });
+  }
+
+  renderVals() {
+    const s = this.state;
+    const layout = this.props.homeLayout ?? 'editorial';
+    const blogView = this.props.blogView ?? 'list';
+    const all = POSTS.map((p, i) => this.decorate(p, i));
+    const q = (s.query || '').trim().toLowerCase();
+    const filtered = all
+      .filter(p => s.cat === 'All' || p.cats.indexOf(s.cat) > -1)
+      .filter(p => !q || (p.title + ' ' + p.subtitle + ' ' + p.cats.join(' ')).toLowerCase().indexOf(q) > -1);
+
+    const counts = {};
+    POSTS.forEach(p => p.cats.forEach(c => { counts[c] = (counts[c] || 0) + 1; }));
+    const top = Object.keys(counts).sort((a, b) => counts[b] - counts[a]).slice(0, 7);
+    const cats = ['All'].concat(top).map(name => ({
+      name, active: s.cat === name, inactive: s.cat !== name,
+      select: () => this.setState({ cat: name })
+    }));
+
+    const idx = Math.max(0, POSTS.findIndex(p => p.id === s.postId));
+    const cur = all[idx];
+    const prev = all[(idx - 1 + all.length) % all.length];
+    const next = all[(idx + 1) % all.length];
+    const post = Object.assign({}, cur, {
+      blocks: (() => {
+        let figN = 0, headN = -1;
+        return cur.blocks.map(b => {
+          if (b.t === 'fig') figN += 1;
+          if (b.t === 'h') headN += 1;
+          const slug = b.t === 'h' ? 'sec-' + headN : '';
+          const dm = b.t === 'math' ? this.texToImg(b.tex, true, 21) : { url: '', w: 0, h: 0 };
+          const im = b.t === 'inline' ? this.texToImg(b.tex, false, 20) : { url: '', w: 0, h: 0 };
+          return {
+            texEl: dm.url ? React.createElement('img', { src: dm.url, width: dm.w, height: dm.h, alt: 'equation', style: { maxWidth: '100%', height: 'auto' } }) : null,
+            inlineEl: im.url ? React.createElement('img', { src: im.url, width: im.w, height: im.h, alt: 'equation', style: { verticalAlign: '-0.2em', margin: '0 2px' } }) : null,
+            isH: b.t === 'h', isP: b.t === 'p', isMath: b.t === 'math',
+            isFig: b.t === 'fig' && !b.placeholder, isFigSlot: b.t === 'fig' && !!b.placeholder,
+            isCode: b.t === 'code', isOut: b.t === 'out',
+            isInline: b.t === 'inline', isNoted: b.t === 'noted',
+            isList: b.t === 'list', isOlist: b.t === 'olist',
+            isQuote: b.t === 'quote', isTable: b.t === 'table', isRich: b.t === 'rich',
+            items: (b.items || []).map((text, i) => ({ text, n: (i + 1) + '.' })),
+            head: b.head || [], rows: (b.rows || []).map(cells => ({ cells })),
+            parts: (b.parts || []).map(p => ({
+              text: p.text || p.link || '', href: p.href || '',
+              isLink: !!p.link, isText: !p.link
+            })),
+            text: b.text || '', caption: b.caption || '', placeholder: b.placeholder || '',
+            figLabel: 'Figure ' + figN, slug,
+            lang: b.lang || '', code: b.code || '',
+            pre: b.pre || '', math: b.math || '', post: b.post || '', sup: b.sup || ''
+          };
+        });
+      })(),
+      notes: (NOTES[cur.id] || []).map((text, i) => ({ n: String(i + 1), text })),
+      hasNotes: (NOTES[cur.id] || []).length > 0,
+      inSeries: SERIES.parts.some(p => p.id === cur.id),
+      seriesName: SERIES.name, seriesBlurb: SERIES.blurb,
+      seriesParts: SERIES.parts.map(p => ({
+        n: p.n, label: p.label, current: p.id === cur.id, other: p.id !== cur.id, open: this.openPost(p.id)
+      })),
+      bib: 'Taylor, R. (' + cur.date.slice(-4) + '). ' + cur.title + '. robtaylor.co.nz',
+      toc: cur.blocks.filter(b => b.t === 'h').map((b, i) => {
+        const slug = 'sec-' + i;
+        const on = (s.activeSec || 'sec-0') === slug;
+        return { label: b.text, slug, href: '#' + slug, go: this.goSec(slug),
+          color: on ? '#201f1d' : '#605d5d', markW: on ? '14px' : '0px' };
+      }),
+      prevTitle: prev.title, nextTitle: next.title,
+      openPrev: this.openPost(prev.id), openNext: this.openPost(next.id)
+    });
+
+    const mark = this.props.linkMark ?? 'rule';
+    const links = [
+      {label:'Bluesky', href:'https://bsky.app/profile/dataforyou.bsky.social', domain:'bsky.app'},
+      {label:'LinkedIn', href:'https://www.linkedin.com/in/dr-rob-taylor/', domain:'linkedin.com'},
+      {label:'GitHub', href:'https://github.com/dr-rob-taylor', domain:'github.com'}
+    ];
+
+    return {
+      links,
+      markRule: mark === 'rule', markUnderline: mark === 'underline',
+      markIcon: mark === 'icon', markDomain: mark === 'domain',
+      notUnderline: mark !== 'underline',
+      isHome: s.screen === 'home', isBlog: s.screen === 'blog', isPost: s.screen === 'post',
+      isCode: s.screen === 'code', isAbout: s.screen === 'about', isPubs: s.screen === 'pubs',
+      goPubs: this.go('pubs'), cv: CV, goApp: this.go('app'), isApp: s.screen === 'app',
+      chromeOn: s.screen !== 'app',
+      isLost: s.screen === '404',
+      latex: s.latex, size: s.size, exWidth: s.exWidth, pad: s.pad,
+      sizeLabel: s.size + 'px', widthLabel: s.exWidth + 'px',
+      modeStr: String(s.display), padStr: String(s.pad), bgStr: s.bg,
+      mjStatus: s.mjStatus, mjError: s.mjError, hasMjError: !!s.mjError,
+      exportUrl: s.exportUrl, hasExport: !!s.exportUrl,
+      noPreview: !s.previewUrl,
+      previewEl: s.previewUrl ? React.createElement('img', { src: s.previewUrl, width: s.previewW, height: s.previewH, alt: 'Rendered equation', style: { maxWidth: '100%', height: 'auto' } }) : null,
+      exportEl: s.exportUrl ? React.createElement('img', { src: s.exportUrl, alt: 'Exported equation', style: { width: '100%', border: '6px solid #f3f2f2', outline: '1px solid rgba(32,31,29,0.14)', borderRadius: 2, marginBottom: 14 } }) : null,
+      onLatex: (e) => this.setState({ latex: e.target.value }),
+      onLatexKey: (e) => { if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') this.renderMath(); },
+      onMode: (e) => this.setState({ display: e.target.value === 'true' }, this.renderMath),
+      onSize: (e) => this.setState({ size: parseInt(e.target.value, 10) }, this.renderMath),
+      onWidth: (e) => this.setState({ exWidth: parseInt(e.target.value, 10) }),
+      onPad: (e) => this.setState({ pad: parseInt(e.target.value, 10) }),
+      onBg: (e) => this.setState({ bg: e.target.value }),
+      doRender: this.renderMath, doExport: this.exportPng,
+      query: s.query,
+      onQuery: (e) => this.setState({ query: e.target.value }),
+      pubYears: PUBS.reduce((acc, p) => {
+        const last = acc[acc.length - 1];
+        const item = Object.assign({ doi: '#', pdf: '#' }, p);
+        if (last && last.year === p.year) last.items.push(item);
+        else acc.push({ year: p.year, items: [item] });
+        return acc;
+      }, []),
+      isBlogish: s.screen === 'blog' || s.screen === 'post',
+      homeEditorial: s.screen === 'home' && layout === 'editorial',
+      homeIndex: s.screen === 'home' && layout === 'index',
+      blogList: blogView === 'list' && filtered.length > 0,
+      blogCards: blogView === 'cards' && filtered.length > 0,
+      noResults: filtered.length === 0,
+      emptyLine: q
+        ? 'No posts match “' + s.query.trim() + '”' + (s.cat === 'All' ? '.' : ' in ' + s.cat + '.')
+        : 'Nothing filed under ' + s.cat + ' yet.',
+      clearFilters: () => this.setState({ query: '', cat: 'All' }),
+      newsletterOn: (this.props.showNewsletter ?? true) === true,
+      news: (() => {
+        const cutoff = Date.now() - 183 * 864e5;
+        return NEWS
+          .filter(n => new Date(n.date).getTime() >= cutoff)
+          .slice(0, 3)
+          .map(n => ({
+            ...n,
+            dateLabel: new Date(n.date).toLocaleDateString('en-GB', { month: 'short', year: 'numeric' }),
+            hasLink: !!n.href
+          }));
+      })(),
+      newsOn: NEWS.some(n => new Date(n.date).getTime() >= Date.now() - 183 * 864e5),
+      subEmail: s.subEmail || '',
+      subIdle: (s.subState || 'idle') === 'idle',
+      subOk: s.subState === 'ok',
+      subErrMsg: s.subState === 'error' ? (s.subErrMsg || '') : '',
+      subInputBorder: s.subState === 'error' ? '1px solid #9a3b28' : '1px solid rgba(32,31,29,0.14)',
+      subFormOn: s.subState !== 'ok',
+      hasSubErr: s.subState === 'error',
+      subSentTo: s.subEmail || '',
+      onSubEmail: (e) => this.setState({ subEmail: e.target.value, subState: 'idle' }),
+      onSubKey: (e) => { if (e.key === 'Enter') { e.preventDefault(); this.doSubscribe(); } },
+      doSubscribe: (e) => { if (e) e.preventDefault(); this.doSubscribe(); },
+      resetSub: (e) => { if (e) e.preventDefault(); this.setState({ subState: 'idle', subEmail: '' }); },
+      goHome: this.go('home'), goBlog: this.go('blog'), goCode: this.go('code'), goAbout: this.go('about'),
+      posts: all, recentPosts: all.slice(0, 5), lostPosts: all.slice(0, 3), postCount: all.length,
+      filteredPosts: filtered,
+      filteredLabel: filtered.length + (filtered.length === 1 ? ' post' : ' posts'),
+      cats, post, pubs: PUBS, selectedPubs: PUBS.slice(0, 5)
+    };
+  }
+}
+</script>
+</body>
+</html>

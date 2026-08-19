@@ -1,4 +1,5 @@
-title-block-banner: true
+title-block-banner: false
+toc: true
 toc-location: left
 search: false
 comments:

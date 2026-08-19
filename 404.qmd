@@ -1,0 +1,39 @@
+---
+title: ""
+page-layout: full
+toc: false
+search: false
+---
+
+::: {.column-body-outset}
+
+::: {.error-layout}
+
+::: {.error-main}
+
+[Error 404]{.error-kicker}
+
+# This page has been mislaid. {.error-title}
+
+<div class="error-rule"></div>
+
+Either the address is wrong, or something that once lived here has since moved. Neither is your fault. The writing is all still on the site — try the index.
+
+::: {.error-buttons}
+<a class="btn btn-primary" href="blog/">All writing</a>
+<a class="btn btn-secondary" href="/">Home</a>
+:::
+:::
+
+::: {.error-rail}
+[Recent posts]{.rail-label}
+
+<a class="error-post-link" href="blog/">[Writing]{.post-title}</a>
+<a class="error-post-link" href="publications/">[Publications]{.post-title}</a>
+<a class="error-post-link" href="software/">[Software]{.post-title}</a>
+<a class="error-post-link" href="about/">[About]{.post-title}</a>
+:::
+
+:::
+
+:::
