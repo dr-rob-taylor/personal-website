@@ -16,9 +16,12 @@ listing:
   filter-ui: true
   type: grid
   grid-columns: 3
-  fields: [image, title, subtitle, date, categories]
+  date-format: "D MMM YYYY"
+  fields: [image, date, title, subtitle]
   grid-item-border: true
 ---
+
+::: {.column-body-outset}
 
 ::: {.page-header}
 # Writing
@@ -29,16 +32,104 @@ Statistics, probability, and Bayesian thinking — built from the ground up.
 ::: {#all-posts}
 :::
 
+:::
+
 ```{=html}
 <script>
-// Move category pills from the margin sidebar to above the listing grid
-document.addEventListener('DOMContentLoaded', function() {
-  var cats = document.querySelector('.quarto-listing-category');
-  var listing = document.querySelector('#all-posts');
-  if (cats && listing) {
-    // Move the category element right before the listing
-    listing.parentElement.insertBefore(cats, listing);
+// Quarto's grid-listing category widget renders into the margin sidebar
+// and lists every category. The design wants it inline above the grid,
+// directly under the search box, and trimmed to "All" plus the 7
+// most-used categories. Quarto's own listing/filter setup runs on
+// DOMContentLoaded and can rebuild the sidebar after a naive one-shot
+// move, so this watches for the widget and re-applies whenever it
+// (re)appears.
+(function() {
+  // Quarto renders each category as a plain <div onclick>, which a
+  // keyboard or screen-reader user can't reach at all. Make each one a
+  // real button-like control instead.
+  function makeKeyboardAccessible(el) {
+    if (el.dataset.a11yBound) return;
+    el.dataset.a11yBound = 'true';
+    el.setAttribute('role', 'button');
+    el.setAttribute('tabindex', '0');
+    el.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        el.click();
+      }
+    });
   }
-});
+
+  function trimToTopCategories(cats, max) {
+    var items = Array.from(cats.querySelectorAll('.category'));
+    items.forEach(makeKeyboardAccessible);
+    var all = items.find(function(el) { return el.dataset.category === ''; });
+    // "All" reads as the active filter until the user picks something
+    // else — Quarto doesn't mark it active on load by default.
+    if (all && !items.some(function(el) { return el.classList.contains('active'); })) {
+      all.classList.add('active');
+    }
+    var rest = items.filter(function(el) { return el !== all; });
+    rest.sort(function(a, b) {
+      var ca = parseInt((a.querySelector('.quarto-category-count') || {}).textContent.replace(/\D/g, ''), 10) || 0;
+      var cb = parseInt((b.querySelector('.quarto-category-count') || {}).textContent.replace(/\D/g, ''), 10) || 0;
+      return cb - ca;
+    });
+    rest.forEach(function(el, i) { el.style.display = i < max ? '' : 'none'; });
+  }
+
+  function relocate() {
+    var cats = document.querySelector('.quarto-listing-category');
+    var actions = document.querySelector('#listing-all-posts .listing-actions-group');
+    if (!cats || !actions) return false;
+    trimToTopCategories(cats, 7);
+    if (cats.previousElementSibling !== actions) {
+      actions.parentElement.insertBefore(cats, actions.nextSibling);
+      return true;
+    }
+    return false;
+  }
+
+  if (!relocate()) {
+    var tries = 0;
+    var timer = setInterval(function() {
+      tries += 1;
+      if (relocate() || tries > 40) clearInterval(timer);
+    }, 50);
+  }
+  var sidebar = document.querySelector('#quarto-margin-sidebar');
+  if (sidebar) {
+    new MutationObserver(relocate).observe(sidebar, { childList: true });
+  }
+
+  // "{n} POSTS" count label, left-justified below the category chips,
+  // updated as filters/search narrow the grid. Quarto's listing filter
+  // (List.js) removes non-matching items from the grid's child list
+  // rather than hiding them in place, so the live count is just the
+  // grid's current child count, re-queried on every change.
+  function initCount() {
+    var listing = document.querySelector('#listing-all-posts');
+    var cats = document.querySelector('.quarto-listing-category');
+    var grid = listing && listing.querySelector('.list.grid');
+    if (!listing || !cats || !grid) return false;
+    var label = document.createElement('span');
+    label.className = 'listing-count';
+    cats.parentElement.insertBefore(label, cats.nextSibling);
+    function update() {
+      var n = grid.children.length;
+      label.textContent = n + (n === 1 ? ' POST' : ' POSTS');
+    }
+    update();
+    new MutationObserver(update).observe(grid, { childList: true });
+    return true;
+  }
+  if (!initCount()) {
+    var ctries = 0;
+    var ctimer = setInterval(function() {
+      ctries += 1;
+      if (initCount() || ctries > 40) clearInterval(ctimer);
+    }, 50);
+  }
+})();
 </script>
 ```

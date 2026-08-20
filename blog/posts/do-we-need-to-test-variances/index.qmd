@@ -1,7 +1,6 @@
 ---
 title: "Do We Really Need to Test Variances Anymore?"
 subtitle: "Why classical assumption checks are no longer gatekeepers, and how modern ANOVA methods handle heterogeneity directly."
-description: |
 author: "Rob Taylor, PhD"
 date: "2026-04-15"
 draft: false
@@ -14,8 +13,9 @@ notes: "Photo by Joel Henry on Unsplash"
 image: joel-henry-dZ7cpFw5MD4-unsplash.jpg
 image-alt: "cosmic texture"
 ---
+![Photo by Joel Henry on Unsplash](joel-henry-dZ7cpFw5MD4-unsplash.jpg){.post-hero}
 
-### Introduction
+## Introduction
 
 There was a familiar ritual to statistical analysis that many of us were taught: collect data under a set of assumptions about how that data should look, test those assumptions, and — if they held — use a parametric test; if not, switch to a non-parametric alternative. As an undergraduate, this process was a major source of anxiety for me, often tipping into a kind of low-level existential angst.
 
@@ -25,7 +25,7 @@ There was a clear logic to this approach. It was data-driven and mirrored the st
 
 In this post, I’ll revisit why assumption checking played such a central role in classical statistics, focus on how equality of variances was assessed in the context of ANOVA, and argue that modern statistical workflows have made these tests far less central than they once were.
 
-### Why ANOVA cared about equal variances in the first place
+## Why ANOVA cared about equal variances in the first place
 
 When we do an ANOVA, what we’re asking is whether the groups means are more spread out than we’d expect from random variation alone. To answer this question, ANOVA compares variability *between* group means to variability *within* groups. The *F*-statistic is then the ratio of these two sources of variability:
 
@@ -47,7 +47,7 @@ $$\bar{Y}_G = \frac{1}{k} \sum^k_i \bar{Y}_i$$
 
 Fundamentally, the equal-variance assumption is what makes the classical ANOVA mathematically coherent. When variances and sample sizes differ, this mismatch can distort the test. Groups with high variance and small sample sizes can exert disproportionate influence on the between-group variability, while the pooled variance in the denominator no longer reflects the true uncertainty in the means. The result is not just a loss of efficiency, but a breakdown in the calibration of the test itself: the *F-*statistic no longer follows the reference distribution it is compared against.
 
-### Checking equality of variances: Bartlett, Levene, and friends
+## Checking equality of variances: Bartlett, Levene, and friends
 
 When it comes to assessing whether group variances are equal, statisticians have several tools at their disposal, each built on different assumptions and suited to different circumstances. Understanding these differences helps clarify why variance tests are not interchangeable and why their role has shifted in modern workflows.
 
@@ -69,7 +69,7 @@ The key difference among these tests lies in the trade-off between robustness an
 
 By comparing them in this way, we can see how each test embodies a philosophy of inference. Bartlett asks us to trust the normal model, Levene and Brown–Forsythe hedge against absolute deviations, and Fligner–Killeen ignores distributional assumptions entirely. Each test, then, embodies a different philosophy of inference — and none of them is well-suited to the role of a compulsory decision gate.
 
-### Why assumption tests make poor decision rules
+## Why assumption tests make poor decision rules
 
 If assumption checks were merely descriptive, they would be relatively uncontroversial. The problem arises when they are treated as *decision rules* — formal gates that determine which analysis is *allowed* and which is not. That may not have been the intent, at least initially, but the way statistical methods have been taught has had unintended consequences.
 
@@ -83,7 +83,7 @@ But there is also a deeper logical concern. When assumption tests are used to *c
 
 Taken together, these issues make assumption tests ill-suited to the role they are often given. They are blunt instruments pressed into service as arbiters of validity, when in reality they provide only coarse, sample-size–dependent signals about idealised model conditions. This doesn’t mean assumption tests are useless — but they shouldn’t be treated as authoritative when it comes to selecting inferential tests.
 
-### How modern methods address unequal variances directly
+## How modern methods address unequal variances directly
 
 One reason assumption testing has faded somewhat is that modern statistical methods no longer require us to pretend that variances are equal. We can simply incorporate heterogeneity into the analysis itself.
 
@@ -107,7 +107,7 @@ More explicitly, variance can be modelled rather than ignored. Generalised least
 
 What unites these methods is a change in mindset. Instead of asking whether the data satisfy the assumptions required by a particular test, we choose analyses that remain valid across a range of realistic data-generating processes. Equality of variances then becomes a special case, not a prerequisite.
 
-### What role do assumption tests play now?
+## What role do assumption tests play now?
 
 In contemporary statistical workflows, tests for equality of variances have a role, but it is more subtle than the decision-rule function they once served. Rather than acting as formal gates that determine which analysis is permitted, they function as diagnostic and descriptive tools. The information they provide is *contextual* rather than prescriptive — offering insight without imposing a mandatory course of action.
 
@@ -115,7 +115,7 @@ Testing for equality of variance can still highlight heterogeneity that warrants
 
 These tests also retain genuine value in communicating data structure to others and, in teaching contexts, in demonstrating heteroskedasticity and its potential consequences. All of this matters — but it does reduce the burden placed on any single test to determine a primary analytic approach.
 
-### Wrapping up
+## Wrapping up
 
 The story of variance testing reflects a broader evolution in statistical thinking. Classical workflows emphasised procedural checks that determined next steps — a structure that provided clarity, particularly for students, but that often conflated idealised model conditions with the practical requirements of inference.
 

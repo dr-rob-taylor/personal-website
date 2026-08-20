@@ -1,7 +1,6 @@
 ---
 title: "Stop Pretending Data Roles Are Separate"
 subtitle: 'My push back against the “data trinity”'
-description: |
 author: "Rob Taylor, PhD"
 date: "2025-08-23"
 draft: false
@@ -14,14 +13,15 @@ notes: "Photo by Joel Henry on Unsplash"
 image: joel-henry-iuU0Ikb2U9E-unsplash.jpg
 image-alt: "cosmic texture"
 ---
+![Photo by Joel Henry on Unsplash](joel-henry-iuU0Ikb2U9E-unsplash.jpg){.post-hero}
 
-### Introduction
+## Introduction
 
 As someone who’s worked across different data roles, my feeds are full of posts about what I think of as the “data trinity”: the engineer, the scientist, and the analyst. These posts usually frame the three as cleanly separated and clearly defined. But in practice, the boundaries are far less rigid.
 
 There’s a conceptual convenience in treating them as separate, for sure. It helps organisations write job descriptions and structure teams. But in reality, these roles share more in common than they don’t.
 
-### The Data Trinity
+## The Data Trinity
 
 Let’s start with the “official” distinctions.
 
@@ -37,7 +37,7 @@ At a basic level, everyone in data writes SQL, cleans messy datasets, and interp
 
 Team size also changes the picture. In small companies, one “data person” may wear all three hats. Conversely, larger companies may distill roles into even narrower specialties — for example, you might see machine learning engineers, analytics engineers, and BI developers. And then there’s the reality of problem-solving: data is rarely neat, and the problems don’t announce themselves in advance. Professionals working with real world data often have to cross the boundaries of their title to get the job done.
 
-### A Broader View
+## A Broader View
 
 Rather than rigid boxes, I think of these roles as points on a triangle. Engineers emphasise scalability and reliability. Scientists emphasise experimentation and modeling. Analysts emphasise insight and decision-making. But most professionals and teams sit somewhere *inside* the triangle, not at a single vertex. These distinctions are less about separate professions and more about emphasis — where the work leans, not where it begins and ends.
 
@@ -45,4 +45,4 @@ Taken together, all three roles serve the same mission: turning raw data into tr
 
 In the end, the measure of a data professional isn’t the label they carry — it’s their ability to turn information into value. The triangle is useful, but the best work happens in the overlaps.
 
-### 
+## 

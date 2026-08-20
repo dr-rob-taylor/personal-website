@@ -28,10 +28,9 @@ Either the address is wrong, or something that once lived here has since moved. 
 ::: {.error-rail}
 [Recent posts]{.rail-label}
 
-<a class="error-post-link" href="blog/">[Writing]{.post-title}</a>
-<a class="error-post-link" href="publications/">[Publications]{.post-title}</a>
-<a class="error-post-link" href="software/">[Software]{.post-title}</a>
-<a class="error-post-link" href="about/">[About]{.post-title}</a>
+<a class="error-post-link" href="blog/posts/statistical-technicians/">[Apr 24, 2026]{.post-date}[Statistical Technicians]{.post-title}</a>
+<a class="error-post-link" href="blog/posts/do-we-need-to-test-variances/">[Apr 15, 2026]{.post-date}[Do We Really Need to Test Variances Anymore?]{.post-title}</a>
+<a class="error-post-link" href="blog/posts/stop-pretending-data-roles-are-separate/">[Aug 23, 2025]{.post-date}[Stop Pretending Data Roles Are Separate]{.post-title}</a>
 :::
 
 :::

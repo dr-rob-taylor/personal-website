@@ -1,7 +1,6 @@
 ---
 title: "Statistical Technicians"
 subtitle: "The case for teaching statistics as reasoning, not procedure"
-description: |
 author: "Rob Taylor, PhD"
 date: "2026-04-24"
 draft: false
@@ -13,8 +12,9 @@ notes: "Photo by Jules Paulin on Unsplash"
 image: jules-paulin-rql5V72dc0k-unsplash.jpg
 image-alt: "cosmic texture"
 ---
+![Photo by Jules Paulin on Unsplash](jules-paulin-rql5V72dc0k-unsplash.jpg){.post-hero}
 
-### Introduction
+## Introduction
 
 There is a familiar ritual to the undergraduate statistics course. You’re handed a decision tree, invited to follow its branches, and eventually arrive at a test and a *p*-value to report. The process is tidy, sequential, and almost entirely thoughtless. At no point are you asked to reflect seriously on what you are doing, or why, or whether the question you are answering bears any resemblance to the question you started with.
 
@@ -22,7 +22,7 @@ My degree was in psychology; a field that relies heavily on statistical inferenc
 
 That has frustrated me for nearly two decades. And I don’t think the frustration is misplaced.
 
-### The logic gate curriculum
+## The logic gate curriculum
 
 The procedural presentation gives the impression that statistical analysis is a series of objective logic gates requiring no creativity and very little judgment. Follow the steps, obtain the answer. The methods are presented as a toolkit – seemingly fixed, finite, and authoritative – rather than as a set of imperfect instruments for reasoning under uncertainty.
 
@@ -32,7 +32,7 @@ The *p*-value is perhaps the clearest illustration of the problem. It survives i
 
 But the distortion cuts deeper than just the analysis stage. When students are trained on a fixed menu of tests, they learn — implicitly, if not explicitly — to design experiments that those tests can handle. In some cases that is perfectly reasonable. But it can perniciously narrow the scope of scientific enquiry, bending the question to fit the method rather than the other way around. Worse, a design chosen for its statistical convenience may not actually answer the question the researcher started with, yet the results get interpreted as though it did. The curriculum doesn’t just shape how scientists analyse data — it shapes what they *think* to ask.
 
-### A philosophical narrowing
+## A philosophical narrowing
 
 The standard undergraduate curriculum is not just procedurally impoverished, it’s philosophically blinkered in a way that most students never realise.
 
@@ -40,7 +40,7 @@ Almost universally, undergraduates are taught frequentist statistics and nothing
 
 The Bayesian framework maps directly onto how scientists actually reason. We have prior knowledge. We collect data. We update our beliefs accordingly. That is science. The frequentist framework, by contrast, asks us to reason about the long-run behaviour of a procedure across hypothetical repeated samples – a construction that is philosophically coherent but considerably more remote from the questions researchers often want answers to. Students trained exclusively in frequentist methods don’t just lack a set of tools, they leave university without knowing that a different way of thinking about evidence exists at all.
 
-### What was lost
+## What was lost
 
 The cost of this is difficult to quantify, but it is real. The replication crisis — which hit psychology particularly hard — had many causes. But it’s hard to ignore that researchers trained to treat statistical significance as a destination, rather than as one imperfect signal among many, were not well placed to resist its pull. They followed the procedures they had been taught, reported the numbers they had been trained to report, and drew conclusions the framework encouraged them to draw. The curriculum may not have caused these errors, but it did little to equip researchers to avoid them.
 

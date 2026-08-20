@@ -1,21 +1,30 @@
 <script>
 document.addEventListener('DOMContentLoaded', function () {
-  var form = document.getElementById('newsletter-form');
+  var wrap = document.querySelector('.newsletter-form-wrap');
+  if (wrap) initNewsletter(wrap);
+});
+
+function initNewsletter(wrap) {
+  var form = wrap.querySelector('#newsletter-form');
   if (!form) return;
 
-  var emailInput = document.getElementById('newsletter-email');
-  var msgEl = document.getElementById('newsletter-msg');
+  var emailInput = wrap.querySelector('#newsletter-email');
+  var msgEl = wrap.querySelector('#newsletter-msg');
+  var originalHTML = wrap.innerHTML;
 
   form.addEventListener('submit', function (e) {
     e.preventDefault();
 
     var email = emailInput.value.trim();
-    if (!email) return;
+    if (!email) {
+      showError('Enter an email address.');
+      return;
+    }
 
     // Basic email validation
-    var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
     if (!emailPattern.test(email)) {
-      showError('Please enter a valid email address.');
+      showError('That doesn\'t look like an email address.');
       return;
     }
 
@@ -43,7 +52,11 @@ document.addEventListener('DOMContentLoaded', function () {
         showSuccess(email);
       } else {
         return res.json().then(function (data) {
-          throw new Error(data.detail || 'Something went wrong.');
+          var detail = data.detail || '';
+          if (/already/i.test(detail)) {
+            throw new Error('That address is already on the list.');
+          }
+          throw new Error(detail || 'Could not subscribe. Please try again.');
         });
       }
     })
@@ -68,13 +81,18 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   function showSuccess(email) {
-    var wrap = form.closest('.newsletter-form-wrap');
     wrap.innerHTML =
       '<div class="newsletter-success">' +
-        '<h4>You\'re in.</h4>' +
-        '<p>A confirmation email is on its way to <strong>' + escapeHtml(email) + '</strong>. ' +
-        'Click the link inside to confirm your subscription.</p>' +
+        '<h4>Check your inbox.</h4>' +
+        '<p>A confirmation went to <strong>' + escapeHtml(email) + '</strong>. ' +
+        'Click the link in it and you’re on the list.</p>' +
+        '<a href="#" class="newsletter-reset">Use a different address</a>' +
       '</div>';
+    wrap.querySelector('.newsletter-reset').addEventListener('click', function (e) {
+      e.preventDefault();
+      wrap.innerHTML = originalHTML;
+      initNewsletter(wrap);
+    });
   }
 
   function escapeHtml(str) {
@@ -82,5 +100,5 @@ document.addEventListener('DOMContentLoaded', function () {
     div.appendChild(document.createTextNode(str));
     return div.innerHTML;
   }
-});
+}
 </script>

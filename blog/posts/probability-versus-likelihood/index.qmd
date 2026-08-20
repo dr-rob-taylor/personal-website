@@ -1,7 +1,6 @@
 ---
 title: "On Probability versus Likelihood"
 subtitle: "A discussion about two terms that are often used interchangeably, but are mathematically distinct"
-description: |
 author: "Rob Taylor, PhD"
 date: "2022-08-08"
 draft: false
@@ -13,14 +12,15 @@ notes: "Photo by Scott Lord on Unsplash"
 image: scott-lord-tQLIYGBQkh8-unsplash.jpg
 image-alt: "cosmic texture"
 ---
+![Photo by Scott Lord on Unsplash](scott-lord-tQLIYGBQkh8-unsplash.jpg){.post-hero}
 
-### Introduction
+## Introduction
 
 From the perspective of machine learning and data science, probabilities and likelihoods are used to quantify uncertainty, or perhaps how probable it is that an observation belongs to one class or another. They crop up when looking at confusion matrices; and indeed, algorithms like Naive Bayes classification are pretty much probabilistic models. The reality is that data scientists cannot escape these concepts.
 
 In everyday language, though, we tend to use the terms probability and likelihood almost interchangeably. Indeed, it’s not uncommon to hear things like ‘how likely is it to rain today?’ or ‘what are the chances of this or that happening?’ And I’ll be honest; it wasn’t a distinction that was initially apparent to me, but probability and likelihood are *different* (albeit related) concepts. This interchangeability can often creep into our work as data scientists, so it’s important to be clear about the distinction between the two terms. So, in this post, I thought I’d have a crack at illustrating the difference between these two ideas.
 
-### Probability
+## Probability
 
 In a nutshell, the fundamental difference between probability and likelihood lies in what is allowed to *vary —* let me explain.
 
@@ -40,7 +40,7 @@ So, what the PMF tells us is how probable particular realisations of the random 
 
 ![Figure 1: A) The probability mass function for the Binomial model; B) the Binomial likelihood function. Points denote the likelihood for different parameter values.](prob_v_like.png)
 
-### Likelihood
+## Likelihood
 
 Okay, so what if instead, I tell you that I already flipped the coin ten times and got $K = 7$ heads? My question to you is whether the coin I threw was fair or not.
 
@@ -56,7 +56,7 @@ Okay, before moving on, a note of caution: I know the likelihood function looks 
 
 Right, moving on.
 
-### Statistical Evidence
+## Statistical Evidence
 
 Remember when I said that the likelihood function is interpreted as a measure? Well, specifically, it can be used to quantify statistical evidence. I also said that all you needed to know about the MLE is that it has a likelihood value of approximately .27. But what does this tell us? What does it mean to say that the likelihood is approximately .27? It certainly doesn’t tell us whether or not the coin I used was fair or not — so where to from here?
 
@@ -78,6 +78,6 @@ In this example, the likelihood ratio quantifies the degree to which the data su
 
 In reality, this is a trivial result, and the likelihood principle, along with the law of likelihood, means that the parameter value that maximizes the likelihood function is the value most supported by the data. The question is then whether this is convincing enough evidence that the coin I flipped was unfair. That’s a topic for another day.
 
-### Wrapping Up
+## Wrapping Up
 
 I hope that this post made clear the difference between probability and likelihood. To recap: *probability* is generally something we consider when we have a model with a fixed set of parameters and we are interested in the types of data that might be generated. Conversely, *likelihood* comes into play when we have already observed data and we want to examine how likely certain model parameters are. In particular, we can use likelihood ratios to quantify the evidence in favor of one value over another.

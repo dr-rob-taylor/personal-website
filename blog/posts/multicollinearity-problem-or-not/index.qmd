@@ -12,14 +12,15 @@ notes: Photo by Max McKinnon on Unsplash
 image: max-mckinnon-c9OCWLka764-unsplash.jpg
 image-alt: "space texture"
 ---
+![Photo by Max McKinnon on Unsplash](max-mckinnon-c9OCWLka764-unsplash.jpg){.post-hero}
 
-### Introduction
+## Introduction
 
 You may have vague recollections from your university statistics courses that multicollinearity is a problem for multiple regression models. But just how problematic *is* multicollinearity? Well, like many topics in statistics, the answer isn’t entirely straightforward and depends on what you’re wanting to do with your model.
 
 In this post, I’ll step through some of the challenges that multicollinearity presents in multiple regression models, and provide some intuition for why it can be problematic.
 
-### Collinearity and Multicollinearity
+## Collinearity and Multicollinearity
 
 Before moving on, it’s a good idea to first nail down what collinearity and multicollinearity are. Luckily, if you’re familiar with regression the concepts are quite straightforward.
 
@@ -35,7 +36,7 @@ Strictly speaking, multicollinearity is *not* correlation: rather, it implies th
 
 When fitting multiple regression models, it is exactly this that we need to avoid. Specifically, a critical assumption for multiple regression is that there is no *perfect* multicollinearity. So, we now know what perfect multicollinearity is, but *why* is it a problem?
 
-### Breaking Ranks
+## Breaking Ranks
 
 In a nutshell, the problem is *redundancy* becauseperfectly multicollinear variables provide the same information.
 
@@ -63,7 +64,7 @@ Without going into too much detail, the [rank](https://en.wikipedia.org/wiki/Ran
 
 Intuitively, if you’re throwing $k$ pieces of information into the model, you ideally want each to make a useful contribution. Each variable should carry its own weight. If you instead have a variable that is completely dependent on another then it won’t be contributing anything useful, which will cause ***r*** to become degenerate.
 
-### Imperfect Associations
+## Imperfect Associations
 
 Up until this point, we have been discussing the worst-case scenario where variables are perfectly multicollinear. In the real world, however, it’s pretty rare that you’ll encounter this problem. More realistically you’ll encounter situations where there are *approximate* linear associations between two or more variables. In this case, the linear association is not deterministic, but instead *stochastic*. This can be described by rewriting the equation above and introducing an error term:
 
@@ -71,7 +72,7 @@ $$X_{3,i} = \alpha_0 + \alpha_1X_{1,i} + \alpha_2X_{2,i} + \nu_i$$
 
 This situation is more manageable and doesn’t necessarily result in the degeneracy of $r$. But, if the error term is small, the associations between variables may be *nearly* perfectly multicollinear. In this case, though it’s true that $\mathrm{rank}(r) = k$*,* model fitting may become computationally unstable and produce coefficients that behave quite erratically. For example, fairly small changes in your data can have huge effects on coefficient estimates, thereby reducing their statistical reliability.
 
-### Inflated Models
+## Inflated Models
 
 Okay, so stochastic multicollinearity presents some hurdles if you’re wanting to make statistical inferences about your explanatory variables. Specifically, what it does is *inflate* the standard errors around your estimated coefficients which can result in a failure to reject the null hypothesis when a true effect is present (Type II error). Fortunately, statisticians have come to the rescue and have created some very useful tools to help diagnose multicollinearity.
 
@@ -87,7 +88,7 @@ A very nice property of the VIF is that its square root indexes the increase in 
 
 Okay, now the cautionary bit: if you *do* decide to retain variables that have a VIF \> 1 then the magnitudes of the estimated coefficients no longer provide an entirely precise measure of impact. Recall that the regression coefficient for variable $j$ reflects the expected change in the response, per unit increase in $j$ alone, *while holding all other variables constant.* This interpretation breaks down if an association exists between explanatory variable $j$ and several others because any change in$j$ will not independently influence the response variable. The extent of this, of course, depends on how high the VIF is but it is certainly something to be aware of.
 
-### Design Issues
+## Design Issues
 
 So far we have explored two rather problematic facets of multicollinearity:
 

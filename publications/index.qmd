@@ -5,163 +5,158 @@ toc: false
 search: false
 ---
 
-::: {.column-body-outset}
-
-::: {.pubs-layout}
-
-::: {.pubs-main}
-
-::: {.page-header}
+::::::::::::::::::::::::::::::::::::::::::::::::: column-body-outset
+:::::::::::::::::::::::::::::::::::::::::::::::: pubs-layout
+:::::::::::::::::::::::::::::::::::::::::::: pubs-main
+::: page-header
 # Publications
 
 Peer-reviewed work, mostly on visual working memory, neural coding, and model-based inference.
 :::
 
-::: {.pubs-year-group}
-::: {.pubs-year-header}
+::::::: pubs-year-group
+::: pubs-year-header
 [2022]{.year-num}
-[]{.year-rule}
 :::
 
-::: {.pub-entry}
-::: {.pub-citation}
+::::: pub-entry
+::: pub-citation
 [Taylor, R.]{.pub-author-highlight}, Tomić, I., Aagten-Murphy, D., & Bays, P. M. (2022). Working memory is updated by reallocation of resources from obsolete to new items. [*Attention, Perception, & Psychophysics*]{.pub-venue}, 1--15.
 :::
-::: {.pub-links}
+
+::: pub-links
 [PDF](https://link.springer.com/article/10.3758/s13414-022-02584-2)
 :::
-:::
-:::
+:::::
+:::::::
 
-::: {.pubs-year-group}
-::: {.pubs-year-header}
+:::::::::: pubs-year-group
+::: pubs-year-header
 [2020]{.year-num}
-[]{.year-rule}
 :::
 
-::: {.pub-entry}
-::: {.pub-citation}
+::::: pub-entry
+::: pub-citation
 Schneegans, S., [Taylor, R.]{.pub-author-highlight}, & Bays, P. M. (2020). Stochastic sampling provides a unifying account of visual working memory limits. [*Proceedings of the National Academy of Sciences, 117(34)*]{.pub-venue}, 20959--20968.
 :::
-::: {.pub-links}
+
+::: pub-links
 [PDF](https://www.pnas.org/doi/epdf/10.1073/pnas.2004306117)
 :::
-:::
+:::::
 
-::: {.pub-entry}
-::: {.pub-citation}
+::::: pub-entry
+::: pub-citation
 [Taylor, R.]{.pub-author-highlight}, & Bays, P. M. (2020). Theory of neural coding predicts an upper bound on estimates of memory variability. [*Psychological Review, 127(5)*]{.pub-venue}, 700.
 :::
-::: {.pub-links}
+
+::: pub-links
 [PDF](https://psycnet.apa.org/fulltext/2020-19842-001.pdf)
 :::
-:::
-:::
+:::::
+::::::::::
 
-::: {.pubs-year-group}
-::: {.pubs-year-header}
+:::::::::: pubs-year-group
+::: pubs-year-header
 [2018]{.year-num}
-[]{.year-rule}
 :::
 
-::: {.pub-entry}
-::: {.pub-citation}
+::::: pub-entry
+::: pub-citation
 [Taylor, R.]{.pub-author-highlight}, & Bays, P. M. (2018). Efficient coding in visual working memory accounts for stimulus-specific variations in recall. [*Journal of Neuroscience, 38(32)*]{.pub-venue}, 7132--7142.
 :::
-::: {.pub-links}
+
+::: pub-links
 [PDF](https://www.jneurosci.org/content/jneuro/38/32/7132.full.pdf)
 :::
-:::
+:::::
 
-::: {.pub-entry}
-::: {.pub-citation}
+::::: pub-entry
+::: pub-citation
 Bays, P. M., & [Taylor, R.]{.pub-author-highlight} (2018). A neural model of retrospective attention in visual working memory. [*Cognitive Psychology, 100*]{.pub-venue}, 43--52.
 :::
-::: {.pub-links}
+
+::: pub-links
 [PDF](https://reader.elsevier.com/reader/sd/pii/S0010028517302645)
 :::
-:::
-:::
+:::::
+::::::::::
 
-::: {.pubs-year-group}
-::: {.pubs-year-header}
+::::::::::::: pubs-year-group
+::: pubs-year-header
 [2017]{.year-num}
-[]{.year-rule}
 :::
 
-::: {.pub-entry}
-::: {.pub-citation}
+::::: pub-entry
+::: pub-citation
 [Taylor, R.]{.pub-author-highlight}, Thomson, H., Sutton, D., & Donkin, C. (2017). Does working memory have a single capacity limit? [*Journal of Memory and Language, 93*]{.pub-venue}, 67--81.
 :::
-::: {.pub-links}
+
+::: pub-links
 [PDF](http://www2.psy.unsw.edu.au/users/cdonkin/publications/jml17.pdf)
 :::
-:::
+:::::
 
-::: {.pub-entry}
-::: {.pub-citation}
+::::: pub-entry
+::: pub-citation
 Konstantinidis, E., [Taylor, R. T.]{.pub-author-highlight}, & Newell, B. R. (2018). Magnitude and incentives: revisiting the overweighting of extreme events in risky decisions from experience. [*Psychonomic Bulletin & Review, 25(5)*]{.pub-venue}, 1925--1933.
 :::
-::: {.pub-links}
+
+::: pub-links
 [PDF](https://link.springer.com/article/10.3758/s13423-017-1383-8)
 :::
-:::
+:::::
 
-::: {.pub-entry}
-::: {.pub-citation}
+::::: pub-entry
+::: pub-citation
 Hayes, B. K., Dunn, J. C., Joubert, A., & [Taylor, R.]{.pub-author-highlight} (2017). Comparing single- and dual-process models of memory development. [*Developmental Science, 20(6)*]{.pub-venue}, e12469.
 :::
-::: {.pub-links}
+
+::: pub-links
 [PDF](https://onlinelibrary.wiley.com/doi/am-pdf/10.1111/desc.12469)
 :::
-:::
-:::
+:::::
+:::::::::::::
 
-::: {.pubs-year-group}
-::: {.pubs-year-header}
+:::::::::: pubs-year-group
+::: pubs-year-header
 [2016]{.year-num}
-[]{.year-rule}
 :::
 
-::: {.pub-entry}
-::: {.pub-citation}
+::::: pub-entry
+::: pub-citation
 Kary, A., [Taylor, R.]{.pub-author-highlight}, & Donkin, C. (2016). Using Bayes factors to test the predictions of models: A case study in visual working memory. [*Journal of Mathematical Psychology, 72*]{.pub-venue}, 210--219.
 :::
-::: {.pub-links}
+
+::: pub-links
 [PDF](http://www2.psy.unsw.edu.au/users/cdonkin/publications/jmp16.pdf)
 :::
-:::
+:::::
 
-::: {.pub-entry}
-::: {.pub-citation}
+::::: pub-entry
+::: pub-citation
 Donkin, C., Kary, A., Tahir, F., & [Taylor, R.]{.pub-author-highlight} (2016). Resources masquerading as slots: Flexible allocation of visual working memory. [*Cognitive Psychology, 85*]{.pub-venue}, 30--42.
 :::
-::: {.pub-links}
+
+::: pub-links
 [PDF](https://d1wqtxts1xzle7.cloudfront.net/47290784/cp16b-libre.pdf)
 :::
-:::
-:::
+:::::
+::::::::::
+::::::::::::::::::::::::::::::::::::::::::::
 
-:::
-
-::: {.pubs-rail}
-
+::::: pubs-rail
 [At a glance]{.rail-label}
 
-::: {.rail-stat}
-[10]{.stat-num}
-[peer-reviewed papers]{.stat-label}
+::: rail-stat
+[10]{.stat-num} [peer-reviewed papers]{.stat-label}
 :::
 
-::: {.rail-stat}
-[2016–22]{.stat-num}
-[publication window]{.stat-label}
+::: rail-stat
+[2016–22]{.stat-num} [publication window]{.stat-label}
 :::
 
 Full list also on [Google Scholar](https://scholar.google.com/citations?user=PLACEHOLDER){target="_blank"}.
-
-:::
-
-:::
-
-:::
+:::::
+::::::::::::::::::::::::::::::::::::::::::::::::
+:::::::::::::::::::::::::::::::::::::::::::::::::

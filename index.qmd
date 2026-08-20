@@ -8,6 +8,7 @@ listing:
     sort: "date desc"
     max-items: 5
     type: default
+    date-format: "D MMM YYYY"
     fields: [title, subtitle, date, categories]
 ---
 
@@ -32,7 +33,7 @@ I'm a psychologist writing about statistics, probability and mathematical modell
 ::: posts-header
 ## Latest posts
 
-[All posts](blog/){.posts-all-link}
+[All posts <span class="link-rule"></span>](blog/){.posts-all-link}
 :::
 
 ::: {#recent-posts}
@@ -43,21 +44,31 @@ I'm a psychologist writing about statistics, probability and mathematical modell
 [Recently]{.rail-heading}
 
 ::: news-item-classical
-[2025]{.news-date} [Returned to academic research, building models of food systems.]{.news-text}
+[Aug 2026]{.news-date}
+
+[Returned to academic research, building models of food systems.]{.news-text}
 :::
 
 ::: news-item-classical
-[2025]{.news-date} [Multi-part series on Maximum Likelihood Estimation underway — theory from first principles through to practical applications.]{.news-text}
+[Apr 2026]{.news-date}
+
+[Multi-part series on Maximum Likelihood Estimation underway — theory from first principles through to practical applications.]{.news-text}
+
+[Start here <span class="arrow">↗</span>](blog/posts/maximum-likelihood-estimation/){.news-link}
 :::
 
 ::: news-item-classical
-[2024]{.news-date} [Site launched. Publishing on statistics, probability, and Bayesian inference.]{.news-text}
+[Nov 2024]{.news-date}
+
+[Site launched. Publishing on statistics, probability, and Bayesian inference.]{.news-text}
 :::
 
 ::: elsewhere-links
 [Elsewhere]{.rail-heading}
 
-<a href="https://bsky.app/profile/dataforyou.bsky.social" target="_blank">Bluesky</a> <a href="https://www.linkedin.com/in/dr-rob-taylor/" target="_blank">LinkedIn</a> <a href="https://github.com/dr-rob-taylor" target="_blank">GitHub</a>
+<a href="https://bsky.app/profile/dataforyou.bsky.social" target="_blank">Bluesky <span class="link-domain">bsky.app</span></a>
+<a href="https://www.linkedin.com/in/dr-rob-taylor/" target="_blank">LinkedIn <span class="link-domain">linkedin.com</span></a>
+<a href="https://github.com/dr-rob-taylor" target="_blank">GitHub <span class="link-domain">github.com</span></a>
 :::
 :::::::
 :::::::::::
@@ -71,9 +82,9 @@ One email per post. Statistics, probability, and the occasional gripe about how 
 :::
 
 ::: newsletter-form-wrap
-<form class="newsletter-form" id="newsletter-form">
+<form class="newsletter-form" id="newsletter-form" novalidate>
 
-<input type="email" id="newsletter-email" placeholder="you@example.com" aria-label="Email address" required> <button type="submit" class="btn btn-primary">Subscribe</button>
+<input type="text" inputmode="email" autocomplete="email" id="newsletter-email" placeholder="you@example.com" aria-label="Email address"> <button type="submit" class="btn btn-primary">Subscribe</button>
 
 </form>
 

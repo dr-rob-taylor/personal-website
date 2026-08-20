@@ -21,10 +21,10 @@ search: false
 :::
 
 ::: {.profile-links}
-<a href="https://bsky.app/profile/dataforyou.bsky.social" target="_blank"><span class="link-rule"></span>Bluesky</a>
-<a href="https://www.linkedin.com/in/dr-rob-taylor/" target="_blank"><span class="link-rule"></span>LinkedIn</a>
-<a href="https://github.com/dr-rob-taylor" target="_blank"><span class="link-rule"></span>GitHub</a>
-<a href="mailto:rob@robtaylor.co.nz"><span class="link-rule"></span>Email</a>
+<a href="https://bsky.app/profile/dataforyou.bsky.social" target="_blank">Bluesky <span class="link-domain">bsky.app</span></a>
+<a href="https://www.linkedin.com/in/dr-rob-taylor/" target="_blank">LinkedIn <span class="link-domain">linkedin.com</span></a>
+<a href="https://github.com/dr-rob-taylor" target="_blank">GitHub <span class="link-domain">github.com</span></a>
+<a href="mailto:rob@robtaylor.co.nz">Email <span class="link-domain">robtaylor.co.nz</span></a>
 :::
 
 ::: {.profile-expertise}
@@ -134,6 +134,15 @@ A recurring theme here will be building Bayesian intuition from the ground up: w
 
 ::: {.pub-entry}
 ::: {.pub-citation}
+Schneegans, S., [Taylor, R.]{.pub-author-highlight}, & Bays, P. M. (2020). Stochastic sampling provides a unifying account of visual working memory limits. [*Proceedings of the National Academy of Sciences, 117(34)*]{.pub-venue}, 20959--20968.
+:::
+::: {.pub-links}
+[PDF](https://www.pnas.org/doi/epdf/10.1073/pnas.2004306117)
+:::
+:::
+
+::: {.pub-entry}
+::: {.pub-citation}
 [Taylor, R.]{.pub-author-highlight}, & Bays, P. M. (2020). Theory of neural coding predicts an upper bound on estimates of memory variability. [*Psychological Review, 127(5)*]{.pub-venue}, 700.
 :::
 ::: {.pub-links}
@@ -147,6 +156,15 @@ A recurring theme here will be building Bayesian intuition from the ground up: w
 :::
 ::: {.pub-links}
 [PDF](https://www.jneurosci.org/content/jneuro/38/32/7132.full.pdf)
+:::
+:::
+
+::: {.pub-entry}
+::: {.pub-citation}
+Bays, P. M., & [Taylor, R.]{.pub-author-highlight} (2018). A neural model of retrospective attention in visual working memory. [*Cognitive Psychology, 100*]{.pub-venue}, 43--52.
+:::
+::: {.pub-links}
+[PDF](https://reader.elsevier.com/reader/sd/pii/S0010028517302645)
 :::
 :::
 

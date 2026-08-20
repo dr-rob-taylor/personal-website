@@ -1,7 +1,6 @@
 ---
 title: "Maximum Likelihood Estimation: Part 2"
 subtitle: "Deriving the Binomial estimator from first principles"
-description: |
 author: "Rob Taylor, PhD"
 date: "2022-08-27"
 draft: false
@@ -13,8 +12,9 @@ notes: "Photo by Andres Drange on Unsplash"
 image: anders-drange-VIveO0APhqI-unsplash.jpg
 image-alt: "photo by Andres Drange"
 ---
+![Photo by Andres Drange on Unsplash](anders-drange-VIveO0APhqI-unsplash.jpg){.post-hero}
 
-### Introduction
+## Introduction
 
 In an earlier [post](https://medium.com/@dataforyou/maximum-likelihood-estimation-cd9fd068e9a8), I stepped through maximum likelihood estimation and showed how to derive the estimator for the Binomial model from first principles. It was a bit of a whirlwind, for sure, and I threw a lot of equations at you. If you were left wondering where those equations came from you’ve come to the right place!
 
@@ -22,7 +22,7 @@ In this post, I’ll take you through some of the math in greater detail. This p
 
 Okay, back to coin flips.
 
-### Deriving the Log-Likelihood
+## Deriving the Log-Likelihood
 
 Let’s assume we have flipped a coin $N$ times and have observed a total of $K$ heads. Strictly speaking, each coin flip is a [Bernoulli](https://en.wikipedia.org/wiki/Bernoulli_trial) trial that can take on values of either 0 or 1. The probability for each of these outcomes is governed by the rate parameter, $p$, where $P(X = 1) = p$ and $P(X = 0) = 1-p$. We can arbitrarily assign heads (or tails) to either 0 or 1 so in keeping with the previous post we’ll let heads = 1 and tails = 0.
 
@@ -67,7 +67,7 @@ If you equate $b$ with $K$ and $N-K$, and $a$ with $p$ and $1-p$, hopefully, you
 
 Onward!
 
-### First Derivative of Log-Likelihood Function
+## First Derivative of Log-Likelihood Function
 
 Right. To find the maximum likelihood estimate we need the first derivative of the likelihood function with respect to $p$. Remember, the derivative should have a value of zero when $p$ is at a minimum or maximum value. Now, because we know the likelihood function for this example is a concave function of $p$, we know that a global maximum exists for some value of $p$*,* which will the point at which the derivative is zero.
 
@@ -82,7 +82,7 @@ $$\begin{align}
 
 If all these hieroglyphics seem like gobbledegook to you, all that’s happening here is the application of certain [derivative rules](https://www.math.ucdavis.edu/~kouba/Math17BHWDIRECTORY/Derivatives.pdf). If the rules are unfamiliar to you I have provided a very quick primer in the appendix below. But all that matters, really, is the result in the bottom line, because that *is* the derivative.
 
-### Deriving the Maximum Likelihood Estimate
+## Deriving the Maximum Likelihood Estimate
 
 Okay. so we now have an expression for the derivative. The next step is to actually find the value that reduces this expression to zero. So, how do we do that?
 
@@ -118,11 +118,11 @@ $$\begin{align}
 
 Happy days.
 
-### A Note on Second Derivatives
+## A Note on Second Derivatives
 
 In my earlier post, I mentioned that it is also necessary to check the second derivative of the likelihood function to ensure that a global maximum has been obtained. This is generally a good practice — but I’m not going to do that here. Given that we know the likelihood function is concave the solution we have derived is unique. However, for models with several parameters and complex likelihood functions, it’s probably a good idea to check your solutions — so long as an analytical solution exists. If not, you’ll likely need to use numerical methods to estimate the parameters of your model. All of this is a little beyond the scope of this post, but down the line, I’ll discuss some of these methods.
 
-### Summing Up
+## Summing Up
 
 If you’ve got to this point, thanks for hanging in there.
 

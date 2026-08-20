@@ -8,8 +8,14 @@
    GLOBAL
    ============================================ */
 
+/* The design docs describe a Cormorant-heading/Lora-body pairing, but
+   the actual mockup (source of truth for what the client approved and
+   is comparing against) never applies Lora anywhere — "Cormorant
+   Garamond" appears 162 times in it, "Lora" zero. Body copy inherits
+   Cormorant Garamond from this same body rule throughout the prototype,
+   so that's what this matches. */
 body {
-  font-family: "Lora", Georgia, serif;
+  font-family: "Cormorant Garamond", Georgia, serif;
   font-size: 18px;
   line-height: 1.6;
   color: var(--cl-text);
@@ -20,14 +26,64 @@ h1, h2, h3, h4, h5, h6 {
   font-family: "Cormorant Garamond", Georgia, serif;
 }
 
-/* Page centering for full-width layouts */
-.page-layout-full .page-columns > .column-body-outset {
-  grid-column: page-start / page-end;
+/* Weight baseline, cross-checked against every heading in the mockup
+   (26 total): h1 is 400 without exception (9/9 — large display text
+   goes lighter, per the design system's own "the bigger the text the
+   lighter it sets" rule). h2/h3 default to 600 (14 of 17), with only
+   a few specific large section headers (e.g. "Latest posts") dropped
+   to 400 by their own explicit selector, which — being more specific
+   than this — still wins over this default. Bootstrap/theme.scss's
+   $headings-font-weight was set to 400 for all of them, which is why
+   any heading not already carrying one of this project's own explicit
+   overrides was quietly rendering a full step lighter than the mock. */
+h1 {
+  font-weight: 400;
+}
+
+h2, h3, h4, h5, h6 {
+  font-weight: 600;
+}
+
+/* Bootstrap's "cosmo" theme gives every h2 its own signature
+   border-bottom + padding-bottom — a short underline matching the
+   heading's own text width. Wherever a heading also sits inside a
+   wrapper with its own full-width divider (.posts-header and
+   similar), that produces two rules stacked close together. Headings
+   in this design only ever get a rule from an explicit wrapper. */
+h2 {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+/* Page centering for full-width layouts. Quarto assigns the content
+   column a different class per page (column-page, column-page-left,
+   column-body-outset...) depending on what else is on the page, and
+   each one anchors to a different named grid line — none of them
+   centered the same way our fixed-width navbar is. Target the element
+   itself instead of chasing every column-* variant, and take it out
+   of Quarto's grid math entirely so its own max-width/margin:auto does
+   the centering, matching the navbar exactly. */
+.page-columns.page-layout-full > main.content {
+  grid-column: 1 / -1;
+  width: 100%;
+}
+
+/* Pages with an empty title: "" and a leading level-1 heading get that
+   heading hoisted by Pandoc into its own #title-block-header, split out
+   from the rest of the page content (which Quarto wraps separately in
+   column-body-outset). The two end up positioned via different named
+   grid lines in Quarto's nested page-columns grid and don't line up.
+   Take both out of that grid and center them identically by hand. */
+.page-layout-full #title-block-header,
+.page-layout-full .column-body-outset {
+  grid-column: 1 / -1;
   max-width: var(--cl-content-max);
+  width: 100%;
   margin-left: auto;
   margin-right: auto;
   padding-left: var(--cl-gutter);
   padding-right: var(--cl-gutter);
+  box-sizing: border-box;
 }
 
 
@@ -76,7 +132,7 @@ h1, h2, h3, h4, h5, h6 {
   justify-content: center;
   align-items: center;
   gap: 5px;
-  padding: 0 clamp(8px, 1.2vw, 14px) !important;
+  padding: 0 !important;
   position: relative;
   transition: color var(--cl-transition);
 }
@@ -85,16 +141,17 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--cl-accent-text) !important;
 }
 
-/* Active nav indicator — hairline gold rule */
+/* Active nav indicator — hairline gold rule. A real (non-absolute) flex
+   child in the link's column, not an overlay: it takes up its own row,
+   so the label shifts up slightly to make room for it, same as the mock
+   — an absolutely-positioned rule would leave the label perfectly
+   centered whether the tab is active or not. */
 .navbar .nav-link.active::after {
   content: "";
   display: block;
   width: 100%;
   height: 1px;
   background: var(--cl-accent-light);
-  position: absolute;
-  bottom: 4px;
-  left: 0;
 }
 
 /* Hide Quarto search icon in nav if present */
@@ -102,16 +159,12 @@ h1, h2, h3, h4, h5, h6 {
   display: none;
 }
 
-/* Mobile nav: horizontal scroll */
-@media (max-width: 900px) {
-  .navbar-collapse,
-  #navbarCollapse {
-    overflow-x: auto;
-    scrollbar-width: none;
-  }
-  .navbar-collapse::-webkit-scrollbar {
-    display: none;
-  }
+/* Empty utility div Quarto always renders, even with no navbar tools
+   configured — as a zero-width flex child it steals the flush-right
+   slot from justify-content:space-between, leaving .navbar-nav short
+   of the true right edge. */
+.navbar .quarto-navbar-tools {
+  display: none;
 }
 
 /* Navbar container max-width — push brand left, links right */
@@ -121,23 +174,61 @@ h1, h2, h3, h4, h5, h6 {
   padding-right: var(--cl-gutter);
   display: flex !important;
   align-items: center;
-  justify-content: space-between !important;
+  /* Right-alignment of .navbar-nav comes from its own margin-left:auto,
+     not from justify-content here — with justify-content:space-between
+     also active, Chrome was splitting the free space between the two
+     mechanisms instead of letting the auto margin claim all of it. */
+  justify-content: flex-start !important;
   gap: clamp(14px, 3vw, 32px);
   flex-wrap: nowrap;
 }
 
-/* Prevent Bootstrap's flex-grow from stretching nav to fill container */
-.navbar-collapse,
-#navbarCollapse {
-  flex-grow: 0 !important;
+/* Brand never shrinks or scrolls, even when the nav row overflows */
+.navbar-brand-container {
+  flex: none !important;
+  margin: 0 !important;
 }
 
-/* Nav items row: right-aligned, no wrap */
+/* Nav row scrolls horizontally instead of collapsing behind a menu —
+   collapse is disabled in _quarto.yml (navbar: collapse: false), so with
+   no .navbar-collapse wrapper the <ul class="navbar-nav"> is both the
+   flex item (vs. the brand) and the scroll container itself. */
 .navbar-nav {
   display: flex !important;
+  flex-direction: row !important;
+  /* Shrinks (not grows) to fit the remaining space: at its natural
+     content width, space-between on the parent pushes it flush right
+     on wide screens; once content no longer fits, it shrinks below
+     that width and scrolls instead of squeezing each link's text or
+     bleeding overflow under the brand (which flex-end + flex-grow
+     both do). Bootstrap's own breakpoint-gated navbar-expand rules
+     (which this project doesn't use below ~576px) set overflow:visible
+     and flex-direction:column, so both need !important here. */
+  flex: 0 1 auto !important;
+  min-width: 0;
+  /* Bootstrap's own .me-auto utility class (already on this element)
+     sets margin-right:auto !important — combined with margin-left:auto
+     below, the browser splits the free space evenly between both
+     instead of letting margin-left claim all of it, leaving the row
+     centered in its slack instead of flush right. Cancel it. */
+  margin-right: 0 !important;
+  margin-left: auto !important;
   align-items: center;
   gap: clamp(15px, 2.4vw, 28px);
   flex-wrap: nowrap;
+  overflow-x: auto !important;
+  overflow-y: visible !important;
+  scrollbar-width: none;
+}
+
+.navbar-nav::-webkit-scrollbar {
+  display: none;
+}
+
+/* Items keep their natural width so the row overflows (and scrolls)
+   instead of squeezing each link's text down to fit */
+.navbar-nav .nav-item {
+  flex: none;
 }
 
 
@@ -156,6 +247,13 @@ h1, h2, h3, h4, h5, h6 {
   display: inline-flex;
   align-items: center;
   padding: 0 20px;
+}
+
+.btn:disabled,
+.btn[disabled] {
+  opacity: 0.45;
+  cursor: not-allowed;
+  pointer-events: none;
 }
 
 /* Primary outlined button (accent) */
@@ -331,6 +429,12 @@ img.plate {
 
 .home-posts div.quarto-post {
   display: flex;
+  /* Quarto's .image-right variant (applied whenever a listing could
+     show a thumbnail, whether or not this one actually has images)
+     sets row-reverse to put the image on the right — with no image
+     here, that instead flips .body and .metadata, putting the date on
+     the left and breaking its margin-left:auto push to the right. */
+  flex-direction: row !important;
   flex-wrap: wrap;
   column-gap: 20px;
   row-gap: 8px;
@@ -355,12 +459,16 @@ img.plate {
   box-shadow: none;
 }
 
-/* Counter number */
+/* Counter number — top offset matches the row's own padding-top
+   (22px), same as the title and date now that the title's default
+   browser margin-top (an unreset 28px, never actually a deliberate
+   value) isn't shifting it down independently of everything else in
+   the row. */
 .home-posts div.quarto-post::before {
   content: counter(post-counter, decimal-leading-zero);
   position: absolute;
   left: 0;
-  top: 28px;
+  top: 22px;
   width: 40px;
   font-family: "Cormorant Garamond", Georgia, serif;
   font-size: 13px;
@@ -382,6 +490,14 @@ img.plate {
   min-width: 0;
 }
 
+.home-posts div.quarto-post h3.listing-title {
+  /* Browsers give h3 a default margin (~28px top here at this base
+     font size) that was never reset — the real source of both the
+     oversized gap above every title and the counter number needing a
+     28px fudge to line up with it. */
+  margin: 0 0 8px;
+}
+
 .home-posts div.quarto-post h3 a {
   font-family: "Cormorant Garamond", Georgia, serif;
   font-size: clamp(21px, 2.9vw, 26px);
@@ -394,6 +510,11 @@ img.plate {
 
 .home-posts div.quarto-post .listing-subtitle,
 .home-posts div.quarto-post .listing-description {
+  /* Quarto's own listing CSS gives this a small default margin
+     (3.4px/8.5px at this font size) that was never reset — same class
+     of bug as the h3 title margin above. */
+  margin: 0;
+  font-family: "Cormorant Garamond", Georgia, serif;
   font-size: 17px;
   line-height: 1.55;
   color: var(--cl-text-muted);
@@ -402,6 +523,7 @@ img.plate {
 
 .home-posts div.quarto-post .listing-categories {
   margin-top: 4px;
+  margin-bottom: 0;
 }
 
 .home-posts div.quarto-post .listing-categories .listing-category {
@@ -453,7 +575,11 @@ img.plate {
   color: var(--cl-text-muted);
 }
 
-/* Recently items */
+/* Recently items — date and text are now separate paragraphs (each
+   its own flex-item row, so the date actually stacks above the text
+   instead of running inline before it), which means each one carries
+   a default browser p margin unless reset; the 4px gap below is the
+   only spacing that should apply between them. */
 .news-item-classical {
   display: flex;
   flex-direction: column;
@@ -461,6 +587,10 @@ img.plate {
   padding-bottom: 15px;
   border-bottom: 1px solid rgba(32, 31, 29, 0.1);
   margin-bottom: 16px;
+}
+
+.news-item-classical p {
+  margin: 0;
 }
 
 .news-item-classical:last-child {
@@ -481,7 +611,28 @@ img.plate {
   font-size: 16.5px;
   line-height: 1.55;
   color: var(--cl-text-secondary);
+  text-align: left;
   text-wrap: pretty;
+}
+
+.news-item-classical .news-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  align-self: flex-start;
+  margin-top: 2px;
+  font-size: 15px;
+  color: var(--cl-accent-text);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(125, 84, 17, 0.4);
+}
+
+.news-item-classical .news-link:hover {
+  border-bottom-color: var(--cl-accent);
+}
+
+.news-item-classical .news-link .arrow {
+  font-size: 11px;
 }
 
 /* Elsewhere links */
@@ -500,11 +651,12 @@ img.plate {
   text-decoration: none;
 }
 
-.elsewhere-links .link-rule {
-  width: 16px;
-  height: 1px;
-  background: var(--cl-accent-light);
-  flex: none;
+.elsewhere-links .link-domain {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 11.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--cl-text-quiet);
 }
 
 
@@ -556,7 +708,7 @@ img.plate {
   gap: 10px;
 }
 
-.newsletter-form input[type="email"] {
+.newsletter-form #newsletter-email {
   flex: 1;
   min-width: 0;
   min-height: 44px;
@@ -569,12 +721,12 @@ img.plate {
   color: var(--cl-text);
 }
 
-.newsletter-form input[type="email"]:focus {
+.newsletter-form #newsletter-email:focus {
   border-color: var(--cl-accent);
   outline: none;
 }
 
-.newsletter-form input[type="email"].has-error {
+.newsletter-form #newsletter-email.has-error {
   border-color: var(--cl-error);
 }
 
@@ -599,6 +751,12 @@ img.plate {
 .newsletter-form button:active {
   border-color: var(--cl-accent-pressed);
   color: var(--cl-accent-pressed);
+}
+
+.newsletter-form #newsletter-email:disabled,
+.newsletter-form button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
 }
 
 .newsletter-error {
@@ -713,6 +871,10 @@ div.quarto-post .body {
   gap: 7px;
 }
 
+div.quarto-post .body h3 {
+  margin: 0;
+}
+
 div.quarto-post h3 a {
   font-family: "Cormorant Garamond", Georgia, serif;
   font-size: clamp(22px, 3vw, 27px);
@@ -729,6 +891,8 @@ div.quarto-post h3 a:hover {
 
 div.quarto-post .listing-subtitle,
 div.quarto-post .listing-description {
+  margin: 0;
+  font-family: "Cormorant Garamond", Georgia, serif;
   font-size: 17.5px;
   line-height: 1.55;
   color: var(--cl-text-muted);
@@ -817,40 +981,70 @@ div.quarto-post .metadata {
   color: var(--cl-accent-text);
 }
 
-/* Count label */
-.quarto-listing-filter .listing-count {
+/* Pills read as just the category name in the design — the (n) count
+   Quarto appends is only used (via JS) to rank which 7 categories show. */
+.quarto-listing-category .quarto-category-count {
+  display: none;
+}
+
+/* Search row — just the input, max-width 440px per spec. The count
+   label sits on its own line below the category chips, not here. */
+.writing-index .listing-actions-group {
+  display: block;
+  max-width: 440px;
+  margin-bottom: 22px;
+}
+
+.listing-count {
+  display: block;
+  margin: 4px 0 22px;
   font-family: "Cormorant Garamond", Georgia, serif;
   font-size: 13px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--cl-text-quiet);
   font-feature-settings: "tnum";
+  white-space: nowrap;
 }
 
 /* ------------------------------------------------
-   Search / filter input — Classical styling
+   Search / filter input — Classical styling. Quarto wraps the input
+   in a Bootstrap input-group with a search-icon addon; the design has
+   a single plain box with no icon and a gold accent on the bottom edge.
    ------------------------------------------------ */
+.quarto-listing-filter {
+  border: none !important;
+  width: 100% !important;
+  margin: 0 !important;
+}
+
+.quarto-listing-filter .input-group-text {
+  display: none;
+}
+
 .quarto-listing-filter input[type="text"],
 .quarto-listing-filter input[type="search"],
 #listing-filter {
   width: 100%;
-  font-family: "Lora", Georgia, serif;
+  font-family: "Cormorant Garamond", Georgia, serif;
   font-size: 16px;
   padding: 10px 14px;
   color: var(--cl-text);
   background: transparent;
   border: 1px solid var(--cl-divider);
-  border-radius: 4px;
+  border-bottom-color: var(--cl-accent-light);
+  border-radius: 4px !important;
   min-height: 44px;
   caret-color: var(--cl-accent);
   transition: border-color var(--cl-transition);
-  margin-bottom: 16px;
+  margin-bottom: 0;
 }
 
 .quarto-listing-filter input[type="text"]:hover,
 .quarto-listing-filter input[type="search"]:hover,
 #listing-filter:hover {
   border-color: rgba(32, 31, 29, 0.35);
+  border-bottom-color: var(--cl-accent);
 }
 
 .quarto-listing-filter input[type="text"]:focus,
@@ -930,8 +1124,11 @@ div.quarto-post .metadata {
   color: var(--cl-text-muted);
 }
 
-/* Post metadata line */
+/* Post metadata line — compact inline row, labels hidden */
 .quarto-title-meta {
+  display: flex;
+  align-items: center;
+  gap: 14px;
   font-family: "Cormorant Garamond", Georgia, serif;
   font-size: 15px;
   color: var(--cl-text-quiet);
@@ -939,38 +1136,75 @@ div.quarto-post .metadata {
   padding-top: 6px;
 }
 
+.quarto-title-meta > div {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.quarto-title-meta > div + div::before {
+  content: "/";
+  color: #d7d3d3;
+}
+
 .quarto-title-meta .quarto-title-meta-heading {
-  color: var(--cl-text-quiet);
-  font-size: 15px;
-  text-transform: none;
-  font-weight: 400;
+  display: none;
 }
 
 .quarto-title-meta-contents {
   color: var(--cl-text-quiet);
 }
 
+.quarto-title-meta-contents p {
+  margin: 0;
+}
+
 /* Hero image (post feature image) */
-.quarto-title-banner img,
+.post-hero {
+  width: 100%;
+  height: 340px;
+  object-fit: cover;
+  border: 6px solid var(--cl-surface);
+  outline: 1px solid var(--cl-divider);
+  border-radius: 2px;
+}
+
+figure:has(> p > img.post-hero) {
+  margin: 36px 0 0;
+}
+
+figure:has(> p > img.post-hero) figcaption {
+  margin-top: 8px;
+  font-size: 11.5px;
+  color: var(--cl-text-quiet);
+}
+
 .quarto-figure img {
   border: 6px solid var(--cl-surface);
   outline: 1px solid var(--cl-divider);
   border-radius: 2px;
 }
 
-/* Post body content */
-#quarto-content .content {
+/* Post body content. #quarto-content is a structural id Quarto puts on
+   the outer wrapper of *every* page (not just posts), and .content is
+   main's own class everywhere too — so "#quarto-content .content ___"
+   carries ID-level specificity while matching site-wide, silently
+   beating plenty of plain class selectors meant only for one page
+   (the home page's "Latest posts" heading among them, forced to 600
+   instead of its own 400). .page-layout-article is the one class that
+   actually distinguishes a blog post page from every other layout. */
+.page-layout-article main.content {
   font-size: 18.5px;
   line-height: 1.65;
 }
 
-#quarto-content .content p {
+.page-layout-article main.content p {
   text-align: justify;
   hyphens: auto;
   text-wrap: pretty;
 }
 
-#quarto-content .content h2 {
+.page-layout-article main.content h2 {
   margin: 34px 0 12px;
   font-weight: 600;
   font-size: 27px;
@@ -978,7 +1212,7 @@ div.quarto-post .metadata {
   scroll-margin-top: 110px;
 }
 
-#quarto-content .content h3 {
+.page-layout-article main.content h3 {
   margin: 28px 0 10px;
   font-weight: 600;
   font-size: 23px;
@@ -1021,12 +1255,25 @@ nav.toc-active {
 }
 
 #TOC a {
+  display: flex;
+  align-items: baseline;
+  gap: 7px;
   font-size: 13.5px;
   line-height: 1.5;
   color: var(--cl-text-muted);
   text-decoration: none;
   transition: color var(--cl-transition);
   padding: 4px 0;
+}
+
+#TOC a::before {
+  content: "";
+  flex: none;
+  width: 0;
+  height: 1px;
+  margin-top: 8px;
+  background: var(--cl-accent);
+  transition: width var(--cl-transition);
 }
 
 #TOC a:hover {
@@ -1036,6 +1283,10 @@ nav.toc-active {
 #TOC a.active {
   color: var(--cl-text) !important;
   font-weight: 400;
+}
+
+#TOC a.active::before {
+  width: 14px;
 }
 
 /* TOC title */
@@ -1049,10 +1300,35 @@ nav.toc-active {
 }
 
 @media (max-width: 900px) {
+  /* Quarto's article layout puts a left-positioned TOC in the same
+     off-canvas sidebar mechanism docs sites use for left nav — hidden
+     by default below its own breakpoint, revealed only via a toggle
+     this page never renders. Left as-is, the TOC is just unreachable
+     on mobile. Force it open and in-flow instead, matching every
+     other rail on the site (static, stacked below its content). */
+  #quarto-sidebar.sidebar.collapse {
+    position: static !important;
+    display: block !important;
+    visibility: visible !important;
+    transform: none !important;
+    width: 100% !important;
+    height: auto !important;
+    max-height: none !important;
+    background: transparent !important;
+    z-index: auto !important;
+    grid-column: 1 / -1 !important;
+    grid-row: auto !important;
+  }
+
+  #quarto-sidebar-glass {
+    display: none !important;
+  }
+
   #TOC,
   nav.toc-active,
   .sidebar.toc-left {
     position: static !important;
+    display: block !important;
     border-left: none;
     padding-left: 0;
   }
@@ -1410,11 +1686,12 @@ pre code {
   text-decoration: none;
 }
 
-.about-profile-rail .link-rule {
-  width: 16px;
-  height: 1px;
-  background: var(--cl-accent-light);
-  flex: none;
+.about-profile-rail .link-domain {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 11.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--cl-text-quiet);
 }
 
 /* Expertise tags in profile rail */
@@ -1746,11 +2023,24 @@ pre code {
 }
 
 .page-header-classical h1,
-.page-header h1 {
+.page-header h1,
+/* Pages with an empty title and a leading H1 (writing, software,
+   publications...) get that H1 hoisted by Pandoc out of .page-header
+   into Quarto's own #title-block-header, ahead of it in the DOM — so
+   this needs to reach that element specifically to keep the same look. */
+#title-block-header h1.title {
   margin: 0 0 10px;
   font-weight: 400;
   font-size: clamp(30px, 6.4vw, 52px);
   letter-spacing: -0.02em;
+}
+
+/* The hoisted case leaves #title-block-header (just the H1) and
+   .page-header (now just the intro line) as separate sibling blocks —
+   remove the browser's default header margin so they sit as one unit,
+   the same spacing as when the H1 was still inside .page-header. */
+#title-block-header {
+  margin: 0;
 }
 
 .page-header-classical p,
@@ -1870,14 +2160,25 @@ pre code {
   border-color: var(--cl-accent) !important;
 }
 
-/* Card image — plate treatment */
+/* Card image — plate treatment (matted border, not just a bottom rule) */
 .quarto-grid-item .card-img-top,
 .quarto-grid-item .listing-item-img-placeholder {
   height: 150px;
   object-fit: cover;
-  border-bottom: 1px solid var(--cl-divider);
   filter: sepia(0.22) saturate(0.82) contrast(1.05);
-  border-radius: 0;
+  border: 6px solid var(--cl-surface);
+  outline: 1px solid var(--cl-divider);
+  border-radius: 2px;
+  box-sizing: border-box;
+}
+
+.quarto-grid-item p.card-img-top {
+  /* Bootstrap sets width:100% on this (not width:auto), so a plain
+     margin doesn't get subtracted from it automatically the way it
+     would on a block element — it just overflows the card by 2x the
+     margin and gets clipped by the card's overflow:hidden. */
+  width: calc(100% - 24px);
+  margin: 12px 12px 0;
 }
 
 /* Placeholder when no image */
@@ -1893,7 +2194,10 @@ pre code {
   gap: 7px;
 }
 
-/* Card title */
+/* Card title — margin-top:0 matters as much as margin-bottom here:
+   .card-body's flex gap is the only spacing this design wants between
+   title/subtitle/date, but Quarto's own listing CSS gives this h5 a
+   default top margin too, stacking on top of that gap. */
 .quarto-grid-item .card-title,
 .quarto-grid-item .listing-title {
   font-family: "Cormorant Garamond", Georgia, serif;
@@ -1902,6 +2206,7 @@ pre code {
   line-height: 1.2;
   letter-spacing: -0.01em;
   color: var(--cl-text);
+  margin-top: 0;
   margin-bottom: 0;
 }
 
@@ -1920,13 +2225,33 @@ pre code {
 .quarto-grid-item .card-subtitle,
 .quarto-grid-item .listing-subtitle,
 .quarto-grid-item .listing-description {
+  font-family: "Cormorant Garamond", Georgia, serif;
   font-size: 15px;
   line-height: 1.5;
   color: var(--cl-text-muted);
+  margin-top: 0;
   margin-bottom: 0;
 }
 
-/* Card date as kicker */
+/* Card date as kicker — the date lives in .card-attribution, a sibling
+   of the title/subtitle inside .card-body's flex column, so the reorder
+   has to happen on that wrapper (order on the nested .listing-date div
+   itself is a no-op: it isn't the flex item). Quarto also right-aligns
+   this wrapper by default ("end"); the design wants it left, above the
+   title. */
+.quarto-grid-item .card-attribution {
+  order: -1;
+  text-align: left;
+  /* Quarto's own "end" utility class flex-grows this to soak up
+     leftover vertical space in the card and bottom-align the date
+     within it — fine when it sits last, but now that order:-1 puts it
+     first, that leftover space shows up as a gap above the date
+     instead (more or less of it per card, depending on how much
+     title/subtitle text the others have). Size it to its content. */
+  flex: none !important;
+  display: block !important;
+}
+
 .quarto-grid-item .listing-date {
   font-family: "Cormorant Garamond", Georgia, serif;
   font-size: 11.5px;
@@ -1935,7 +2260,6 @@ pre code {
   color: var(--cl-text-quiet);
   font-feature-settings: "tnum";
   margin-bottom: 0;
-  order: -1;
 }
 
 /* Card category tags */
@@ -2067,7 +2391,7 @@ body.quarto-dark .nav-footer a {
   color: var(--cl-accent-text) !important;
 }
 
-body.quarto-dark .newsletter-form input[type="email"] {
+body.quarto-dark .newsletter-form #newsletter-email {
   color: var(--cl-text);
   border-color: var(--cl-divider);
 }
@@ -2232,260 +2556,3 @@ body.quarto-dark div.quarto-post h3 a:hover {
 body.quarto-dark .quarto-title .quarto-categories .quarto-category {
   color: var(--cl-text-quiet);
 }
-
-/* Classical — design-system tokens and component classes. This file is the source of truth for the system's look; retune it here and see readme.md. */
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Lora:wght@400;600&display=swap');
-
-:root {
-  --color-bg: #f3f2f2;
-  --color-surface: #eae9e9;
-  --color-text: #201f1d;
-  --color-accent: #b68235;
-  --color-accent-2: #ac803e;
-  --color-divider: color-mix(in srgb, #201f1d 16%, transparent);
-
-  /* Tonal ramps — generated in OKLCH on one shared lightness scale, so the
-     same step of any role matches the others in visual value. */
-  --color-neutral-100: #f8f4f4;
-  --color-neutral-200: #eae7e7;
-  --color-neutral-300: #d7d3d3;
-  --color-neutral-400: #bab6b6;
-  --color-neutral-500: #9b9797;
-  --color-neutral-600: #7d7979;
-  --color-neutral-700: #605d5d;
-  --color-neutral-800: #444141;
-  --color-neutral-900: #2d2b2b;
-
-  --color-accent-100: #fff3e4;
-  --color-accent-200: #ffe3bf;
-  --color-accent-300: #facb8d;
-  --color-accent-400: #e1ad66;
-  --color-accent-500: #c28d41;
-  --color-accent-600: #a06f24;
-  --color-accent-700: #7d5411;
-  --color-accent-800: #5a3b0a;
-  --color-accent-900: #3a270d;
-
-  --color-accent-2-100: #fff3e4;
-  --color-accent-2-200: #ffe3be;
-  --color-accent-2-300: #f5cd96;
-  --color-accent-2-400: #dbaf70;
-  --color-accent-2-500: #bc8f4e;
-  --color-accent-2-600: #9b7232;
-  --color-accent-2-700: #79561f;
-  --color-accent-2-800: #573d14;
-  --color-accent-2-900: #382810;
-
-  --font-heading: "Cormorant Garamond", system-ui, sans-serif;
-  --font-heading-weight: 600; /* review round 3: bold retired — semibold is the
-     interface headings' ceiling (they need the weight at small sizes); display
-     text goes lighter still, to the normal cut (see the deck) */
-  --font-body: "Lora", system-ui, sans-serif;
-
-  --space-1: 4.6px;
-  --space-2: 9.2px;
-  --space-3: 13.8px;
-  --space-4: 18.4px;
-  --space-6: 27.6px;
-  --space-8: 36.8px;
-
-  --radius-sm: 2px;
-  --radius-md: 4px;
-  --radius-lg: 7px;
-
-  /* Elevation — derived from the ground: soft ink-tinted shadows on a
-     light theme, a hairline edge + ambient darkness on a dark one. */
-  --shadow-sm: 0 1px 2px color-mix(in srgb, #2d2b2b 14%, transparent);
-  --shadow-md: 0 3px 10px color-mix(in srgb, #2d2b2b 16%, transparent);
-  --shadow-lg: 0 12px 32px color-mix(in srgb, #2d2b2b 22%, transparent);
-}
-
-body {
-  background: var(--color-bg);
-  color: var(--color-text);
-  font-family: var(--font-body);
-}
-h1, h2, h3, h4 { font-family: var(--font-heading); font-weight: var(--font-heading-weight); }
-
-.plate{filter:sepia(0.22) saturate(0.82) contrast(1.05);box-sizing:border-box;
-  border:6px solid var(--color-surface);outline:1px solid var(--color-divider)}
-
-/* ══════════════════════════════════════════════════════════════════════════
-   Components — built with the tokens above. Plain CSS
-   on plain HTML: no JavaScript, no build step. Each class is documented in
-   readme.md and demonstrated in foundations/ and components/.
-   ══════════════════════════════════════════════════════════════════════ */
-
-*, *::before, *::after { box-sizing: border-box; }
-body { margin: 0; font-size: 15px; line-height: 1.55; font-weight: 400; }
-h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-heading); font-weight: var(--font-heading-weight);
-  line-height: 1.12; letter-spacing: -0.015em; margin: 0 0 var(--space-2);
-}
-h1 { font-size: 42px; }
-h2 { font-size: 32px; }
-h3 { font-size: 25px; }
-h4 { font-size: 20px; }
-h5 { font-size: 16px; }
-h6 { font-size: 13px; }
-h6 { letter-spacing: 0.08em; text-transform: uppercase; }
-p { margin: 0 0 var(--space-3); }
-a { color: var(--color-accent); text-underline-offset: 3px; }
-img { display: block; max-width: 100%; }
-figure { margin: 0; }
-figcaption {
-  font-size: 11px; margin-top: var(--space-1);
-  color: color-mix(in srgb, var(--color-text) 55%, transparent);
-}
-.text-muted { color: color-mix(in srgb, var(--color-text) 55%, transparent); }
-:focus { outline: none; }
-:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; }
-::selection { background: color-mix(in srgb, var(--color-accent) 30%, transparent); }
-
-/* — rules — */
-.hr {
-  height: 1px; border: 0; margin: var(--space-4) 0;
-  background: var(--color-divider);
-}
-
-/* — buttons — */
-.btn {
-  display: inline-flex; align-items: center; justify-content: center; gap: 6px;
-  cursor: pointer; text-decoration: none;
-  font-family: var(--font-heading); font-weight: var(--font-heading-weight);
-  font-size: 14px; line-height: 1.2; color: var(--color-text); /* matches the .input's 14px —
-     the pair sits side by side in sign-up rows */
-  background: transparent; border: 1px solid transparent;
-  padding: var(--space-2) calc(var(--space-3) * 1.2);
-  border-radius: var(--radius-md);
-}
-.btn svg { display: block; }
-.btn:disabled { opacity: 0.45; cursor: not-allowed; }
-.btn-primary { color: var(--color-accent); border-color: var(--color-accent); }
-.btn-primary:hover { background: color-mix(in srgb, var(--color-accent) 12%, transparent); }
-.btn-primary:active { background: color-mix(in srgb, var(--color-accent) 22%, transparent); }
-.btn-secondary { border-color: var(--color-divider); }
-.btn-secondary:hover { background: color-mix(in srgb, var(--color-text) 7%, transparent); }
-.btn-secondary:active { background: color-mix(in srgb, var(--color-text) 14%, transparent); }
-.btn-ghost { color: var(--color-accent); padding-inline: var(--space-1); }
-.btn-ghost:hover { background: color-mix(in srgb, var(--color-accent) 10%, transparent); }
-.btn-ghost:active { background: color-mix(in srgb, var(--color-accent) 18%, transparent); }
-.btn-icon { width: 36px; height: 36px; padding: 0; }
-.btn-block { width: 100%; margin-top: var(--space-2); }
-
-/* — forms — */
-.field > label {
-  display: block; font-size: 12px; margin-bottom: 5px;
-  color: color-mix(in srgb, var(--color-text) 70%, transparent);
-}
-.input {
-  width: 100%; min-height: 36px; padding: 6px 10px; font: inherit;
-  font-size: 14px; color: var(--color-text); caret-color: var(--color-accent);
-  background: transparent;
-  border: 1px solid var(--color-divider); border-radius: var(--radius-md);
-}
-.input:hover { border-color: color-mix(in srgb, var(--color-text) 45%, transparent); }
-.input:focus-visible { border-color: var(--color-accent); outline-offset: 0; }
-textarea.input { min-height: 90px; resize: vertical; }
-.radio { display: inline-flex; align-items: center; gap: 8px; cursor: pointer; font-size: 14px; }
-.radio input, .seg-opt input {
-  position: absolute; opacity: 0; width: 0; height: 0; pointer-events: none;
-}
-.radio .dot {
-  width: 16px; height: 16px; flex: none; border-radius: 50%;
-  border: 1.5px solid var(--color-divider);
-}
-.radio:hover .dot { border-color: var(--color-accent); }
-.radio input:checked + .dot {
-  border-color: var(--color-accent); background: var(--color-accent);
-  box-shadow: inset 0 0 0 4px var(--color-bg);
-}
-.radio input:focus-visible + .dot { outline: 2px solid var(--color-accent); outline-offset: 2px; }
-.seg {
-  display: inline-flex; overflow: hidden;
-  border: 1px solid var(--color-divider); border-radius: var(--radius-md);
-}
-.seg-opt {
-  display: inline-flex; align-items: center; gap: 6px;
-  padding: 7px 12px; font-size: 13px; cursor: pointer;
-}
-.seg-opt + .seg-opt { border-left: 1px solid var(--color-divider); }
-.seg-opt:has(input:checked) { color: var(--color-accent); box-shadow: inset 0 0 0 1px var(--color-accent); }
-.seg-opt:not(:has(input:checked)):hover { background: color-mix(in srgb, var(--color-text) 7%, transparent); }
-.seg-opt:has(input:focus-visible) { outline: 2px solid var(--color-accent); outline-offset: -2px; }
-
-/* — cards — */
-.card {
-  display: flex; flex-direction: column; gap: var(--space-2);
-  padding: var(--space-3); border-radius: var(--radius-md); background: transparent; border: 1px solid var(--color-divider);
-}
-.card-kicker { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-accent); }
-.card-title {
-  font-family: var(--font-heading); font-weight: var(--font-heading-weight);
-  font-size: 17px; line-height: 1.2;
-}
-.card-body { margin: 0; font-size: 13px; opacity: 0.8; flex: 1; }
-.card-meta {
-  display: flex; align-items: center; gap: 6px; font-size: 11px;
-  color: color-mix(in srgb, var(--color-text) 50%, transparent);
-}
-.elev-sm { box-shadow: var(--shadow-sm); }
-.elev-md { box-shadow: var(--shadow-md); }
-.elev-lg { box-shadow: var(--shadow-lg); }
-
-/* — tags — */
-.tag {
-  display: inline-flex; align-items: center; font-size: 11px;
-  letter-spacing: 0.02em; padding: 3px 10px;
-  border-radius: calc(var(--radius-md) * 0.75);
-}
-.tag-accent { background: var(--color-accent-100); color: var(--color-accent-800); }
-.tag-accent-2 { background: var(--color-accent-2-100); color: var(--color-accent-2-800); }
-.tag-neutral { background: var(--color-neutral-100); color: var(--color-neutral-800); }
-.tag-outline { border: 1px solid var(--color-accent); color: var(--color-accent); }
-
-/* — navigation — */
-.nav {
-  display: flex; align-items: center; gap: var(--space-4);
-  padding: var(--space-3) var(--space-4);
-  border-bottom: 1px solid var(--color-divider);
-}
-.nav-brand {
-  font-family: var(--font-heading); font-weight: var(--font-heading-weight);
-  font-size: 18px; margin-right: auto;
-}
-.nav a { color: inherit; text-decoration: none; font-size: 14px; }
-.nav a:hover, .nav a[aria-current='page'] { color: var(--color-accent); }
-
-/* — tables — */
-.table { width: 100%; border-collapse: collapse; font-size: 14px; }
-.table th {
-  text-align: left; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase;
-  color: color-mix(in srgb, var(--color-text) 60%, transparent);
-  padding: var(--space-2); border-bottom: 1px solid var(--color-divider);
-}
-.table td {
-  padding: var(--space-2);
-  border-bottom: 1px solid var(--color-divider);
-}
-.table tbody tr:hover { background: color-mix(in srgb, var(--color-text) 4%, transparent); }
-
-/* — dialog — */
-.dialog-backdrop {
-  position: fixed; inset: 0; display: grid; place-items: center;
-  padding: var(--space-4);
-  background: color-mix(in srgb, var(--color-neutral-900) 50%, transparent);
-}
-.dialog {
-  width: min(440px, 100%); display: flex; flex-direction: column; gap: var(--space-3);
-  padding: var(--space-4); border-radius: var(--radius-lg);
-  background: var(--color-surface); box-shadow: var(--shadow-lg); border: 1px solid var(--color-divider);
-}
-.dialog-title {
-  font-family: var(--font-heading); font-weight: var(--font-heading-weight);
-  font-size: 20px;
-}
-.dialog-body { font-size: 14px; opacity: 0.85; }
-.dialog-actions { display: flex; justify-content: flex-end; gap: var(--space-2); margin-top: var(--space-2); }
-
-

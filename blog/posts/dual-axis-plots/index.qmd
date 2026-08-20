@@ -1,8 +1,6 @@
 ---
 title: "Data Visualisation: A Case for Dual-axis Plots"
 subtitle: "A quick case study for when a dual-axis plot is actually useful"
-description: | 
-  Categories
 author: "Rob Taylor, PhD"
 date: "2022-07-05"
 draft: false
@@ -14,8 +12,9 @@ image: nathan-anderson-KvgB81s4dF0-unsplash.jpg
 image-alt: "space texture"
 notes: "Photo by Nathan Anderson on Unsplash"
 ---
+![Photo by Nathan Anderson on Unsplash](nathan-anderson-KvgB81s4dF0-unsplash.jpg){.post-hero}
 
-### Introduction
+## Introduction
 
 Dual-axis plots are often used to jointly display time-series data that differ in magnitude — and in some cases, each axis may exist on completely different scales altogether. For this reason, dual-axis plots are generally discouraged because they require readers to interpret two, sometimes very disparate, axes.
 
@@ -25,7 +24,7 @@ Now, these are not the only problems that can arise (and for a very nice blog on
 
 Let’s get into it.
 
-### Warming Up
+## Warming Up
 
 This example looks at the case for two axes when data can be expressed using two monotonic scales, like temperature. To illustrate, we’ll use the `airquality` dataset in R to plot daily temperature readings recorded between May-September, 1973, in New York. Before getting things underway, make sure you have the `tidyverse` and `lubridate` packages loaded. Once that's done, we’ll first need to create a date column. The code below shows how you can do this using the `mutate` function:
 
@@ -60,7 +59,7 @@ Here’s the issue, though.
 
 You see, for those of us living in the Antipodes, we’re accustomed to using the Celsius scale to quantify temperature, meaning the current *y*-axis leaves us utterly perplexed and bamboozled. The only thing more confusing than this scale is the transformation to Celsius — where did that 5/9 come from? Anyway, it’d be great if we could include the Celsius scale, along with the original Fahrenheit temperatures, so we Kiwis can appreciate how hot things are getting.
 
-### Scales & Degrees
+## Scales & Degrees
 
 The first thing we need to do is to specify some break points along the *original* *y*-axis. We’ll then transform these points onto the Celsius scale and then use those to *label* the second axis. The code below does just that — the `y_breaks`vector contains six points along the Fahrenheit scale which have then been transformed onto the Celsius scale and stored in a variable called `y_labels`. From there the second axis can be initialized, as shown below:
 

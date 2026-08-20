@@ -1,7 +1,6 @@
 ---
 title: "A Brief Primer on p-values"
 subtitle: "An article to help build and understanding of this common, yet misunderstood, measure"
-description: |
 author: "Rob Taylor, PhD"
 date: "2022-09-17"
 draft: false
@@ -15,8 +14,9 @@ image: joel-henry-jERNVfvVofQ-unsplash.jpg
 image-alt: "photo by Joel Henry"
 bibliography: references.bib
 ---
+![Photo by Joel Henry on Unsplash](joel-henry-jERNVfvVofQ-unsplash.jpg){.post-hero}
 
-### Introduction
+## Introduction
 
 Null hypothesis significance testing (NHST) is a fundamental approach to drawing inferences about unknown population parameters. While its origins can be traced back as far as the 18th century, modern applications were largely formalised by Ronald Fisher in 1925 with the publication of *Statistical Methods for Research Workers*. Alongside estimation, NHST is one of the pillars of statistical science, and is ubiquitous among the social sciences, engineering, physics, and applied fields like data analytics and data science.
 
@@ -34,7 +34,7 @@ The purpose of this post is to lay a foundation to help you understand what *p*-
 
 If anything, this post leans more toward the Fisherian perspective where, owing to nature of Fisher’s work, the idea of a null distribution as the status-quo made sense. In effect, he used *p*-values as a type of control process to monitor whether something unusual had been observed. I think this is a useful place to start and appeals to how most understand hypothesis testing to proceed.
 
-### A Note on Significance Levels
+## A Note on Significance Levels
 
 Within the NHST framework it is common to compare the *p*-value to some predefined threshold that places a limit, or tolerance, on its permissible range of values. If the *p*-value exceeds this tolerance — typically referred to as the *significance level* — then the data is considered *statistically significant*.
 
@@ -54,7 +54,7 @@ In Fisher’s view, while the significance level can be used to impose a sort of
 
 The manifest over-reliance on significance thresholds ultimately seeks to reduce a complex problem down to a simple “yes-no” decision. While pragmatism indeed dictates the need for binary decisions there are no free lunches when it comes to drawing statistical conclusions. A level of judgement is expected from researchers, and an expectation that external factors such as study design, measurement quality, and modelling assumptions all be considered before any claim is made. It is wholly unreasonable to expect that *p*-values alone provide reasonable grounds for making such decisions. Ultimately, the *p*-value by itself does not provide a good measure of evidence for, or against, a statistical hypothesis.
 
-### Defining the *p*-value
+## Defining the *p*-value
 
 A formal definition for the *p*-value goes something like this:
 
@@ -86,13 +86,13 @@ This is why the *p*-value cannot (in principle) give us the probability of obser
 
 What should also be clear is that, because the *p*-value is a function of $t$, which itself is a function of $X$, the *p*-value is also a random variable, but one that is bounded between 0 and 1. In fact, under the null hypothesis, we find that *p*-values are *uniformly* distributed.
 
-### Consistency and Surprise
+## Consistency and Surprise
 
 The language used in defining the *p*-value, though accurate, if not entirely intuitive. Rather than speaking in terms of extremes, I prefer to think of the *p*-value as a measure of *surprise*. When we boil it down, the *p*-value is a measure of how *consistent* data is with a hypothesis; and as the *p*-value tends toward zero, the more *surprising* the test result is — or stated another way, the more inconsistent the result is with the null hypothesis. To be clear, what I mean by surprising is the comparative *improbability* of the test result under the null hypothesis.
 
 But we must be careful not to conflate surprise with finding. Paraphrasing Fisher, a single *surprising* result is not enough to hang your hat on and further investigations ought to be made.
 
-### Misinterpretations of p-values
+## Misinterpretations of p-values
 
 Fundamentally, the *p*-value is a statement about *data* that is *conditional* on a certain hypothesis being true. While low *p*-values can be used to *reject* a hypothesis, it is not a measure of the probability that the hypothesis itself is true. This misconception amounts to accepting that the following equality is true:
 
@@ -104,7 +104,7 @@ Another common misinterpretation is that the *p*-value reflects the probability 
 
 Finally, any test result that reaches the threshold for statistical significance is not immediate proof that the result is important, nor does the *p*-value provide a measure of the size of an effect. For example, very small effects can be made to exhibit arbitrarily small *p*-values by simply increasing the sample size, or improving the precision of measurements. Conversely, large effects can yield wholly unremarkable *p*-values if the sample size is too small, or imprecise measurements have been made.
 
-### Wrapping Up
+## Wrapping Up
 
 As much as we would like to reduce statistical reasoning down to a simple yes-no decision, basing scientific judgements on just a single measure can lead us down a treacherous path. There is no substitute for good scientific practice, and it requires that we go beyond simple rule-based judgements and consider related factors and assumptions that affect the measured outcome.
 

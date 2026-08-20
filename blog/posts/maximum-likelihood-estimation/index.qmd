@@ -1,8 +1,6 @@
 ---
 title: "An Introduction to Maximum Likelihood Estimation"
 subtitle: "A closer look at how to derive the estimator for the Binomial model"
-description: | 
-  Categories
 author: "Rob Taylor, PhD"
 date: "2022-08-10"
 draft: false
@@ -15,11 +13,13 @@ image-alt: "space texture"
 notes: "Photo by Jeremy Thomas on Unsplash"
 ---
 
-### Introduction
+![Photo by Jeremy Thomas on Unsplash](jeremy-thomas-4dpAqfTbvKA-unsplash.jpg){.post-hero}
+
+## Introduction
 
 In a previous [post](https://medium.com/@dataforyou/on-probability-versus-likelihood-83386b81ad83), I spoke about the difference between probability and likelihood and touched on the subject of maximum likelihood estimation (MLE). Here we’ll take a closer look at MLE and derive the maximum likelihood estimator for the Binomial model from first principles.
 
-### More Coin Flipping
+## More Coin Flipping
 
 Often when we compute simple statistics from data we’re actually doing MLE without even knowing it. I’ve always found this somewhat delightful; I’m not sure why, but I do. By way of example, suppose I flip a fair coin ten times and observe the following outcomes:
 
@@ -31,7 +31,7 @@ And you’d be right.
 
 But it also turns out that this rather innocuous little calculation is precisely the solution you’d get by stepping through the MLE process. Crazy, huh? Let’s see how this works.
 
-### What is Maximum Likelihood Estimation?
+## What is Maximum Likelihood Estimation?
 
 Maximum likelihood estimation is a way of estimating unknown parameters using observed data. The way it works is by finding combinations of parameters that maximize the *likelihood function* so that, given the assumed model, the data you have observed is most probable. If you imagine parameters like dials, what this boils down to is finding the dial settings that give the best fit to your data.
 
@@ -45,7 +45,7 @@ $$\mathcal{L}\left(\theta \ | \ X \right) = P \left(X \ | \ \theta \right)$$
 
 The term on the right-hand side is the probability mass function. More generally, it is a model function that describes how the data is distributed given certain parameter settings.
 
-### Throw a Log on the Likelihood
+## Throw a Log on the Likelihood
 
 Okay, so let's now connect these ideas with the coin flip data described above. But first, I’m just going to make a little change and replace all “H’s” with a 1 and all “T’s” with a 0. This means we can now take the sum over $X$ to get the total number of “heads”. Let’s call this $K$. The Binomial likelihood function can then be written as:
 
@@ -57,7 +57,7 @@ $$\ln \mathcal{L}\left(\theta \ | \ X \right) = \ln \binom{N}{K} + K \ln p + \le
 
 The first term on the right-hand side — the log of the binomial coefficient — is typically dropped because it’s a constant term that doesn’t affect parameter estimation. For present purposes, it really doesn’t matter whether you log transform the likelihood function or not. Because both functions are monotonically related you can maximize either one and arrive at the same result. In general, though, it’s a good idea to work with logs.
 
-### Taking Derivatives
+## Taking Derivatives
 
 Right. So we now have our log-likelihood function. Now what?
 
@@ -87,7 +87,7 @@ $$\hat{p} = \frac{K}{N}$$
 
 This is exactly what you calculated earlier! Remember, *K* is just the number of “heads” we observed and *N* was the total number of throws, which gives us 0.60. Amazing.
 
-### Finishing on a High
+## Finishing on a High
 
 We’re not quite done, though.
 
@@ -101,7 +101,7 @@ $$\frac{K}{p^2} - \frac{N - K}{(1 - p)^2} = \frac{6}{0.60^2} - \frac{10 - 6}{(1 
 
 which is less than zero. Happy days.
 
-### Final Points
+## Final Points
 
 I should make clear that not all MLE problems can be solved this way. For this post, I deliberately picked an example where a unique solution exists. However, in the wild, this need not be the case. Moreover, real-world models typically have several parameters and produce distributions that are not necessarily linear. This often means simple analytical solutions are not obtainable and solutions must be obtained numerically using non-linear optimization algorithms.
 

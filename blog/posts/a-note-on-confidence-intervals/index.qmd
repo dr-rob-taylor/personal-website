@@ -1,7 +1,6 @@
 ---
 title: "A Note on Confidence Intervals"
 subtitle: "What a confidence interval is - but more importantly, what it is not."
-description: |
 author: "Rob Taylor, PhD"
 date: "2022-11-07"
 draft: false
@@ -15,8 +14,9 @@ image: joel-henry-fU-oPNhdsO8-unsplash.jpg
 image-alt: "cosmic texture"
 bibliography: references.bib
 ---
+![Photo by Joel Henry on Unsplash](joel-henry-fU-oPNhdsO8-unsplash.jpg){.post-hero}
 
-### Introduction
+## Introduction
 
 Statisticians like to estimate things — and fair enough. We’re often interested in some property that exists within a population but cannot actually observe the entire populace — without, you know, infinite time and money. The best we can do is draw a sample from it and hope that our estimation procedure yields a statistic that isn’t too far away from the truth.
 
@@ -34,7 +34,7 @@ Frankly, the name doesn’t help. The choice to use “confidence” is unfortun
 
 If it’s not clear where the error in reasoning is, read on.
 
-### What’s the Issue?
+## What’s the Issue?
 
 Where the error lies is in the tendency to conflate “confidence” with one’s own belief about, or perceived plausibility of, the values contained within the interval. Given the intent of the confidence procedure — that is, the procedure through which confidence intervals are computed — such interpretations are simply not permitted.
 
@@ -80,7 +80,7 @@ As Jerzy Neyman (1937) himself puts it:
 
 > It will be noticed that in the above description, the probability statements refer to the problems of estimation with which the statistician will be concerned in the future. In fact, I have repeatedly stated that the frequency of correct results will tend to *α*. Consider now the case when a sample is already drawn, and the calculations have given \[particular limits\]. Can we say that in this particular case the probability of the true value \[falling between these limits\] is equal to *α*? The answer is obviously in the negative. The parameter is an unknown constant, and no probability statement concerning its value may be made…[@neyman1937outline]
 
-### Bayesian versus Frequentist Interpretations
+## Bayesian versus Frequentist Interpretations
 
 The problem we’re faced with is that we *can’t* know whether an observed interval contains the true parameter value, yet we want to make some statement about this uncertainty. The desire to use a probabilistic interpretation is a very understandable one, and it is almost instinctual to claim that there is a 95% probability that the parameter lies within a computed range. The problem the confidence fallacy introduces, however, is *incoherence.*
 
