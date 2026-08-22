@@ -123,48 +123,48 @@ A recurring theme here will be building Bayesian intuition from the ground up: w
 [All 10 papers](../publications/){.pubs-see-all}
 :::
 
-::: {.pub-entry}
-::: {.pub-citation}
-[Taylor, R.]{.pub-author-highlight}, Tomić, I., Aagten-Murphy, D., & Bays, P. M. (2022). Working memory is updated by reallocation of resources from obsolete to new items. [*Attention, Perception, & Psychophysics*]{.pub-venue}, 1--15.
+::: {.selected-pub-entry}
+::: {.pub-year}
+2022
 :::
-::: {.pub-links}
-[PDF](https://link.springer.com/article/10.3758/s13414-022-02584-2)
-:::
-:::
-
-::: {.pub-entry}
-::: {.pub-citation}
-Schneegans, S., [Taylor, R.]{.pub-author-highlight}, & Bays, P. M. (2020). Stochastic sampling provides a unifying account of visual working memory limits. [*Proceedings of the National Academy of Sciences, 117(34)*]{.pub-venue}, 20959--20968.
-:::
-::: {.pub-links}
-[PDF](https://www.pnas.org/doi/epdf/10.1073/pnas.2004306117)
+::: {.pub-text}
+[Taylor, R.]{.pub-author-highlight}, Tomić, I., Aagten-Murphy, D., & Bays, P. M. Working memory is updated by reallocation of resources from obsolete to new items. [*Attention, Perception, & Psychophysics*]{.pub-venue}, 1--15. [PDF](https://link.springer.com/article/10.3758/s13414-022-02584-2)
 :::
 :::
 
-::: {.pub-entry}
-::: {.pub-citation}
-[Taylor, R.]{.pub-author-highlight}, & Bays, P. M. (2020). Theory of neural coding predicts an upper bound on estimates of memory variability. [*Psychological Review, 127(5)*]{.pub-venue}, 700.
+::: {.selected-pub-entry}
+::: {.pub-year}
+2020
 :::
-::: {.pub-links}
-[PDF](https://psycnet.apa.org/fulltext/2020-19842-001.pdf)
-:::
-:::
-
-::: {.pub-entry}
-::: {.pub-citation}
-[Taylor, R.]{.pub-author-highlight}, & Bays, P. M. (2018). Efficient coding in visual working memory accounts for stimulus-specific variations in recall. [*Journal of Neuroscience, 38(32)*]{.pub-venue}, 7132--7142.
-:::
-::: {.pub-links}
-[PDF](https://www.jneurosci.org/content/jneuro/38/32/7132.full.pdf)
+::: {.pub-text}
+Schneegans, S., [Taylor, R.]{.pub-author-highlight}, & Bays, P. M. Stochastic sampling provides a unifying account of visual working memory limits. [*Proceedings of the National Academy of Sciences, 117(34)*]{.pub-venue}, 20959--20968. [PDF](https://www.pnas.org/doi/epdf/10.1073/pnas.2004306117)
 :::
 :::
 
-::: {.pub-entry}
-::: {.pub-citation}
-Bays, P. M., & [Taylor, R.]{.pub-author-highlight} (2018). A neural model of retrospective attention in visual working memory. [*Cognitive Psychology, 100*]{.pub-venue}, 43--52.
+::: {.selected-pub-entry}
+::: {.pub-year}
+2020
 :::
-::: {.pub-links}
-[PDF](https://reader.elsevier.com/reader/sd/pii/S0010028517302645)
+::: {.pub-text}
+[Taylor, R.]{.pub-author-highlight}, & Bays, P. M. Theory of neural coding predicts an upper bound on estimates of memory variability. [*Psychological Review, 127(5)*]{.pub-venue}, 700. [PDF](https://psycnet.apa.org/fulltext/2020-19842-001.pdf)
+:::
+:::
+
+::: {.selected-pub-entry}
+::: {.pub-year}
+2018
+:::
+::: {.pub-text}
+[Taylor, R.]{.pub-author-highlight}, & Bays, P. M. Efficient coding in visual working memory accounts for stimulus-specific variations in recall. [*Journal of Neuroscience, 38(32)*]{.pub-venue}, 7132--7142. [PDF](https://www.jneurosci.org/content/jneuro/38/32/7132.full.pdf)
+:::
+:::
+
+::: {.selected-pub-entry}
+::: {.pub-year}
+2018
+:::
+::: {.pub-text}
+Bays, P. M., & [Taylor, R.]{.pub-author-highlight} A neural model of retrospective attention in visual working memory. [*Cognitive Psychology, 100*]{.pub-venue}, 43--52. [PDF](https://reader.elsevier.com/reader/sd/pii/S0010028517302645)
 :::
 :::
 

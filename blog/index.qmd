@@ -70,12 +70,21 @@ Statistics, probability, and Bayesian thinking — built from the ground up.
       all.classList.add('active');
     }
     var rest = items.filter(function(el) { return el !== all; });
+    // Sort by post count descending (most-used categories first, matching
+    // the design), falling back to alphabetical for ties.
     rest.sort(function(a, b) {
       var ca = parseInt((a.querySelector('.quarto-category-count') || {}).textContent.replace(/\D/g, ''), 10) || 0;
       var cb = parseInt((b.querySelector('.quarto-category-count') || {}).textContent.replace(/\D/g, ''), 10) || 0;
-      return cb - ca;
+      if (cb !== ca) return cb - ca;
+      return a.textContent.localeCompare(b.textContent);
     });
     rest.forEach(function(el, i) { el.style.display = i < max ? '' : 'none'; });
+    // Quarto's widget only lets us hide the trimmed-out categories in
+    // place — it doesn't order them by count. Physically reorder the DOM
+    // nodes so the visible chips actually read in count order too.
+    var frag = document.createDocumentFragment();
+    rest.forEach(function(el) { frag.appendChild(el); });
+    cats.appendChild(frag);
   }
 
   function relocate() {

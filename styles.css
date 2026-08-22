@@ -20,6 +20,12 @@ body {
   line-height: 1.6;
   color: var(--cl-text);
   background: var(--cl-ground);
+  /* Bootstrap's reboot forces grayscale/subpixel-disabled antialiasing on
+     body, which thins out serif strokes noticeably at these text sizes —
+     the mockup never sets this (defaults to the browser's own hinting),
+     so undo it here to match. */
+  -webkit-font-smoothing: auto;
+  -moz-osx-font-smoothing: auto;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -66,6 +72,26 @@ h2 {
 .page-columns.page-layout-full > main.content {
   grid-column: 1 / -1;
   width: 100%;
+}
+
+/* Quarto's own grid reserves a second, empty "page-bottom" row (~60px)
+   below the content row on every page — on top of main's own bottom
+   margin not quite reaching the row's true content height, this was
+   adding ~150px of unaccounted space between the page content and the
+   footer, well past the design's intended gap. Keep the named lines
+   themselves (content-top/content-bottom/page-bottom) intact — other
+   grid items (the margin sidebar, giscus comments) are positioned
+   against them and lose their placement entirely if the lines vanish —
+   just zero out the phantom row's own height. */
+#quarto-content {
+  grid-template-rows: [content-top] auto [content-bottom] 0px [page-bottom];
+}
+
+/* The remaining excess was main's own default 18px margin-bottom —
+   nothing follows main but the footer, so this only ever added
+   unwanted space, never separated it from anything. */
+main.content {
+  margin-bottom: 0;
 }
 
 /* Pages with an empty title: "" and a leading level-1 heading get that
@@ -339,6 +365,24 @@ img.plate {
   gap: 28px;
 }
 
+/* The kicker/h1/body/buttons are each their own auto-wrapped <p> (or, for
+   h1/body, already explicitly reset) — kicker's default paragraph margin
+   was stacking on top of the 28px flex gap, pushing it further from the
+   title than intended. */
+.home-lead .lead-inner p {
+  margin: 0;
+}
+
+/* The kicker's <p> also still inherits the body's 18px/1.6 font for its
+   own line box (the "strut"), even though the visible 13px kicker text
+   comes from a child span — that taller invisible strut pushed the
+   eyebrow down within it, offsetting it from the flex column's actual
+   top. Same fix as the "Recently"/"Elsewhere" rail headings. */
+.home-lead .lead-inner p:has(.lead-kicker) {
+  font-size: 13px;
+  line-height: 1;
+}
+
 .home-lead .lead-kicker {
   font-family: "Cormorant Garamond", Georgia, serif;
   font-size: 13px;
@@ -403,6 +447,14 @@ img.plate {
   font-size: clamp(24px, 3.4vw, 30px);
 }
 
+/* "All posts" is Pandoc's auto-wrapped <p> around the link — its
+   unreset default margin was stretching this flex row (baseline-aligned,
+   so a taller flex item pushes the row's own bottom edge, and the
+   divider below it, further down than the row's actual content). */
+.home-posts .posts-header p {
+  margin: 0;
+}
+
 .home-posts .posts-header a,
 .home-posts .posts-header a.posts-all-link {
   font-family: "Cormorant Garamond", Georgia, serif;
@@ -422,9 +474,16 @@ img.plate {
   vertical-align: middle;
 }
 
-/* Post rows on home page — using Quarto's listing */
+/* Post rows on home page — using Quarto's listing. Quarto's own default
+   also puts a 36px margin-right on this (presumably sized for a category
+   sidebar this layout doesn't have), silently narrowing every row and
+   forcing subtitles to wrap a line earlier than the mockup — and an 18px
+   padding-bottom past the last row's own divider, throwing off the gap
+   to whatever follows (the newsletter card). */
 .home-posts .quarto-listing-container-default {
   max-width: 100%;
+  margin-right: 0;
+  padding-bottom: 0;
 }
 
 .home-posts div.quarto-post {
@@ -459,6 +518,13 @@ img.plate {
   box-shadow: none;
 }
 
+/* Quarto's own listing default drops the border on the last row (a
+   card/list-group convention) with higher specificity than the rule
+   above — the mockup keeps a rule under every row, last one included. */
+.home-posts div.quarto-post:last-child {
+  border-bottom: 1px solid var(--cl-divider) !important;
+}
+
 /* Counter number — top offset matches the row's own padding-top
    (22px), same as the title and date now that the title's default
    browser margin-top (an unreset 28px, never actually a deliberate
@@ -485,17 +551,20 @@ img.plate {
   display: none;
 }
 
+/* Mockup lays title/subtitle/tags out as a single flex column with one
+   uniform 6px gap, rather than per-element margins — matched here so
+   spacing between all three is actually even, instead of each carrying
+   its own (previously unreset-default-sized) margin. */
 .home-posts div.quarto-post .body {
   flex: 1 1 220px;
   min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
 }
 
 .home-posts div.quarto-post h3.listing-title {
-  /* Browsers give h3 a default margin (~28px top here at this base
-     font size) that was never reset — the real source of both the
-     oversized gap above every title and the counter number needing a
-     28px fudge to line up with it. */
-  margin: 0 0 8px;
+  margin: 0;
 }
 
 .home-posts div.quarto-post h3 a {
@@ -510,9 +579,6 @@ img.plate {
 
 .home-posts div.quarto-post .listing-subtitle,
 .home-posts div.quarto-post .listing-description {
-  /* Quarto's own listing CSS gives this a small default margin
-     (3.4px/8.5px at this font size) that was never reset — same class
-     of bug as the h3 title margin above. */
   margin: 0;
   font-family: "Cormorant Garamond", Georgia, serif;
   font-size: 17px;
@@ -522,7 +588,7 @@ img.plate {
 }
 
 .home-posts div.quarto-post .listing-categories {
-  margin-top: 4px;
+  margin-top: 0;
   margin-bottom: 0;
 }
 
@@ -535,6 +601,11 @@ img.plate {
   background: transparent;
   border: none;
   padding: 0;
+}
+
+/* Separator between category tags — mockup joins them as "A · B · C" */
+.listing-category:not(:last-child)::after {
+  content: " · ";
 }
 
 .home-posts div.quarto-post .metadata {
@@ -566,13 +637,38 @@ img.plate {
 }
 
 .home-rail .rail-heading {
-  margin: 0 0 12px;
   font-family: "Cormorant Garamond", Georgia, serif;
   font-size: 13px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   font-weight: 600;
   color: var(--cl-text-muted);
+}
+
+/* .rail-heading is a <span> — top/bottom margin on an inline element has
+   no effect on layout, so the real gap below "Recently"/"Elsewhere" was
+   coming from its wrapping <p>'s unreset default margin instead. The <p>
+   also still inherits the body's 18px/1.6 font for its own line box (the
+   "strut"), even though the visible 13px text comes from the span inside
+   — that taller invisible strut was the source of the ~8px of phantom
+   space above "Recently", offsetting it from "Latest posts" alongside
+   it. Matching the <p>'s own font-size to the span's removes the strut
+   mismatch (mockup sidesteps this entirely by using a plain <h3> at
+   13px, with no inner span to override). */
+.home-rail p:has(.rail-heading) {
+  margin: 0 0 12px;
+  font-size: 13px;
+  line-height: 1;
+}
+
+/* Recently heading + its items are one .home-rail flex item (like
+   .elsewhere-links) — .rail-heading's own margin-bottom spaces it from
+   the list below, and .news-items gets its own tighter gap between
+   entries, both independent of .home-rail's wider 30px section gap. */
+.news-items {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
 /* Recently items — date and text are now separate paragraphs (each
@@ -586,7 +682,6 @@ img.plate {
   gap: 4px;
   padding-bottom: 15px;
   border-bottom: 1px solid rgba(32, 31, 29, 0.1);
-  margin-bottom: 16px;
 }
 
 .news-item-classical p {
@@ -595,7 +690,7 @@ img.plate {
 
 .news-item-classical:last-child {
   border-bottom: none;
-  margin-bottom: 0;
+  padding-bottom: 0;
 }
 
 .news-item-classical .news-date {
@@ -701,6 +796,15 @@ img.plate {
 .newsletter-form-wrap {
   flex: 1 1 300px;
   min-width: 0;
+}
+
+/* #newsletter-msg is empty until a submit attempt fills it in — but even
+   empty, its default paragraph margin-bottom still counts toward
+   .newsletter-form-wrap's own box. Since .newsletter-inner centers that
+   whole box vertically, the invisible trailing margin was pushing the
+   visible form up off-center. */
+.newsletter-msg {
+  margin: 0;
 }
 
 .newsletter-form {
@@ -1088,10 +1192,18 @@ div.quarto-post .metadata {
 /* Post title block */
 .quarto-title {
   max-width: 760px;
+  display: flex;
+  flex-direction: column;
 }
 
 .quarto-title .quarto-categories {
+  /* Topmost in the title block, above the h1/subtitle, matching the design. */
+  order: -1;
   margin-bottom: 16px;
+}
+
+.quarto-title .quarto-categories .quarto-category:not(:last-child)::after {
+  content: " · ";
 }
 
 .quarto-title .quarto-categories .quarto-category {
@@ -1103,7 +1215,6 @@ div.quarto-post .metadata {
   border: none;
   background: transparent;
   padding: 0;
-  margin-right: 12px;
 }
 
 .quarto-title h1.title {
@@ -1126,7 +1237,12 @@ div.quarto-post .metadata {
 
 /* Post metadata line — compact inline row, labels hidden */
 .quarto-title-meta {
-  display: flex;
+  /* Quarto's own core CSS sets this to a 2-column grid, which loads after
+     ours and wins the cascade — invisible with 2 metadata items (they
+     still land in one row), but a 3rd (reading time) wraps to a new row
+     unless flex is forced here. */
+  display: flex !important;
+  flex-wrap: nowrap;
   align-items: center;
   gap: 14px;
   font-family: "Cormorant Garamond", Georgia, serif;
@@ -1196,6 +1312,17 @@ figure:has(> p > img.post-hero) figcaption {
 .page-layout-article main.content {
   font-size: 18.5px;
   line-height: 1.65;
+  /* Quarto's own named grid columns leave the article ~150px narrower
+     than the navbar on each side. Take it out of that grid and match the
+     navbar's own box model exactly instead (.navbar-container.container-fluid:
+     max-width 1040px, 32px side padding) so the content lines up with the
+     brand on the left and "About" on the right. */
+  grid-column: 1 / -1;
+  max-width: 1040px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 32px;
+  padding-right: 32px;
 }
 
 .page-layout-article main.content p {
@@ -1238,6 +1365,68 @@ figcaption {
   line-height: 1.45;
   color: var(--cl-text-quiet);
   margin-top: 9px;
+}
+
+/* Post body layout — TOC relocated (via toc-layout.js) to sit beside the
+   prose, starting below the hero, instead of Quarto's page-wide margin
+   column. Prose is first in the DOM (mobile stacks TOC below it); `order`
+   puts the TOC back on the left once there's room for both. */
+.post-body-columns {
+  display: flex;
+  align-items: flex-start;
+  gap: 48px;
+}
+
+.post-body-prose {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.post-body-columns #quarto-sidebar {
+  order: -1;
+  flex: 0 0 230px;
+  position: sticky;
+  top: 84px;
+}
+
+@media (max-width: 900px) {
+  .post-body-columns {
+    display: block;
+  }
+}
+
+/* Hidden until toc-layout.js has moved it into .post-body-columns —
+   otherwise it briefly renders in Quarto's original page-margin spot
+   (or, on mobile, off-canvas-drawer-hidden) and visibly snaps into
+   place a moment later. */
+#quarto-sidebar {
+  visibility: hidden;
+}
+
+#quarto-sidebar.post-toc-ready {
+  visibility: visible !important;
+}
+
+/* "All writing" breadcrumb — injected by toc-layout.js, since Quarto's
+   title block has no built-in link back to the index. */
+.all-writing-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--cl-accent-text);
+  text-decoration: none;
+}
+
+.all-writing-rule {
+  display: inline-block;
+  width: 16px;
+  height: 1px;
+  background: var(--cl-accent-light);
 }
 
 /* TOC sidebar — sticky left rail */
@@ -1309,7 +1498,6 @@ nav.toc-active {
   #quarto-sidebar.sidebar.collapse {
     position: static !important;
     display: block !important;
-    visibility: visible !important;
     transform: none !important;
     width: 100% !important;
     height: auto !important;
@@ -1406,6 +1594,16 @@ pre code {
   margin-bottom: 10px;
 }
 
+/* Pandoc wraps each bracketed-span-only line in its own <p> — those
+   paragraphs, not the spans inside them, are the actual flex items here. */
+.pubs-year-header p {
+  margin: 0;
+}
+
+.pubs-year-header p:has(.year-rule) {
+  flex: 1;
+}
+
 .pubs-year-header .year-num {
   font-family: "Cormorant Garamond", Georgia, serif;
   font-size: 30px;
@@ -1414,7 +1612,8 @@ pre code {
 }
 
 .pubs-year-header .year-rule {
-  flex: 1;
+  display: block;
+  width: 100%;
   height: 1px;
   background: var(--cl-accent-light);
 }
@@ -1438,12 +1637,21 @@ pre code {
   color: var(--cl-text);
 }
 
-.pub-entry .pub-venue {
+/* The citation text is a single auto-wrapped <p> — its default bottom
+   margin was stacking on top of .pub-entry's own 14px padding-bottom,
+   pushing the divider well past the text. */
+.pub-entry .pub-citation p {
+  margin: 0;
+}
+
+.pub-entry .pub-venue,
+.selected-pub-entry .pub-venue {
   color: var(--cl-text-muted);
   font-style: italic;
 }
 
-.pub-entry .pub-author-highlight {
+.pub-entry .pub-author-highlight,
+.selected-pub-entry .pub-author-highlight {
   color: var(--cl-accent-text);
 }
 
@@ -1481,6 +1689,14 @@ pre code {
   min-width: 0;
 }
 
+/* Each rail-label/stat-num/stat-label/"Full list" line is its own <p>
+   (split onto separate markdown lines so they're separate flex items) —
+   reset the browser's default paragraph margin so only the flex `gap`
+   values above/below control spacing. */
+.pubs-rail p {
+  margin: 0;
+}
+
 @media (max-width: 900px) {
   .pubs-rail {
     position: static !important;
@@ -1515,6 +1731,13 @@ pre code {
 .pubs-rail .rail-stat .stat-label {
   font-family: "Cormorant Garamond", Georgia, serif;
   font-size: 15px;
+  color: var(--cl-text-muted);
+}
+
+.pubs-rail .rail-note {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 16px;
+  line-height: 1.55;
   color: var(--cl-text-muted);
 }
 
@@ -1846,9 +2069,32 @@ pre code {
   font-feature-settings: "tnum";
 }
 
+.selected-pub-entry .pub-year p {
+  margin: 0;
+  font-size: 14px;
+}
+
+/* .about-main p sets a clamp(17px..20px) justified size for the page's
+   prose paragraphs — since font-size/text-align aren't inherited-only
+   properties here but a direct rule on <p> itself, it wins over anything
+   set on .pub-text (the wrapping div) and must be overridden on the <p>
+   directly to actually take effect. */
+.selected-pub-entry .pub-text p {
+  margin: 0;
+  font-size: 17px;
+  line-height: 1.55;
+  text-align: left;
+  hyphens: none;
+}
+
 .selected-pub-entry .pub-text {
   font-size: 17px;
   line-height: 1.55;
+}
+
+.selected-pub-entry .pub-text a {
+  color: var(--cl-accent-text);
+  text-decoration: none;
 }
 
 /* Get in touch card */
@@ -2005,6 +2251,10 @@ pre code {
   color: var(--cl-text-quiet) !important;
 }
 
+.nav-footer p {
+  letter-spacing: 0.06em;
+}
+
 .nav-footer a {
   color: var(--cl-accent-text) !important;
   text-decoration: none !important;
@@ -2041,6 +2291,17 @@ pre code {
    the same spacing as when the H1 was still inside .page-header. */
 #title-block-header {
   margin: 0;
+}
+
+/* main.content's own top padding+margin (14px+18px, Quarto's own
+   defaults — not ours) only gets the title block halfway to the
+   mockup's gap below the navbar; the mockup gives it roughly double.
+   Scoped to :not(:empty) so this doesn't touch pages like Home/About/404
+   where the hoisted-title mechanism leaves this header genuinely empty
+   (their real heading lives elsewhere, further down, with its own
+   spacing already matching the mockup). */
+#title-block-header:not(:empty) {
+  margin-top: 32px;
 }
 
 .page-header-classical p,

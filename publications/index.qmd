@@ -6,17 +6,19 @@ search: false
 ---
 
 ::::::::::::::::::::::::::::::::::::::::::::::::: column-body-outset
-:::::::::::::::::::::::::::::::::::::::::::::::: pubs-layout
-:::::::::::::::::::::::::::::::::::::::::::: pubs-main
 ::: page-header
 # Publications
 
 Peer-reviewed work, mostly on visual working memory, neural coding, and model-based inference.
 :::
 
+:::::::::::::::::::::::::::::::::::::::::::::::: pubs-layout
+:::::::::::::::::::::::::::::::::::::::::::: pubs-main
 ::::::: pubs-year-group
 ::: pubs-year-header
 [2022]{.year-num}
+
+[]{.year-rule}
 :::
 
 ::::: pub-entry
@@ -25,7 +27,7 @@ Peer-reviewed work, mostly on visual working memory, neural coding, and model-ba
 :::
 
 ::: pub-links
-[PDF](https://link.springer.com/article/10.3758/s13414-022-02584-2)
+[DOI](#) [PDF](https://link.springer.com/article/10.3758/s13414-022-02584-2)
 :::
 :::::
 :::::::
@@ -33,6 +35,8 @@ Peer-reviewed work, mostly on visual working memory, neural coding, and model-ba
 :::::::::: pubs-year-group
 ::: pubs-year-header
 [2020]{.year-num}
+
+[]{.year-rule}
 :::
 
 ::::: pub-entry
@@ -41,7 +45,7 @@ Schneegans, S., [Taylor, R.]{.pub-author-highlight}, & Bays, P. M. (2020). Stoch
 :::
 
 ::: pub-links
-[PDF](https://www.pnas.org/doi/epdf/10.1073/pnas.2004306117)
+[DOI](#) [PDF](https://www.pnas.org/doi/epdf/10.1073/pnas.2004306117)
 :::
 :::::
 
@@ -51,7 +55,7 @@ Schneegans, S., [Taylor, R.]{.pub-author-highlight}, & Bays, P. M. (2020). Stoch
 :::
 
 ::: pub-links
-[PDF](https://psycnet.apa.org/fulltext/2020-19842-001.pdf)
+[DOI](#) [PDF](https://psycnet.apa.org/fulltext/2020-19842-001.pdf)
 :::
 :::::
 ::::::::::
@@ -59,6 +63,8 @@ Schneegans, S., [Taylor, R.]{.pub-author-highlight}, & Bays, P. M. (2020). Stoch
 :::::::::: pubs-year-group
 ::: pubs-year-header
 [2018]{.year-num}
+
+[]{.year-rule}
 :::
 
 ::::: pub-entry
@@ -67,7 +73,7 @@ Schneegans, S., [Taylor, R.]{.pub-author-highlight}, & Bays, P. M. (2020). Stoch
 :::
 
 ::: pub-links
-[PDF](https://www.jneurosci.org/content/jneuro/38/32/7132.full.pdf)
+[DOI](#) [PDF](https://www.jneurosci.org/content/jneuro/38/32/7132.full.pdf)
 :::
 :::::
 
@@ -77,7 +83,7 @@ Bays, P. M., & [Taylor, R.]{.pub-author-highlight} (2018). A neural model of ret
 :::
 
 ::: pub-links
-[PDF](https://reader.elsevier.com/reader/sd/pii/S0010028517302645)
+[DOI](#) [PDF](https://reader.elsevier.com/reader/sd/pii/S0010028517302645)
 :::
 :::::
 ::::::::::
@@ -85,6 +91,8 @@ Bays, P. M., & [Taylor, R.]{.pub-author-highlight} (2018). A neural model of ret
 ::::::::::::: pubs-year-group
 ::: pubs-year-header
 [2017]{.year-num}
+
+[]{.year-rule}
 :::
 
 ::::: pub-entry
@@ -93,7 +101,7 @@ Bays, P. M., & [Taylor, R.]{.pub-author-highlight} (2018). A neural model of ret
 :::
 
 ::: pub-links
-[PDF](http://www2.psy.unsw.edu.au/users/cdonkin/publications/jml17.pdf)
+[DOI](#) [PDF](http://www2.psy.unsw.edu.au/users/cdonkin/publications/jml17.pdf)
 :::
 :::::
 
@@ -103,7 +111,7 @@ Konstantinidis, E., [Taylor, R. T.]{.pub-author-highlight}, & Newell, B. R. (201
 :::
 
 ::: pub-links
-[PDF](https://link.springer.com/article/10.3758/s13423-017-1383-8)
+[DOI](#) [PDF](https://link.springer.com/article/10.3758/s13423-017-1383-8)
 :::
 :::::
 
@@ -113,7 +121,7 @@ Hayes, B. K., Dunn, J. C., Joubert, A., & [Taylor, R.]{.pub-author-highlight} (2
 :::
 
 ::: pub-links
-[PDF](https://onlinelibrary.wiley.com/doi/am-pdf/10.1111/desc.12469)
+[DOI](#) [PDF](https://onlinelibrary.wiley.com/doi/am-pdf/10.1111/desc.12469)
 :::
 :::::
 :::::::::::::
@@ -121,6 +129,8 @@ Hayes, B. K., Dunn, J. C., Joubert, A., & [Taylor, R.]{.pub-author-highlight} (2
 :::::::::: pubs-year-group
 ::: pubs-year-header
 [2016]{.year-num}
+
+[]{.year-rule}
 :::
 
 ::::: pub-entry
@@ -129,7 +139,7 @@ Kary, A., [Taylor, R.]{.pub-author-highlight}, & Donkin, C. (2016). Using Bayes 
 :::
 
 ::: pub-links
-[PDF](http://www2.psy.unsw.edu.au/users/cdonkin/publications/jmp16.pdf)
+[DOI](#) [PDF](http://www2.psy.unsw.edu.au/users/cdonkin/publications/jmp16.pdf)
 :::
 :::::
 
@@ -139,7 +149,7 @@ Donkin, C., Kary, A., Tahir, F., & [Taylor, R.]{.pub-author-highlight} (2016). R
 :::
 
 ::: pub-links
-[PDF](https://d1wqtxts1xzle7.cloudfront.net/47290784/cp16b-libre.pdf)
+[DOI](#) [PDF](https://d1wqtxts1xzle7.cloudfront.net/47290784/cp16b-libre.pdf)
 :::
 :::::
 ::::::::::
@@ -149,14 +159,20 @@ Donkin, C., Kary, A., Tahir, F., & [Taylor, R.]{.pub-author-highlight} (2016). R
 [At a glance]{.rail-label}
 
 ::: rail-stat
-[10]{.stat-num} [peer-reviewed papers]{.stat-label}
+[10]{.stat-num}
+
+[peer-reviewed papers]{.stat-label}
 :::
 
 ::: rail-stat
-[2016–22]{.stat-num} [publication window]{.stat-label}
+[2016–22]{.stat-num}
+
+[publication window]{.stat-label}
 :::
 
+::: rail-note
 Full list also on [Google Scholar](https://scholar.google.com/citations?user=PLACEHOLDER){target="_blank"}.
+:::
 :::::
 ::::::::::::::::::::::::::::::::::::::::::::::::
 :::::::::::::::::::::::::::::::::::::::::::::::::

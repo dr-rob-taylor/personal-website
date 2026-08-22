@@ -16,7 +16,7 @@ listing:
 ::::: lead-inner
 [Statistics · Probability · Bayesian thinking]{.lead-kicker}
 
-# Understanding uncertainty, from first principles.
+<h1>Understanding uncertainty, from first principles.</h1>
 
 ::: lead-body
 I'm a psychologist writing about statistics, probability and mathematical modelling — for people in data, and for anyone who wants the intuition and not just the procedure.
@@ -41,8 +41,10 @@ I'm a psychologist writing about statistics, probability and mathematical modell
 :::::
 
 ::::::: home-rail
+:::: recently-block
 [Recently]{.rail-heading}
 
+::: news-items
 ::: news-item-classical
 [Aug 2026]{.news-date}
 
@@ -62,6 +64,8 @@ I'm a psychologist writing about statistics, probability and mathematical modell
 
 [Site launched. Publishing on statistics, probability, and Bayesian inference.]{.news-text}
 :::
+:::
+::::
 
 ::: elsewhere-links
 [Elsewhere]{.rail-heading}
@@ -83,14 +87,9 @@ One email per post. Statistics, probability, and the occasional gripe about how 
 
 ::: newsletter-form-wrap
 <form class="newsletter-form" id="newsletter-form" novalidate>
-
 <input type="text" inputmode="email" autocomplete="email" id="newsletter-email" placeholder="you@example.com" aria-label="Email address"> <button type="submit" class="btn btn-primary">Subscribe</button>
-
 </form>
-
-<p class="newsletter-msg" id="newsletter-msg">
-
-</p>
+<p class="newsletter-msg" id="newsletter-msg"></p>
 :::
 :::::
 ::::::

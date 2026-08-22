@@ -23,7 +23,9 @@ Web applications, R packages, and code. Tools I built because I needed them.
 I got fed up with Medium's lack of LaTeX support — and with the third-party tools around it — so I built my own. If you publish mathematical content on Medium, you might find this useful.
 
 ::: sw-meta
-*Type* — Web application \| *Stack* — HTML / CSS / JavaScript
+*Type* — Web application
+
+*Stack* — HTML / CSS / JavaScript
 :::
 
 ::: sw-actions
@@ -41,7 +43,9 @@ I got fed up with Medium's lack of LaTeX support — and with the third-party to
 An interactive Shiny application for teaching the fundamentals of statistics — sampling, estimation, and inference explored by moving the parts rather than reading about them. Built for the students I keep meeting who can run the test but can't say what it assumes.
 
 ::: sw-meta
-*Type* — R package & Shiny app \| *Stack* — R / Shiny
+*Type* — R package & Shiny app
+
+*Stack* — R / Shiny
 :::
 
 [In development — I'll post here and to the newsletter when there's something to try.]{.sw-note}

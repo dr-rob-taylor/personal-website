@@ -30,6 +30,7 @@ website:
 format:
   html:
     toc: true
+    date-format: "D MMM YYYY"
     anchor-sections: false
     smooth-scroll: true
     html-math-method: katex
@@ -43,5 +44,7 @@ format:
           <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
     include-after-body:
       - file: _includes/newsletter.js
+      - file: _includes/reading-time.js
+      - file: _includes/toc-layout.js
 
 editor: visual
