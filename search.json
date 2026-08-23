@@ -2,15 +2,36 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "robtaylor",
+    "title": "\nUnderstanding uncertainty, from first principles.\n",
     "section": "",
-    "text": "Statistics has a reputation for being intimidating. It doesn’t have to be.\nThe content on this site is written for anyone who works with data and wants to go beyond the mechanics — to understand not just how the methods work, but why they work, and when to trust them. Every post aims to build genuine intuition from first principles, with mathematics that illuminates rather than obscures.\nLearn more\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThe case for teaching statistics as reasoning, not procedure\n\n\n\nRob Taylor, PhD\n\n\nApr 24, 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWhy classical assumption checks are no longer gatekeepers, and how modern ANOVA methods handle heterogeneity directly.\n\n\n\nRob Taylor, PhD\n\n\nApr 15, 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nMy push back against the “data trinity”\n\n\n\nRob Taylor, PhD\n\n\nAug 23, 2025\n\n\n\n\n\n\nNo matching items\n\nSee more"
+    "text": "Statistics · Probability · Bayesian thinking\n\n\nI’m a psychologist writing about statistics, probability and mathematical modelling — for people in data, and for anyone who wants the intuition and not just the procedure.\n\n\nRead the writing About me"
   },
   {
-    "objectID": "about/index.html",
-    "href": "about/index.html",
-    "title": "Rob Taylor",
+    "objectID": "index.html#latest-posts",
+    "href": "index.html#latest-posts",
+    "title": "\nUnderstanding uncertainty, from first principles.\n",
+    "section": "Latest posts",
+    "text": "Latest posts\nAll posts"
+  },
+  {
+    "objectID": "Personal website UI mockups/github.html",
+    "href": "Personal website UI mockups/github.html",
+    "title": "rob taylor",
     "section": "",
-    "text": "Motivation\nStatistics is one of the most powerful tools for understanding the world — and one of the most poorly taught. Too often it’s presented as a collection of procedures to follow rather than a coherent way of thinking about uncertainty. The mechanics get taught; the intuition doesn’t.\nMuch of my writing exists to change that, at least in a small way. Every post here is written with a single goal: to help you understand not just how a method works, but why it works and when you should trust it. The mathematics is taken seriously, but it’s always in service of understanding — never an end in itself.\nIf you leave a post feeling like something that was previously opaque has genuinely clicked, that’s the goal achieved.\n\n\nBackground\nMy path to statistics was not a straight line. I trained originally as a cognitive psychologist, completing a PhD focused on psychophysics, visual memory, and perception. Much of that work involved building and fitting mathematical models to understand how humans process sensory information — which meant getting very comfortable with probability, inference, and the question of what data can and cannot tell you.\nFrom academia I moved into applied data science, working for New Zealand Police where the stakes of analytical decisions are very real. That experience — taking statistical thinking out of the controlled environment of a research lab and into messy, consequential, real-world problems — sharpened my understanding of where methods work, where they break down, and where good judgement has to fill the gap.\nI recently returned to academia and am building models of food systems.\n\n\nOn Bayesian Inference\nIf there is one thread running through most of what I write, it is probability as a language for uncertainty. Bayesian inference is not just a set of methods to me — it is a coherent framework for reasoning under uncertainty that I find both intellectually compelling and practically powerful.\nA recurring theme here will be building Bayesian intuition from the ground up: what it means to have a prior, what it means to update on evidence, and why that way of thinking changes how you approach data problems.\n\n\nGet in Touch\nIf you have questions, suggestions, or just want to talk statistics, I’d love to hear from you."
+    "text": "repo: dr-rob-taylor/personal-website branch: main"
+  },
+  {
+    "objectID": "Personal website UI mockups/github.html#last-sync",
+    "href": "Personal website UI mockups/github.html#last-sync",
+    "title": "rob taylor",
+    "section": "Last sync",
+    "text": "Last sync\ndate: 2026-08-18T08:49:24Z\n\nUpdated in this project\n\nPulled the real ggplot outputs for the dual-axis post (base and final plot) into assets/.\nReplaced placeholder R code with the post’s actual sec_axis walkthrough and prose.\nMulticollinearity post now carries its real display equations (collinearity, VIF)."
+  },
+  {
+    "objectID": "Personal website UI mockups/github.html#screen-map",
+    "href": "Personal website UI mockups/github.html#screen-map",
+    "title": "rob taylor",
+    "section": "Screen map",
+    "text": "Screen map\n\n\n\n\n\n\n\nProject screen\nBuilt from\n\n\n\n\nHome\nindex.qmd, _quarto.yml\n\n\nWriting (blog index)\nblog/index.qmd, blog/posts/*/index.qmd front matter\n\n\nBlog post\nblog/posts/*/index.qmd (bodies, figures, notes)\n\n\nSoftware + LaTeX editor\nsoftware/index.qmd, software/latex-editor/index.html\n\n\nPublications\npublications/index.qmd\n\n\nAbout\nabout/index.qmd, images/profile.jpg"
   }
 ]

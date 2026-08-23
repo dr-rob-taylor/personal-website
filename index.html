@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>robtaylor</title>
+<title>rob taylor</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -43,7 +43,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-773c3bb633b259146a05fb45e4da5169.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-9be6bd028c476a9e5884d70e30a8c230.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -74,20 +74,20 @@ ul.task-list li input[type="checkbox"] {
 <script>
 
   window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-featured-posts .list');
+    const listingTargetEl = window.document.querySelector('#listing-recent-posts .list');
     if (!listingTargetEl) {
       // No listing discovered, do not attach.
       return; 
     }
 
     const options = {
-      valueNames: ['listing-title','listing-subtitle','listing-author','listing-date','listing-image',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
+      valueNames: ['listing-title','listing-subtitle','listing-date','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
       
-      searchColumns: ["listing-title","listing-author","listing-date","listing-image","listing-description"],
+      searchColumns: ["listing-date","listing-title","listing-author","listing-subtitle","listing-image","listing-description"],
     };
 
     window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-featured-posts'] = new List('listing-featured-posts', options);
+    window['quarto-listings']['listing-recent-posts'] = new List('listing-recent-posts', options);
 
     if (window['quarto-listing-loaded']) {
       window['quarto-listing-loaded']();
@@ -101,6 +101,9 @@ ul.task-list li input[type="checkbox"] {
   })
   </script>
 <style>html{ scroll-behavior: smooth; }</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&amp;display=swap" rel="stylesheet">
 
   <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
   <script>document.addEventListener("DOMContentLoaded", function () {
@@ -153,47 +156,38 @@ window.Quarto = {
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+    <nav class="navbar navbar-expand " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">rob taylor</span>
     </a>
   </div>
-            <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-  <span class="navbar-toggler-icon"></span>
-</button>
-          <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav navbar-nav-scroll me-auto">
+          <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
     <a class="nav-link active" href="./index.html" aria-current="page"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./about/"> 
-<span class="menu-text">About</span></a>
+    <a class="nav-link" href="./blog/index.html"> 
+<span class="menu-text">Writing</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./blog/"> 
-<span class="menu-text">Blog</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./software/"> 
+    <a class="nav-link" href="./software/index.html"> 
 <span class="menu-text">Software</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./resources/"> 
-<span class="menu-text">Resources</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./publications/"> 
+    <a class="nav-link" href="./publications/index.html"> 
 <span class="menu-text">Publications</span></a>
   </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./about/index.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
 </ul>
-          </div> <!-- /navcollapse -->
-            <div class="quarto-navbar-tools">
+          <div class="quarto-navbar-tools">
 </div>
+            <div id="quarto-search" class="" title="Search"></div>
       </div> <!-- /container-fluid -->
     </nav>
 </header>
@@ -203,106 +197,213 @@ window.Quarto = {
 <!-- margin-sidebar -->
     
 <!-- main -->
-<main class="content page-columns page-full column-page" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+<main class="content column-page" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
 
 
 
 
-<div class="column-body-outset">
-<div class="welcome-panel">
-<section id="welcome" class="level2 section-heading">
-<h2 data-anchor-id="welcome">Welcome!</h2>
+<div class="home-lead">
+<div class="lead-inner">
+<p><span class="lead-kicker">Statistics · Probability · Bayesian thinking</span></p>
+<h1>
+Understanding uncertainty, from first principles.
+</h1>
+<div class="lead-body">
+<p>I’m a psychologist writing about statistics, probability and mathematical modelling — for people in data, and for anyone who wants the intuition and not just the procedure.</p>
+</div>
+<div class="lead-buttons">
+<p><a class="btn btn-primary" href="blog/">Read the writing</a> <a class="btn btn-secondary" href="about/">About me</a></p>
+</div>
+</div>
+</div>
+<div class="home-content">
+<div class="home-posts">
+<section id="latest-posts" class="level2 posts-header">
+<h2 data-anchor-id="latest-posts">Latest posts</h2>
+<p><a href="blog/" class="posts-all-link">All posts <span class="link-rule"></span></a></p>
 </section>
-<p>Statistics has a reputation for being intimidating. It doesn’t have to be.</p>
-<p>The content on this site is written for anyone who works with data and wants to go beyond the mechanics — to understand not just <em>how</em> the methods work, but <em>why</em> they work, and <em>when</em> to trust them. Every post aims to build genuine intuition from first principles, with mathematics that illuminates rather than obscures.</p>
-<p><a role="button" class="btn btn-outline-primary" href="about/index.html">Learn more</a></p>
+<div id="listing-recent-posts" class="quarto-listing quarto-listing-container-default">
+<div class="list quarto-listing-default">
+<div class="quarto-post image-right" data-index="0" data-categories="c3RhdGlzdGljcyUyQ3Byb2JhYmlsaXR5JTJDdGVhY2hpbmc=" data-listing-date-sort="1776945600000" data-listing-file-modified-sort="1787164958482" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="888">
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./blog/posts/statistical-technicians/index.html" class="no-external">Statistical Technicians</a>
+</h3>
+<div class="listing-subtitle">
+<a href="./blog/posts/statistical-technicians/index.html" class="no-external">The case for teaching statistics as reasoning, not procedure</a>
 </div>
-<section id="featured-posts" class="level2 section-heading">
-<h2 data-anchor-id="featured-posts">Featured Posts</h2>
-</section>
-<div id="listing-featured-posts" class="quarto-listing quarto-listing-container-grid">
-<div class="list grid quarto-listing-cols-3">
-<div class="g-col-1" data-index="0" data-categories="c3RhdGlzdGljcyUyQ3Byb2JhYmlsaXR5JTJDdGVhY2hpbmc=" data-listing-date-sort="1776945600000" data-listing-file-modified-sort="1786848497002" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="883">
-<a href="./blog/posts/statistical-technicians/index.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img loading="lazy" src="./blog/posts/statistical-technicians/jules-paulin-rql5V72dc0k-unsplash.jpg" class="thumbnail-image card-img" style="height: 150px;" alt="cosmic texture">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Statistical Technicians
-</h5>
-<div class="card-subtitle listing-subtitle">
-The case for teaching statistics as reasoning, not procedure
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('c3RhdGlzdGljcw=='); return false;">statistics</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('cHJvYmFiaWxpdHk='); return false;">probability</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('dGVhY2hpbmc='); return false;">teaching</div>
+
 </div>
-<div class="card-attribution card-text-small justify">
-<div class="listing-author">
-Rob Taylor, PhD
 </div>
+<div class="metadata">
+<a href="./blog/posts/statistical-technicians/index.html" class="no-external">
 <div class="listing-date">
-Apr 24, 2026
+24 Apr 2026
+</div>
+</a>
 </div>
 </div>
+<div class="quarto-post image-right" data-index="1" data-categories="c3RhdGlzdGljcyUyQ0FOT1ZBJTJDaHlwb3RoZXNpcyUyMHRlc3RpbmclMkNpbmZlcmVuY2U=" data-listing-date-sort="1776168000000" data-listing-file-modified-sort="1787164958481" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="11" data-listing-word-count-sort="2165">
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./blog/posts/do-we-need-to-test-variances/index.html" class="no-external">Do We Really Need to Test Variances Anymore?</a>
+</h3>
+<div class="listing-subtitle">
+<a href="./blog/posts/do-we-need-to-test-variances/index.html" class="no-external">Why classical assumption checks are no longer gatekeepers, and how modern ANOVA methods handle heterogeneity directly.</a>
 </div>
-</div></a>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('c3RhdGlzdGljcw=='); return false;">statistics</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('QU5PVkE='); return false;">ANOVA</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('aHlwb3RoZXNpcyUyMHRlc3Rpbmc='); return false;">hypothesis testing</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('aW5mZXJlbmNl'); return false;">inference</div>
+
 </div>
-<div class="g-col-1" data-index="1" data-categories="c3RhdGlzdGljcyUyQ0FOT1ZBJTJDaHlwb3RoZXNpcyUyMHRlc3RpbmclMkNpbmZlcmVuY2U=" data-listing-date-sort="1776168000000" data-listing-file-modified-sort="1786851443307" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="11" data-listing-word-count-sort="2160">
-<a href="./blog/posts/do-we-need-to-test-variances/index.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img loading="lazy" src="./blog/posts/do-we-need-to-test-variances/joel-henry-dZ7cpFw5MD4-unsplash.jpg" class="thumbnail-image card-img" style="height: 150px;" alt="cosmic texture">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Do We Really Need to Test Variances Anymore?
-</h5>
-<div class="card-subtitle listing-subtitle">
-Why classical assumption checks are no longer gatekeepers, and how modern ANOVA methods handle heterogeneity directly.
 </div>
-<div class="card-attribution card-text-small justify">
-<div class="listing-author">
-Rob Taylor, PhD
-</div>
+<div class="metadata">
+<a href="./blog/posts/do-we-need-to-test-variances/index.html" class="no-external">
 <div class="listing-date">
-Apr 15, 2026
+15 Apr 2026
+</div>
+</a>
 </div>
 </div>
+<div class="quarto-post image-right" data-index="2" data-categories="ZGF0YSUyMGFuYWx5c2lzJTJDZGF0YSUyMHNjaWVuY2UlMkNkYXRhJTIwZW5naW5lZXJpbmclMkNncmlwZQ==" data-listing-date-sort="1755864000000" data-listing-file-modified-sort="1787164958482" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="487">
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./blog/posts/stop-pretending-data-roles-are-separate/index.html" class="no-external">Stop Pretending Data Roles Are Separate</a>
+</h3>
+<div class="listing-subtitle">
+<a href="./blog/posts/stop-pretending-data-roles-are-separate/index.html" class="no-external">My push back against the “data trinity”</a>
 </div>
-</div></a>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('ZGF0YSUyMGFuYWx5c2lz'); return false;">data analysis</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('ZGF0YSUyMHNjaWVuY2U='); return false;">data science</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('ZGF0YSUyMGVuZ2luZWVyaW5n'); return false;">data engineering</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('Z3JpcGU='); return false;">gripe</div>
+
 </div>
-<div class="g-col-1" data-index="2" data-categories="ZGF0YSUyMGFuYWx5c2lzJTJDZGF0YSUyMHNjaWVuY2UlMkNkYXRhJTIwZW5naW5lZXJpbmclMkNncmlwZQ==" data-listing-date-sort="1755864000000" data-listing-file-modified-sort="1786852120408" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="482">
-<a href="./blog/posts/stop-pretending-data-roles-are-separate/index.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img loading="lazy" src="./blog/posts/stop-pretending-data-roles-are-separate/joel-henry-iuU0Ikb2U9E-unsplash.jpg" class="thumbnail-image card-img" style="height: 150px;" alt="cosmic texture">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Stop Pretending Data Roles Are Separate
-</h5>
-<div class="card-subtitle listing-subtitle">
-My push back against the “data trinity”
 </div>
-<div class="card-attribution card-text-small justify">
-<div class="listing-author">
-Rob Taylor, PhD
-</div>
+<div class="metadata">
+<a href="./blog/posts/stop-pretending-data-roles-are-separate/index.html" class="no-external">
 <div class="listing-date">
-Aug 23, 2025
+23 Aug 2025
+</div>
+</a>
 </div>
 </div>
+<div class="quarto-post image-right" data-index="3" data-categories="c3RhdGlzdGljcyUyQ3Byb2JhYmlsaXR5JTJDY29uZmlkZW5jZSUyMGludGVydmFscyUyQ2h5cG90aGVzaXMlMjB0ZXN0aW5n" data-listing-date-sort="1667732400000" data-listing-file-modified-sort="1787164958480" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-word-count-sort="1490">
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./blog/posts/a-note-on-confidence-intervals/index.html" class="no-external">A Note on Confidence Intervals</a>
+</h3>
+<div class="listing-subtitle">
+<a href="./blog/posts/a-note-on-confidence-intervals/index.html" class="no-external">What a confidence interval is - but more importantly, what it is not.</a>
 </div>
-</div></a>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('c3RhdGlzdGljcw=='); return false;">statistics</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('cHJvYmFiaWxpdHk='); return false;">probability</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('Y29uZmlkZW5jZSUyMGludGVydmFscw=='); return false;">confidence intervals</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('aHlwb3RoZXNpcyUyMHRlc3Rpbmc='); return false;">hypothesis testing</div>
+
+</div>
+</div>
+<div class="metadata">
+<a href="./blog/posts/a-note-on-confidence-intervals/index.html" class="no-external">
+<div class="listing-date">
+7 Nov 2022
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="4" data-categories="c3RhdGlzdGljcyUyQ3Byb2JhYmlsaXR5JTJDbnVsbCUyMGh5cG90aGVzaXMlMjB0ZXN0aW5nJTJDbWV0aG9kcw==" data-listing-date-sort="1663329600000" data-listing-file-modified-sort="1787164958482" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="13" data-listing-word-count-sort="2503">
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./blog/posts/primer-on-p-values/index.html" class="no-external">A Brief Primer on p-values</a>
+</h3>
+<div class="listing-subtitle">
+<a href="./blog/posts/primer-on-p-values/index.html" class="no-external">An article to help build and understanding of this common, yet misunderstood, measure</a>
+</div>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('c3RhdGlzdGljcw=='); return false;">statistics</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('cHJvYmFiaWxpdHk='); return false;">probability</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('bnVsbCUyMGh5cG90aGVzaXMlMjB0ZXN0aW5n'); return false;">null hypothesis testing</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('bWV0aG9kcw=='); return false;">methods</div>
+
+</div>
+</div>
+<div class="metadata">
+<a href="./blog/posts/primer-on-p-values/index.html" class="no-external">
+<div class="listing-date">
+17 Sep 2022
+</div>
+</a>
+</div>
 </div>
 </div>
 <div class="listing-no-matching d-none">No matching items</div>
 </div>
-<p><a role="button" class="btn btn-outline-primary" href="blog/">See more</a></p>
-<div class="newsletter-section">
-<!-- ## Stay in the Loop -->
-<!-- New posts straight to your inbox. No paywalls, ever. -->
-<!-- <iframe scrolling="no" style="width:100%!important;height:220px;border:1px #ccc solid !important" src="https://buttondown.email/YOURNAME?as_embed=true"> -->
-<!-- </iframe> -->
+</div>
+<div class="home-rail">
+<div class="recently-block">
+<p><span class="rail-heading">Recently</span></p>
+<div class="news-items">
+<div class="news-item-classical">
+<p><span class="news-date">Aug 2026</span></p>
+<p><span class="news-text">Returned to academic research, building models of food systems.</span></p>
+</div>
+<div class="news-item-classical">
+<p><span class="news-date">Apr 2026</span></p>
+<p><span class="news-text">Multi-part series on Maximum Likelihood Estimation underway — theory from first principles through to practical applications.</span></p>
+<p><a href="blog/posts/maximum-likelihood-estimation/" class="news-link">Start here <span class="arrow">↗</span></a></p>
+</div>
+<div class="news-item-classical">
+<p><span class="news-date">Nov 2024</span></p>
+<p><span class="news-text">Site launched. Publishing on statistics, probability, and Bayesian inference.</span></p>
+</div>
+</div>
+</div>
+<div class="elsewhere-links">
+<p><span class="rail-heading">Elsewhere</span></p>
+<p><a href="https://bsky.app/profile/dataforyou.bsky.social" target="_blank">Bluesky <span class="link-domain">bsky.app</span></a> <a href="https://www.linkedin.com/in/dr-rob-taylor/" target="_blank">LinkedIn <span class="link-domain">linkedin.com</span></a> <a href="https://github.com/dr-rob-taylor" target="_blank">GitHub <span class="link-domain">github.com</span></a></p>
+</div>
+</div>
+</div>
+<div class="newsletter-card">
+<div class="newsletter-inner">
+<section id="get-new-posts-by-email" class="level3 newsletter-copy">
+<h3 data-anchor-id="get-new-posts-by-email">Get new posts by email</h3>
+<p>One email per post. Statistics, probability, and the occasional gripe about how they’re taught.</p>
+</section>
+<div class="newsletter-form-wrap">
+<form class="newsletter-form" id="newsletter-form" novalidate="">
+<input type="text" inputmode="email" autocomplete="email" id="newsletter-email" placeholder="you@example.com" aria-label="Email address"> <button type="submit" class="btn btn-primary">Subscribe</button>
+</form>
+<p class="newsletter-msg" id="newsletter-msg">
+</p>
+</div>
 </div>
 </div>
 
@@ -707,7 +808,7 @@ Aug 23, 2025
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">
-<p>© Rob Taylor. Built with <a href="https://quarto.org">Quarto</a>.</p>
+<p>© Rob Taylor</p>
 </div>   
     <div class="nav-footer-center">
 <p>Statistics, probability, and Bayesian thinking</p>
@@ -717,6 +818,291 @@ Aug 23, 2025
 </div>
   </div>
 </footer>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  var wrap = document.querySelector('.newsletter-form-wrap');
+  if (wrap) initNewsletter(wrap);
+});
+
+function initNewsletter(wrap) {
+  var form = wrap.querySelector('#newsletter-form');
+  if (!form) return;
+
+  var emailInput = wrap.querySelector('#newsletter-email');
+  var msgEl = wrap.querySelector('#newsletter-msg');
+  var originalHTML = wrap.innerHTML;
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    var email = emailInput.value.trim();
+    if (!email) {
+      showError('Enter an email address.');
+      return;
+    }
+
+    // Basic email validation
+    var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+    if (!emailPattern.test(email)) {
+      showError('That doesn\'t look like an email address.');
+      return;
+    }
+
+    // TODO: Replace with your Buttondown API endpoint
+    // Example: https://api.buttondown.email/v1/subscribers
+    var BUTTONDOWN_ENDPOINT = '';
+
+    if (!BUTTONDOWN_ENDPOINT) {
+      // Placeholder: show success state for now
+      showSuccess(email);
+      return;
+    }
+
+    // Disable form while submitting
+    emailInput.disabled = true;
+    form.querySelector('button').disabled = true;
+
+    fetch(BUTTONDOWN_ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: email, tags: ['website'] })
+    })
+    .then(function (res) {
+      if (res.ok || res.status === 201) {
+        showSuccess(email);
+      } else {
+        return res.json().then(function (data) {
+          var detail = data.detail || '';
+          if (/already/i.test(detail)) {
+            throw new Error('That address is already on the list.');
+          }
+          throw new Error(detail || 'Could not subscribe. Please try again.');
+        });
+      }
+    })
+    .catch(function (err) {
+      showError(err.message || 'Could not subscribe. Please try again.');
+      emailInput.disabled = false;
+      form.querySelector('button').disabled = false;
+    });
+  });
+
+  function showError(message) {
+    emailInput.classList.add('has-error');
+    msgEl.className = 'newsletter-msg newsletter-error';
+    msgEl.textContent = message;
+
+    emailInput.addEventListener('input', function handler() {
+      emailInput.classList.remove('has-error');
+      msgEl.textContent = '';
+      msgEl.className = 'newsletter-msg';
+      emailInput.removeEventListener('input', handler);
+    });
+  }
+
+  function showSuccess(email) {
+    wrap.innerHTML =
+      '<div class="newsletter-success">' +
+        '<h4>Check your inbox.</h4>' +
+        '<p>A confirmation went to <strong>' + escapeHtml(email) + '</strong>. ' +
+        'Click the link in it and you’re on the list.</p>' +
+        '<a href="#" class="newsletter-reset">Use a different address</a>' +
+      '</div>';
+    wrap.querySelector('.newsletter-reset').addEventListener('click', function (e) {
+      e.preventDefault();
+      wrap.innerHTML = originalHTML;
+      initNewsletter(wrap);
+    });
+  }
+
+  function escapeHtml(str) {
+    var div = document.createElement('div');
+    div.appendChild(document.createTextNode(str));
+    return div.innerHTML;
+  }
+}
+</script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  var meta = document.querySelector('.quarto-title-meta');
+  var main = document.getElementById('quarto-document-content');
+  if (!meta || !main) return;
+
+  var header = main.querySelector('#title-block-header');
+  var words = main.textContent || '';
+  if (header) words = words.slice((header.textContent || '').length);
+  var count = words.trim().split(/\s+/).filter(Boolean).length;
+  if (!count) return;
+
+  // Technical/maths prose reads slower than general text — 100wpm rather
+  // than the usual ~200-238wpm reading-time default.
+  var minutes = Math.max(1, Math.round(count / 100));
+
+  var block = document.createElement('div');
+  block.innerHTML =
+    '<div class="quarto-title-meta-heading">Reading time</div>' +
+    '<div class="quarto-title-meta-contents"><p>' + minutes + ' min</p></div>';
+  meta.appendChild(block);
+});
+</script>
+<script>
+// include-after-body scripts run very late in the document — on a fast
+// or cached load the `load` event (or even DOMContentLoaded) has often
+// already fired by the time this executes, so a plain addEventListener
+// can silently never run. Run immediately whenever the DOM is already
+// parsed, otherwise wait for it — and run as early as possible (not on
+// `load`, which waits on images) so the TOC's CSS `visibility: hidden`
+// default (see styles.css) is lifted almost immediately, instead of
+// showing it in its original spot first and visibly snapping into place.
+function initPostLayout() {
+  // Quarto stamps an (empty) #title-block-header on every page, even
+  // non-article ones like the Writing index — only individual posts get
+  // this treatment.
+  if (!document.querySelector('#quarto-content.page-layout-article')) return;
+  relocateTOC();
+  addAllWritingLink();
+}
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initPostLayout);
+} else {
+  initPostLayout();
+}
+
+// Quarto's article layout puts the TOC in a page-wide margin column,
+// running the full height of the page beside the title. The design has
+// it sitting inside the article's own measure instead, starting below
+// the hero image, beside the body copy — so move it there once Quarto
+// has finished its own setup (scroll-spy etc. keep working since that
+// re-queries #TOC live rather than caching a reference to its old spot).
+function relocateTOC() {
+  var sidebar = document.getElementById('quarto-sidebar');
+  var main = document.getElementById('quarto-document-content');
+  if (!sidebar || !main || sidebar.dataset.relocated) return;
+
+  var header = main.querySelector('#title-block-header');
+  var hero = main.querySelector(':scope > .quarto-figure');
+  var insertAfter = hero || header;
+  if (!insertAfter) return;
+
+  var columns = document.createElement('div');
+  columns.className = 'post-body-columns';
+  var prose = document.createElement('div');
+  prose.className = 'post-body-prose';
+
+  var node = insertAfter.nextElementSibling;
+  while (node) {
+    var next = node.nextElementSibling;
+    prose.appendChild(node);
+    node = next;
+  }
+
+  // TOC first in the DOM, matching the mockup: it leads (stacks above
+  // the prose) on mobile, and sits on the left at desktop widths — no
+  // flex `order` override needed either way.
+  columns.appendChild(sidebar);
+  columns.appendChild(prose);
+  insertAfter.insertAdjacentElement('afterend', columns);
+  sidebar.dataset.relocated = 'true';
+  sidebar.classList.add('post-toc-ready');
+}
+
+// Quarto's title block has no built-in "back to index" link — the design
+// wants one above the category tags, in the same style as the nav.
+function addAllWritingLink() {
+  var header = document.getElementById('title-block-header');
+  if (!header || header.dataset.breadcrumbAdded) return;
+
+  var link = document.createElement('a');
+  link.className = 'all-writing-link';
+  link.href = '/blog/';
+  link.innerHTML = '<span class="all-writing-rule"></span>All writing';
+  header.insertAdjacentElement('afterbegin', link);
+  header.dataset.breadcrumbAdded = 'true';
+}
+</script>
+<script>
+// Runs after toc-layout.js (see _quarto.yml's include-after-body order),
+// so .post-body-prose already exists by the time this executes.
+function initPostExtras() {
+  var prose = document.querySelector('.post-body-prose');
+  var h1 = document.querySelector('.quarto-title h1.title');
+  var dateMeta = document.querySelector('meta[name="dcterms.date"]');
+  if (!prose || !h1 || !dateMeta || prose.dataset.citeAdded) return;
+  prose.dataset.citeAdded = 'true';
+
+  var year = dateMeta.content.slice(0, 4);
+  var title = h1.textContent.trim();
+  var citation = 'Taylor, R. (' + year + '). ' + title + '. robtaylor.co.nz';
+
+  var box = document.createElement('div');
+  box.className = 'post-cite-box';
+
+  var citeCol = document.createElement('div');
+  var label = document.createElement('span');
+  label.className = 'post-cite-label';
+  label.textContent = 'Cite this post';
+  var text = document.createElement('span');
+  text.className = 'post-cite-text';
+  text.textContent = citation;
+  citeCol.appendChild(label);
+  citeCol.appendChild(text);
+
+  var actions = document.createElement('div');
+  actions.className = 'post-cite-actions';
+
+  var copyBtn = document.createElement('button');
+  copyBtn.type = 'button';
+  copyBtn.className = 'post-cite-btn';
+  copyBtn.textContent = 'Copy';
+
+  var shareBtn = document.createElement('button');
+  shareBtn.type = 'button';
+  shareBtn.className = 'post-cite-btn post-cite-btn-accent';
+  shareBtn.textContent = 'Share';
+
+  actions.appendChild(copyBtn);
+  actions.appendChild(shareBtn);
+  box.appendChild(citeCol);
+  box.appendChild(actions);
+  prose.appendChild(box);
+
+  function flash(btn, message) {
+    var original = btn.textContent;
+    btn.textContent = message;
+    btn.disabled = true;
+    setTimeout(function () {
+      btn.textContent = original;
+      btn.disabled = false;
+    }, 1800);
+  }
+
+  copyBtn.addEventListener('click', function () {
+    navigator.clipboard.writeText(citation).then(function () {
+      flash(copyBtn, 'Copied');
+    }, function () {
+      flash(copyBtn, 'Copy failed');
+    });
+  });
+
+  shareBtn.addEventListener('click', function () {
+    var url = location.href;
+    if (navigator.share) {
+      navigator.share({ title: title, url: url }).catch(function () {});
+    } else {
+      navigator.clipboard.writeText(url).then(function () {
+        flash(shareBtn, 'Link copied');
+      }, function () {
+        flash(shareBtn, 'Copy failed');
+      });
+    }
+  });
+}
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initPostExtras);
+} else {
+  initPostExtras();
+}
+</script>
 
 
 

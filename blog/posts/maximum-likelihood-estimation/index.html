@@ -8,9 +8,8 @@
 
 <meta name="author" content="Rob Taylor, PhD">
 <meta name="dcterms.date" content="2022-08-10">
-<meta name="description" content="Categories">
 
-<title>An Introduction to Maximum Likelihood Estimation – robtaylor</title>
+<title>An Introduction to Maximum Likelihood Estimation – rob taylor</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -44,7 +43,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-773c3bb633b259146a05fb45e4da5169.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-9be6bd028c476a9e5884d70e30a8c230.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -73,6 +72,9 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 <style>html{ scroll-behavior: smooth; }</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&amp;display=swap" rel="stylesheet">
 
   <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
   <script>document.addEventListener("DOMContentLoaded", function () {
@@ -124,92 +126,44 @@ window.Quarto = {
 <body class="floating nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top quarto-banner">
-    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../../../index.html">
     <span class="navbar-title">rob taylor</span>
     </a>
   </div>
-            <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-  <span class="navbar-toggler-icon"></span>
-</button>
-          <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav navbar-nav-scroll me-auto">
+          <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
     <a class="nav-link" href="../../../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../about/"> 
-<span class="menu-text">About</span></a>
+    <a class="nav-link" href="../../../blog/index.html"> 
+<span class="menu-text">Writing</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../blog/"> 
-<span class="menu-text">Blog</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../software/"> 
+    <a class="nav-link" href="../../../software/index.html"> 
 <span class="menu-text">Software</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../resources/"> 
-<span class="menu-text">Resources</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../publications/"> 
+    <a class="nav-link" href="../../../publications/index.html"> 
 <span class="menu-text">Publications</span></a>
   </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../about/index.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
 </ul>
-          </div> <!-- /navcollapse -->
-            <div class="quarto-navbar-tools">
+          <div class="quarto-navbar-tools">
 </div>
+            <div id="quarto-search" class="" title="Search"></div>
       </div> <!-- /container-fluid -->
     </nav>
 </header>
 <!-- content -->
-<header id="title-block-header" class="quarto-title-block default toc-left page-columns page-full">
-  <div class="quarto-title-banner page-columns page-full">
-    <div class="quarto-title column-body">
-      <h1 class="title">An Introduction to Maximum Likelihood Estimation</h1>
-            <p class="subtitle lead">A closer look at how to derive the estimator for the Binomial model</p>
-                  <div>
-        <div class="description">
-          <p>Categories</p>
-        </div>
-      </div>
-                          <div class="quarto-categories">
-                <div class="quarto-category">statistics</div>
-                <div class="quarto-category">maximum likelihood estimation</div>
-                <div class="quarto-category">data analysis</div>
-              </div>
-                  </div>
-  </div>
-    
-  
-  <div class="quarto-title-meta">
-
-      <div>
-      <div class="quarto-title-meta-heading">Author</div>
-      <div class="quarto-title-meta-contents">
-               <p>Rob Taylor, PhD </p>
-            </div>
-    </div>
-      
-      <div>
-      <div class="quarto-title-meta-heading">Published</div>
-      <div class="quarto-title-meta-contents">
-        <p class="date">August 10, 2022</p>
-      </div>
-    </div>
-    
-      
-    </div>
-    
-  
-  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <nav id="TOC" role="doc-toc" class="toc-active">
@@ -231,26 +185,84 @@ window.Quarto = {
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
     </div>
 <!-- main -->
-<main class="content quarto-banner-title-block" id="quarto-document-content">
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">An Introduction to Maximum Likelihood Estimation</h1>
+<p class="subtitle lead">A closer look at how to derive the estimator for the Binomial model</p>
+  <div class="quarto-categories">
+    <div class="quarto-category">statistics</div>
+    <div class="quarto-category">maximum likelihood estimation</div>
+    <div class="quarto-category">data analysis</div>
+  </div>
+  </div>
 
 
 
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Rob Taylor, PhD </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">10 Aug 2022</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
 
 
-<section id="introduction" class="level3">
-<h3 data-anchor-id="introduction">Introduction</h3>
+</header>
+
+
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="jeremy-thomas-4dpAqfTbvKA-unsplash.jpg" class="post-hero img-fluid figure-img"></p>
+<figcaption>Photo by Jeremy Thomas on Unsplash</figcaption>
+</figure>
+</div>
+<div class="post-series-box">
+<div class="post-series-header">
+<p><span class="post-series-label">Part of a series</span> <span class="post-series-count">2 parts</span></p>
+</div>
+<h3 class="post-series-name">
+Maximum Likelihood Estimation
+</h3>
+<p class="post-series-blurb">
+A two-part treatment: the estimator first, then the calculus behind it.
+</p>
+<div class="post-series-parts">
+<div class="post-series-part">
+<p><span class="post-series-part-n">I</span> <span class="post-series-part-current">An Introduction to Maximum Likelihood Estimation <em>— you are here</em></span></p>
+</div>
+<div class="post-series-part">
+<p><span class="post-series-part-n">II</span> <a href="../../../blog/posts/maximum-likelihood-estimation-part-2/">Maximum Likelihood Estimation: Part 2</a></p>
+</div>
+</div>
+</div>
+<section id="introduction" class="level2">
+<h2 data-anchor-id="introduction">Introduction</h2>
 <p>In a previous <a href="https://medium.com/@dataforyou/on-probability-versus-likelihood-83386b81ad83">post</a>, I spoke about the difference between probability and likelihood and touched on the subject of maximum likelihood estimation (MLE). Here we’ll take a closer look at MLE and derive the maximum likelihood estimator for the Binomial model from first principles.</p>
 </section>
-<section id="more-coin-flipping" class="level3">
-<h3 data-anchor-id="more-coin-flipping">More Coin Flipping</h3>
+<section id="more-coin-flipping" class="level2">
+<h2 data-anchor-id="more-coin-flipping">More Coin Flipping</h2>
 <p>Often when we compute simple statistics from data we’re actually doing MLE without even knowing it. I’ve always found this somewhat delightful; I’m not sure why, but I do. By way of example, suppose I flip a fair coin ten times and observe the following outcomes:</p>
 <p><span class="math display">Y = \{ H, T, H, H, T, H, T, T, H, H\}</span></p>
 <p>Suppose I now ask you to summarise this data by giving me the proportion of “heads” that resulted. Once you’re done thinking I’m a moron, you’ll say something like: “Well, out of ten throws there were a total of six heads; therefore, the proportion of heads is 6 over 10, which is 0.60, or 60 per cent”.</p>
 <p>And you’d be right.</p>
 <p>But it also turns out that this rather innocuous little calculation is precisely the solution you’d get by stepping through the MLE process. Crazy, huh? Let’s see how this works.</p>
 </section>
-<section id="what-is-maximum-likelihood-estimation" class="level3">
-<h3 data-anchor-id="what-is-maximum-likelihood-estimation">What is Maximum Likelihood Estimation?</h3>
+<section id="what-is-maximum-likelihood-estimation" class="level2">
+<h2 data-anchor-id="what-is-maximum-likelihood-estimation">What is Maximum Likelihood Estimation?</h2>
 <p>Maximum likelihood estimation is a way of estimating unknown parameters using observed data. The way it works is by finding combinations of parameters that maximize the <em>likelihood function</em> so that, given the assumed model, the data you have observed is most probable. If you imagine parameters like dials, what this boils down to is finding the dial settings that give the best fit to your data.</p>
 <p>Symbolically, we can express our goals as follows:</p>
 <p><span class="math display">\hat{\theta} = \argmax_{\theta \ \in \ \Theta} \ \mathcal{L}\left(\theta \ | \ X \right)</span></p>
@@ -258,16 +270,16 @@ window.Quarto = {
 <p><span class="math display">\mathcal{L}\left(\theta \ | \ X \right) = P \left(X \ | \ \theta \right)</span></p>
 <p>The term on the right-hand side is the probability mass function. More generally, it is a model function that describes how the data is distributed given certain parameter settings.</p>
 </section>
-<section id="throw-a-log-on-the-likelihood" class="level3">
-<h3 data-anchor-id="throw-a-log-on-the-likelihood">Throw a Log on the Likelihood</h3>
+<section id="throw-a-log-on-the-likelihood" class="level2">
+<h2 data-anchor-id="throw-a-log-on-the-likelihood">Throw a Log on the Likelihood</h2>
 <p>Okay, so let’s now connect these ideas with the coin flip data described above. But first, I’m just going to make a little change and replace all “H’s” with a 1 and all “T’s” with a 0. This means we can now take the sum over <span class="math inline">X</span> to get the total number of “heads”. Let’s call this <span class="math inline">K</span>. The Binomial likelihood function can then be written as:</p>
 <p><span class="math display">\mathcal{L}\left(\theta \ | \ X \right) = \binom{N}{K} \ p^K \left( 1 - p \right)^{N - k}</span></p>
 <p>where the unknown rate parameter <span class="math inline">p</span> is what we are trying to estimate. When approaching these types of problems it is often more convenient (at least mathematically) to work with the log of the likelihood. So let’s do that by taking the natural log of both sides:</p>
 <p><span class="math display">\ln \mathcal{L}\left(\theta \ | \ X \right) = \ln \binom{N}{K} + K \ln p + \left( N - K\right)  \ln \left(1 - p \right)</span></p>
 <p>The first term on the right-hand side — the log of the binomial coefficient — is typically dropped because it’s a constant term that doesn’t affect parameter estimation. For present purposes, it really doesn’t matter whether you log transform the likelihood function or not. Because both functions are monotonically related you can maximize either one and arrive at the same result. In general, though, it’s a good idea to work with logs.</p>
 </section>
-<section id="taking-derivatives" class="level3">
-<h3 data-anchor-id="taking-derivatives">Taking Derivatives</h3>
+<section id="taking-derivatives" class="level2">
+<h2 data-anchor-id="taking-derivatives">Taking Derivatives</h2>
 <p>Right. So we now have our log-likelihood function. Now what?</p>
 <p>Well, you could take a brute force approach and simply try a whole bunch of values and see which gives the highest likelihood value. Given there is only one parameter to estimate — and it’s bounded between zero and one — this is actually a plausible approach. But such shenanigans will not be entertained here! So let’s be smart.</p>
 <p>What we really need to understand is how the log-likelihood function changes when we adjust our parameter value. Conveniently, we can get this information by taking the first derivative of the log-likelihood function with respect to <em>p</em> (assuming, of course, that the function is differentiable; which in this case it is). Furthermore, <em>if</em> a solution exists — by which I mean, there is a parameter that maximizes the log-likelihood — then it must satisfy the following partial differential equation:</p>
@@ -283,8 +295,8 @@ window.Quarto = {
 <p><span class="math display">\hat{p} = \frac{K}{N}</span></p>
 <p>This is exactly what you calculated earlier! Remember, <em>K</em> is just the number of “heads” we observed and <em>N</em> was the total number of throws, which gives us 0.60. Amazing.</p>
 </section>
-<section id="finishing-on-a-high" class="level3">
-<h3 data-anchor-id="finishing-on-a-high">Finishing on a High</h3>
+<section id="finishing-on-a-high" class="level2">
+<h2 data-anchor-id="finishing-on-a-high">Finishing on a High</h2>
 <p>We’re not quite done, though.</p>
 <p>There is an additional condition that needs to be met to ensure that we have encountered a maximum and not a minimum. Remember, both minimum and maximum values will result in the first derivative going to zero, so we need to be sure the log-likelihood is <em>concave</em> in the neighborhood of the estimate. That is, we want our estimate to be sitting on top of a peak, and not located at the bottom of a valley. To check this we must ensure the following condition is also true:</p>
 <p><span class="math display">\frac{\partial^2\ln \mathcal{L}(\theta \ | \ X)}{\partial\theta^2} \ &lt; \ 0</span></p>
@@ -292,8 +304,8 @@ window.Quarto = {
 <p><span class="math display">\frac{K}{p^2} - \frac{N - K}{(1 - p)^2} = \frac{6}{0.60^2} - \frac{10 - 6}{(1 - 0.60^2)} = -8.33</span></p>
 <p>which is less than zero. Happy days.</p>
 </section>
-<section id="final-points" class="level3">
-<h3 data-anchor-id="final-points">Final Points</h3>
+<section id="final-points" class="level2">
+<h2 data-anchor-id="final-points">Final Points</h2>
 <p>I should make clear that not all MLE problems can be solved this way. For this post, I deliberately picked an example where a unique solution exists. However, in the wild, this need not be the case. Moreover, real-world models typically have several parameters and produce distributions that are not necessarily linear. This often means simple analytical solutions are not obtainable and solutions must be obtained numerically using non-linear optimization algorithms.</p>
 <p>Nevertheless, I hope this was useful and provided you with a foundational idea of how MLE works. At the very least, next time you compute a binomial proportion, you can casually drop in that you just maximized the log-likelihood function.</p>
 <p>I hope you enjoyed this post!</p>
@@ -695,8 +707,8 @@ window.Quarto = {
     }
   });
   </script>
-<input type="hidden" id="giscus-base-theme" value="light">
-<input type="hidden" id="giscus-alt-theme" value="dark">
+<input type="hidden" id="giscus-base-theme" value="https://robtaylor.co.nz/giscus-theme.css">
+<input type="hidden" id="giscus-alt-theme" value="https://robtaylor.co.nz/giscus-theme.css">
 <script>
   function loadGiscus() {
     // Function to get the theme based on body class
@@ -728,7 +740,7 @@ window.Quarto = {
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">
-<p>© Rob Taylor. Built with <a href="https://quarto.org">Quarto</a>.</p>
+<p>© Rob Taylor</p>
 </div>   
     <div class="nav-footer-center">
 <p>Statistics, probability, and Bayesian thinking</p>
@@ -738,6 +750,291 @@ window.Quarto = {
 </div>
   </div>
 </footer>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  var wrap = document.querySelector('.newsletter-form-wrap');
+  if (wrap) initNewsletter(wrap);
+});
+
+function initNewsletter(wrap) {
+  var form = wrap.querySelector('#newsletter-form');
+  if (!form) return;
+
+  var emailInput = wrap.querySelector('#newsletter-email');
+  var msgEl = wrap.querySelector('#newsletter-msg');
+  var originalHTML = wrap.innerHTML;
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    var email = emailInput.value.trim();
+    if (!email) {
+      showError('Enter an email address.');
+      return;
+    }
+
+    // Basic email validation
+    var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+    if (!emailPattern.test(email)) {
+      showError('That doesn\'t look like an email address.');
+      return;
+    }
+
+    // TODO: Replace with your Buttondown API endpoint
+    // Example: https://api.buttondown.email/v1/subscribers
+    var BUTTONDOWN_ENDPOINT = '';
+
+    if (!BUTTONDOWN_ENDPOINT) {
+      // Placeholder: show success state for now
+      showSuccess(email);
+      return;
+    }
+
+    // Disable form while submitting
+    emailInput.disabled = true;
+    form.querySelector('button').disabled = true;
+
+    fetch(BUTTONDOWN_ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: email, tags: ['website'] })
+    })
+    .then(function (res) {
+      if (res.ok || res.status === 201) {
+        showSuccess(email);
+      } else {
+        return res.json().then(function (data) {
+          var detail = data.detail || '';
+          if (/already/i.test(detail)) {
+            throw new Error('That address is already on the list.');
+          }
+          throw new Error(detail || 'Could not subscribe. Please try again.');
+        });
+      }
+    })
+    .catch(function (err) {
+      showError(err.message || 'Could not subscribe. Please try again.');
+      emailInput.disabled = false;
+      form.querySelector('button').disabled = false;
+    });
+  });
+
+  function showError(message) {
+    emailInput.classList.add('has-error');
+    msgEl.className = 'newsletter-msg newsletter-error';
+    msgEl.textContent = message;
+
+    emailInput.addEventListener('input', function handler() {
+      emailInput.classList.remove('has-error');
+      msgEl.textContent = '';
+      msgEl.className = 'newsletter-msg';
+      emailInput.removeEventListener('input', handler);
+    });
+  }
+
+  function showSuccess(email) {
+    wrap.innerHTML =
+      '<div class="newsletter-success">' +
+        '<h4>Check your inbox.</h4>' +
+        '<p>A confirmation went to <strong>' + escapeHtml(email) + '</strong>. ' +
+        'Click the link in it and you’re on the list.</p>' +
+        '<a href="#" class="newsletter-reset">Use a different address</a>' +
+      '</div>';
+    wrap.querySelector('.newsletter-reset').addEventListener('click', function (e) {
+      e.preventDefault();
+      wrap.innerHTML = originalHTML;
+      initNewsletter(wrap);
+    });
+  }
+
+  function escapeHtml(str) {
+    var div = document.createElement('div');
+    div.appendChild(document.createTextNode(str));
+    return div.innerHTML;
+  }
+}
+</script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  var meta = document.querySelector('.quarto-title-meta');
+  var main = document.getElementById('quarto-document-content');
+  if (!meta || !main) return;
+
+  var header = main.querySelector('#title-block-header');
+  var words = main.textContent || '';
+  if (header) words = words.slice((header.textContent || '').length);
+  var count = words.trim().split(/\s+/).filter(Boolean).length;
+  if (!count) return;
+
+  // Technical/maths prose reads slower than general text — 100wpm rather
+  // than the usual ~200-238wpm reading-time default.
+  var minutes = Math.max(1, Math.round(count / 100));
+
+  var block = document.createElement('div');
+  block.innerHTML =
+    '<div class="quarto-title-meta-heading">Reading time</div>' +
+    '<div class="quarto-title-meta-contents"><p>' + minutes + ' min</p></div>';
+  meta.appendChild(block);
+});
+</script>
+<script>
+// include-after-body scripts run very late in the document — on a fast
+// or cached load the `load` event (or even DOMContentLoaded) has often
+// already fired by the time this executes, so a plain addEventListener
+// can silently never run. Run immediately whenever the DOM is already
+// parsed, otherwise wait for it — and run as early as possible (not on
+// `load`, which waits on images) so the TOC's CSS `visibility: hidden`
+// default (see styles.css) is lifted almost immediately, instead of
+// showing it in its original spot first and visibly snapping into place.
+function initPostLayout() {
+  // Quarto stamps an (empty) #title-block-header on every page, even
+  // non-article ones like the Writing index — only individual posts get
+  // this treatment.
+  if (!document.querySelector('#quarto-content.page-layout-article')) return;
+  relocateTOC();
+  addAllWritingLink();
+}
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initPostLayout);
+} else {
+  initPostLayout();
+}
+
+// Quarto's article layout puts the TOC in a page-wide margin column,
+// running the full height of the page beside the title. The design has
+// it sitting inside the article's own measure instead, starting below
+// the hero image, beside the body copy — so move it there once Quarto
+// has finished its own setup (scroll-spy etc. keep working since that
+// re-queries #TOC live rather than caching a reference to its old spot).
+function relocateTOC() {
+  var sidebar = document.getElementById('quarto-sidebar');
+  var main = document.getElementById('quarto-document-content');
+  if (!sidebar || !main || sidebar.dataset.relocated) return;
+
+  var header = main.querySelector('#title-block-header');
+  var hero = main.querySelector(':scope > .quarto-figure');
+  var insertAfter = hero || header;
+  if (!insertAfter) return;
+
+  var columns = document.createElement('div');
+  columns.className = 'post-body-columns';
+  var prose = document.createElement('div');
+  prose.className = 'post-body-prose';
+
+  var node = insertAfter.nextElementSibling;
+  while (node) {
+    var next = node.nextElementSibling;
+    prose.appendChild(node);
+    node = next;
+  }
+
+  // TOC first in the DOM, matching the mockup: it leads (stacks above
+  // the prose) on mobile, and sits on the left at desktop widths — no
+  // flex `order` override needed either way.
+  columns.appendChild(sidebar);
+  columns.appendChild(prose);
+  insertAfter.insertAdjacentElement('afterend', columns);
+  sidebar.dataset.relocated = 'true';
+  sidebar.classList.add('post-toc-ready');
+}
+
+// Quarto's title block has no built-in "back to index" link — the design
+// wants one above the category tags, in the same style as the nav.
+function addAllWritingLink() {
+  var header = document.getElementById('title-block-header');
+  if (!header || header.dataset.breadcrumbAdded) return;
+
+  var link = document.createElement('a');
+  link.className = 'all-writing-link';
+  link.href = '/blog/';
+  link.innerHTML = '<span class="all-writing-rule"></span>All writing';
+  header.insertAdjacentElement('afterbegin', link);
+  header.dataset.breadcrumbAdded = 'true';
+}
+</script>
+<script>
+// Runs after toc-layout.js (see _quarto.yml's include-after-body order),
+// so .post-body-prose already exists by the time this executes.
+function initPostExtras() {
+  var prose = document.querySelector('.post-body-prose');
+  var h1 = document.querySelector('.quarto-title h1.title');
+  var dateMeta = document.querySelector('meta[name="dcterms.date"]');
+  if (!prose || !h1 || !dateMeta || prose.dataset.citeAdded) return;
+  prose.dataset.citeAdded = 'true';
+
+  var year = dateMeta.content.slice(0, 4);
+  var title = h1.textContent.trim();
+  var citation = 'Taylor, R. (' + year + '). ' + title + '. robtaylor.co.nz';
+
+  var box = document.createElement('div');
+  box.className = 'post-cite-box';
+
+  var citeCol = document.createElement('div');
+  var label = document.createElement('span');
+  label.className = 'post-cite-label';
+  label.textContent = 'Cite this post';
+  var text = document.createElement('span');
+  text.className = 'post-cite-text';
+  text.textContent = citation;
+  citeCol.appendChild(label);
+  citeCol.appendChild(text);
+
+  var actions = document.createElement('div');
+  actions.className = 'post-cite-actions';
+
+  var copyBtn = document.createElement('button');
+  copyBtn.type = 'button';
+  copyBtn.className = 'post-cite-btn';
+  copyBtn.textContent = 'Copy';
+
+  var shareBtn = document.createElement('button');
+  shareBtn.type = 'button';
+  shareBtn.className = 'post-cite-btn post-cite-btn-accent';
+  shareBtn.textContent = 'Share';
+
+  actions.appendChild(copyBtn);
+  actions.appendChild(shareBtn);
+  box.appendChild(citeCol);
+  box.appendChild(actions);
+  prose.appendChild(box);
+
+  function flash(btn, message) {
+    var original = btn.textContent;
+    btn.textContent = message;
+    btn.disabled = true;
+    setTimeout(function () {
+      btn.textContent = original;
+      btn.disabled = false;
+    }, 1800);
+  }
+
+  copyBtn.addEventListener('click', function () {
+    navigator.clipboard.writeText(citation).then(function () {
+      flash(copyBtn, 'Copied');
+    }, function () {
+      flash(copyBtn, 'Copy failed');
+    });
+  });
+
+  shareBtn.addEventListener('click', function () {
+    var url = location.href;
+    if (navigator.share) {
+      navigator.share({ title: title, url: url }).catch(function () {});
+    } else {
+      navigator.clipboard.writeText(url).then(function () {
+        flash(shareBtn, 'Link copied');
+      }, function () {
+        flash(shareBtn, 'Copy failed');
+      });
+    }
+  });
+}
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initPostExtras);
+} else {
+  initPostExtras();
+}
+</script>
 
 
 

@@ -7,10 +7,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Rob Taylor, PhD">
-<meta name="dcterms.date" content="2022-07-05">
-<meta name="description" content="Categories">
 
-<title>Data Visualisation: A Case for Dual-axis Plots – robtaylor</title>
+<title>Data Visualisation: A Case for Dual-axis Plots – rob taylor</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -79,7 +77,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-773c3bb633b259146a05fb45e4da5169.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-9be6bd028c476a9e5884d70e30a8c230.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -108,6 +106,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 <style>html{ scroll-behavior: smooth; }</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&amp;display=swap" rel="stylesheet">
 
 
 <link rel="stylesheet" href="../../../styles.css">
@@ -116,92 +117,44 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <body class="floating nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top quarto-banner">
-    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../../../index.html">
     <span class="navbar-title">rob taylor</span>
     </a>
   </div>
-            <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-  <span class="navbar-toggler-icon"></span>
-</button>
-          <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav navbar-nav-scroll me-auto">
+          <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
     <a class="nav-link" href="../../../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../about/"> 
-<span class="menu-text">About</span></a>
+    <a class="nav-link" href="../../../blog/index.html"> 
+<span class="menu-text">Writing</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../blog/"> 
-<span class="menu-text">Blog</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../software/"> 
+    <a class="nav-link" href="../../../software/index.html"> 
 <span class="menu-text">Software</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../resources/"> 
-<span class="menu-text">Resources</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../publications/"> 
+    <a class="nav-link" href="../../../publications/index.html"> 
 <span class="menu-text">Publications</span></a>
   </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../about/index.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
 </ul>
-          </div> <!-- /navcollapse -->
-            <div class="quarto-navbar-tools">
+          <div class="quarto-navbar-tools">
 </div>
+            <div id="quarto-search" class="" title="Search"></div>
       </div> <!-- /container-fluid -->
     </nav>
 </header>
 <!-- content -->
-<header id="title-block-header" class="quarto-title-block default toc-left page-columns page-full">
-  <div class="quarto-title-banner page-columns page-full">
-    <div class="quarto-title column-body">
-      <h1 class="title">Data Visualisation: A Case for Dual-axis Plots</h1>
-            <p class="subtitle lead">A quick case study for when a dual-axis plot is actually useful</p>
-                  <div>
-        <div class="description">
-          <p>Categories</p>
-        </div>
-      </div>
-                          <div class="quarto-categories">
-                <div class="quarto-category">data visualisation</div>
-                <div class="quarto-category">ggplot</div>
-                <div class="quarto-category">data analysis</div>
-              </div>
-                  </div>
-  </div>
-    
-  
-  <div class="quarto-title-meta">
-
-      <div>
-      <div class="quarto-title-meta-heading">Author</div>
-      <div class="quarto-title-meta-contents">
-               <p>Rob Taylor, PhD </p>
-            </div>
-    </div>
-      
-      <div>
-      <div class="quarto-title-meta-heading">Published</div>
-      <div class="quarto-title-meta-contents">
-        <p class="date">July 5, 2022</p>
-      </div>
-    </div>
-    
-      
-    </div>
-    
-  
-  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <nav id="TOC" role="doc-toc" class="toc-active">
@@ -219,21 +172,60 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
     </div>
 <!-- main -->
-<main class="content quarto-banner-title-block" id="quarto-document-content">
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Data Visualisation: A Case for Dual-axis Plots</h1>
+<p class="subtitle lead">A quick case study for when a dual-axis plot is actually useful</p>
+  <div class="quarto-categories">
+    <div class="quarto-category">data visualisation</div>
+    <div class="quarto-category">ggplot</div>
+    <div class="quarto-category">data analysis</div>
+  </div>
+  </div>
 
 
 
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Rob Taylor, PhD </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">5 Jul 2022</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
 
 
-<section id="introduction" class="level3">
-<h3 data-anchor-id="introduction">Introduction</h3>
+</header>
+
+
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="nathan-anderson-KvgB81s4dF0-unsplash.jpg" class="post-hero img-fluid figure-img"></p>
+<figcaption>Photo by Nathan Anderson on Unsplash</figcaption>
+</figure>
+</div>
+<section id="introduction" class="level2">
+<h2 data-anchor-id="introduction">Introduction</h2>
 <p>Dual-axis plots are often used to jointly display time-series data that differ in magnitude — and in some cases, each axis may exist on completely different scales altogether. For this reason, dual-axis plots are generally discouraged because they require readers to interpret two, sometimes very disparate, axes.</p>
 <p>For the reader, this can create confusion — as well as invite misinterpretation — particularly when the lines appear to be changing in a similar way. If close attention isn’t paid to the values on <em>both</em> axes readers may interpret the rate of change as being similar for both series (or perhaps <em>not</em> changing). Alternatively, if points from either series happen to coincide in space, readers may falsely equate these points, despite each datum having very different values.</p>
 <p>Now, these are not the only problems that can arise (and for a very nice blog on the issues with dual-axis plots you should check out <a href="https://blog.datawrapper.de/dualaxis/">this</a>), but I’m not here to discuss what’s <em>wrong</em> with dual-axis plots. Instead, what I want to do is share an example where having two axes is actually <em>useful</em>. I found the code for this while tidying up some of my Data Camp coursework and thought it was pretty cool. Hopefully, you’ll find it useful, too.</p>
 <p>Let’s get into it.</p>
 </section>
-<section id="warming-up" class="level3">
-<h3 data-anchor-id="warming-up">Warming Up</h3>
+<section id="warming-up" class="level2">
+<h2 data-anchor-id="warming-up">Warming Up</h2>
 <p>This example looks at the case for two axes when data can be expressed using two monotonic scales, like temperature. To illustrate, we’ll use the <code>airquality</code> dataset in R to plot daily temperature readings recorded between May-September, 1973, in New York. Before getting things underway, make sure you have the <code>tidyverse</code> and <code>lubridate</code> packages loaded. Once that’s done, we’ll first need to create a date column. The code below shows how you can do this using the <code>mutate</code> function:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Formatting to create Date column</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>airquality_dt <span class="ot">&lt;-</span> airquality <span class="sc">%&gt;%</span> </span>
@@ -259,8 +251,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Here’s the issue, though.</p>
 <p>You see, for those of us living in the Antipodes, we’re accustomed to using the Celsius scale to quantify temperature, meaning the current <em>y</em>-axis leaves us utterly perplexed and bamboozled. The only thing more confusing than this scale is the transformation to Celsius — where did that 5/9 come from? Anyway, it’d be great if we could include the Celsius scale, along with the original Fahrenheit temperatures, so we Kiwis can appreciate how hot things are getting.</p>
 </section>
-<section id="scales-degrees" class="level3">
-<h3 data-anchor-id="scales-degrees">Scales &amp; Degrees</h3>
+<section id="scales-degrees" class="level2">
+<h2 data-anchor-id="scales-degrees">Scales &amp; Degrees</h2>
 <p>The first thing we need to do is to specify some break points along the <em>original</em> <em>y</em>-axis. We’ll then transform these points onto the Celsius scale and then use those to <em>label</em> the second axis. The code below does just that — the <code>y_breaks</code>vector contains six points along the Fahrenheit scale which have then been transformed onto the Celsius scale and stored in a variable called <code>y_labels</code>. From there the second axis can be initialized, as shown below:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Specify break points in Fahrenheit and transform labels to Celsius </span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>y_breaks <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">59</span>, <span class="dv">68</span>, <span class="dv">77</span>, <span class="dv">86</span>, <span class="dv">95</span>, <span class="dv">104</span>)</span>
@@ -680,8 +672,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     }
   });
   </script>
-<input type="hidden" id="giscus-base-theme" value="light">
-<input type="hidden" id="giscus-alt-theme" value="dark">
+<input type="hidden" id="giscus-base-theme" value="https://robtaylor.co.nz/giscus-theme.css">
+<input type="hidden" id="giscus-alt-theme" value="https://robtaylor.co.nz/giscus-theme.css">
 <script>
   function loadGiscus() {
     // Function to get the theme based on body class
@@ -713,7 +705,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">
-<p>© Rob Taylor. Built with <a href="https://quarto.org">Quarto</a>.</p>
+<p>© Rob Taylor</p>
 </div>   
     <div class="nav-footer-center">
 <p>Statistics, probability, and Bayesian thinking</p>
@@ -723,6 +715,291 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
   </div>
 </footer>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  var wrap = document.querySelector('.newsletter-form-wrap');
+  if (wrap) initNewsletter(wrap);
+});
+
+function initNewsletter(wrap) {
+  var form = wrap.querySelector('#newsletter-form');
+  if (!form) return;
+
+  var emailInput = wrap.querySelector('#newsletter-email');
+  var msgEl = wrap.querySelector('#newsletter-msg');
+  var originalHTML = wrap.innerHTML;
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    var email = emailInput.value.trim();
+    if (!email) {
+      showError('Enter an email address.');
+      return;
+    }
+
+    // Basic email validation
+    var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+    if (!emailPattern.test(email)) {
+      showError('That doesn\'t look like an email address.');
+      return;
+    }
+
+    // TODO: Replace with your Buttondown API endpoint
+    // Example: https://api.buttondown.email/v1/subscribers
+    var BUTTONDOWN_ENDPOINT = '';
+
+    if (!BUTTONDOWN_ENDPOINT) {
+      // Placeholder: show success state for now
+      showSuccess(email);
+      return;
+    }
+
+    // Disable form while submitting
+    emailInput.disabled = true;
+    form.querySelector('button').disabled = true;
+
+    fetch(BUTTONDOWN_ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: email, tags: ['website'] })
+    })
+    .then(function (res) {
+      if (res.ok || res.status === 201) {
+        showSuccess(email);
+      } else {
+        return res.json().then(function (data) {
+          var detail = data.detail || '';
+          if (/already/i.test(detail)) {
+            throw new Error('That address is already on the list.');
+          }
+          throw new Error(detail || 'Could not subscribe. Please try again.');
+        });
+      }
+    })
+    .catch(function (err) {
+      showError(err.message || 'Could not subscribe. Please try again.');
+      emailInput.disabled = false;
+      form.querySelector('button').disabled = false;
+    });
+  });
+
+  function showError(message) {
+    emailInput.classList.add('has-error');
+    msgEl.className = 'newsletter-msg newsletter-error';
+    msgEl.textContent = message;
+
+    emailInput.addEventListener('input', function handler() {
+      emailInput.classList.remove('has-error');
+      msgEl.textContent = '';
+      msgEl.className = 'newsletter-msg';
+      emailInput.removeEventListener('input', handler);
+    });
+  }
+
+  function showSuccess(email) {
+    wrap.innerHTML =
+      '<div class="newsletter-success">' +
+        '<h4>Check your inbox.</h4>' +
+        '<p>A confirmation went to <strong>' + escapeHtml(email) + '</strong>. ' +
+        'Click the link in it and you’re on the list.</p>' +
+        '<a href="#" class="newsletter-reset">Use a different address</a>' +
+      '</div>';
+    wrap.querySelector('.newsletter-reset').addEventListener('click', function (e) {
+      e.preventDefault();
+      wrap.innerHTML = originalHTML;
+      initNewsletter(wrap);
+    });
+  }
+
+  function escapeHtml(str) {
+    var div = document.createElement('div');
+    div.appendChild(document.createTextNode(str));
+    return div.innerHTML;
+  }
+}
+</script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  var meta = document.querySelector('.quarto-title-meta');
+  var main = document.getElementById('quarto-document-content');
+  if (!meta || !main) return;
+
+  var header = main.querySelector('#title-block-header');
+  var words = main.textContent || '';
+  if (header) words = words.slice((header.textContent || '').length);
+  var count = words.trim().split(/\s+/).filter(Boolean).length;
+  if (!count) return;
+
+  // Technical/maths prose reads slower than general text — 100wpm rather
+  // than the usual ~200-238wpm reading-time default.
+  var minutes = Math.max(1, Math.round(count / 100));
+
+  var block = document.createElement('div');
+  block.innerHTML =
+    '<div class="quarto-title-meta-heading">Reading time</div>' +
+    '<div class="quarto-title-meta-contents"><p>' + minutes + ' min</p></div>';
+  meta.appendChild(block);
+});
+</script>
+<script>
+// include-after-body scripts run very late in the document — on a fast
+// or cached load the `load` event (or even DOMContentLoaded) has often
+// already fired by the time this executes, so a plain addEventListener
+// can silently never run. Run immediately whenever the DOM is already
+// parsed, otherwise wait for it — and run as early as possible (not on
+// `load`, which waits on images) so the TOC's CSS `visibility: hidden`
+// default (see styles.css) is lifted almost immediately, instead of
+// showing it in its original spot first and visibly snapping into place.
+function initPostLayout() {
+  // Quarto stamps an (empty) #title-block-header on every page, even
+  // non-article ones like the Writing index — only individual posts get
+  // this treatment.
+  if (!document.querySelector('#quarto-content.page-layout-article')) return;
+  relocateTOC();
+  addAllWritingLink();
+}
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initPostLayout);
+} else {
+  initPostLayout();
+}
+
+// Quarto's article layout puts the TOC in a page-wide margin column,
+// running the full height of the page beside the title. The design has
+// it sitting inside the article's own measure instead, starting below
+// the hero image, beside the body copy — so move it there once Quarto
+// has finished its own setup (scroll-spy etc. keep working since that
+// re-queries #TOC live rather than caching a reference to its old spot).
+function relocateTOC() {
+  var sidebar = document.getElementById('quarto-sidebar');
+  var main = document.getElementById('quarto-document-content');
+  if (!sidebar || !main || sidebar.dataset.relocated) return;
+
+  var header = main.querySelector('#title-block-header');
+  var hero = main.querySelector(':scope > .quarto-figure');
+  var insertAfter = hero || header;
+  if (!insertAfter) return;
+
+  var columns = document.createElement('div');
+  columns.className = 'post-body-columns';
+  var prose = document.createElement('div');
+  prose.className = 'post-body-prose';
+
+  var node = insertAfter.nextElementSibling;
+  while (node) {
+    var next = node.nextElementSibling;
+    prose.appendChild(node);
+    node = next;
+  }
+
+  // TOC first in the DOM, matching the mockup: it leads (stacks above
+  // the prose) on mobile, and sits on the left at desktop widths — no
+  // flex `order` override needed either way.
+  columns.appendChild(sidebar);
+  columns.appendChild(prose);
+  insertAfter.insertAdjacentElement('afterend', columns);
+  sidebar.dataset.relocated = 'true';
+  sidebar.classList.add('post-toc-ready');
+}
+
+// Quarto's title block has no built-in "back to index" link — the design
+// wants one above the category tags, in the same style as the nav.
+function addAllWritingLink() {
+  var header = document.getElementById('title-block-header');
+  if (!header || header.dataset.breadcrumbAdded) return;
+
+  var link = document.createElement('a');
+  link.className = 'all-writing-link';
+  link.href = '/blog/';
+  link.innerHTML = '<span class="all-writing-rule"></span>All writing';
+  header.insertAdjacentElement('afterbegin', link);
+  header.dataset.breadcrumbAdded = 'true';
+}
+</script>
+<script>
+// Runs after toc-layout.js (see _quarto.yml's include-after-body order),
+// so .post-body-prose already exists by the time this executes.
+function initPostExtras() {
+  var prose = document.querySelector('.post-body-prose');
+  var h1 = document.querySelector('.quarto-title h1.title');
+  var dateMeta = document.querySelector('meta[name="dcterms.date"]');
+  if (!prose || !h1 || !dateMeta || prose.dataset.citeAdded) return;
+  prose.dataset.citeAdded = 'true';
+
+  var year = dateMeta.content.slice(0, 4);
+  var title = h1.textContent.trim();
+  var citation = 'Taylor, R. (' + year + '). ' + title + '. robtaylor.co.nz';
+
+  var box = document.createElement('div');
+  box.className = 'post-cite-box';
+
+  var citeCol = document.createElement('div');
+  var label = document.createElement('span');
+  label.className = 'post-cite-label';
+  label.textContent = 'Cite this post';
+  var text = document.createElement('span');
+  text.className = 'post-cite-text';
+  text.textContent = citation;
+  citeCol.appendChild(label);
+  citeCol.appendChild(text);
+
+  var actions = document.createElement('div');
+  actions.className = 'post-cite-actions';
+
+  var copyBtn = document.createElement('button');
+  copyBtn.type = 'button';
+  copyBtn.className = 'post-cite-btn';
+  copyBtn.textContent = 'Copy';
+
+  var shareBtn = document.createElement('button');
+  shareBtn.type = 'button';
+  shareBtn.className = 'post-cite-btn post-cite-btn-accent';
+  shareBtn.textContent = 'Share';
+
+  actions.appendChild(copyBtn);
+  actions.appendChild(shareBtn);
+  box.appendChild(citeCol);
+  box.appendChild(actions);
+  prose.appendChild(box);
+
+  function flash(btn, message) {
+    var original = btn.textContent;
+    btn.textContent = message;
+    btn.disabled = true;
+    setTimeout(function () {
+      btn.textContent = original;
+      btn.disabled = false;
+    }, 1800);
+  }
+
+  copyBtn.addEventListener('click', function () {
+    navigator.clipboard.writeText(citation).then(function () {
+      flash(copyBtn, 'Copied');
+    }, function () {
+      flash(copyBtn, 'Copy failed');
+    });
+  });
+
+  shareBtn.addEventListener('click', function () {
+    var url = location.href;
+    if (navigator.share) {
+      navigator.share({ title: title, url: url }).catch(function () {});
+    } else {
+      navigator.clipboard.writeText(url).then(function () {
+        flash(shareBtn, 'Link copied');
+      }, function () {
+        flash(shareBtn, 'Copy failed');
+      });
+    }
+  });
+}
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initPostExtras);
+} else {
+  initPostExtras();
+}
+</script>
 
 
 

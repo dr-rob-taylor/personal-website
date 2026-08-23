@@ -6,10 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Rob Taylor, PhD">
-<meta name="dcterms.date" content="2022-08-27">
 
-<title>Maximum Likelihood Estimation: Part 2 – rob taylor</title>
+<title>quarto-inputda568e25afa57546 – rob taylor</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -28,22 +26,22 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../../../">
-<script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../../../site_libs/quarto-html/popper.min.js"></script>
-<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
-<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-9be6bd028c476a9e5884d70e30a8c230.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="/site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="/site_libs/quarto-nav/headroom.min.js"></script>
+<script src="/site_libs/clipboard/clipboard.min.js"></script>
+<script src="/site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="/site_libs/quarto-search/fuse.min.js"></script>
+<script src="/site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="/">
+<script src="/site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="/site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="/site_libs/quarto-html/popper.min.js"></script>
+<script src="/site_libs/quarto-html/tippy.umd.min.js"></script>
+<link href="/site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="/site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="/site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="/site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="/site_libs/bootstrap/bootstrap-9be6bd028c476a9e5884d70e30a8c230.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -76,83 +74,40 @@ ul.task-list li input[type="checkbox"] {
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&amp;display=swap" rel="stylesheet">
 
-  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
-  <script>document.addEventListener("DOMContentLoaded", function () {
- var mathElements = document.getElementsByClassName("math");
- var macros = [];
- for (var i = 0; i < mathElements.length; i++) {
-  var texText = mathElements[i].firstChild;
-  if (mathElements[i].tagName == "SPAN") {
-   katex.render(texText.data, mathElements[i], {
-    displayMode: mathElements[i].classList.contains('display'),
-    throwOnError: false,
-    macros: macros,
-    fleqn: false
-   });
-}}});
-  </script>
-  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
 
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
-
-<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="/styles.css">
 </head>
 
-<body class="floating nav-fixed quarto-light">
+<body class="nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="../../../index.html">
+    <a class="navbar-brand" href="/index.html">
     <span class="navbar-title">rob taylor</span>
     </a>
   </div>
           <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../../index.html"> 
+    <a class="nav-link" href="/index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../blog/index.html"> 
+    <a class="nav-link" href="/blog/index.html"> 
 <span class="menu-text">Writing</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../software/index.html"> 
+    <a class="nav-link" href="/software/index.html"> 
 <span class="menu-text">Software</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../publications/index.html"> 
+    <a class="nav-link" href="/publications/index.html"> 
 <span class="menu-text">Publications</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../about/index.html"> 
+    <a class="nav-link" href="/about/index.html"> 
 <span class="menu-text">About</span></a>
   </li>  
 </ul>
@@ -163,175 +118,39 @@ window.Quarto = {
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
-  <li><a href="#deriving-the-log-likelihood" id="toc-deriving-the-log-likelihood" class="nav-link" data-scroll-target="#deriving-the-log-likelihood">Deriving the Log-Likelihood</a></li>
-  <li><a href="#first-derivative-of-log-likelihood-function" id="toc-first-derivative-of-log-likelihood-function" class="nav-link" data-scroll-target="#first-derivative-of-log-likelihood-function">First Derivative of Log-Likelihood Function</a></li>
-  <li><a href="#deriving-the-maximum-likelihood-estimate" id="toc-deriving-the-maximum-likelihood-estimate" class="nav-link" data-scroll-target="#deriving-the-maximum-likelihood-estimate">Deriving the Maximum Likelihood Estimate</a></li>
-  <li><a href="#a-note-on-second-derivatives" id="toc-a-note-on-second-derivatives" class="nav-link" data-scroll-target="#a-note-on-second-derivatives">A Note on Second Derivatives</a></li>
-  <li><a href="#summing-up" id="toc-summing-up" class="nav-link" data-scroll-target="#summing-up">Summing Up</a></li>
-  </ul>
-</nav>
-</nav>
-<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-    </div>
+    
 <!-- main -->
-<main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">Maximum Likelihood Estimation: Part 2</h1>
-<p class="subtitle lead">Deriving the Binomial estimator from first principles</p>
-  <div class="quarto-categories">
-    <div class="quarto-category">statistics</div>
-    <div class="quarto-category">maximum likelihood estimation</div>
-    <div class="quarto-category">binomial model</div>
-  </div>
-  </div>
+<main class="content page-columns page-full column-page" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
 
 
 
-<div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>Rob Taylor, PhD </p>
-          </div>
-  </div>
-    
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">27 Aug 2022</p>
-    </div>
-  </div>
-  
-    
-  </div>
-  
+<div class="column-body-outset">
+<div class="error-layout">
+<div class="error-main">
+<p><span class="error-kicker">Error 404</span></p>
+<section id="this-page-has-been-mislaid." class="level1 error-title">
+<h1 class="error-title">This page has been mislaid.</h1>
+<div class="error-rule">
 
-
-</header>
-
-
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="anders-drange-VIveO0APhqI-unsplash.jpg" class="post-hero img-fluid figure-img"></p>
-<figcaption>Photo by Andres Drange on Unsplash</figcaption>
-</figure>
 </div>
-<div class="post-series-box">
-<div class="post-series-header">
-<p><span class="post-series-label">Part of a series</span> <span class="post-series-count">2 parts</span></p>
+<p>Either the address is wrong, or something that once lived here has since moved. Neither is your fault. The writing is all still on the site — try the index.</p>
+<div class="error-buttons">
+<p><a class="btn btn-primary" href="/blog/">All writing</a> <a class="btn btn-secondary" href="/">Home</a></p>
 </div>
-<h3 class="post-series-name">
-Maximum Likelihood Estimation
-</h3>
-<p class="post-series-blurb">
-A two-part treatment: the estimator first, then the calculus behind it.
-</p>
-<div class="post-series-parts">
-<div class="post-series-part">
-<p><span class="post-series-part-n">I</span> <a href="../../../blog/posts/maximum-likelihood-estimation/">An Introduction to Maximum Likelihood Estimation</a></p>
+</section>
 </div>
-<div class="post-series-part">
-<p><span class="post-series-part-n">II</span> <span class="post-series-part-current">Maximum Likelihood Estimation: Part 2 <em>— you are here</em></span></p>
+<div class="error-rail">
+<p><span class="rail-label">Recent posts</span></p>
+<p><a class="error-post-link" href="/blog/posts/statistical-technicians/"><span class="post-date">24 Apr 2026</span><span class="post-title">Statistical Technicians</span></a> <a class="error-post-link" href="/blog/posts/do-we-need-to-test-variances/"><span class="post-date">15 Apr 2026</span><span class="post-title">Do We Really Need to Test Variances Anymore?</span></a> <a class="error-post-link" href="/blog/posts/stop-pretending-data-roles-are-separate/"><span class="post-date">23 Aug 2025</span><span class="post-title">Stop Pretending Data Roles Are Separate</span></a></p>
 </div>
 </div>
 </div>
-<section id="introduction" class="level2">
-<h2 data-anchor-id="introduction">Introduction</h2>
-<p>In an earlier <a href="https://medium.com/@dataforyou/maximum-likelihood-estimation-cd9fd068e9a8">post</a>, I stepped through maximum likelihood estimation and showed how to derive the estimator for the Binomial model from first principles. It was a bit of a whirlwind, for sure, and I threw a lot of equations at you. If you were left wondering where those equations came from you’ve come to the right place!</p>
-<p>In this post, I’ll take you through some of the math in greater detail. This post does assume that you’re comfortable with some calculus and algebra. If these topics aren’t really your thing, fear not — I’ll try not to get too bogged down in the weeds so you can still follow along. However, I do run through some elements rather quickly, so if you find yourself getting lost, that’s okay. I will provide links to resources where I can.</p>
-<p>Okay, back to coin flips.</p>
-</section>
-<section id="deriving-the-log-likelihood" class="level2">
-<h2 data-anchor-id="deriving-the-log-likelihood">Deriving the Log-Likelihood</h2>
-<p>Let’s assume we have flipped a coin <span class="math inline">N</span> times and have observed a total of <span class="math inline">K</span> heads. Strictly speaking, each coin flip is a <a href="https://en.wikipedia.org/wiki/Bernoulli_trial">Bernoulli</a> trial that can take on values of either 0 or 1. The probability for each of these outcomes is governed by the rate parameter, <span class="math inline">p</span>, where <span class="math inline">P(X = 1) = p</span> and <span class="math inline">P(X = 0) = 1-p</span>. We can arbitrarily assign heads (or tails) to either 0 or 1 so in keeping with the previous post we’ll let heads = 1 and tails = 0.</p>
-<p>Our sequence of coin flips will now be a series of 0’s and 1’s, which is convenient because we can derive the number of observed heads using a simple summation:</p>
-<p><span class="math display">K = \sum_{i=1}^N X_i</span></p>
-<p>Having the situation set up in this way simplifies things somewhat and means the likelihood function can be expressed in the usual way:</p>
-<p><span class="math display">\begin{align}
-\mathcal{L}(p \ | \ K, \ N) &amp;= P(K \ | \ p, \ N) \\[.5em]
-&amp;= \binom{N}{K} \ p^K \ (1 - p)^{N - K}
-\end{align}</span></p>
-<p>where <span class="math inline">p</span> is the unknown parameter to be estimated.</p>
-<p>Now that we have the likelihood function we typically want to work with the log of this function. Why? Well, two reasons (actually, it’s just one reason…).</p>
-<p>If you take a small value — a value less than 1 — and multiply it by itself many times, the returned value becomes smaller and smaller, and pretty soon you’ll be drowning in a sea of significant digits and scientific notation. Not ideal. If you take a look at the likelihood function above, you’ll see that we have small values raised to the power of <span class="math inline">K</span> and <span class="math inline">N-K</span>. The log transformation helps with this by essentially expanding the range between 0 and 1. It allows smaller values to take on increasingly negative values.</p>
-<p>The flip side of this case is where you multiply a large value — values greater than 1 — by itself many times. Here, the returned value grows larger and larger, which means you can be dealing with some pretty heavy numbers. In this case, the log transformation compresses these growing values, bringing them down to a more manageable range.</p>
-<p>That was a very quick and dirty digression, but hopefully, it provided enough of a rationale for why we like <a href="https://en.wikipedia.org/wiki/Logarithm">log transformations</a>. Speaking of, let’s now derive the log-likelihood function. To do so we just need to take the log of both sides and simplify:</p>
-<p><span class="math display">\begin{align}
-\mathcal{L}(p \ | \ K, \ N) &amp;= \ln \left[\binom{N}{K} p^K (1 - p)^{N - K} \right]\\[2em]
-&amp;= \ln\binom{N}{K} + \ln p^K + \ln \left[(1 - p)^{N - K}\right]\\[2em]
-&amp;= \ln\binom{N}{K} + K \ \ln p + (N - K) \ln (1 - p)
-\end{align}</span></p>
-<p>So, all that’s happening here is that each term in the likelihood function is log-transformed.</p>
-<p>For those who are still a little unsure of what has happened here, there are two things you need to know. First, if you take the log of the product of two values (actually, you can take any number of terms), that’s the same as adding the log-transformed values:</p>
-<p><span class="math display">\ln\left[a \cdot b\right] = \ln a + \ln b</span></p>
-<p>The second is what happens when you take the log of values that have been raised to some power:</p>
-<p><span class="math display">\ln\left[ a^b\right] = b \cdot \ln a</span></p>
-<p>If you equate <span class="math inline">b</span> with <span class="math inline">K</span> and <span class="math inline">N-K</span>, and <span class="math inline">a</span> with <span class="math inline">p</span> and <span class="math inline">1-p</span>, hopefully, you can see where the terms in log-likelihood come from.</p>
-<p>Onward!</p>
-</section>
-<section id="first-derivative-of-log-likelihood-function" class="level2">
-<h2 data-anchor-id="first-derivative-of-log-likelihood-function">First Derivative of Log-Likelihood Function</h2>
-<p>Right. To find the maximum likelihood estimate we need the first derivative of the likelihood function with respect to <span class="math inline">p</span>. Remember, the derivative should have a value of zero when <span class="math inline">p</span> is at a minimum or maximum value. Now, because we know the likelihood function for this example is a concave function of <span class="math inline">p</span>, we know that a global maximum exists for some value of <span class="math inline">p</span><em>,</em> which will the point at which the derivative is zero.</p>
-<p>So, let’s take the first derivative of the log-likelihood function with respect to <span class="math inline">p</span><em>:</em></p>
-<p><span class="math display">\begin{align}
-\frac{\mathrm{d} \ln \mathcal{L}(p \ | \ K,N)}{\mathrm{d}p} &amp;= \frac{\mathrm{d}}{\mathrm{d}p} \left[ \ln\binom{N}{K} + K \ \ln p + (N - K) \ln (1 - p) \right] \\[2em]
-&amp;= \frac{\mathrm{d}}{\mathrm{d}p} \ln \binom{N}{K} + K \frac{\mathrm{d}}{\mathrm{d}p} \ln p + (N - K)\frac{\mathrm{d}}{\mathrm{d}p} \ln (1 - p)\\[2em]
-&amp;= 0 + K\frac{1}{p} + (N - K)\left[ \frac{1}{1 - p}(0-1)\right]\\[2em]
-&amp;= \frac{K}{p} + \frac{N - K}{1 - p}
-\end{align}</span></p>
-<p>If all these hieroglyphics seem like gobbledegook to you, all that’s happening here is the application of certain <a href="https://www.math.ucdavis.edu/~kouba/Math17BHWDIRECTORY/Derivatives.pdf">derivative rules</a>. If the rules are unfamiliar to you I have provided a very quick primer in the appendix below. But all that matters, really, is the result in the bottom line, because that <em>is</em> the derivative.</p>
-</section>
-<section id="deriving-the-maximum-likelihood-estimate" class="level2">
-<h2 data-anchor-id="deriving-the-maximum-likelihood-estimate">Deriving the Maximum Likelihood Estimate</h2>
-<p>Okay. so we now have an expression for the derivative. The next step is to actually find the value that reduces this expression to zero. So, how do we do that?</p>
-<p>Well, one method is trial and error: just plug in different values for <em>p</em> and see what you get. That’d get tedious pretty quickly and fortunately, there’s a better way. Remember, we want the value of <span class="math inline">p</span>that coincides with the zero point of the derivative. This means that if we set the derivative to zero we can then solve for <span class="math inline">p</span>. So let’s do that.</p>
-<p>But before we do, I always found it helpful to note the following equality:</p>
-<p><span class="math display">\frac{K}{p} - \frac{N - K}{1 - p} = \frac{K(1-p)}{p(1-p)} - \frac{p(N - K)}{p(1-p)}</span></p>
-<p>If we then set the left-hand side to zero and do some algebra we obtain the following:</p>
-<p><span class="math display">\begin{align}
-0 &amp;= \frac{K(1-p)}{p(1-p)} - \frac{p(N - K)}{p(1-p)}\\[2em]
-\frac{p(N - K)}{p(1-p)} &amp;= \frac{K(1-p)}{p(1-p)} \\[2em]
-p(N - K) &amp;= K(1-p) \\[1em]
-pN - pK &amp;= K - Kp \\[1em]
-pN &amp;= K \\[1em]
-p &amp;= \frac{K}{N}
-\end{align}</span></p>
-<p>and ta-da! We have the result:</p>
-<p><span class="math display">\hat{p}_{MLE} = \frac{K}{N}</span></p>
-<p>You can check this result by plugging the MLE into the first derivative. It should return a value of zero. But just to be sure, suppose we observe <span class="math inline">K = 7</span> heads out of <span class="math inline">N = 10</span> throws. The MLE for this data is therefore 0.7. Let’s plug these values in and see what happens:</p>
-<p><span class="math display">\begin{align}
-\frac{K}{p} - \frac{N - K}{1 - p} &amp;= \frac{7}{.7} - \frac{10 - 7}{1 - .7} \\[0.75em]
-&amp;= \frac{7}{.7} - \frac{3}{.3} \\[0.75em]
-&amp;= 10 - 10 \\[0.75em]
-&amp;= 0
-\end{align}</span></p>
-<p>Happy days.</p>
-</section>
-<section id="a-note-on-second-derivatives" class="level2">
-<h2 data-anchor-id="a-note-on-second-derivatives">A Note on Second Derivatives</h2>
-<p>In my earlier post, I mentioned that it is also necessary to check the second derivative of the likelihood function to ensure that a global maximum has been obtained. This is generally a good practice — but I’m not going to do that here. Given that we know the likelihood function is concave the solution we have derived is unique. However, for models with several parameters and complex likelihood functions, it’s probably a good idea to check your solutions — so long as an analytical solution exists. If not, you’ll likely need to use numerical methods to estimate the parameters of your model. All of this is a little beyond the scope of this post, but down the line, I’ll discuss some of these methods.</p>
-</section>
-<section id="summing-up" class="level2">
-<h2 data-anchor-id="summing-up">Summing Up</h2>
-<p>If you’ve got to this point, thanks for hanging in there.</p>
-<p>I covered a lot of rather technical stuff in this post and, to be fair, it was pitched with a more technical audience in mind. Nevertheless, even if calculus and algebra aren’t your strong suit, I’m hoping you got something useful out of this demonstration. I’m not sure how successful I was in avoiding the weeds but hopefully, the slight digressions helped you navigate them in some way.</p>
-<p>Thanks for reading, and as always, feel free to reach out, or leave a comment.</p>
 
 
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -727,35 +546,6 @@ p &amp;= \frac{K}{N}
     }
   });
   </script>
-<input type="hidden" id="giscus-base-theme" value="https://robtaylor.co.nz/giscus-theme.css">
-<input type="hidden" id="giscus-alt-theme" value="https://robtaylor.co.nz/giscus-theme.css">
-<script>
-  function loadGiscus() {
-    // Function to get the theme based on body class
-    const getTheme = () => {
-      let baseTheme = document.getElementById('giscus-base-theme').value;
-      let altTheme = document.getElementById('giscus-alt-theme').value;
-      return document.body.classList.contains('quarto-dark') ? altTheme : baseTheme;
-    };
-    const script = document.createElement("script");
-    script.src = "https://giscus.app/client.js";
-    script.async = true;
-    script.dataset.repo = "dr-rob-taylor/personal-website";
-    script.dataset.repoId = "R_kgDOSWqKZQ";
-    script.dataset.category = "Blog Comments";
-    script.dataset.categoryId = "DIC_kwDOSWqKZc4DDfQ_";
-    script.dataset.mapping = "pathname";
-    script.dataset.reactionsEnabled = "1";
-    script.dataset.emitMetadata = "0";
-    script.dataset.inputPosition = "bottom";
-    script.dataset.theme = getTheme();
-    script.dataset.lang = "en";
-    script.crossOrigin = "anonymous";
-    // Append the script to the desired div instead of at the end of the body
-    document.getElementById("quarto-content").appendChild(script);
-  }
-  loadGiscus();
-</script>
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
@@ -1059,5 +849,5 @@ if (document.readyState === 'loading') {
 
 
 
-<script src="../../../site_libs/quarto-html/zenscroll-min.js"></script>
+<script src="/site_libs/quarto-html/zenscroll-min.js"></script>
 </body></html>

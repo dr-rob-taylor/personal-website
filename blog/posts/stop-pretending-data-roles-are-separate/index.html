@@ -9,7 +9,7 @@
 <meta name="author" content="Rob Taylor, PhD">
 <meta name="dcterms.date" content="2025-08-23">
 
-<title>Stop Pretending Data Roles Are Separate – robtaylor</title>
+<title>Stop Pretending Data Roles Are Separate – rob taylor</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -43,7 +43,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-773c3bb633b259146a05fb45e4da5169.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-9be6bd028c476a9e5884d70e30a8c230.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -72,6 +72,9 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 <style>html{ scroll-behavior: smooth; }</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&amp;display=swap" rel="stylesheet">
 
 
 <link rel="stylesheet" href="../../../styles.css">
@@ -80,88 +83,44 @@ ul.task-list li input[type="checkbox"] {
 <body class="floating nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top quarto-banner">
-    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../../../index.html">
     <span class="navbar-title">rob taylor</span>
     </a>
   </div>
-            <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-  <span class="navbar-toggler-icon"></span>
-</button>
-          <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav navbar-nav-scroll me-auto">
+          <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
     <a class="nav-link" href="../../../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../about/"> 
-<span class="menu-text">About</span></a>
+    <a class="nav-link" href="../../../blog/index.html"> 
+<span class="menu-text">Writing</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../blog/"> 
-<span class="menu-text">Blog</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../software/"> 
+    <a class="nav-link" href="../../../software/index.html"> 
 <span class="menu-text">Software</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../resources/"> 
-<span class="menu-text">Resources</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../publications/"> 
+    <a class="nav-link" href="../../../publications/index.html"> 
 <span class="menu-text">Publications</span></a>
   </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../about/index.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
 </ul>
-          </div> <!-- /navcollapse -->
-            <div class="quarto-navbar-tools">
+          <div class="quarto-navbar-tools">
 </div>
+            <div id="quarto-search" class="" title="Search"></div>
       </div> <!-- /container-fluid -->
     </nav>
 </header>
 <!-- content -->
-<header id="title-block-header" class="quarto-title-block default toc-left page-columns page-full">
-  <div class="quarto-title-banner page-columns page-full">
-    <div class="quarto-title column-body">
-      <h1 class="title">Stop Pretending Data Roles Are Separate</h1>
-            <p class="subtitle lead">My push back against the “data trinity”</p>
-                                <div class="quarto-categories">
-                <div class="quarto-category">data analysis</div>
-                <div class="quarto-category">data science</div>
-                <div class="quarto-category">data engineering</div>
-                <div class="quarto-category">gripe</div>
-              </div>
-                  </div>
-  </div>
-    
-  
-  <div class="quarto-title-meta">
-
-      <div>
-      <div class="quarto-title-meta-heading">Author</div>
-      <div class="quarto-title-meta-contents">
-               <p>Rob Taylor, PhD </p>
-            </div>
-    </div>
-      
-      <div>
-      <div class="quarto-title-meta-heading">Published</div>
-      <div class="quarto-title-meta-contents">
-        <p class="date">August 23, 2025</p>
-      </div>
-    </div>
-    
-      
-    </div>
-    
-  
-  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <nav id="TOC" role="doc-toc" class="toc-active">
@@ -180,19 +139,59 @@ ul.task-list li input[type="checkbox"] {
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
     </div>
 <!-- main -->
-<main class="content quarto-banner-title-block" id="quarto-document-content">
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Stop Pretending Data Roles Are Separate</h1>
+<p class="subtitle lead">My push back against the “data trinity”</p>
+  <div class="quarto-categories">
+    <div class="quarto-category">data analysis</div>
+    <div class="quarto-category">data science</div>
+    <div class="quarto-category">data engineering</div>
+    <div class="quarto-category">gripe</div>
+  </div>
+  </div>
 
 
 
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Rob Taylor, PhD </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">23 Aug 2025</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
 
 
-<section id="introduction" class="level3">
-<h3 data-anchor-id="introduction">Introduction</h3>
+</header>
+
+
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="joel-henry-iuU0Ikb2U9E-unsplash.jpg" class="post-hero img-fluid figure-img"></p>
+<figcaption>Photo by Joel Henry on Unsplash</figcaption>
+</figure>
+</div>
+<section id="introduction" class="level2">
+<h2 data-anchor-id="introduction">Introduction</h2>
 <p>As someone who’s worked across different data roles, my feeds are full of posts about what I think of as the “data trinity”: the engineer, the scientist, and the analyst. These posts usually frame the three as cleanly separated and clearly defined. But in practice, the boundaries are far less rigid.</p>
 <p>There’s a conceptual convenience in treating them as separate, for sure. It helps organisations write job descriptions and structure teams. But in reality, these roles share more in common than they don’t.</p>
 </section>
-<section id="the-data-trinity" class="level3">
-<h3 data-anchor-id="the-data-trinity">The Data Trinity</h3>
+<section id="the-data-trinity" class="level2">
+<h2 data-anchor-id="the-data-trinity">The Data Trinity</h2>
 <p>Let’s start with the “official” distinctions.</p>
 <ul>
 <li><p>The <strong>data engineer</strong> builds and maintains the infrastructure: pipelines, warehouses, APIs, orchestration, and performance systems.</p></li>
@@ -203,14 +202,14 @@ ul.task-list li input[type="checkbox"] {
 <p>At a basic level, everyone in data writes SQL, cleans messy datasets, and interprets results. The idea that these processes belong exclusively to one role feels artificial. A scientist might prototype their own ETL pipeline; an engineer might check a dashboard for validity; an analyst might apply statistical methods to simplify a large dataset.</p>
 <p>Team size also changes the picture. In small companies, one “data person” may wear all three hats. Conversely, larger companies may distill roles into even narrower specialties — for example, you might see machine learning engineers, analytics engineers, and BI developers. And then there’s the reality of problem-solving: data is rarely neat, and the problems don’t announce themselves in advance. Professionals working with real world data often have to cross the boundaries of their title to get the job done.</p>
 </section>
-<section id="a-broader-view" class="level3">
-<h3 data-anchor-id="a-broader-view">A Broader View</h3>
+<section id="a-broader-view" class="level2">
+<h2 data-anchor-id="a-broader-view">A Broader View</h2>
 <p>Rather than rigid boxes, I think of these roles as points on a triangle. Engineers emphasise scalability and reliability. Scientists emphasise experimentation and modeling. Analysts emphasise insight and decision-making. But most professionals and teams sit somewhere <em>inside</em> the triangle, not at a single vertex. These distinctions are less about separate professions and more about emphasis — where the work leans, not where it begins and ends.</p>
 <p>Taken together, all three roles serve the same mission: turning raw data into trustworthy, usable knowledge that drives action. Engineers make data available. Scientists make data interpretable. Analysts make data actionable. But titles and boundaries are helpful only if they don’t produce operational silos. The strongest data teams recognise that capable professionals move between roles, collaborate deeply, and respect each other’s emphases without being limited by them.</p>
 <p>In the end, the measure of a data professional isn’t the label they carry — it’s their ability to turn information into value. The triangle is useful, but the best work happens in the overlaps.</p>
 </section>
-<section id="section" class="level3">
-<h3 data-anchor-id="section"></h3>
+<section id="section" class="level2">
+<h2 data-anchor-id="section"></h2>
 
 
 </section>
@@ -609,8 +608,8 @@ ul.task-list li input[type="checkbox"] {
     }
   });
   </script>
-<input type="hidden" id="giscus-base-theme" value="light">
-<input type="hidden" id="giscus-alt-theme" value="dark">
+<input type="hidden" id="giscus-base-theme" value="https://robtaylor.co.nz/giscus-theme.css">
+<input type="hidden" id="giscus-alt-theme" value="https://robtaylor.co.nz/giscus-theme.css">
 <script>
   function loadGiscus() {
     // Function to get the theme based on body class
@@ -642,7 +641,7 @@ ul.task-list li input[type="checkbox"] {
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">
-<p>© Rob Taylor. Built with <a href="https://quarto.org">Quarto</a>.</p>
+<p>© Rob Taylor</p>
 </div>   
     <div class="nav-footer-center">
 <p>Statistics, probability, and Bayesian thinking</p>
@@ -652,6 +651,291 @@ ul.task-list li input[type="checkbox"] {
 </div>
   </div>
 </footer>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  var wrap = document.querySelector('.newsletter-form-wrap');
+  if (wrap) initNewsletter(wrap);
+});
+
+function initNewsletter(wrap) {
+  var form = wrap.querySelector('#newsletter-form');
+  if (!form) return;
+
+  var emailInput = wrap.querySelector('#newsletter-email');
+  var msgEl = wrap.querySelector('#newsletter-msg');
+  var originalHTML = wrap.innerHTML;
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    var email = emailInput.value.trim();
+    if (!email) {
+      showError('Enter an email address.');
+      return;
+    }
+
+    // Basic email validation
+    var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+    if (!emailPattern.test(email)) {
+      showError('That doesn\'t look like an email address.');
+      return;
+    }
+
+    // TODO: Replace with your Buttondown API endpoint
+    // Example: https://api.buttondown.email/v1/subscribers
+    var BUTTONDOWN_ENDPOINT = '';
+
+    if (!BUTTONDOWN_ENDPOINT) {
+      // Placeholder: show success state for now
+      showSuccess(email);
+      return;
+    }
+
+    // Disable form while submitting
+    emailInput.disabled = true;
+    form.querySelector('button').disabled = true;
+
+    fetch(BUTTONDOWN_ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: email, tags: ['website'] })
+    })
+    .then(function (res) {
+      if (res.ok || res.status === 201) {
+        showSuccess(email);
+      } else {
+        return res.json().then(function (data) {
+          var detail = data.detail || '';
+          if (/already/i.test(detail)) {
+            throw new Error('That address is already on the list.');
+          }
+          throw new Error(detail || 'Could not subscribe. Please try again.');
+        });
+      }
+    })
+    .catch(function (err) {
+      showError(err.message || 'Could not subscribe. Please try again.');
+      emailInput.disabled = false;
+      form.querySelector('button').disabled = false;
+    });
+  });
+
+  function showError(message) {
+    emailInput.classList.add('has-error');
+    msgEl.className = 'newsletter-msg newsletter-error';
+    msgEl.textContent = message;
+
+    emailInput.addEventListener('input', function handler() {
+      emailInput.classList.remove('has-error');
+      msgEl.textContent = '';
+      msgEl.className = 'newsletter-msg';
+      emailInput.removeEventListener('input', handler);
+    });
+  }
+
+  function showSuccess(email) {
+    wrap.innerHTML =
+      '<div class="newsletter-success">' +
+        '<h4>Check your inbox.</h4>' +
+        '<p>A confirmation went to <strong>' + escapeHtml(email) + '</strong>. ' +
+        'Click the link in it and you’re on the list.</p>' +
+        '<a href="#" class="newsletter-reset">Use a different address</a>' +
+      '</div>';
+    wrap.querySelector('.newsletter-reset').addEventListener('click', function (e) {
+      e.preventDefault();
+      wrap.innerHTML = originalHTML;
+      initNewsletter(wrap);
+    });
+  }
+
+  function escapeHtml(str) {
+    var div = document.createElement('div');
+    div.appendChild(document.createTextNode(str));
+    return div.innerHTML;
+  }
+}
+</script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  var meta = document.querySelector('.quarto-title-meta');
+  var main = document.getElementById('quarto-document-content');
+  if (!meta || !main) return;
+
+  var header = main.querySelector('#title-block-header');
+  var words = main.textContent || '';
+  if (header) words = words.slice((header.textContent || '').length);
+  var count = words.trim().split(/\s+/).filter(Boolean).length;
+  if (!count) return;
+
+  // Technical/maths prose reads slower than general text — 100wpm rather
+  // than the usual ~200-238wpm reading-time default.
+  var minutes = Math.max(1, Math.round(count / 100));
+
+  var block = document.createElement('div');
+  block.innerHTML =
+    '<div class="quarto-title-meta-heading">Reading time</div>' +
+    '<div class="quarto-title-meta-contents"><p>' + minutes + ' min</p></div>';
+  meta.appendChild(block);
+});
+</script>
+<script>
+// include-after-body scripts run very late in the document — on a fast
+// or cached load the `load` event (or even DOMContentLoaded) has often
+// already fired by the time this executes, so a plain addEventListener
+// can silently never run. Run immediately whenever the DOM is already
+// parsed, otherwise wait for it — and run as early as possible (not on
+// `load`, which waits on images) so the TOC's CSS `visibility: hidden`
+// default (see styles.css) is lifted almost immediately, instead of
+// showing it in its original spot first and visibly snapping into place.
+function initPostLayout() {
+  // Quarto stamps an (empty) #title-block-header on every page, even
+  // non-article ones like the Writing index — only individual posts get
+  // this treatment.
+  if (!document.querySelector('#quarto-content.page-layout-article')) return;
+  relocateTOC();
+  addAllWritingLink();
+}
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initPostLayout);
+} else {
+  initPostLayout();
+}
+
+// Quarto's article layout puts the TOC in a page-wide margin column,
+// running the full height of the page beside the title. The design has
+// it sitting inside the article's own measure instead, starting below
+// the hero image, beside the body copy — so move it there once Quarto
+// has finished its own setup (scroll-spy etc. keep working since that
+// re-queries #TOC live rather than caching a reference to its old spot).
+function relocateTOC() {
+  var sidebar = document.getElementById('quarto-sidebar');
+  var main = document.getElementById('quarto-document-content');
+  if (!sidebar || !main || sidebar.dataset.relocated) return;
+
+  var header = main.querySelector('#title-block-header');
+  var hero = main.querySelector(':scope > .quarto-figure');
+  var insertAfter = hero || header;
+  if (!insertAfter) return;
+
+  var columns = document.createElement('div');
+  columns.className = 'post-body-columns';
+  var prose = document.createElement('div');
+  prose.className = 'post-body-prose';
+
+  var node = insertAfter.nextElementSibling;
+  while (node) {
+    var next = node.nextElementSibling;
+    prose.appendChild(node);
+    node = next;
+  }
+
+  // TOC first in the DOM, matching the mockup: it leads (stacks above
+  // the prose) on mobile, and sits on the left at desktop widths — no
+  // flex `order` override needed either way.
+  columns.appendChild(sidebar);
+  columns.appendChild(prose);
+  insertAfter.insertAdjacentElement('afterend', columns);
+  sidebar.dataset.relocated = 'true';
+  sidebar.classList.add('post-toc-ready');
+}
+
+// Quarto's title block has no built-in "back to index" link — the design
+// wants one above the category tags, in the same style as the nav.
+function addAllWritingLink() {
+  var header = document.getElementById('title-block-header');
+  if (!header || header.dataset.breadcrumbAdded) return;
+
+  var link = document.createElement('a');
+  link.className = 'all-writing-link';
+  link.href = '/blog/';
+  link.innerHTML = '<span class="all-writing-rule"></span>All writing';
+  header.insertAdjacentElement('afterbegin', link);
+  header.dataset.breadcrumbAdded = 'true';
+}
+</script>
+<script>
+// Runs after toc-layout.js (see _quarto.yml's include-after-body order),
+// so .post-body-prose already exists by the time this executes.
+function initPostExtras() {
+  var prose = document.querySelector('.post-body-prose');
+  var h1 = document.querySelector('.quarto-title h1.title');
+  var dateMeta = document.querySelector('meta[name="dcterms.date"]');
+  if (!prose || !h1 || !dateMeta || prose.dataset.citeAdded) return;
+  prose.dataset.citeAdded = 'true';
+
+  var year = dateMeta.content.slice(0, 4);
+  var title = h1.textContent.trim();
+  var citation = 'Taylor, R. (' + year + '). ' + title + '. robtaylor.co.nz';
+
+  var box = document.createElement('div');
+  box.className = 'post-cite-box';
+
+  var citeCol = document.createElement('div');
+  var label = document.createElement('span');
+  label.className = 'post-cite-label';
+  label.textContent = 'Cite this post';
+  var text = document.createElement('span');
+  text.className = 'post-cite-text';
+  text.textContent = citation;
+  citeCol.appendChild(label);
+  citeCol.appendChild(text);
+
+  var actions = document.createElement('div');
+  actions.className = 'post-cite-actions';
+
+  var copyBtn = document.createElement('button');
+  copyBtn.type = 'button';
+  copyBtn.className = 'post-cite-btn';
+  copyBtn.textContent = 'Copy';
+
+  var shareBtn = document.createElement('button');
+  shareBtn.type = 'button';
+  shareBtn.className = 'post-cite-btn post-cite-btn-accent';
+  shareBtn.textContent = 'Share';
+
+  actions.appendChild(copyBtn);
+  actions.appendChild(shareBtn);
+  box.appendChild(citeCol);
+  box.appendChild(actions);
+  prose.appendChild(box);
+
+  function flash(btn, message) {
+    var original = btn.textContent;
+    btn.textContent = message;
+    btn.disabled = true;
+    setTimeout(function () {
+      btn.textContent = original;
+      btn.disabled = false;
+    }, 1800);
+  }
+
+  copyBtn.addEventListener('click', function () {
+    navigator.clipboard.writeText(citation).then(function () {
+      flash(copyBtn, 'Copied');
+    }, function () {
+      flash(copyBtn, 'Copy failed');
+    });
+  });
+
+  shareBtn.addEventListener('click', function () {
+    var url = location.href;
+    if (navigator.share) {
+      navigator.share({ title: title, url: url }).catch(function () {});
+    } else {
+      navigator.clipboard.writeText(url).then(function () {
+        flash(shareBtn, 'Link copied');
+      }, function () {
+        flash(shareBtn, 'Copy failed');
+      });
+    }
+  });
+}
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initPostExtras);
+} else {
+  initPostExtras();
+}
+</script>
 
 
 

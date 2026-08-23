@@ -1,108 +1,1729 @@
+/* ═══════════════════════════════════════════════════════
+   Rob Taylor — Classical design system
+   Editorial serif · hairline rules · colour as stroke
+   ═══════════════════════════════════════════════════════ */
 
-.quarto-title-meta .quarto-title-meta-heading{
-  color: var(--text-accent);
+
+/* ============================================
+   GLOBAL
+   ============================================ */
+
+/* The design docs describe a Cormorant-heading/Lora-body pairing, but
+   the actual mockup (source of truth for what the client approved and
+   is comparing against) never applies Lora anywhere — "Cormorant
+   Garamond" appears 162 times in it, "Lora" zero. Body copy inherits
+   Cormorant Garamond from this same body rule throughout the prototype,
+   so that's what this matches. */
+body {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 18px;
+  line-height: 1.6;
+  color: var(--cl-text);
+  background: var(--cl-ground);
+  /* Bootstrap's reboot forces grayscale/subpixel-disabled antialiasing on
+     body, which thins out serif strokes noticeably at these text sizes —
+     the mockup never sets this (defaults to the browser's own hinting),
+     so undo it here to match. */
+  -webkit-font-smoothing: auto;
+  -moz-osx-font-smoothing: auto;
 }
 
-.quarto-listing .card {
-  /*background: var(--bs-light);
-  border: 0.5px solid var(--bs-secondary);*/
-  border-top: 2px solid var(--bs-primary);
-  border-radius: 0 0 8px 8px;
-  box-shadow: var(--shadow-sm);
-  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+/* 18px matches the mockup's actual prose paragraph spacing exactly —
+   confirmed by grepping every `<p style="margin:...">` in the mockup:
+   `margin:0 0 18px` is the only value used for real body-copy paragraphs
+   (post body blocks, About page sections), appearing 9 times with no
+   variation. Every other paragraph in the mockup is either `margin:0`
+   (a single-line label/span wrapper, already handled with its own
+   explicit override elsewhere — see quarto-css-gotchas #15/#21) or a
+   one-off component value that already carries its own explicit style. */
+p {
+  margin: 0 0 18px;
 }
 
-.quarto-listing .card:hover {
-  transform: translateY(-2px);
-  border-top-color: var(--bs-secondary);
-  box-shadow: var(--shadow-md);
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Cormorant Garamond", Georgia, serif;
 }
 
-.quarto-listing .card-title {
-  color: var(--bs-primary);
-  text-decoration: none;
-  font-size: 0.95rem;
-  font-weight: 800;
-  line-height: 1.5;
+/* Weight baseline, cross-checked against every heading in the mockup
+   (26 total): h1 is 400 without exception (9/9 — large display text
+   goes lighter, per the design system's own "the bigger the text the
+   lighter it sets" rule). h2/h3 default to 600 (14 of 17), with only
+   a few specific large section headers (e.g. "Latest posts") dropped
+   to 400 by their own explicit selector, which — being more specific
+   than this — still wins over this default. Bootstrap/theme.scss's
+   $headings-font-weight was set to 400 for all of them, which is why
+   any heading not already carrying one of this project's own explicit
+   overrides was quietly rendering a full step lighter than the mock. */
+h1 {
+  font-weight: 400;
+  /*margin: 0px 0px 4px;
+  letter-spacing: -0.02em;*/
 }
 
-.quarto-listing .card-subtitle {
-  /*color: var(--text-muted);*/
-  font-size: 0.85rem;
+h2, h3, h4, h5, h6 {
+  font-weight: 600;
 }
 
-.quarto-listing .card-img-top {
+/* Bootstrap's "cosmo" theme gives every h2 its own signature
+   border-bottom + padding-bottom — a short underline matching the
+   heading's own text width. Wherever a heading also sits inside a
+   wrapper with its own full-width divider (.posts-header and
+   similar), that produces two rules stacked close together. Headings
+   in this design only ever get a rule from an explicit wrapper. */
+h2 {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+/* Page centering for full-width layouts. Quarto assigns the content
+   column a different class per page (column-page, column-page-left,
+   column-body-outset...) depending on what else is on the page, and
+   each one anchors to a different named grid line — none of them
+   centered the same way our fixed-width navbar is. Target the element
+   itself instead of chasing every column-* variant, and take it out
+   of Quarto's grid math entirely so its own max-width/margin:auto does
+   the centering, matching the navbar exactly. */
+.page-columns.page-layout-full > main.content {
+  grid-column: 1 / -1;
   width: 100%;
-  height: 180px;
+}
+
+/* Quarto's own grid reserves a second, empty "page-bottom" row (~60px)
+   below the content row on every page — on top of main's own bottom
+   margin not quite reaching the row's true content height, this was
+   adding ~150px of unaccounted space between the page content and the
+   footer, well past the design's intended gap. Keep the named lines
+   themselves (content-top/content-bottom/page-bottom) intact — Giscus
+   (`.giscus`, injected as a grid *sibling* of main, not nested inside
+   it — see main.qmd/giscus setup) has no explicit grid-row of its own
+   and simply auto-places into this second row track. A fixed `0px`
+   here (this row's previous value) doesn't grow for that content: the
+   grid container's own box ends as if the row were still empty, so the
+   footer — laid out immediately after in normal flow — starts before
+   Giscus's actual (variable-height) content finishes rendering,
+   visually overlapping it. `auto` fixes both cases at once: it still
+   collapses to ~0 on every page that has nothing placed in this row
+   (i.e. no phantom Quarto spacing), but genuinely grows to fit Giscus's
+   real height on a post page instead of clipping it. */
+#quarto-content {
+  grid-template-rows: [content-top] auto [content-bottom] auto [page-bottom];
+}
+
+/* The remaining excess was main's own default 18px margin-bottom —
+   nothing follows main but the footer, so this only ever added
+   unwanted space, never separated it from anything. */
+main.content {
+  margin-bottom: 0;
+}
+
+/* Pages with an empty title: "" and a leading level-1 heading get that
+   heading hoisted by Pandoc into its own #title-block-header, split out
+   from the rest of the page content (which Quarto wraps separately in
+   column-body-outset). The two end up positioned via different named
+   grid lines in Quarto's nested page-columns grid and don't line up.
+   Take both out of that grid and center them identically by hand. */
+.page-layout-full #title-block-header,
+.page-layout-full .column-body-outset {
+  grid-column: 1 / -1;
+  max-width: var(--cl-content-max);
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--cl-gutter);
+  padding-right: var(--cl-gutter);
+  box-sizing: border-box;
+}
+
+
+/* ============================================
+   NAVBAR
+   ============================================ */
+
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: rgba(248, 244, 244, 0.94) !important;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border-bottom: 1px solid var(--cl-divider) !important;
+  box-shadow: none !important;
+  padding: 8px 0;
+}
+
+/* Brand — "rob taylor" with gold period */
+.navbar-brand,
+.navbar-title {
+  font-family: "Cormorant Garamond", Georgia, serif !important;
+  font-size: 23px !important;
+  font-weight: 400 !important;
+  letter-spacing: -0.01em;
+  color: var(--cl-text) !important;
+  text-decoration: none !important;
+}
+
+.navbar-title::after {
+  content: ".";
+  color: var(--cl-accent);
+}
+
+/* Nav links */
+.navbar .nav-link {
+  font-family: "Cormorant Garamond", Georgia, serif !important;
+  font-size: 16px !important;
+  letter-spacing: 0.02em;
+  color: var(--cl-text) !important;
+  white-space: nowrap;
+  min-height: 44px;
+  display: flex !important;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  padding: 0 !important;
+  position: relative;
+  transition: color var(--cl-transition);
+}
+
+.navbar .nav-link:hover {
+  color: var(--cl-accent-text) !important;
+}
+
+/* Active nav indicator — hairline gold rule. A real (non-absolute) flex
+   child in the link's column, not an overlay: it takes up its own row,
+   so the label shifts up slightly to make room for it, same as the mock
+   — an absolutely-positioned rule would leave the label perfectly
+   centered whether the tab is active or not. */
+.navbar .nav-link.active::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 1px;
+  background: var(--cl-accent-light);
+}
+
+/* Hide Quarto search icon in nav if present */
+.navbar #quarto-search {
+  display: none;
+}
+
+/* Empty utility div Quarto always renders, even with no navbar tools
+   configured — as a zero-width flex child it steals the flush-right
+   slot from justify-content:space-between, leaving .navbar-nav short
+   of the true right edge. */
+.navbar .quarto-navbar-tools {
+  display: none;
+}
+
+/* Navbar container max-width — push brand left, links right */
+.navbar > .container-fluid {
+  max-width: var(--cl-content-max);
+  padding-left: var(--cl-gutter);
+  padding-right: var(--cl-gutter);
+  display: flex !important;
+  align-items: center;
+  /* Right-alignment of .navbar-nav comes from its own margin-left:auto,
+     not from justify-content here — with justify-content:space-between
+     also active, Chrome was splitting the free space between the two
+     mechanisms instead of letting the auto margin claim all of it. */
+  justify-content: flex-start !important;
+  gap: clamp(14px, 3vw, 32px);
+  flex-wrap: nowrap;
+}
+
+/* Brand never shrinks or scrolls, even when the nav row overflows */
+.navbar-brand-container {
+  flex: none !important;
+  margin: 0 !important;
+}
+
+/* Nav row scrolls horizontally instead of collapsing behind a menu —
+   collapse is disabled in _quarto.yml (navbar: collapse: false), so with
+   no .navbar-collapse wrapper the <ul class="navbar-nav"> is both the
+   flex item (vs. the brand) and the scroll container itself. */
+.navbar-nav {
+  display: flex !important;
+  flex-direction: row !important;
+  /* Shrinks (not grows) to fit the remaining space: at its natural
+     content width, space-between on the parent pushes it flush right
+     on wide screens; once content no longer fits, it shrinks below
+     that width and scrolls instead of squeezing each link's text or
+     bleeding overflow under the brand (which flex-end + flex-grow
+     both do). Bootstrap's own breakpoint-gated navbar-expand rules
+     (which this project doesn't use below ~576px) set overflow:visible
+     and flex-direction:column, so both need !important here. */
+  flex: 0 1 auto !important;
+  min-width: 0;
+  /* Bootstrap's own .me-auto utility class (already on this element)
+     sets margin-right:auto !important — combined with margin-left:auto
+     below, the browser splits the free space evenly between both
+     instead of letting margin-left claim all of it, leaving the row
+     centered in its slack instead of flush right. Cancel it. */
+  margin-right: 0 !important;
+  margin-left: auto !important;
+  align-items: center;
+  gap: clamp(15px, 2.4vw, 28px);
+  flex-wrap: nowrap;
+  overflow-x: auto !important;
+  overflow-y: visible !important;
+  scrollbar-width: none;
+}
+
+.navbar-nav::-webkit-scrollbar {
+  display: none;
+}
+
+/* Items keep their natural width so the row overflows (and scrolls)
+   instead of squeezing each link's text down to fit */
+.navbar-nav .nav-item {
+  flex: none;
+}
+
+
+/* ============================================
+   BUTTONS — Classical outlined style
+   ============================================ */
+
+.btn {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  /* Every outlined CTA in the mockup (hero, 404, Software page) sets
+     this explicitly at 15px; Bootstrap's own `.btn` default (~1rem,
+     computed ~17px in this theme) was showing through unset otherwise. */
+  font-size: 15px;
+  border-radius: 4px;
+  box-shadow: none !important;
+  transition: background var(--cl-transition),
+              color var(--cl-transition),
+              border-color var(--cl-transition);
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  padding: 0 20px;
+}
+
+.btn:disabled,
+.btn[disabled] {
+  opacity: 0.45;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* Primary outlined button (accent) */
+.btn-primary,
+.btn-outline-primary {
+  background: transparent;
+  color: var(--cl-accent-text);
+  border: 1px solid var(--cl-accent-text);
+}
+
+.btn-primary:hover,
+.btn-outline-primary:hover {
+  background: var(--cl-accent-tint);
+  color: var(--cl-accent-text);
+  border-color: var(--cl-accent-text);
+}
+
+.btn-primary:active,
+.btn-outline-primary:active {
+  border-color: var(--cl-accent-pressed) !important;
+  color: var(--cl-accent-pressed) !important;
+  background: var(--cl-accent-tint) !important;
+}
+
+/* Secondary outlined button (neutral) */
+.btn-secondary,
+.btn-outline-secondary {
+  background: transparent;
+  color: var(--cl-text);
+  border: 1px solid var(--cl-divider);
+}
+
+.btn-secondary:hover,
+.btn-outline-secondary:hover {
+  background: rgba(32, 31, 29, 0.07);
+  color: var(--cl-text);
+  border-color: var(--cl-accent);
+}
+
+
+/* ============================================
+   PLATE — matted photograph treatment
+   ============================================ */
+
+.plate,
+img.plate {
+  border: 6px solid var(--cl-surface);
+  outline: 1px solid var(--cl-divider);
+  border-radius: 2px;
+}
+
+
+/* ============================================
+   KICKER — uppercase label
+   ============================================ */
+
+.kicker {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 11.5px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--cl-text-quiet);
+  font-feature-settings: "tnum";
+}
+
+
+/* ============================================
+   HOME PAGE — Editorial layout
+   ============================================ */
+
+/* Lead intro section */
+.home-lead {
+  max-width: var(--cl-content-max);
+  margin: 0 auto;
+  padding: clamp(44px, 8vw, 96px) var(--cl-gutter) clamp(40px, 6vw, 72px);
+  border-bottom: 1px solid var(--cl-divider);
+}
+
+.home-lead .lead-inner {
+  max-width: 760px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+/* The kicker/h1/body/buttons are each their own auto-wrapped <p> (or, for
+   h1/body, already explicitly reset) — kicker's default paragraph margin
+   was stacking on top of the 28px flex gap, pushing it further from the
+   title than intended. */
+.home-lead .lead-inner p {
+  margin: 0;
+}
+
+/* The kicker's <p> also still inherits the body's 18px/1.6 font for its
+   own line box (the "strut"), even though the visible 13px kicker text
+   comes from a child span — that taller invisible strut pushed the
+   eyebrow down within it, offsetting it from the flex column's actual
+   top. Same fix as the "Recently"/"Elsewhere" rail headings. */
+.home-lead .lead-inner p:has(.lead-kicker) {
+  font-size: 13px;
+  line-height: 1;
+}
+
+.home-lead .lead-kicker {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 13px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--cl-text-quiet);
+  font-feature-settings: "tnum";
+}
+
+.home-lead h1 {
+  margin: 0;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-weight: 400;
+  font-size: clamp(35px, 7.6vw, 68px);
+  line-height: 1.04;
+  letter-spacing: -0.02em;
+}
+
+.home-lead .lead-body {
+  margin: 0;
+  max-width: 620px;
+  font-size: clamp(17px, calc(0.5vw + 15px), 20px);
+  line-height: 1.65;
+  color: var(--cl-text-secondary);
+  text-wrap: pretty;
+}
+
+.home-lead .lead-buttons {
+  display: flex;
+  gap: 12px;
+  padding-top: 4px;
+}
+
+/* Latest posts + rail two-column */
+.home-content {
+  max-width: var(--cl-content-max);
+  margin: 0 auto;
+  padding: var(--cl-section-pad) var(--cl-gutter) 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(32px, 5vw, 64px);
+  align-items: flex-start;
+}
+
+.home-posts {
+  flex: 3 1 380px;
+  min-width: 0;
+}
+
+.home-posts .posts-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--cl-divider);
+  padding-bottom: 10px;
+  margin-bottom: 8px;
+}
+
+.home-posts .posts-header h2 {
+  margin: 0;
+  font-weight: 400;
+  font-size: clamp(24px, 3.4vw, 30px);
+}
+
+/* "All posts" is Pandoc's auto-wrapped <p> around the link — its
+   unreset default margin was stretching this flex row (baseline-aligned,
+   so a taller flex item pushes the row's own bottom edge, and the
+   divider below it, further down than the row's actual content). */
+.home-posts .posts-header p {
+  margin: 0;
+}
+
+.home-posts .posts-header a,
+.home-posts .posts-header a.posts-all-link {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 14px;
+  color: var(--cl-accent-text);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.home-posts .posts-header a .link-rule {
+  display: inline-block;
+  width: 16px;
+  height: 1px;
+  background: var(--cl-accent-light);
+  vertical-align: middle;
+}
+
+/* Post rows on home page — using Quarto's listing. Quarto's own default
+   also puts a 36px margin-right on this (presumably sized for a category
+   sidebar this layout doesn't have), silently narrowing every row and
+   forcing subtitles to wrap a line earlier than the mockup — and an 18px
+   padding-bottom past the last row's own divider, throwing off the gap
+   to whatever follows (the newsletter card). */
+.home-posts .quarto-listing-container-default {
+  max-width: 100%;
+  margin-right: 0;
+  padding-bottom: 0;
+}
+
+.home-posts div.quarto-post {
+  display: flex;
+  /* Quarto's .image-right variant (applied whenever a listing could
+     show a thumbnail, whether or not this one actually has images)
+     sets row-reverse to put the image on the right — with no image
+     here, that instead flips .body and .metadata, putting the date on
+     the left and breaking its margin-left:auto push to the right. */
+  flex-direction: row !important;
+  flex-wrap: wrap;
+  column-gap: 20px;
+  row-gap: 8px;
+  align-items: flex-start;
+  padding: 22px 0;
+  border-bottom: 1px solid var(--cl-divider);
+  border: none;
+  border-bottom: 1px solid var(--cl-divider);
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  margin-bottom: 0;
+  transition: background var(--cl-transition);
+  counter-increment: post-counter;
+  position: relative;
+  padding-left: 60px;
+}
+
+.home-posts div.quarto-post:hover {
+  background: var(--cl-row-hover);
+  transform: none;
+  box-shadow: none;
+}
+
+/* Quarto's own listing default drops the border on the last row (a
+   card/list-group convention) with higher specificity than the rule
+   above — the mockup keeps a rule under every row, last one included. */
+.home-posts div.quarto-post:last-child {
+  border-bottom: 1px solid var(--cl-divider) !important;
+}
+
+/* Counter number — top offset matches the row's own padding-top
+   (22px), same as the title and date now that the title's default
+   browser margin-top (an unreset 28px, never actually a deliberate
+   value) isn't shifting it down independently of everything else in
+   the row. */
+.home-posts div.quarto-post::before {
+  content: counter(post-counter, decimal-leading-zero);
+  position: absolute;
+  left: 0;
+  top: 22px;
+  width: 40px;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 13px;
+  color: var(--cl-text-quiet);
+  letter-spacing: 0.1em;
+  font-feature-settings: "tnum";
+}
+
+.home-posts .quarto-listing-container-default {
+  counter-reset: post-counter;
+}
+
+.home-posts div.quarto-post .thumbnail {
+  display: none;
+}
+
+/* Mockup lays title/subtitle/tags out as a single flex column with one
+   uniform 6px gap, rather than per-element margins — matched here so
+   spacing between all three is actually even, instead of each carrying
+   its own (previously unreset-default-sized) margin. */
+.home-posts div.quarto-post .body {
+  flex: 1 1 220px;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.home-posts div.quarto-post h3.listing-title {
+  margin: 0;
+}
+
+.home-posts div.quarto-post h3 a {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(21px, 2.9vw, 26px);
+  font-weight: 400;
+  line-height: 1.18;
+  letter-spacing: -0.01em;
+  color: var(--cl-text);
+  text-decoration: none;
+}
+
+.home-posts div.quarto-post .listing-subtitle,
+.home-posts div.quarto-post .listing-description {
+  margin: 0;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 17px;
+  line-height: 1.55;
+  color: var(--cl-text-muted);
+  max-width: 56ch;
+}
+
+.home-posts div.quarto-post .listing-categories {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.home-posts div.quarto-post .listing-categories .listing-category {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--cl-accent-text);
+  background: transparent;
+  border: none;
+  padding: 0;
+}
+
+/* Separator between category tags — mockup joins them as "A · B · C" */
+.listing-category:not(:last-child)::after {
+  content: " · ";
+}
+
+.home-posts div.quarto-post .metadata {
+  flex: none;
+  margin-left: auto;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 14.5px;
+  color: var(--cl-text-quiet);
+  font-feature-settings: "tnum";
+}
+
+/* Right-hand rail */
+.home-rail {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  position: sticky;
+  top: 88px;
+  flex: 1 1 230px;
+  min-width: 0;
+}
+
+@media (max-width: 900px) {
+  .home-rail {
+    position: static !important;
+    border-top: 1px solid var(--cl-divider);
+    padding-top: 24px;
+  }
+}
+
+.home-rail .rail-heading {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--cl-text-muted);
+}
+
+/* .rail-heading is a <span> — top/bottom margin on an inline element has
+   no effect on layout, so the real gap below "Recently"/"Elsewhere" was
+   coming from its wrapping <p>'s unreset default margin instead. The <p>
+   also still inherits the body's 18px/1.6 font for its own line box (the
+   "strut"), even though the visible 13px text comes from the span inside
+   — that taller invisible strut was the source of the ~8px of phantom
+   space above "Recently", offsetting it from "Latest posts" alongside
+   it. Matching the <p>'s own font-size to the span's removes the strut
+   mismatch (mockup sidesteps this entirely by using a plain <h3> at
+   13px, with no inner span to override). */
+.home-rail p:has(.rail-heading) {
+  margin: 0 0 12px;
+  font-size: 13px;
+  line-height: 1;
+}
+
+/* Recently heading + its items are one .home-rail flex item (like
+   .elsewhere-links) — .rail-heading's own margin-bottom spaces it from
+   the list below, and .news-items gets its own tighter gap between
+   entries, both independent of .home-rail's wider 30px section gap. */
+.news-items {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Recently items — date and text are now separate paragraphs (each
+   its own flex-item row, so the date actually stacks above the text
+   instead of running inline before it), which means each one carries
+   a default browser p margin unless reset; the 4px gap below is the
+   only spacing that should apply between them. */
+.news-item-classical {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid rgba(32, 31, 29, 0.1);
+}
+
+.news-item-classical p {
+  margin: 0;
+}
+
+.news-item-classical:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.news-item-classical .news-date {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 11.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--cl-text-quiet);
+  font-feature-settings: "tnum";
+}
+
+.news-item-classical .news-text {
+  font-size: 16.5px;
+  line-height: 1.55;
+  color: var(--cl-text-secondary);
+  text-align: left;
+  text-wrap: pretty;
+}
+
+.news-item-classical .news-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  align-self: flex-start;
+  margin-top: 2px;
+  font-size: 15px;
+  color: var(--cl-accent-text);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(125, 84, 17, 0.4);
+}
+
+.news-item-classical .news-link:hover {
+  border-bottom-color: var(--cl-accent);
+}
+
+.news-item-classical .news-link .arrow {
+  font-size: 11px;
+}
+
+/* Elsewhere links */
+.elsewhere-links {
+  border-top: 1px solid var(--cl-divider);
+  padding-top: 20px;
+}
+
+/* The three link lines have no blank line between them in the .qmd, so
+   Pandoc merges them into one <p> (rather than the mockup's own
+   `display:flex;flex-direction:column;gap:9px` div) — reproduce that
+   gap here and drop the merged <p>'s own margin, which otherwise both
+   collapses the links flush together *and* adds an unwanted trailing
+   margin below the last one. `:has(a)` scopes this to that generated
+   <p> without touching the "Elsewhere" heading's own <p> sibling. */
+.elsewhere-links p:has(a) {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.elsewhere-links a {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  min-height: 44px;
+  font-size: 16.5px;
+  color: var(--cl-accent-text);
+  text-decoration: none;
+}
+
+.elsewhere-links .link-domain {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 11.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--cl-text-quiet);
+}
+
+
+/* ============================================
+   NEWSLETTER
+   ============================================ */
+
+.newsletter-card {
+  max-width: var(--cl-content-max);
+  margin: clamp(48px, 7vw, 72px) auto 0;
+  padding: 0 var(--cl-gutter);
+}
+
+.newsletter-inner {
+  border: 1px solid var(--cl-divider);
+  border-radius: 4px;
+  padding: clamp(22px, 3vw, 36px) clamp(20px, 3vw, 40px);
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(20px, 3vw, 48px);
+  align-items: center;
+}
+
+.newsletter-copy {
+  flex: 1 1 280px;
+  min-width: 0;
+}
+
+.newsletter-copy h3 {
+  margin: 0 0 8px;
+  font-weight: 400;
+  font-size: 28px;
+}
+
+.newsletter-copy p {
+  margin: 0;
+  font-size: 17px;
+  line-height: 1.55;
+  color: var(--cl-text-muted);
+}
+
+.newsletter-form-wrap {
+  flex: 1 1 300px;
+  min-width: 0;
+}
+
+/* #newsletter-msg is empty until a submit attempt fills it in — but even
+   empty, its default paragraph margin-bottom still counts toward
+   .newsletter-form-wrap's own box. Since .newsletter-inner centers that
+   whole box vertically, the invisible trailing margin was pushing the
+   visible form up off-center. */
+.newsletter-msg {
+  margin: 0;
+}
+
+.newsletter-form {
+  display: flex;
+  gap: 10px;
+}
+
+.newsletter-form #newsletter-email {
+  flex: 1;
+  min-width: 0;
+  min-height: 44px;
+  padding: 8px 12px;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 15px;
+  background: transparent;
+  border: 1px solid var(--cl-divider);
+  border-radius: 4px;
+  color: var(--cl-text);
+}
+
+.newsletter-form #newsletter-email:focus {
+  border-color: var(--cl-accent);
+  outline: none;
+}
+
+.newsletter-form #newsletter-email.has-error {
+  border-color: var(--cl-error);
+}
+
+.newsletter-form button {
+  cursor: pointer;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 14.5px;
+  min-height: 44px;
+  padding: 0 18px;
+  border: 1px solid var(--cl-accent-text);
+  color: var(--cl-accent-text);
+  background: transparent;
+  border-radius: 4px;
+  white-space: nowrap;
+  transition: background var(--cl-transition);
+}
+
+.newsletter-form button:hover {
+  background: var(--cl-accent-tint);
+}
+
+.newsletter-form button:active {
+  border-color: var(--cl-accent-pressed);
+  color: var(--cl-accent-pressed);
+}
+
+.newsletter-form #newsletter-email:disabled,
+.newsletter-form button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.newsletter-error {
+  margin: 9px 0 0;
+  font-size: 14.5px;
+  line-height: 1.45;
+  color: var(--cl-error);
+}
+
+.newsletter-success {
+  border-left: 1px solid var(--cl-accent);
+  padding: 2px 0 2px 16px;
+}
+
+.newsletter-success h4 {
+  margin: 0 0 5px;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 21px;
+  font-weight: 400;
+  line-height: 1.3;
+}
+
+.newsletter-success p {
+  margin: 0;
+  font-size: 15.5px;
+  line-height: 1.5;
+  color: var(--cl-text-muted);
+}
+
+.newsletter-success a {
+  display: inline-block;
+  margin-top: 9px;
+  font-size: 14.5px;
+  color: var(--cl-accent-text);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(182, 130, 53, 0.5);
+}
+
+.newsletter-success a:hover {
+  border-bottom-color: var(--cl-accent-text);
+}
+
+
+/* ============================================
+   WRITING INDEX (blog listing page)
+   ============================================ */
+
+/* Page header */
+.writing-header {
+  border-bottom: 1px solid var(--cl-divider);
+  padding-bottom: 26px;
+  margin-bottom: 26px;
+}
+
+.writing-header h1 {
+  margin: 0 0 10px;
+  font-weight: 400;
+  font-size: clamp(30px, 6.4vw, 52px);
+  letter-spacing: -0.02em;
+}
+
+.writing-header p {
+  margin: 0;
+  font-size: 19px;
+  color: var(--cl-text-muted);
+  max-width: 65ch;
+}
+
+/* Quarto listing on Writing page — list style */
+div.quarto-post {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 24px;
+  row-gap: 12px;
+  align-items: flex-start;
+  padding: 26px 0;
+  border-top: 1px solid var(--cl-divider);
+  background: transparent;
+  border-radius: 0;
+  box-shadow: none;
+  margin-bottom: 0;
+  transition: background var(--cl-transition);
+}
+
+div.quarto-post:hover {
+  background: var(--cl-row-hover);
+  transform: none;
+  box-shadow: none;
+}
+
+div.quarto-post .thumbnail {
+  flex: none;
+  width: 104px;
+  height: 78px;
+  overflow: hidden;
+}
+
+div.quarto-post .thumbnail img {
+  width: 100%;
+  height: 100%;
   object-fit: cover;
-  object-position: center;
+  border: 4px solid var(--cl-surface);
+  outline: 1px solid var(--cl-divider);
+  border-radius: 2px;
+}
+
+div.quarto-post .body {
+  flex: 1 1 240px;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+div.quarto-post .body h3 {
+  margin: 0;
+}
+
+div.quarto-post h3 a {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(22px, 3vw, 27px);
+  font-weight: 400;
+  line-height: 1.16;
+  letter-spacing: -0.01em;
+  color: var(--cl-text);
+  text-decoration: none;
+}
+
+div.quarto-post h3 a:hover {
+  color: var(--cl-accent-text);
+}
+
+div.quarto-post .listing-subtitle,
+div.quarto-post .listing-description {
+  margin: 0;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 17.5px;
+  line-height: 1.55;
+  color: var(--cl-text-muted);
+  max-width: 62ch;
 }
 
 div.quarto-post .listing-categories .listing-category {
-  background: var(--bs-light);
-  color: var(--bs-primary);
-  border: 0.7px solid var(--bs-primary); 
-  /*border-radius: 3px;*/
-  font-size: 0.72rem;
-  padding: 0.2rem 0.3rem;
-  text-decoration: none;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--cl-text-quiet);
+  background: transparent;
+  border: none;
+  padding: 0;
+  border-radius: 0;
 }
 
-div.quarto-post .listing-categories .listing-category:hover {
-  background: var(--bs-primary);
-  color: var(--bs-light);
+div.quarto-post .metadata {
+  flex: none;
+  margin-left: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 14.5px;
+  color: var(--cl-text-quiet);
+  font-feature-settings: "tnum";
+}
+
+/* ------------------------------------------------
+   Category pills — repositioned from sidebar to
+   inline row above the grid (below search)
+   ------------------------------------------------ */
+
+/* Hide the margin sidebar on the Writing page — JS relocates
+   .quarto-listing-category into the main content flow. */
+.writing-index #quarto-margin-sidebar {
+  display: none !important;
+}
+
+/* Once JS moves the category list into main content, style it inline */
+.writing-index .quarto-listing-category {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 20px;
+  border-left: none;
+  padding-left: 0;
+}
+
+.quarto-listing-category {
+  border-left: none;
+  padding-left: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 20px;
 }
 
 .quarto-listing-category .category {
-  display: inline-block;
-  /*background: var(--accent-muted);*/
-  color: var(--bs-primary);
-  border: 0.5px solid var(--bs-primary); 
-  border-radius: 3px;
-  font-size: 0.82rem;
-  padding: 0.3rem 0.7rem;
-  margin: 0.25rem;
+  display: inline-flex;
+  align-items: center;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 14px;
+  letter-spacing: 0.04em;
+  color: var(--cl-text-secondary);
+  border: 1px solid var(--cl-divider);
+  border-radius: 4px;
+  padding: 0 15px;
+  min-height: 38px;
   cursor: pointer;
-  transition: background 0.2s ease, color 0.2s ease;
+  transition: background var(--cl-transition), border-color var(--cl-transition), color var(--cl-transition);
+  background: transparent;
+  white-space: nowrap;
 }
 
-.quarto-listing-category .category:hover,
+.quarto-listing-category .category:hover {
+  background: rgba(32, 31, 29, 0.07);
+}
+
 .quarto-listing-category .category.active {
-  background: var(--bs-primary);
-  color: var(--bs-light);
+  border-color: var(--cl-accent-text);
+  background: rgba(225, 173, 102, 0.12);
+  color: var(--cl-accent-text);
+}
+
+/* Pills read as just the category name in the design — the (n) count
+   Quarto appends is only used (via JS) to rank which 7 categories show. */
+.quarto-listing-category .quarto-category-count {
+  display: none;
+}
+
+/* Search row — just the input, max-width 440px per spec. The count
+   label sits on its own line below the category chips, not here. */
+.writing-index .listing-actions-group {
+  display: block;
+  max-width: 440px;
+  margin-bottom: 22px;
+}
+
+.listing-count {
+  display: block;
+  margin: 4px 0 22px;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--cl-text-quiet);
+  font-feature-settings: "tnum";
+  white-space: nowrap;
+}
+
+/* ------------------------------------------------
+   Search / filter input — Classical styling. Quarto wraps the input
+   in a Bootstrap input-group with a search-icon addon; the design has
+   a single plain box with no icon and a gold accent on the bottom edge.
+   ------------------------------------------------ */
+.quarto-listing-filter {
+  border: none !important;
+  width: 100% !important;
+  margin: 0 !important;
+}
+
+.quarto-listing-filter .input-group-text {
+  display: none;
+}
+
+.quarto-listing-filter input[type="text"],
+.quarto-listing-filter input[type="search"],
+#listing-filter {
+  width: 100%;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 16px;
+  padding: 10px 14px;
+  color: var(--cl-text);
+  background: transparent;
+  border: 1px solid var(--cl-divider);
+  border-bottom-color: var(--cl-accent-light);
+  border-radius: 4px !important;
+  min-height: 44px;
+  caret-color: var(--cl-accent);
+  transition: border-color var(--cl-transition);
+  margin-bottom: 0;
+}
+
+.quarto-listing-filter input[type="text"]:hover,
+.quarto-listing-filter input[type="search"]:hover,
+#listing-filter:hover {
+  border-color: rgba(32, 31, 29, 0.35);
+  border-bottom-color: var(--cl-accent);
+}
+
+.quarto-listing-filter input[type="text"]:focus,
+.quarto-listing-filter input[type="search"]:focus,
+#listing-filter:focus {
+  border-color: var(--cl-accent);
+  outline: none;
+  box-shadow: none;
+}
+
+.quarto-listing-filter input::placeholder {
+  color: var(--cl-text-quiet);
+  opacity: 0.7;
+}
+
+
+/* ============================================
+   BLOG POST
+   ============================================ */
+
+/* Remove Quarto's default title banner */
+.quarto-title-banner {
+  background: transparent !important;
+  box-shadow: none !important;
+  border-bottom: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.quarto-title-banner .quarto-title-banner-contents {
+  max-width: var(--cl-content-max);
+  margin: 0 auto;
+  padding: var(--cl-section-pad) var(--cl-gutter) 0;
+}
+
+/* Back link */
+.quarto-title-banner .quarto-title-banner-contents::before {
+  content: none;
+}
+
+/* Post title block */
+.quarto-title {
+  max-width: 760px;
+  display: flex;
+  flex-direction: column;
+}
+
+.quarto-title .quarto-categories {
+  /* Topmost in the title block, above the h1/subtitle, matching the design. */
+  order: -1;
+  margin-bottom: 16px;
+}
+
+.quarto-title .quarto-categories .quarto-category:not(:last-child)::after {
+  content: " · ";
 }
 
 .quarto-title .quarto-categories .quarto-category {
-  color: var(--bs-light);
-  border: 0.7px solid var(--bs-light);
-  font-size: 0.72rem;
-  padding: 0.2rem 0.3rem;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--cl-text-quiet);
+  border: none;
+  background: transparent;
+  padding: 0;
+  font-weight: 400;
+}
+
+.quarto-title h1.title {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-weight: 400;
+  font-size: clamp(31px, 6.4vw, 56px);
+  line-height: 1.06;
+  letter-spacing: -0.02em;
+  text-wrap: pretty;
+  color: var(--cl-text);
+}
+
+.quarto-title .subtitle {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-style: italic;
+  font-size: clamp(19px, 2.6vw, 24px);
+  line-height: 1.4;
+  color: var(--cl-text-muted);
+}
+
+/* Post metadata line — compact inline row, labels hidden */
+.quarto-title-meta {
+  /* Quarto's own core CSS sets this to a 2-column grid, which loads after
+     ours and wins the cascade — invisible with 2 metadata items (they
+     still land in one row), but a 3rd (reading time) wraps to a new row
+     unless flex is forced here. */
+  display: flex !important;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 14px;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 15px;
+  color: var(--cl-text-quiet);
+  font-feature-settings: "tnum";
+  padding-top: 6px;
+}
+
+.quarto-title-meta > div {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.quarto-title-meta > div + div::before {
+  content: "/";
+  color: #d7d3d3;
+}
+
+.quarto-title-meta .quarto-title-meta-heading {
+  display: none;
+}
+
+.quarto-title-meta-contents {
+  color: var(--cl-text-quiet);
+}
+
+.quarto-title-meta-contents p {
+  font-size: 15px;
+  margin: 0;
+}
+
+/* Hero image (post feature image) */
+.post-hero {
+  width: 100%;
+  height: 340px;
+  object-fit: cover;
+  border: 6px solid var(--cl-surface);
+  outline: 1px solid var(--cl-divider);
+  border-radius: 2px;
+}
+
+figure:has(> p > img.post-hero) {
+  margin: 36px 0 0;
+}
+
+figure:has(> p > img.post-hero) figcaption {
+  margin-top: 8px;
+  font-size: 11.5px;
+  color: var(--cl-text-quiet);
+}
+
+.quarto-figure img {
+  border: 6px solid var(--cl-surface);
+  outline: 1px solid var(--cl-divider);
+  border-radius: 2px;
+}
+
+/* Post body content. #quarto-content is a structural id Quarto puts on
+   the outer wrapper of *every* page (not just posts), and .content is
+   main's own class everywhere too — so "#quarto-content .content ___"
+   carries ID-level specificity while matching site-wide, silently
+   beating plenty of plain class selectors meant only for one page
+   (the home page's "Latest posts" heading among them, forced to 600
+   instead of its own 400). .page-layout-article is the one class that
+   actually distinguishes a blog post page from every other layout. */
+.page-layout-article main.content {
+  /* Matches the mockup's post-body paragraph font-size exactly — see
+     the (identical) clamp() on .about-main p below. */
+  font-size: clamp(17px, 0.5vw + 15px, 20px);
+  line-height: 1.65;
+  /* Quarto's own named grid columns leave the article ~150px narrower
+     than the navbar on each side. Take it out of that grid and match the
+     navbar's own box model exactly instead (.navbar-container.container-fluid:
+     max-width 1040px, 32px side padding) so the content lines up with the
+     brand on the left and "About" on the right. */
+  grid-column: 1 / -1;
+  /* Without an explicit `width`, this grid item's "auto" sizing (even
+     with min-width:0 below) still resolved to its content's max-content
+     size rather than stretching to fill its grid area — a code block's
+     unbreakable `white-space:pre` text (the longest line) sets that
+     size, so at narrow viewports the whole column stopped shrinking
+     with the viewport and forced real horizontal page overflow instead
+     of the code block scrolling internally as intended. Explicit
+     `width:100%` (grid areas otherwise default to `justify-self:stretch`
+     with a `width:auto` box, which is where the ambiguity crept in)
+     resolves it — matches `max-width:1040px` exactly at wide viewports,
+     genuinely fills the narrower grid area below that. */
+  width: 100%;
+  max-width: 1040px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 32px;
+  padding-right: 32px;
+  min-width: 0;
+}
+
+.page-layout-article main.content p {
+  text-align: justify;
+  hyphens: auto;
+  text-wrap: pretty;
+}
+
+/* Lists — the mockup drops native markers/counters entirely in favour
+   of custom flex rows: unordered items get a short accent dash (no
+   bullet) with a loose 11px gap between rows; ordered items get an
+   accent-coloured index number in a narrow left column plus a hairline
+   divider above each row (no native decimal marker/indent). Scoped to
+   `.post-body-prose` specifically, not the broader `.page-layout-article
+   main.content` — the post TOC (`#TOC`) is a `<ul><li><a>` too, and
+   lives in that same `main.content` container as a sidebar sibling of
+   the prose, so the wider selector was also putting an accent dash
+   before every TOC entry regardless of section/active state. */
+.post-body-prose ul,
+.post-body-prose ol {
+  margin: 0 0 22px;
+  padding: 0;
+  list-style: none;
+}
+
+.post-body-prose ul {
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+}
+
+.post-body-prose ul li {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  font-size: clamp(17px, 0.5vw + 15px, 20px);
+  line-height: 1.6;
+  color: var(--cl-text);
+}
+
+.post-body-prose ul li::before {
+  content: "";
+  flex: none;
+  width: 16px;
+  height: 1px;
+  margin-top: 15px;
+  background: var(--cl-accent-light);
+}
+
+.post-body-prose ol {
+  counter-reset: post-list;
+}
+
+.post-body-prose ol li {
+  counter-increment: post-list;
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  padding: 12px 0;
+  border-top: 1px solid var(--cl-divider);
+  font-size: clamp(17px, 0.5vw + 15px, 20px);
+  line-height: 1.6;
+  color: var(--cl-text);
+}
+
+.post-body-prose ol li::before {
+  content: counter(post-list) ".";
+  flex: none;
+  width: 24px;
+  padding-top: 2px;
+  font-size: 17px;
+  color: var(--cl-accent-text);
+  font-feature-settings: "tnum";
+}
+
+.page-layout-article main.content h2 {
+  margin: 34px 0 12px;
+  font-weight: 600;
+  font-size: 27px;
+  letter-spacing: -0.01em;
+  scroll-margin-top: 110px;
+}
+
+.page-layout-article main.content h3 {
+  margin: 28px 0 10px;
+  font-weight: 600;
+  font-size: 23px;
+}
+
+/* Blockquotes. Quarto stamps Bootstrap's own `.blockquote` class onto
+   every <blockquote>, which — being a class selector — beats the plain
+   `blockquote` type selector below on shared properties (margin,
+   padding, font-size — Bootstrap has two `.blockquote` rules, one of
+   which sets `font-size:inherit`, silently pulling in the surrounding
+   prose's clamp() instead of the blockquote's own) regardless of
+   source order; !important forces our values (matching the mockup's
+   `margin:28px 0;padding:4px 0 4px 24px;font-size:clamp(20px,2.4vw,26px)`)
+   back in. Markdown always wraps quote content in its own <p>, which
+   the mockup's plain-text template has no equivalent of — reset that
+   inner <p>'s margin so it doesn't add extra space inside the padding. */
+blockquote {
+  margin: 28px 0 !important;
+  padding: 4px 0 4px 24px !important;
+  border-left: 2px solid var(--cl-accent-light) !important;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-style: italic;
+  font-size: clamp(20px, 2.4vw, 26px) !important;
+  line-height: 1.42;
+  color: var(--cl-text);
+  text-wrap: pretty;
+  background: transparent !important;
+}
+
+blockquote p {
+  margin: 0;
+}
+
+blockquote p + p {
+  margin-top: 18px;
+}
+
+/* Figure captions */
+figcaption {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 15px;
+  line-height: 1.45;
+  color: var(--cl-text-quiet);
+  margin-top: 9px;
+}
+
+/* Post body layout — TOC relocated (via toc-layout.js) to sit beside the
+   prose, starting below the hero, instead of Quarto's page-wide margin
+   column. Prose is first in the DOM (mobile stacks TOC below it); `order`
+   puts the TOC back on the left once there's room for both. */
+.post-body-columns {
+  display: flex;
+  align-items: flex-start;
+  gap: 48px;
+}
+
+.post-body-prose {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.post-body-columns #quarto-sidebar {
+  flex: 0 0 230px;
+  position: sticky;
+  top: 84px;
+}
+
+/* Matches Quarto/Bootstrap's own sidebar breakpoint (#quarto-sidebar is
+   only forced `display:flex` above `min-width:992px` — see
+   bootstrap.min.css). Using a different cutoff here (e.g. 900px) leaves
+   a dead zone between the two breakpoints where Bootstrap's default
+   `.collapse:not(.show){display:none}` wins and the TOC vanishes. */
+@media (max-width: 991px) {
+  .post-body-columns {
+    display: block;
+  }
+}
+
+/* Hidden until toc-layout.js has moved it into .post-body-columns —
+   otherwise it briefly renders in Quarto's original page-margin spot
+   (or, on mobile, off-canvas-drawer-hidden) and visibly snaps into
+   place a moment later. */
+#quarto-sidebar {
+  visibility: hidden;
+}
+
+#quarto-sidebar.post-toc-ready {
+  visibility: visible !important;
+}
+
+/* "All writing" breadcrumb — injected by toc-layout.js, since Quarto's
+   title block has no built-in link back to the index. */
+.all-writing-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--cl-accent-text);
   text-decoration: none;
 }
 
-.quarto-title .quarto-categories .quarto-category:hover {
-  background: var(--bs-light);
-  color: var(--bs-primary);
-}
-.quarto-title-banner {
-  background: var(--bs-info);
+.all-writing-rule {
+  display: inline-block;
+  width: 16px;
+  height: 1px;
+  background: var(--cl-accent-light);
 }
 
-.navbar {
-  border-bottom: 1px solid var(--bs-primary);
-  box-shadow: var(--shadow-sm);
+/* TOC sidebar — sticky left rail */
+#TOC,
+nav.toc-active {
+  border-left: 1px solid var(--cl-divider);
+  padding-left: 18px;
+  font-family: "Cormorant Garamond", Georgia, serif;
+}
+
+#TOC .active {
+  color: var(--cl-text) !important;
+  border-left: none;
+  font-weight: 400;
+}
+
+#TOC a {
+  display: flex;
+  align-items: baseline;
+  gap: 7px;
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: var(--cl-text-muted);
+  text-decoration: none;
+  transition: color var(--cl-transition);
+  padding: 4px 0;
+  /* Quarto/Bootstrap gives every TOC link its own left border by default
+     (`.sidebar nav[role="doc-toc"] > ul a{border-left:1px solid ...}`) —
+     a permanent hairline per item that we never opposed since nothing
+     here set border-left at all. Only the accent `::before` dash below
+     should mark a section, and only for the active one. */
+  border-left: none;
+}
+
+#TOC a::before {
+  content: "";
+  flex: none;
+  width: 0;
+  height: 1px;
+  margin-top: 8px;
+  background: var(--cl-accent);
+  transition: width var(--cl-transition);
+}
+
+#TOC a:hover {
+  color: var(--cl-accent-text);
+}
+
+#TOC a.active {
+  color: var(--cl-text) !important;
+  font-weight: 400;
+}
+
+#TOC a.active::before {
+  width: 14px;
+}
+
+/* TOC title */
+#toc-title {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 11.5px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--cl-text-quiet);
+  margin-bottom: 10px;
+}
+
+@media (max-width: 991px) {
+  /* Quarto's article layout puts a left-positioned TOC in the same
+     off-canvas sidebar mechanism docs sites use for left nav — hidden
+     by default below its own breakpoint (992px, set in bootstrap.min.css
+     — matched here so there's no gap where neither rule applies and the
+     sidebar just vanishes), revealed only via a toggle this page never
+     renders. Left as-is, the TOC is just unreachable on mobile. Force it
+     open and in-flow instead, stacking above the prose (matches the
+     mockup's DOM order — see toc-layout.js). */
+  #quarto-sidebar.sidebar.collapse {
+    position: static !important;
+    display: block !important;
+    transform: none !important;
+    width: 100% !important;
+    height: auto !important;
+    max-height: none !important;
+    background: transparent !important;
+    z-index: auto !important;
+    grid-column: 1 / -1 !important;
+    grid-row: auto !important;
+  }
+
+  #quarto-sidebar-glass {
+    display: none !important;
+  }
+
+  #TOC,
+  nav.toc-active,
+  .sidebar.toc-left {
+    position: static !important;
+    display: block !important;
+    border-left: none;
+    padding-left: 0;
+  }
+}
+
+
+/* ============================================
+   CODE BLOCKS
+   ============================================ */
+
+/* Every code block on the site is Quarto-generated, so is always
+   `pre.sourceCode` — Bootstrap has its own same-named rule
+   (`pre.sourceCode{border-style:none;font-size:.875em;padding:.4em;...}`)
+   that, being a class selector, outranks the plain-element `pre`
+   selector here regardless of source order (0,1,1 beats 0,0,1) —
+   silently dropping the border entirely and making font-size/padding
+   relative to the surrounding prose size instead of the fixed values
+   below. Quarto also inline-styles `.sourceCode{overflow:visible}`
+   (same specificity trap), which — only surfaced by checking a long
+   code line at a narrow viewport — let long lines force the *whole
+   page* to overflow horizontally instead of scrolling inside the
+   block. !important forces all of this back to the mockup's values. */
+pre {
+  margin: 0 !important;
+  padding: 16px 18px !important;
+  background: var(--cl-ground) !important;
+  border: 1px solid var(--cl-divider) !important;
+  border-top: 2px solid var(--cl-accent-light) !important;
+  border-radius: 4px;
+  overflow-x: auto !important;
+  font-size: 13px !important;
+  line-height: 1.7;
+  box-shadow: none !important;
 }
 
 pre code {
-  font-size: 0.85em !important;
-} 
-
-pre {
-  line-height: 1.6;
-  background: var(--surface-sunken) !important;
-  box-shadow: var(--shadow-inset);
-  border: 1px solid var(--border-subtle);
+  font-size: 13px !important;
+  font-family: ui-monospace, Menlo, Consolas, monospace;
 }
+
+/* Code output */
+.cell-output pre {
+  border-top: none;
+  border-left: 1px solid var(--cl-divider-strong);
+  color: var(--cl-text-muted);
+  font-size: 12.5px;
+}
+
+
+/* ============================================
+   MATH
+   ============================================ */
 
 .math.inline {
   font-size: 0.92em;
@@ -112,478 +1733,1464 @@ pre {
   font-size: 0.95em;
 }
 
-.btn {
-  border-radius: 3px;
-  box-shadow: var(--shadow-xs);
-  transition: box-shadow 0.2s ease, transform 0.15s ease,
-              color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease;
+
+/* ============================================
+   PUBLICATIONS PAGE
+   ============================================ */
+
+.pubs-layout {
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(30px, 5vw, 64px);
+  align-items: flex-start;
 }
 
-.btn:hover {
-  box-shadow: var(--shadow-sm);
+.pubs-main {
+  flex: 3 1 380px;
+  min-width: 0;
 }
 
-.about-content h3 {
-  font-size: 1.1rem;
-  font-weight: 700;
-  color: var(--bs-primary);
-  margin-top: 2rem;
-  margin-bottom: 0.9rem;
-  padding-bottom: 0.4rem;
-  border-bottom: 1.5px solid var(--bs-primary);
+.pubs-year-group {
+  margin-bottom: 34px;
 }
 
-/* ---- Center body-outset on full-width pages ---- */
-/* Quarto's grid reserves an asymmetric right margin for the TOC area  */
-/* even when toc: false, so body-outset content drifts left of centre. */
-/* Fix: span it across the full page columns and auto-centre.          */
-.page-layout-full .page-columns > .column-body-outset {
-  grid-column: page-start / page-end;
-  max-width: 920px;
-  margin-left: auto;
-  margin-right: auto;
+.pubs-year-header {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  margin-bottom: 10px;
 }
 
-/* ---- Welcome panel (landing page) ---- */
-.welcome-panel {
-  background: var(--surface-raised);
-  border: 1px solid var(--border-subtle);
-  border-radius: 8px;
-  padding: 1rem 2.5rem 2rem;
-  margin-bottom: 1rem;
-  box-shadow: var(--shadow-md);
-}
-
-.welcome-panel .section-heading {
-  margin-top: 1.5rem;
-}
-
-/* ---- About page content panel ---- */
-/* Scoped to the trestles about template so it doesn't hit publications */
-.about-entity .about-content {
-  background: var(--surface-raised);
-  border: 1px solid var(--border-subtle);
-  border-radius: 8px;
-  padding: 0.5rem 2rem 2rem;
-  box-shadow: var(--shadow-sm);
-}
-
-/* ---- Blog title banner ---- */
-.quarto-title-banner {
-  box-shadow: var(--shadow-md);
-}
-
-/* ---- Section headings ---- */
-.section-heading {
-  text-align: center;
-  margin: 2.5rem 0 1.5rem;
-  font-size: 1.2rem;
-  font-weight: 500;
-  color: var(--bs-primary);
-  position: relative;
-}
-
-.section-heading::after {
-  content: "";
-  display: block;
-  width: 40px;
-  height: 2px;
-  /*background: var(--bs-);*/
-  margin: 0.4rem auto 0;
-  border-radius: 0;
-}
-
-/* ---- Newsletter ---- */
-.newsletter-section {
-  border-radius: 0 8px 8px 0;
-  padding: 0;
+/* Pandoc wraps each bracketed-span-only line in its own <p> — those
+   paragraphs, not the spans inside them, are the actual flex items here. */
+.pubs-year-header p {
   margin: 0;
 }
 
-/* Only show styled surface when there is visible content */
-.newsletter-section:has(h2, p, iframe, form) {
-  background: var(--surface-raised);
-  border-left: 3px solid var(--bs-primary);
-  padding: 2rem 2rem;
-  margin: 2rem 0;
-  box-shadow: var(--shadow-sm);
+.pubs-year-header p:has(.year-rule) {
+  flex: 1;
 }
 
-.newsletter-section h2 {
-  font-size: 1.1rem;
-  font-weight: 500;
-  color: var(--bs-text-primary);
-  margin-bottom: 0.4rem;
+.pubs-year-header .year-num {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 30px;
+  color: var(--cl-text);
+  font-feature-settings: "tnum";
 }
 
-.newsletter-section p {
-  /*color: var(--text-muted);*/
-  font-size: 0.88rem;
-  margin-bottom: 1.25rem;
+.pubs-year-header .year-rule {
+  display: block;
+  width: 100%;
+  height: 1px;
+  background: var(--cl-accent-light);
 }
 
-
-@media (min-width: 1020px) {
-.navbar-brand-container {
-  margin-right: 1em;
-}
-}
-
-
-
-@media (max-width: 1060px) and (min-width: 991.98px) {
-
-#navbarCollapse ul:last-of-type a.nav-link {
-  padding-left: .25em;
-  padding-right: .25em;
-}
-
-.navbar #quarto-search {
-  margin-left: .1em;
-}
-
-.navbar .bi-twitter,
-.navbar .bi-github,
-.navbar .bi-rss
- {
-  font-size: .8em;
-}
-}
-
-
-@media (min-width: 991.98px) {
-body.quarto-light #quarto-header {
-  border-bottom: 1px solid #dee2e6;
-}
-body.quarto-dark #quarto-header {
-  border-bottom: 1px solid #3b3f47;
-}
-}
-
-.navbar-brand > img {
-  max-height: 36px;
-}
-
-
-.platform-table td {
-  vertical-align: middle;
-}
-
-.platform-table td > div.sourceCode {
-  margin-top: 0.3rem;
-  margin-bottom: 0.3rem;
-}
-
-
-.document-example {
-  opacity: 0.9;
-  padding: 6px; 
-  font-weight: 500;
-  margin-bottom: 1rem;
-}
-
-.document-example div {
-  padding: 5px;
-}
-
-
-.document-example .citation {
-  color: blue;
-}
-
-.trademark {
-  font-size: 0.6rem;
-  display: inline-block;
-  margin-left: -3px;
-}
-
-.search-attribution {
-  margin-top: 20px;
-  padding-bottom: 20px;
-  height: 40px;
-}
-
-.download-button {
-  margin-top: 1em;
-}
-
-.download-table {
-  margin-bottom: 2em;  
-}
-
-.download-table p {
-  margin-bottom: 0;
-}
-
-.download-table .checksum {
-  color: var(--bs-primary);
-  font-size: .775em;
-  cursor: pointer;
-  padding-top: 4px;
-}
-
-.download-button {
-  display:flex;
-  padding-bottom: 10px;
-  padding-top: 10px;
-}
-
-.download-button .secondary {
-  font-size: .775em;
-  margin-bottom: 0;
-}
-
-.download-button .container {
+.pub-entry {
+  padding: 14px 0;
+  border-bottom: 1px solid var(--cl-divider);
   display: flex;
-  padding-left: 10px;
-  padding-right: 40px;
+  flex-wrap: wrap;
+  column-gap: 20px;
+  row-gap: 7px;
+  align-items: baseline;
 }
 
-.download-button .icon-container {
-  fill: white;
-  width: 30px;
-  margin-right: 15px;
+.pub-entry .pub-citation {
+  flex: 1 1 320px;
+  min-width: 0;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 18px;
+  line-height: 1.55;
+  color: var(--cl-text);
 }
 
-iframe.reveal-demo {
-  width: 100%;
-  height: 350px;
-  outline: none;
+/* The citation text is a single auto-wrapped <p> — its default bottom
+   margin was stacking on top of .pub-entry's own 14px padding-bottom,
+   pushing the divider well past the text. */
+.pub-entry .pub-citation p {
+  margin: 0;
 }
 
-
-.slide-deck {
-  border: 3px solid #dee2e6;
-  width: 100%;
-  height: 475px;
+.pub-entry .pub-venue,
+.selected-pub-entry .pub-venue {
+  color: var(--cl-text-muted);
+  font-style: italic;
 }
 
-@media only screen and (max-width: 600px) {
- .slide-deck {
-    height: 400px;
+.pub-entry .pub-author-highlight,
+.selected-pub-entry .pub-author-highlight {
+  color: var(--cl-accent-text);
+}
+
+.pub-entry .pub-links {
+  flex: none;
+  /*flex: 0 0 auto;*/
+  display: flex;
+  gap: 16px;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.pub-entry .pub-links a {
+  color: var(--cl-accent-text);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(125, 84, 17, 0.3);
+  transition: border-color var(--cl-transition);
+}
+
+.pub-entry .pub-links a:hover {
+  border-bottom-color: var(--cl-accent);
+}
+
+/* Right rail — At a glance */
+.pubs-rail {
+  position: sticky;
+  top: 96px;
+  border-left: 1px solid var(--cl-divider);
+  padding-left: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  flex: 1 1 210px;
+  min-width: 0;
+}
+
+/* Each rail-label/stat-num/stat-label/"Full list" line is its own <p>
+   (split onto separate markdown lines so they're separate flex items) —
+   reset the browser's default paragraph margin so only the flex `gap`
+   values above/below control spacing. */
+.pubs-rail p {
+  margin: 0;
+}
+
+@media (max-width: 900px) {
+  .pubs-rail {
+    position: static !important;
+    border-left: none;
+    padding-left: 0;
+    border-top: 1px solid var(--cl-divider);
+    padding-top: 24px;
   }
 }
 
-
-@media (max-width: 575px) {
-
-.link-cards .card {
-  margin-bottom: 20px;
-  margin-right: 35px;
+.pubs-rail .rail-label {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 11.5px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--cl-text-quiet);
 }
 
-}
-
-@media (min-width: 576px) { 
-.link-cards {
+.pubs-rail .rail-stat {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.pubs-rail .rail-stat .stat-num {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 38px;
+  line-height: 1;
+  font-feature-settings: "tnum";
+}
+
+.pubs-rail .rail-stat .stat-label {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 15px;
+  color: var(--cl-text-muted);
+}
+
+.pubs-rail .rail-note {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 16px;
+  line-height: 1.55;
+  color: var(--cl-text-muted);
+}
+
+
+/* ============================================
+   SOFTWARE PAGE
+   ============================================ */
+
+.software-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  max-width: 800px;
+}
+
+.sw-card {
+  border: 1px solid var(--cl-divider);
+  border-radius: 4px;
+  padding: clamp(20px, 3vw, 28px) clamp(20px, 3vw, 30px);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  transition: border-color var(--cl-transition);
+}
+
+.sw-card:hover {
+  border-color: var(--cl-accent);
+}
+
+.sw-card-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.sw-card-header h2 {
+  margin: 0;
+  font-weight: 600;
+  font-size: clamp(24px, 3.4vw, 30px);
+}
+
+.sw-badge {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 11.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border-radius: 4px;
+  padding: 3px 9px;
+  white-space: nowrap;
+}
+
+.sw-badge.live {
+  color: var(--cl-accent-text);
+  border: 1px solid rgba(125, 84, 17, 0.45);
+}
+
+.sw-badge.wip {
+  color: var(--cl-text-muted);
+  border: 1px solid var(--cl-divider-strong);
+}
+
+.sw-card p {
+  margin: 0;
+  font-size: 18px;
+  line-height: 1.6;
+  color: var(--cl-text-secondary);
+  text-align: justify;
+}
+
+.sw-card .sw-meta {
+  display: flex;
   flex-wrap: wrap;
+  gap: 26px;
+  font-size: 15px;
+  color: var(--cl-text-quiet);
 }
 
-.link-cards .card {
-  width: 190px;
-  margin: 0 20px 12px 0;
+.sw-card .sw-meta em {
+  color: var(--cl-text);
+  font-style: normal;
+}
+
+.sw-card .sw-actions {
+  display: flex;
+  gap: 10px;
+  padding-top: 4px;
+}
+
+.sw-card .sw-note {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-style: italic;
+  font-size: 16px;
+  color: var(--cl-text-quiet);
 }
 
 
+/* ============================================
+   ABOUT PAGE
+   ============================================ */
+
+.about-layout {
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(28px, 5vw, 64px);
+  align-items: flex-start;
+}
+
+/* Profile rail */
+.about-profile-rail {
+  position: sticky;
+  top: 88px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  flex: 1 1 250px;
+  max-width: 300px;
+  min-width: 0;
+}
+
+@media (max-width: 900px) {
+  .about-profile-rail {
+    position: static !important;
+    max-width: 100%;
+  }
+}
+
+.about-profile-rail .profile-photo {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 6px solid var(--cl-surface);
+  outline: 1px solid var(--cl-divider);
+}
+
+.about-profile-rail h1 {
+  margin: 0 0 4px;
+  font-weight: 400;
+  font-size: clamp(28px, 5vw, 36px);
+  letter-spacing: -0.02em;
+}
+
+.about-profile-rail .profile-role {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-style: italic;
+  font-size: 17px;
+  color: var(--cl-text-muted);
+}
+
+.about-profile-rail .profile-role < p {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-style: italic;
+  font-size: 17px !important;
+  color: var(--cl-text-muted);
+}
+
+.about-profile-rail .profile-divider {
+  height: 1px;
+  background: var(--cl-divider);
+}
+
+.about-profile-rail .profile-links {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.about-profile-rail .profile-links a {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  min-height: 44px;
+  font-size: 16.5px;
+  color: var(--cl-accent-text);
+  text-decoration: none;
+}
+
+.about-profile-rail .link-domain {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 11.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--cl-text-quiet);
+}
+
+/* Expertise tags in profile rail */
+.profile-expertise {
+  border-top: 1px solid var(--cl-divider);
+  padding-top: 16px;
+}
+
+.profile-expertise h3 {
+  margin: 0 0 10px;
+  font-size: 11.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--cl-text-muted);
+}
+
+.profile-expertise .tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.profile-expertise .expertise-tag {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 12.5px;
+  padding: 3px 9px;
+  border-radius: 4px;
+}
+
+.expertise-tag.primary {
+  color: var(--cl-accent-text);
+  border: 1px solid rgba(125, 84, 17, 0.45);
+}
+
+.expertise-tag.secondary {
+  color: var(--cl-text-secondary);
+  border: 1px solid var(--cl-divider);
+}
+
+/* About main content */
+.about-main {
+  flex: 3 1 400px;
+  min-width: 0;
+  max-width: var(--cl-prose-max);
+}
+
+.about-main h2 {
+  margin: 34px 0 12px;
+  font-weight: 600;
+  font-size: 28px;
+}
+
+.about-main h2:first-child {
+  margin-top: 0;
+}
+
+.about-main p {
+  font-size: clamp(17px, calc(0.5vw + 15px), 20px);
+  line-height: 1.65;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* Short CV */
+.cv-section {
+  margin-top: 38px;
+  border-top: 1px solid var(--cl-divider);
+  padding-top: 22px;
+}
+
+.cv-entry {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 20px;
+  row-gap: 6px;
+  padding: 15px 0;
+  border-top: 1px solid var(--cl-divider);
+}
+
+.cv-entry .cv-when p {
+  margin: 0;
+  flex: none;
+  width: 112px;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 15px !important;
+  letter-spacing: 0.04em;
+  color: var(--cl-accent-text);
+  font-feature-settings: "tnum";
+}
+
+.cv-entry .cv-what {
+  flex: 1 1 240px;
+  min-width: 0;
+}
+
+.cv-entry .cv-what p {
+  margin: 0;
+  font-size: 16.5px;
+  line-height: 1.5;
+}
+
+.cv-entry .cv-title {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 19px;
+  line-height: 1.3;
+  color: var(--cl-text);
+}
+
+.cv-entry .cv-place {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 16.5px;
+  line-height: 1.5 !important;
+  color: var(--cl-text-muted);
+}
+
+/* Selected publications on About */
+.selected-pubs {
+  margin-top: 38px;
+  border-top: 1px solid var(--cl-divider);
+  padding-top: 22px;
+}
+
+.selected-pubs .pubs-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.selected-pubs .pubs-header h2 {
+  margin: 0 !important;
+  font-size: 24px;
+}
+
+.selected-pubs .pubs-header p {
+  margin: 0;
+}
+
+.selected-pubs .pubs-header a {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--cl-accent-text);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(125, 84, 17, 0.35);
+  font-feature-settings: "tnum";
+}
+
+.selected-pub-entry {
+  display: grid;
+  grid-template-columns: 56px 1fr;
+  gap: 16px;
+  padding: 14px 0;
+  border-top: 1px solid var(--cl-divider);
+}
+
+.selected-pub-entry .pub-year {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 14px;
+  color: var(--cl-text-quiet);
+  font-feature-settings: "tnum";
+}
+
+.selected-pub-entry .pub-year p {
+  margin: 0;
+  font-size: 14px;
+}
+
+/* .about-main p sets a clamp(17px..20px) justified size for the page's
+   prose paragraphs — since font-size/text-align aren't inherited-only
+   properties here but a direct rule on <p> itself, it wins over anything
+   set on .pub-text (the wrapping div) and must be overridden on the <p>
+   directly to actually take effect. */
+.selected-pub-entry .pub-text p {
+  margin: 0;
+  font-size: 17px;
+  line-height: 1.55;
+  text-align: left;
+  hyphens: none;
+}
+
+.selected-pub-entry .pub-text {
+  font-size: 17px;
+  line-height: 1.55;
+}
+
+.selected-pub-entry .pub-text a {
+  color: var(--cl-accent-text);
+  text-decoration: none;
+}
+
+/* Get in touch card */
+.contact-card {
+  margin-top: 34px;
+  border: 1px solid var(--cl-divider);
+  border-radius: 4px;
+  padding: 24px 26px;
+}
+
+.contact-card h3 {
+  margin: 0 0 6px;
+  font-weight: 400;
+  font-size: 24px;
+}
+
+.contact-card p {
+  margin: 0;
+  font-size: 18px;
+  line-height: 1.6;
+  color: var(--cl-text-muted);
+  text-align: left;
 }
 
 
-.link-cards .card {
+/* ============================================
+   404 PAGE
+   ============================================ */
+
+.error-layout {
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(30px, 5vw, 64px);
+  align-items: flex-start;
+}
+
+.error-main {
+  flex: 2 1 380px;
+  min-width: 0;
+  max-width: 56ch;
+}
+
+.error-main .error-kicker {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 11.5px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--cl-text-quiet);
+  font-feature-settings: "tnum";
+}
+
+.error-main h1 {
+  margin: 14px 0 0;
+  font-weight: 400;
+  font-size: clamp(32px, 6.4vw, 54px);
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+}
+
+.error-rule {
+  height: 1px;
+  background: var(--cl-accent-light);
+  width: 72px;
+  margin: 26px 0;
+}
+
+.error-main p {
+  font-size: 18.5px;
+  line-height: 1.65;
+  color: var(--cl-text-secondary);
+  text-wrap: pretty;
+}
+
+.error-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 26px;
+}
+
+/* 404 recent posts rail */
+.error-rail {
+  flex: 1 1 240px;
+  min-width: 0;
+  border-left: 1px solid var(--cl-divider);
+  padding-left: 20px;
+}
+
+@media (max-width: 900px) {
+  .error-rail {
+    border-left: none;
+    padding-left: 0;
+    border-top: 1px solid var(--cl-divider);
+    padding-top: 20px;
+  }
+}
+
+.error-rail .rail-label {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 11.5px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--cl-text-quiet);
+}
+
+.error-rail .error-post-link {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 11px 0;
+  border-top: 1px solid var(--cl-divider);
+  text-decoration: none;
+  color: var(--cl-text);
+  transition: color var(--cl-transition);
+}
+
+.error-rail .error-post-link:hover {
+  color: var(--cl-accent-text);
+}
+
+.error-rail .error-post-link .post-date {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 11.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--cl-text-quiet);
+  font-feature-settings: "tnum";
+}
+
+.error-rail .error-post-link .post-title {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 18px;
+  line-height: 1.25;
+}
+
+
+/* ============================================
+   FOOTER
+   ============================================ */
+
+.nav-footer {
+  border-top: 1px solid var(--cl-divider) !important;
+  background: transparent !important;
+  max-width: var(--cl-content-max);
+  margin: clamp(52px, 8vw, 80px) auto 0;
+  padding: 22px var(--cl-gutter) 40px !important;
+}
+
+.nav-footer,
+.nav-footer a,
+.nav-footer p {
+  font-family: "Cormorant Garamond", Georgia, serif !important;
+  font-size: 14.5px !important;
+  color: var(--cl-text-quiet) !important;
+}
+
+.nav-footer p {
+  letter-spacing: 0.06em;
+}
+
+.nav-footer a {
+  color: var(--cl-accent-text) !important;
+  text-decoration: none !important;
+}
+
+
+/* ============================================
+   PAGE HEADER — reusable section header
+   ============================================ */
+
+.page-header-classical,
+.page-header {
+  border-bottom: 1px solid var(--cl-divider);
+  padding-bottom: 26px;
+  margin-bottom: 36px;
+}
+
+.page-header-classical h1,
+.page-header h1,
+/* Pages with an empty title and a leading H1 (writing, software,
+   publications...) get that H1 hoisted by Pandoc out of .page-header
+   into Quarto's own #title-block-header, ahead of it in the DOM — so
+   this needs to reach that element specifically to keep the same look. */
+#title-block-header h1.title {
+  margin: 0 0 10px;
+  font-weight: 400;
+  font-size: clamp(30px, 6.4vw, 52px);
+  letter-spacing: -0.02em;
+}
+
+/* The hoisted case leaves #title-block-header (just the H1) and
+   .page-header (now just the intro line) as separate sibling blocks —
+   remove the browser's default header margin so they sit as one unit,
+   the same spacing as when the H1 was still inside .page-header. */
+#title-block-header {
+  margin: 0;
+}
+
+/* main.content's own top padding+margin (14px+18px, Quarto's own
+   defaults — not ours) only gets the title block halfway to the
+   mockup's gap below the navbar; the mockup gives it roughly double.
+   Scoped to :not(:empty) so this doesn't touch pages like Home/About/404
+   where the hoisted-title mechanism leaves this header genuinely empty
+   (their real heading lives elsewhere, further down, with its own
+   spacing already matching the mockup). */
+#title-block-header:not(:empty) {
+  margin-top: 32px;
+}
+
+.page-header-classical p,
+.page-header p {
+  margin: 0;
+  font-size: 19px;
+  color: var(--cl-text-muted);
+  max-width: 65ch;
+}
+
+
+/* ============================================
+   POST SERIES BOX — "Part of a series", shown at the top of a post
+   that belongs to one (raw HTML in the .qmd, ahead of the first
+   heading — see maximum-likelihood-estimation{,-part-2}/index.qmd)
+   ============================================ */
+
+.post-series-box {
+  margin: 0 0 34px;
+  border: 1px solid var(--cl-divider);
+  border-top: 2px solid var(--cl-accent-light);
+  border-radius: 4px;
+  padding: 20px 24px;
+}
+
+/* The two spans inside .post-series-header sit on one line with no
+   blank line between them in the .qmd's raw HTML, so Pandoc wraps them
+   in an auto-generated <p> — that <p>, not the outer div, is the flex
+   container that actually needs to space them apart (same pattern as
+   quarto-css-gotchas #11/#15/#28). */
+.post-series-header {
+  margin-bottom: 4px;
+}
+
+.post-series-header p {
+  margin: 0;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.post-series-label {
+  font-size: 11.5px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--cl-accent-text);
+}
+
+.post-series-count {
+  font-size: 11.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--cl-text-quiet);
+  font-feature-settings: "tnum";
+}
+
+.post-series-name {
+  margin: 0 0 4px;
+  font-weight: 600;
+  font-size: 23px;
+}
+
+/* Beats .page-layout-article main.content p's justify/hyphens (higher
+   specificity — see quarto-css-gotchas #20) — this blurb is one short
+   line in the mockup, never justified. */
+.post-series-box p.post-series-blurb {
+  margin: 0 0 14px;
+  font-size: 17px;
+  line-height: 1.55;
+  color: var(--cl-text-muted);
+  text-align: left;
+  hyphens: none;
+}
+
+.post-series-parts {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Same Pandoc auto-<p>-wrap as .post-series-header above — the grid
+   needs to be on that inner <p>, not the outer row div. */
+.post-series-part {
+  padding: 9px 0;
+  border-top: 1px solid var(--cl-divider);
+}
+
+.post-series-part p {
+  margin: 0;
+  display: grid;
+  grid-template-columns: 34px 1fr;
+  gap: 12px;
+  align-items: baseline;
+}
+
+.post-series-part-n {
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  color: var(--cl-text-quiet);
+  font-feature-settings: "tnum";
+}
+
+.post-series-part-current {
+  font-size: 18px;
+  color: var(--cl-text);
+}
+
+.post-series-part-current em {
+  font-size: 13px;
+  color: var(--cl-accent-text);
+}
+
+.post-series-part a {
+  font-size: 18px;
+  color: var(--cl-accent-text);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(125, 84, 17, 0.35);
+  width: fit-content;
+}
+
+
+/* ============================================
+   POST CITE/SHARE BOX — injected by _includes/post-extras.js at the
+   end of every post's prose, before Giscus
+   ============================================ */
+
+.post-cite-box {
+  margin-top: 36px;
+  border: 1px solid var(--cl-divider);
+  border-radius: 4px;
+  padding: 20px 24px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.post-cite-label {
+  display: block;
+  font-size: 11.5px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--cl-text-muted);
+  margin-bottom: 7px;
+}
+
+.post-cite-text {
+  display: block;
+  font-size: 16.5px;
+  line-height: 1.5;
+  color: var(--cl-text);
+}
+
+.post-cite-actions {
+  display: flex;
+  gap: 9px;
+}
+
+.post-cite-btn {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 14.5px;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  padding: 0 16px;
+  border: 1px solid var(--cl-divider);
+  border-radius: 4px;
+  cursor: pointer;
+  white-space: nowrap;
+  background: transparent;
+  color: var(--cl-text);
+  transition: background var(--cl-transition);
+}
+
+.post-cite-btn:hover {
+  background: rgba(32, 31, 29, 0.07);
+}
+
+.post-cite-btn-accent {
+  border-color: var(--cl-accent-text);
+  color: var(--cl-accent-text);
+}
+
+.post-cite-btn-accent:hover {
+  background: var(--cl-accent-tint);
+}
+
+
+/* ============================================
+   GISCUS COMMENTS — rethemed
+   ============================================ */
+
+/* Space this against `.giscus` (giscus's own wrapper <div>), not
+   `.giscus-frame` (the <iframe> itself, also giscus's own class name).
+   Giscus sets the iframe's `height` in JS to exactly fit its own
+   content and assumes that height *is* the visible content area —
+   putting our divider/padding directly on the iframe, with the site's
+   global border-box sizing, silently ate 23px (22px padding + 1px
+   border) out of that budget instead of adding space above it,
+   clipping that much off the bottom of the widget (e.g. the "Sign in
+   with GitHub" button) every time, independent of any other giscus
+   loading/sizing issue. `.giscus` is a direct child of #quarto-content,
+   which Quarto/Bootstrap targets with its own `#quarto-content > *
+   {padding-top:14px}` (ID selector — beats a plain `.giscus` class
+   regardless of source order); !important forces our own value back. */
+.giscus {
+  margin-top: 36px !important;
+  border-top: 1px solid var(--cl-divider) !important;
+  padding-top: 22px !important;
+}
+
+
+/* ============================================
+   PREV/NEXT POST NAVIGATION
+   ============================================ */
+
+.nav-page {
+  border-top: 1px solid var(--cl-divider);
+  padding-top: 24px;
+  margin-top: 44px;
+}
+
+.nav-page a {
+  text-decoration: none;
+  color: var(--cl-text);
+}
+
+.nav-page .nav-page-text {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 19px;
+  line-height: 1.25;
+}
+
+.nav-page .nav-page-previous::before,
+.nav-page .nav-page-next::after {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 11.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--cl-text-quiet);
+}
+
+
+/* ============================================
+   QUARTO OVERRIDES — structural cleanup
+   ============================================ */
+
+/* Remove default title block styling */
+.quarto-title-block {
+  margin-bottom: 0;
+}
+
+/* Remove Quarto's default box-shadows on various elements */
+.sidebar,
+.quarto-listing .card,
+.quarto-post {
+  box-shadow: none !important;
+}
+
+/* Listing cards (if card view is used) */
+.quarto-listing .card {
+  border: 1px solid var(--cl-divider);
+  border-radius: 4px;
+  background: transparent;
+  transition: border-color var(--cl-transition);
+}
+
+.quarto-listing .card:hover {
+  border-color: var(--cl-accent);
+  transform: none;
+  box-shadow: none !important;
+}
+
+.quarto-listing .card-title {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-weight: 400;
+  color: var(--cl-text);
+}
+
+/* Remove the see-more container from home default listing */
+.see-more-container {
+  display: none;
+}
+
+/* ------------------------------------------------
+   Grid listing — Writing page card grid
+   ------------------------------------------------ */
+
+/* Grid listing — constrain to content width with proper gap */
+.writing-index .list.grid {
+  gap: clamp(20px, 3vw, 28px) !important;
+  padding: 0 !important;
+  max-width: var(--cl-content-max);
+}
+
+/* Remove Bootstrap card styles Quarto injects */
+.quarto-grid-item {
+  border: 1px solid var(--cl-divider) !important;
+  border-radius: 4px !important;
+  box-shadow: none !important;
+  background: transparent !important;
+  transition: border-color var(--cl-transition);
+  overflow: hidden;
+}
+
+.quarto-grid-item:hover {
+  border-color: var(--cl-accent) !important;
+}
+
+/* Card image — plate treatment (matted border, not just a bottom rule) */
+.quarto-grid-item .card-img-top,
+.quarto-grid-item .listing-item-img-placeholder {
+  height: 150px;
+  object-fit: cover;
+  filter: sepia(0.22) saturate(0.82) contrast(1.05);
+  border: 6px solid var(--cl-surface);
+  outline: 1px solid var(--cl-divider);
+  border-radius: 2px;
+  box-sizing: border-box;
+}
+
+.quarto-grid-item p.card-img-top {
+  /* Bootstrap sets width:100% on this (not width:auto), so a plain
+     margin doesn't get subtracted from it automatically the way it
+     would on a block element — it just overflows the card by 2x the
+     margin and gets clipped by the card's overflow:hidden. */
+  width: calc(100% - 24px);
+  margin: 12px 12px 0;
+}
+
+/* Placeholder when no image */
+.quarto-grid-item .listing-item-img-placeholder {
+  background: var(--cl-surface);
+}
+
+/* Card body */
+.quarto-grid-item .card-body {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+/* Card title — margin-top:0 matters as much as margin-bottom here:
+   .card-body's flex gap is the only spacing this design wants between
+   title/subtitle/date, but Quarto's own listing CSS gives this h5 a
+   default top margin too, stacking on top of that gap. */
+.quarto-grid-item .card-title,
+.quarto-grid-item .listing-title {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--cl-text);
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.quarto-grid-item .card-title a,
+.quarto-grid-item .listing-title a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.quarto-grid-item:hover .card-title a,
+.quarto-grid-item:hover .listing-title a {
+  color: var(--cl-accent-text);
+}
+
+/* Card subtitle/description */
+.quarto-grid-item .card-subtitle,
+.quarto-grid-item .listing-subtitle,
+.quarto-grid-item .listing-description {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--cl-text-muted);
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+/* Card date as kicker — the date lives in .card-attribution, a sibling
+   of the title/subtitle inside .card-body's flex column, so the reorder
+   has to happen on that wrapper (order on the nested .listing-date div
+   itself is a no-op: it isn't the flex item). Quarto also right-aligns
+   this wrapper by default ("end"); the design wants it left, above the
+   title. */
+.quarto-grid-item .card-attribution {
+  order: -1;
+  text-align: left;
+  /* Quarto's own "end" utility class flex-grows this to soak up
+     leftover vertical space in the card and bottom-align the date
+     within it — fine when it sits last, but now that order:-1 puts it
+     first, that leftover space shows up as a gap above the date
+     instead (more or less of it per card, depending on how much
+     title/subtitle text the others have). Size it to its content. */
+  flex: none !important;
+  display: block !important;
+}
+
+.quarto-grid-item .listing-date {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 11.5px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--cl-text-quiet);
+  font-feature-settings: "tnum";
+  margin-bottom: 0;
+}
+
+/* Card category tags */
+.quarto-grid-item .listing-categories {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: auto;
+  padding-top: 6px;
+}
+
+.quarto-grid-item .listing-category {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--cl-accent-text);
+  background: transparent;
   border: none;
   padding: 0;
 }
 
-.link-cards .card-title h4 {
-  margin-top: 0;
+/* Remove Quarto's card footer border */
+.quarto-grid-item .card-footer {
+  background: transparent;
+  border-top: none;
+  padding: 0 16px 16px;
 }
 
-.link-cards .card-title p {
-  margin-bottom: 0;
-}
-
-.link-cards .card-subtitle {
-  margin-bottom: 0.7rem;
-}
-
-.link-cards .card-body {
-  padding: 0.5rem;
-  padding-left: 0.1rem;
-}
-
-.link-cards .card-body ul {
-  margin-bottom: 0;
-  padding-left: 0;
-  list-style-type: none;
-}
-
-.link-cards .card-body ul a {
+/* Card links — remove underline */
+.quarto-grid-item a {
   text-decoration: none;
 }
 
-.link-cards .card-body ul li {
-  padding-bottom: 0.2rem;
-}
-
-
-.card .source-code {
-  margin-top: 3px;
-}
-
-.carousel.card {
-  font-size: 16px;
-  padding-top: 2em;
-}
-
-.carousel.card a {
-  text-decoration: none;
-}
-
-.carousel img {
-  width: 70%;
-  margin-bottom: 110px;
-}
-
-.carousel .carousel-control-prev-icon, 
-.carousel .carousel-control-next-icon {
-  margin-bottom: 110px;
-}
-
-
-.gallery-category {
-  column-gap: 10px;
-}
-
-.btn-action-primary {
-  color: white;
-  background-color: #447099;
-}
-
-.btn-action-primary:hover {
-  background-color: #305775;
-  color: white;
-}
-
-.btn-action {
-  min-width: 165px;
-  border-radius: 30px;
-  border: none;
-}
-
-.panel-tabset[data-group="tools-tabset"] .choose-your-tool {
-  max-width: 90px;
-  margin-right: 25px;
-  margin-top: 30px;
-  font-weight: 300;
-  font-size: 1.3rem;
-  text-align: left;
-  vertical-align: center;
-}
-
-.panel-tabset[data-group="tools-tabset"] .tab-content {
-  border: none;
-  padding-left: 5px;
-}
-
-.panel-tabset[data-group="tools-tabset"] .nav-tabs {
-  border-bottom: none;
-}
-
-.panel-tabset[data-group="tools-tabset"] .nav-tabs .nav-link {
+/* No results state */
+.listing-no-matching {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  color: var(--cl-text-muted);
+  font-size: 20px;
   text-align: center;
-  margin-right: 10px;
-  margin-top: 10px;
-  color: inherit;
-  width: 102px;
-  font-size: 0.8em;
+  padding: clamp(40px, 6vw, 80px) 0;
 }
 
-.panel-tabset[data-group="tools-tabset"] .nav-tabs .nav-link, 
-.panel-tabset[data-group="tools-tabset"] .nav-tabs .nav-link.active, 
-.panel-tabset[data-group="tools-tabset"] .nav-tabs .nav-item.show .nav-link {
-  border: 1px solid  rgb(222, 226, 230);
-  border-radius: 10px;
-}
-.panel-tabset[data-group="tools-tabset"] .nav-tabs .nav-link:hover {
-   border-color: rgb(80,146,221);
-   border-width: 1px;
-} 
-
-.panel-tabset[data-group="tools-tabset"] .nav-tabs .nav-link.active, 
-.panel-tabset[data-group="tools-tabset"] .nav-tabs .nav-item.show .nav-link {
-  border-color: rgb(80,146,221);
-  border-width: 2px;
+/* Responsive: single column below 900px */
+@media (max-width: 900px) {
+  .writing-index .list.grid {
+    grid-template-columns: 1fr !important;
+  }
 }
 
-.panel-tabset[data-group="tools-tabset"] .nav-tabs .nav-link img {
-  width: 65px;
-  height: 65px;
-  display: block;
-  margin-bottom: 2px;
+/* Back to top button */
+#quarto-back-to-top {
+  color: var(--cl-accent-text);
+  border: 1px solid var(--cl-accent-text);
+  background: var(--cl-ground);
+  border-radius: 4px;
+}
+
+/* Sidebar */
+.sidebar {
+  background: transparent !important;
+  border-right: none !important;
 }
 
 
-.download-text {
-  font-size: 1.1em;
-  font-weight: 500;  
-}
+/* ============================================
+   DARK MODE
+   ============================================ */
 
-.preview-image-grid {
-  gap: .75em;
-}
-
-.preview-image-grid p {
-  margin-bottom: 0;
-}
-
-.preview-image-label {
-  text-align: center;
-  font-size: .75em;
-  font-weight: 600;
-}
-
-.illustration {
-  border: 1px solid #dee2e6;
-}
-
-span.color-box-container {
-  display: inline-flex;
-  align-items: center; /* Align vertically */
-}
-
-span.color-box {
-  display: inline-block;
-  width: 1em; /* Width of the color box */
-  height: 1em; /* Height of the color box */
-  margin-right: 0.2em; /* Space between box and text */
-  border: 1px solid #000; /* Border color */
-}
-
-/* ---- Dark mode depth overrides ---- */
 body.quarto-dark {
-  --shadow-xs:   0 1px 2px rgba(0, 0, 0, 0.20);
-  --shadow-sm:   0 1px 3px rgba(0, 0, 0, 0.25),
-                 0 1px 2px rgba(0, 0, 0, 0.15);
-  --shadow-md:   0 4px 6px -1px rgba(0, 0, 0, 0.30),
-                 0 2px 4px -2px rgba(0, 0, 0, 0.18);
-  --shadow-lg:   0 10px 15px -3px rgba(0, 0, 0, 0.30),
-                 0 4px 6px -4px rgba(0, 0, 0, 0.15);
-  --shadow-inset: inset 0 2px 4px rgba(0, 0, 0, 0.20);
-
-  --surface-raised:  #3a3838;
-  --surface-overlay: #444242;
-  --surface-sunken:  #2a2929;
-  --border-subtle:   rgba(255, 249, 249, 0.06);
+  --cl-ground:         #1a1917;
+  --cl-surface:        #242320;
+  --cl-text:           #e8e4df;
+  --cl-text-secondary: #c5c0b8;
+  --cl-text-muted:     #9e9890;
+  --cl-text-quiet:     #8a847c;
+  --cl-accent:         #c99a4a;
+  --cl-accent-light:   #d4a95e;
+  --cl-accent-text:    #d4a95e;
+  --cl-accent-pressed: #e6c07a;
+  --cl-accent-tint:    rgba(212, 169, 94, 0.18);
+  --cl-row-hover:      rgba(212, 169, 94, 0.1);
+  --cl-divider:        rgba(232, 228, 223, 0.12);
+  --cl-divider-strong: rgba(232, 228, 223, 0.18);
+  --cl-error:          #e07a6a;
 }
 
-body.quarto-dark .welcome-panel,
-body.quarto-dark .about-entity .about-content {
-  background: var(--surface-raised);
-  border-color: var(--border-subtle);
+body.quarto-dark {
+  background: var(--cl-ground);
+  color: var(--cl-text);
+}
+
+body.quarto-dark .navbar {
+  background: rgba(26, 25, 23, 0.94) !important;
+  border-bottom-color: var(--cl-divider) !important;
+}
+
+body.quarto-dark .navbar-title,
+body.quarto-dark .navbar .nav-link {
+  color: var(--cl-text) !important;
+}
+
+body.quarto-dark .navbar .nav-link:hover {
+  color: var(--cl-accent-text) !important;
+}
+
+body.quarto-dark .navbar-title::after {
+  color: var(--cl-accent);
 }
 
 body.quarto-dark pre {
-  background: var(--surface-sunken) !important;
-  border-color: var(--border-subtle);
+  background: var(--cl-surface) !important;
+  border-color: var(--cl-divider);
+  border-top-color: var(--cl-accent-light);
+  color: var(--cl-text);
+}
+
+body.quarto-dark .nav-footer {
+  border-top-color: var(--cl-divider) !important;
+}
+
+body.quarto-dark .nav-footer,
+body.quarto-dark .nav-footer a,
+body.quarto-dark .nav-footer p {
+  color: var(--cl-text-quiet) !important;
+}
+
+body.quarto-dark .nav-footer a {
+  color: var(--cl-accent-text) !important;
+}
+
+body.quarto-dark .newsletter-form #newsletter-email {
+  color: var(--cl-text);
+  border-color: var(--cl-divider);
+}
+
+body.quarto-dark .newsletter-form button {
+  color: var(--cl-accent-text);
+  border-color: var(--cl-accent-text);
+}
+
+body.quarto-dark blockquote {
+  border-left-color: var(--cl-accent-light) !important;
+}
+
+body.quarto-dark .plate,
+body.quarto-dark img.plate {
+  border-color: var(--cl-surface);
+  outline-color: var(--cl-divider);
+}
+
+body.quarto-dark .quarto-title h1.title,
+body.quarto-dark .quarto-title .subtitle {
+  color: var(--cl-text);
+}
+
+body.quarto-dark .quarto-title .subtitle {
+  color: var(--cl-text-muted);
+}
+
+body.quarto-dark #TOC a {
+  color: var(--cl-text-muted);
+}
+
+body.quarto-dark #TOC a.active {
+  color: var(--cl-text) !important;
+}
+
+body.quarto-dark .sw-card {
+  border-color: var(--cl-divider);
+}
+
+body.quarto-dark .sw-card:hover {
+  border-color: var(--cl-accent);
+}
+
+body.quarto-dark .about-profile-rail .profile-photo {
+  border-color: var(--cl-surface);
+  outline-color: var(--cl-divider);
+}
+
+body.quarto-dark .expertise-tag.primary {
+  color: var(--cl-accent-text);
+  border-color: rgba(212, 169, 94, 0.4);
+}
+
+body.quarto-dark .expertise-tag.secondary {
+  color: var(--cl-text-muted);
+  border-color: var(--cl-divider);
+}
+
+body.quarto-dark ::selection {
+  background: rgba(212, 169, 94, 0.35);
+}
+
+body.quarto-dark #quarto-back-to-top {
+  background: var(--cl-ground);
+  color: var(--cl-accent-text);
+  border-color: var(--cl-accent-text);
+}
+
+body.quarto-dark .quarto-listing-category .category {
+  color: var(--cl-text-muted);
+  border-color: var(--cl-divider);
+}
+
+body.quarto-dark .quarto-listing-category .category:hover {
+  background: rgba(232, 228, 223, 0.07);
+}
+
+body.quarto-dark .quarto-listing-category .category.active {
+  color: var(--cl-accent-text);
+  border-color: var(--cl-accent-text);
+  background: var(--cl-accent-tint);
+}
+
+/* Dark mode — search/filter input */
+body.quarto-dark .quarto-listing-filter input[type="text"],
+body.quarto-dark .quarto-listing-filter input[type="search"],
+body.quarto-dark #listing-filter {
+  color: var(--cl-text);
+  border-color: var(--cl-divider);
+  background: transparent;
+}
+
+body.quarto-dark .quarto-listing-filter input:hover,
+body.quarto-dark #listing-filter:hover {
+  border-color: var(--cl-divider-strong);
+}
+
+body.quarto-dark .quarto-listing-filter input:focus,
+body.quarto-dark #listing-filter:focus {
+  border-color: var(--cl-accent);
+}
+
+body.quarto-dark .quarto-listing-filter input::placeholder {
+  color: var(--cl-text-quiet);
+}
+
+/* Dark mode — grid cards */
+body.quarto-dark .quarto-grid-item {
+  border-color: var(--cl-divider) !important;
+  background: transparent !important;
+}
+
+body.quarto-dark .quarto-grid-item:hover {
+  border-color: var(--cl-accent) !important;
+}
+
+body.quarto-dark .quarto-grid-item .card-title a,
+body.quarto-dark .quarto-grid-item .listing-title a {
+  color: var(--cl-text);
+}
+
+body.quarto-dark .quarto-grid-item:hover .card-title a,
+body.quarto-dark .quarto-grid-item:hover .listing-title a {
+  color: var(--cl-accent-text);
+}
+
+body.quarto-dark .quarto-grid-item .listing-subtitle,
+body.quarto-dark .quarto-grid-item .listing-description {
+  color: var(--cl-text-muted);
+}
+
+body.quarto-dark .quarto-grid-item .listing-date {
+  color: var(--cl-text-quiet);
+}
+
+body.quarto-dark .quarto-grid-item .listing-category {
+  color: var(--cl-accent-text);
+}
+
+body.quarto-dark .quarto-grid-item .card-img-top {
+  border-bottom-color: var(--cl-divider);
+}
+
+body.quarto-dark .quarto-grid-item .listing-item-img-placeholder {
+  background: var(--cl-surface);
+}
+
+body.quarto-dark .quarto-grid-item .card-footer {
+  background: transparent;
+  border-top: none;
+}
+
+body.quarto-dark div.quarto-post h3 a {
+  color: var(--cl-text);
+}
+
+body.quarto-dark div.quarto-post h3 a:hover {
+  color: var(--cl-accent-text);
+}
+
+body.quarto-dark .quarto-title .quarto-categories .quarto-category {
+  color: var(--cl-text-quiet);
 }

@@ -7,9 +7,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Rob Taylor, PhD">
-<meta name="dcterms.date" content="2022-08-08">
 
-<title>On Probability versus Likelihood – robtaylor</title>
+<title>On Probability versus Likelihood – rob taylor</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -43,7 +42,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-773c3bb633b259146a05fb45e4da5169.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-9be6bd028c476a9e5884d70e30a8c230.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -72,6 +71,9 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 <style>html{ scroll-behavior: smooth; }</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&amp;display=swap" rel="stylesheet">
 
   <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
   <script>document.addEventListener("DOMContentLoaded", function () {
@@ -123,87 +125,44 @@ window.Quarto = {
 <body class="floating nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top quarto-banner">
-    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../../../index.html">
     <span class="navbar-title">rob taylor</span>
     </a>
   </div>
-            <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-  <span class="navbar-toggler-icon"></span>
-</button>
-          <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav navbar-nav-scroll me-auto">
+          <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
     <a class="nav-link" href="../../../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../about/"> 
-<span class="menu-text">About</span></a>
+    <a class="nav-link" href="../../../blog/index.html"> 
+<span class="menu-text">Writing</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../blog/"> 
-<span class="menu-text">Blog</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../software/"> 
+    <a class="nav-link" href="../../../software/index.html"> 
 <span class="menu-text">Software</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../resources/"> 
-<span class="menu-text">Resources</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../publications/"> 
+    <a class="nav-link" href="../../../publications/index.html"> 
 <span class="menu-text">Publications</span></a>
   </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../about/index.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
 </ul>
-          </div> <!-- /navcollapse -->
-            <div class="quarto-navbar-tools">
+          <div class="quarto-navbar-tools">
 </div>
+            <div id="quarto-search" class="" title="Search"></div>
       </div> <!-- /container-fluid -->
     </nav>
 </header>
 <!-- content -->
-<header id="title-block-header" class="quarto-title-block default toc-left page-columns page-full">
-  <div class="quarto-title-banner page-columns page-full">
-    <div class="quarto-title column-body">
-      <h1 class="title">On Probability versus Likelihood</h1>
-            <p class="subtitle lead">A discussion about two terms that are often used interchangeably, but are mathematically distinct</p>
-                                <div class="quarto-categories">
-                <div class="quarto-category">statistics</div>
-                <div class="quarto-category">probability</div>
-                <div class="quarto-category">likelihood</div>
-              </div>
-                  </div>
-  </div>
-    
-  
-  <div class="quarto-title-meta">
-
-      <div>
-      <div class="quarto-title-meta-heading">Author</div>
-      <div class="quarto-title-meta-contents">
-               <p>Rob Taylor, PhD </p>
-            </div>
-    </div>
-      
-      <div>
-      <div class="quarto-title-meta-heading">Published</div>
-      <div class="quarto-title-meta-contents">
-        <p class="date">August 8, 2022</p>
-      </div>
-    </div>
-    
-      
-    </div>
-    
-  
-  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <nav id="TOC" role="doc-toc" class="toc-active">
@@ -223,19 +182,58 @@ window.Quarto = {
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
     </div>
 <!-- main -->
-<main class="content quarto-banner-title-block" id="quarto-document-content">
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">On Probability versus Likelihood</h1>
+<p class="subtitle lead">A discussion about two terms that are often used interchangeably, but are mathematically distinct</p>
+  <div class="quarto-categories">
+    <div class="quarto-category">statistics</div>
+    <div class="quarto-category">probability</div>
+    <div class="quarto-category">likelihood</div>
+  </div>
+  </div>
 
 
 
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Rob Taylor, PhD </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">8 Aug 2022</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
 
 
-<section id="introduction" class="level3">
-<h3 data-anchor-id="introduction">Introduction</h3>
+</header>
+
+
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="scott-lord-tQLIYGBQkh8-unsplash.jpg" class="post-hero img-fluid figure-img"></p>
+<figcaption>Photo by Scott Lord on Unsplash</figcaption>
+</figure>
+</div>
+<section id="introduction" class="level2">
+<h2 data-anchor-id="introduction">Introduction</h2>
 <p>From the perspective of machine learning and data science, probabilities and likelihoods are used to quantify uncertainty, or perhaps how probable it is that an observation belongs to one class or another. They crop up when looking at confusion matrices; and indeed, algorithms like Naive Bayes classification are pretty much probabilistic models. The reality is that data scientists cannot escape these concepts.</p>
 <p>In everyday language, though, we tend to use the terms probability and likelihood almost interchangeably. Indeed, it’s not uncommon to hear things like ‘how likely is it to rain today?’ or ‘what are the chances of this or that happening?’ And I’ll be honest; it wasn’t a distinction that was initially apparent to me, but probability and likelihood are <em>different</em> (albeit related) concepts. This interchangeability can often creep into our work as data scientists, so it’s important to be clear about the distinction between the two terms. So, in this post, I thought I’d have a crack at illustrating the difference between these two ideas.</p>
 </section>
-<section id="probability" class="level3">
-<h3 data-anchor-id="probability">Probability</h3>
+<section id="probability" class="level2">
+<h2 data-anchor-id="probability">Probability</h2>
 <p>In a nutshell, the fundamental difference between probability and likelihood lies in what is allowed to <em>vary —</em> let me explain.</p>
 <p>What you need to know is that <em>likelihood</em> — though to be specific, I’m actually talking about the <em>likelihood function</em> — is actually derived from a statistical model and is considered a function over the parameters that generate data from that model. Confused? Don’t worry — let’s be a little more concrete and consider tossing a fair coin ten times.</p>
 <p>We know that this is a Binomial process that is governed by a rate parameter <span class="math inline">p</span> that defines the expected probability of throwing <span class="math inline">K</span> heads (or tails — it doesn’t matter which) out of a total of <span class="math inline">N</span> throws. Here, the number of observed heads, <span class="math inline">K</span>, is a random variable that changes in response to different values of <span class="math inline">p</span>. For any fixed parameter value (e.g., <span class="math inline">p = 0.7</span>), the <em>probability</em> of observing <span class="math inline">K</span> heads is given by the probability mass function (PMF):</p>
@@ -251,8 +249,8 @@ window.Quarto = {
 </figure>
 </div>
 </section>
-<section id="likelihood" class="level3">
-<h3 data-anchor-id="likelihood">Likelihood</h3>
+<section id="likelihood" class="level2">
+<h2 data-anchor-id="likelihood">Likelihood</h2>
 <p>Okay, so what if instead, I tell you that I already flipped the coin ten times and got <span class="math inline">K = 7</span> heads? My question to you is whether the coin I threw was fair or not.</p>
 <p>What’s important to note is that, in this case, <span class="math inline">K</span> is no longer random — we have an <em>observed</em> realization of the Binomial process meaning it is now a fixed value. Given this information, the likelihood function for the Binomial model can be written as:</p>
 <p><span class="math display">\mathcal{L}( \theta \ | \ K = \hat{k}) = P(K = \hat{k})</span></p>
@@ -261,8 +259,8 @@ window.Quarto = {
 <p>Okay, before moving on, a note of caution: I know the likelihood function looks like a distribution function, but it is <strong>not</strong> a proper probability density function (i.e., it typically doesn’t integrate to 1). More importantly, the likelihood function is <strong>not</strong> the probability that <em>p</em> equals a particular value (for that you’ll need to compute the posterior distribution. I’ll talk about that in another post).</p>
 <p>Right, moving on.</p>
 </section>
-<section id="statistical-evidence" class="level3">
-<h3 data-anchor-id="statistical-evidence">Statistical Evidence</h3>
+<section id="statistical-evidence" class="level2">
+<h2 data-anchor-id="statistical-evidence">Statistical Evidence</h2>
 <p>Remember when I said that the likelihood function is interpreted as a measure? Well, specifically, it can be used to quantify statistical evidence. I also said that all you needed to know about the MLE is that it has a likelihood value of approximately .27. But what does this tell us? What does it mean to say that the likelihood is approximately .27? It certainly doesn’t tell us whether or not the coin I used was fair or not — so where to from here?</p>
 <p>I need to introduce a couple of things:</p>
 <ul>
@@ -276,8 +274,8 @@ window.Quarto = {
 <p>In this example, the likelihood ratio quantifies the degree to which the data supports the claim that <span class="math inline">p = 0.5</span> (fair coin). If this ratio is 1, there is no evidence either way. If the ratio is greater than 1, then the evidence is in favor of the numerator (here, <span class="math inline">p = 0.5</span>). However, if the ratio is less than 1, then the evidence supports the denominator (here, <span class="math inline">p = 0.7</span>). So, it appears we have evidence against the fair coin hypothesis. In fact, if we take the reciprocal (i.e., 1 / .44) we see that <span class="math inline">p = 0.7</span> is approximately 2.3 times more likely than <span class="math inline">p = 0.5</span> (bear in mind that is a comparison with only one alternative— there are other possibilities other than <span class="math inline">p = 0.7</span>).</p>
 <p>In reality, this is a trivial result, and the likelihood principle, along with the law of likelihood, means that the parameter value that maximizes the likelihood function is the value most supported by the data. The question is then whether this is convincing enough evidence that the coin I flipped was unfair. That’s a topic for another day.</p>
 </section>
-<section id="wrapping-up" class="level3">
-<h3 data-anchor-id="wrapping-up">Wrapping Up</h3>
+<section id="wrapping-up" class="level2">
+<h2 data-anchor-id="wrapping-up">Wrapping Up</h2>
 <p>I hope that this post made clear the difference between probability and likelihood. To recap: <em>probability</em> is generally something we consider when we have a model with a fixed set of parameters and we are interested in the types of data that might be generated. Conversely, <em>likelihood</em> comes into play when we have already observed data and we want to examine how likely certain model parameters are. In particular, we can use likelihood ratios to quantify the evidence in favor of one value over another.</p>
 
 
@@ -677,8 +675,8 @@ window.Quarto = {
     }
   });
   </script>
-<input type="hidden" id="giscus-base-theme" value="light">
-<input type="hidden" id="giscus-alt-theme" value="dark">
+<input type="hidden" id="giscus-base-theme" value="https://robtaylor.co.nz/giscus-theme.css">
+<input type="hidden" id="giscus-alt-theme" value="https://robtaylor.co.nz/giscus-theme.css">
 <script>
   function loadGiscus() {
     // Function to get the theme based on body class
@@ -710,7 +708,7 @@ window.Quarto = {
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">
-<p>© Rob Taylor. Built with <a href="https://quarto.org">Quarto</a>.</p>
+<p>© Rob Taylor</p>
 </div>   
     <div class="nav-footer-center">
 <p>Statistics, probability, and Bayesian thinking</p>
@@ -720,6 +718,291 @@ window.Quarto = {
 </div>
   </div>
 </footer>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  var wrap = document.querySelector('.newsletter-form-wrap');
+  if (wrap) initNewsletter(wrap);
+});
+
+function initNewsletter(wrap) {
+  var form = wrap.querySelector('#newsletter-form');
+  if (!form) return;
+
+  var emailInput = wrap.querySelector('#newsletter-email');
+  var msgEl = wrap.querySelector('#newsletter-msg');
+  var originalHTML = wrap.innerHTML;
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    var email = emailInput.value.trim();
+    if (!email) {
+      showError('Enter an email address.');
+      return;
+    }
+
+    // Basic email validation
+    var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+    if (!emailPattern.test(email)) {
+      showError('That doesn\'t look like an email address.');
+      return;
+    }
+
+    // TODO: Replace with your Buttondown API endpoint
+    // Example: https://api.buttondown.email/v1/subscribers
+    var BUTTONDOWN_ENDPOINT = '';
+
+    if (!BUTTONDOWN_ENDPOINT) {
+      // Placeholder: show success state for now
+      showSuccess(email);
+      return;
+    }
+
+    // Disable form while submitting
+    emailInput.disabled = true;
+    form.querySelector('button').disabled = true;
+
+    fetch(BUTTONDOWN_ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: email, tags: ['website'] })
+    })
+    .then(function (res) {
+      if (res.ok || res.status === 201) {
+        showSuccess(email);
+      } else {
+        return res.json().then(function (data) {
+          var detail = data.detail || '';
+          if (/already/i.test(detail)) {
+            throw new Error('That address is already on the list.');
+          }
+          throw new Error(detail || 'Could not subscribe. Please try again.');
+        });
+      }
+    })
+    .catch(function (err) {
+      showError(err.message || 'Could not subscribe. Please try again.');
+      emailInput.disabled = false;
+      form.querySelector('button').disabled = false;
+    });
+  });
+
+  function showError(message) {
+    emailInput.classList.add('has-error');
+    msgEl.className = 'newsletter-msg newsletter-error';
+    msgEl.textContent = message;
+
+    emailInput.addEventListener('input', function handler() {
+      emailInput.classList.remove('has-error');
+      msgEl.textContent = '';
+      msgEl.className = 'newsletter-msg';
+      emailInput.removeEventListener('input', handler);
+    });
+  }
+
+  function showSuccess(email) {
+    wrap.innerHTML =
+      '<div class="newsletter-success">' +
+        '<h4>Check your inbox.</h4>' +
+        '<p>A confirmation went to <strong>' + escapeHtml(email) + '</strong>. ' +
+        'Click the link in it and you’re on the list.</p>' +
+        '<a href="#" class="newsletter-reset">Use a different address</a>' +
+      '</div>';
+    wrap.querySelector('.newsletter-reset').addEventListener('click', function (e) {
+      e.preventDefault();
+      wrap.innerHTML = originalHTML;
+      initNewsletter(wrap);
+    });
+  }
+
+  function escapeHtml(str) {
+    var div = document.createElement('div');
+    div.appendChild(document.createTextNode(str));
+    return div.innerHTML;
+  }
+}
+</script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  var meta = document.querySelector('.quarto-title-meta');
+  var main = document.getElementById('quarto-document-content');
+  if (!meta || !main) return;
+
+  var header = main.querySelector('#title-block-header');
+  var words = main.textContent || '';
+  if (header) words = words.slice((header.textContent || '').length);
+  var count = words.trim().split(/\s+/).filter(Boolean).length;
+  if (!count) return;
+
+  // Technical/maths prose reads slower than general text — 100wpm rather
+  // than the usual ~200-238wpm reading-time default.
+  var minutes = Math.max(1, Math.round(count / 100));
+
+  var block = document.createElement('div');
+  block.innerHTML =
+    '<div class="quarto-title-meta-heading">Reading time</div>' +
+    '<div class="quarto-title-meta-contents"><p>' + minutes + ' min</p></div>';
+  meta.appendChild(block);
+});
+</script>
+<script>
+// include-after-body scripts run very late in the document — on a fast
+// or cached load the `load` event (or even DOMContentLoaded) has often
+// already fired by the time this executes, so a plain addEventListener
+// can silently never run. Run immediately whenever the DOM is already
+// parsed, otherwise wait for it — and run as early as possible (not on
+// `load`, which waits on images) so the TOC's CSS `visibility: hidden`
+// default (see styles.css) is lifted almost immediately, instead of
+// showing it in its original spot first and visibly snapping into place.
+function initPostLayout() {
+  // Quarto stamps an (empty) #title-block-header on every page, even
+  // non-article ones like the Writing index — only individual posts get
+  // this treatment.
+  if (!document.querySelector('#quarto-content.page-layout-article')) return;
+  relocateTOC();
+  addAllWritingLink();
+}
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initPostLayout);
+} else {
+  initPostLayout();
+}
+
+// Quarto's article layout puts the TOC in a page-wide margin column,
+// running the full height of the page beside the title. The design has
+// it sitting inside the article's own measure instead, starting below
+// the hero image, beside the body copy — so move it there once Quarto
+// has finished its own setup (scroll-spy etc. keep working since that
+// re-queries #TOC live rather than caching a reference to its old spot).
+function relocateTOC() {
+  var sidebar = document.getElementById('quarto-sidebar');
+  var main = document.getElementById('quarto-document-content');
+  if (!sidebar || !main || sidebar.dataset.relocated) return;
+
+  var header = main.querySelector('#title-block-header');
+  var hero = main.querySelector(':scope > .quarto-figure');
+  var insertAfter = hero || header;
+  if (!insertAfter) return;
+
+  var columns = document.createElement('div');
+  columns.className = 'post-body-columns';
+  var prose = document.createElement('div');
+  prose.className = 'post-body-prose';
+
+  var node = insertAfter.nextElementSibling;
+  while (node) {
+    var next = node.nextElementSibling;
+    prose.appendChild(node);
+    node = next;
+  }
+
+  // TOC first in the DOM, matching the mockup: it leads (stacks above
+  // the prose) on mobile, and sits on the left at desktop widths — no
+  // flex `order` override needed either way.
+  columns.appendChild(sidebar);
+  columns.appendChild(prose);
+  insertAfter.insertAdjacentElement('afterend', columns);
+  sidebar.dataset.relocated = 'true';
+  sidebar.classList.add('post-toc-ready');
+}
+
+// Quarto's title block has no built-in "back to index" link — the design
+// wants one above the category tags, in the same style as the nav.
+function addAllWritingLink() {
+  var header = document.getElementById('title-block-header');
+  if (!header || header.dataset.breadcrumbAdded) return;
+
+  var link = document.createElement('a');
+  link.className = 'all-writing-link';
+  link.href = '/blog/';
+  link.innerHTML = '<span class="all-writing-rule"></span>All writing';
+  header.insertAdjacentElement('afterbegin', link);
+  header.dataset.breadcrumbAdded = 'true';
+}
+</script>
+<script>
+// Runs after toc-layout.js (see _quarto.yml's include-after-body order),
+// so .post-body-prose already exists by the time this executes.
+function initPostExtras() {
+  var prose = document.querySelector('.post-body-prose');
+  var h1 = document.querySelector('.quarto-title h1.title');
+  var dateMeta = document.querySelector('meta[name="dcterms.date"]');
+  if (!prose || !h1 || !dateMeta || prose.dataset.citeAdded) return;
+  prose.dataset.citeAdded = 'true';
+
+  var year = dateMeta.content.slice(0, 4);
+  var title = h1.textContent.trim();
+  var citation = 'Taylor, R. (' + year + '). ' + title + '. robtaylor.co.nz';
+
+  var box = document.createElement('div');
+  box.className = 'post-cite-box';
+
+  var citeCol = document.createElement('div');
+  var label = document.createElement('span');
+  label.className = 'post-cite-label';
+  label.textContent = 'Cite this post';
+  var text = document.createElement('span');
+  text.className = 'post-cite-text';
+  text.textContent = citation;
+  citeCol.appendChild(label);
+  citeCol.appendChild(text);
+
+  var actions = document.createElement('div');
+  actions.className = 'post-cite-actions';
+
+  var copyBtn = document.createElement('button');
+  copyBtn.type = 'button';
+  copyBtn.className = 'post-cite-btn';
+  copyBtn.textContent = 'Copy';
+
+  var shareBtn = document.createElement('button');
+  shareBtn.type = 'button';
+  shareBtn.className = 'post-cite-btn post-cite-btn-accent';
+  shareBtn.textContent = 'Share';
+
+  actions.appendChild(copyBtn);
+  actions.appendChild(shareBtn);
+  box.appendChild(citeCol);
+  box.appendChild(actions);
+  prose.appendChild(box);
+
+  function flash(btn, message) {
+    var original = btn.textContent;
+    btn.textContent = message;
+    btn.disabled = true;
+    setTimeout(function () {
+      btn.textContent = original;
+      btn.disabled = false;
+    }, 1800);
+  }
+
+  copyBtn.addEventListener('click', function () {
+    navigator.clipboard.writeText(citation).then(function () {
+      flash(copyBtn, 'Copied');
+    }, function () {
+      flash(copyBtn, 'Copy failed');
+    });
+  });
+
+  shareBtn.addEventListener('click', function () {
+    var url = location.href;
+    if (navigator.share) {
+      navigator.share({ title: title, url: url }).catch(function () {});
+    } else {
+      navigator.clipboard.writeText(url).then(function () {
+        flash(shareBtn, 'Link copied');
+      }, function () {
+        flash(shareBtn, 'Copy failed');
+      });
+    }
+  });
+}
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initPostExtras);
+} else {
+  initPostExtras();
+}
+</script>
 
 
 

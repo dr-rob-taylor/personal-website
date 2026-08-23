@@ -9,7 +9,7 @@
 <meta name="author" content="Rob Taylor, PhD">
 <meta name="dcterms.date" content="2026-04-15">
 
-<title>Do We Really Need to Test Variances Anymore? – robtaylor</title>
+<title>Do We Really Need to Test Variances Anymore? – rob taylor</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -43,7 +43,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-773c3bb633b259146a05fb45e4da5169.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-9be6bd028c476a9e5884d70e30a8c230.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -72,6 +72,9 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 <style>html{ scroll-behavior: smooth; }</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&amp;display=swap" rel="stylesheet">
 
   <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
   <script>document.addEventListener("DOMContentLoaded", function () {
@@ -123,88 +126,44 @@ window.Quarto = {
 <body class="floating nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top quarto-banner">
-    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../../../index.html">
     <span class="navbar-title">rob taylor</span>
     </a>
   </div>
-            <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-  <span class="navbar-toggler-icon"></span>
-</button>
-          <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav navbar-nav-scroll me-auto">
+          <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
     <a class="nav-link" href="../../../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../about/"> 
-<span class="menu-text">About</span></a>
+    <a class="nav-link" href="../../../blog/index.html"> 
+<span class="menu-text">Writing</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../blog/"> 
-<span class="menu-text">Blog</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../software/"> 
+    <a class="nav-link" href="../../../software/index.html"> 
 <span class="menu-text">Software</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../resources/"> 
-<span class="menu-text">Resources</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../publications/"> 
+    <a class="nav-link" href="../../../publications/index.html"> 
 <span class="menu-text">Publications</span></a>
   </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../about/index.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
 </ul>
-          </div> <!-- /navcollapse -->
-            <div class="quarto-navbar-tools">
+          <div class="quarto-navbar-tools">
 </div>
+            <div id="quarto-search" class="" title="Search"></div>
       </div> <!-- /container-fluid -->
     </nav>
 </header>
 <!-- content -->
-<header id="title-block-header" class="quarto-title-block default toc-left page-columns page-full">
-  <div class="quarto-title-banner page-columns page-full">
-    <div class="quarto-title column-body">
-      <h1 class="title">Do We Really Need to Test Variances Anymore?</h1>
-            <p class="subtitle lead">Why classical assumption checks are no longer gatekeepers, and how modern ANOVA methods handle heterogeneity directly.</p>
-                                <div class="quarto-categories">
-                <div class="quarto-category">statistics</div>
-                <div class="quarto-category">ANOVA</div>
-                <div class="quarto-category">hypothesis testing</div>
-                <div class="quarto-category">inference</div>
-              </div>
-                  </div>
-  </div>
-    
-  
-  <div class="quarto-title-meta">
-
-      <div>
-      <div class="quarto-title-meta-heading">Author</div>
-      <div class="quarto-title-meta-contents">
-               <p>Rob Taylor, PhD </p>
-            </div>
-    </div>
-      
-      <div>
-      <div class="quarto-title-meta-heading">Published</div>
-      <div class="quarto-title-meta-contents">
-        <p class="date">April 15, 2026</p>
-      </div>
-    </div>
-    
-      
-    </div>
-    
-  
-  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <nav id="TOC" role="doc-toc" class="toc-active">
@@ -226,21 +185,61 @@ window.Quarto = {
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
     </div>
 <!-- main -->
-<main class="content quarto-banner-title-block" id="quarto-document-content">
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Do We Really Need to Test Variances Anymore?</h1>
+<p class="subtitle lead">Why classical assumption checks are no longer gatekeepers, and how modern ANOVA methods handle heterogeneity directly.</p>
+  <div class="quarto-categories">
+    <div class="quarto-category">statistics</div>
+    <div class="quarto-category">ANOVA</div>
+    <div class="quarto-category">hypothesis testing</div>
+    <div class="quarto-category">inference</div>
+  </div>
+  </div>
 
 
 
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Rob Taylor, PhD </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">15 Apr 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
 
 
-<section id="introduction" class="level3">
-<h3 data-anchor-id="introduction">Introduction</h3>
+</header>
+
+
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="joel-henry-dZ7cpFw5MD4-unsplash.jpg" class="post-hero img-fluid figure-img"></p>
+<figcaption>Photo by Joel Henry on Unsplash</figcaption>
+</figure>
+</div>
+<section id="introduction" class="level2">
+<h2 data-anchor-id="introduction">Introduction</h2>
 <p>There was a familiar ritual to statistical analysis that many of us were taught: collect data under a set of assumptions about how that data should look, test those assumptions, and — if they held — use a parametric test; if not, switch to a non-parametric alternative. As an undergraduate, this process was a major source of anxiety for me, often tipping into a kind of low-level existential angst.</p>
 <p>Consider the case of comparing multiple conditions or groups. The standard tool here was Analysis of Variance (ANOVA), which comes with a core assumption that group variances are equal. This assumption therefore had to be checked explicitly. If the variances were found to be unequal — or <em>heteroscedastic</em> — the prescribed move was to abandon ANOVA in favour of a non-parametric alternative such as the Kruskal–Wallis test.</p>
 <p>There was a clear logic to this approach. It was data-driven and mirrored the structure of hypothesis testing itself: perform a test, then make a decision based on the result. As a teaching device, this decision-tree logic made sense. But as statistical methods and computational tools have evolved, so too has our relationship with assumptions — and with the need to test them so explicitly.</p>
 <p>In this post, I’ll revisit why assumption checking played such a central role in classical statistics, focus on how equality of variances was assessed in the context of ANOVA, and argue that modern statistical workflows have made these tests far less central than they once were.</p>
 </section>
-<section id="why-anova-cared-about-equal-variances-in-the-first-place" class="level3">
-<h3 data-anchor-id="why-anova-cared-about-equal-variances-in-the-first-place">Why ANOVA cared about equal variances in the first place</h3>
+<section id="why-anova-cared-about-equal-variances-in-the-first-place" class="level2">
+<h2 data-anchor-id="why-anova-cared-about-equal-variances-in-the-first-place">Why ANOVA cared about equal variances in the first place</h2>
 <p>When we do an ANOVA, what we’re asking is whether the groups means are more spread out than we’d expect from random variation alone. To answer this question, ANOVA compares variability <em>between</em> group means to variability <em>within</em> groups. The <em>F</em>-statistic is then the ratio of these two sources of variability:</p>
 <p><span class="math display">F = \frac{\mathrm{between-group \ variability}}{\mathrm{within-group \ variability}}</span></p>
 <p>If the variation between group means is large relative to the background noise within groups, we take this as evidence that the means differ. Crucially, classical ANOVA assumes that this background noise can be summarised by a single pooled estimate of variance, shared across all groups:</p>
@@ -252,8 +251,8 @@ window.Quarto = {
 <p><span class="math display">\bar{Y}_G = \frac{1}{k} \sum^k_i \bar{Y}_i</span></p>
 <p>Fundamentally, the equal-variance assumption is what makes the classical ANOVA mathematically coherent. When variances and sample sizes differ, this mismatch can distort the test. Groups with high variance and small sample sizes can exert disproportionate influence on the between-group variability, while the pooled variance in the denominator no longer reflects the true uncertainty in the means. The result is not just a loss of efficiency, but a breakdown in the calibration of the test itself: the <em>F-</em>statistic no longer follows the reference distribution it is compared against.</p>
 </section>
-<section id="checking-equality-of-variances-bartlett-levene-and-friends" class="level3">
-<h3 data-anchor-id="checking-equality-of-variances-bartlett-levene-and-friends">Checking equality of variances: Bartlett, Levene, and friends</h3>
+<section id="checking-equality-of-variances-bartlett-levene-and-friends" class="level2">
+<h2 data-anchor-id="checking-equality-of-variances-bartlett-levene-and-friends">Checking equality of variances: Bartlett, Levene, and friends</h2>
 <p>When it comes to assessing whether group variances are equal, statisticians have several tools at their disposal, each built on different assumptions and suited to different circumstances. Understanding these differences helps clarify why variance tests are not interchangeable and why their role has shifted in modern workflows.</p>
 <p><em>Bartlett’s test</em> is perhaps the most traditional. It is most powerful under the assumption that each group is normally distributed, effectively comparing the observed group variances to what would be expected under a common variance. However, its sensitivity to deviations from normality is extreme: even mild skew or heavy tails can inflate Type I error, making Bartlett’s test unreliable when real data depart from idealised assumptions.</p>
 <p><em>Levene’s test</em> takes a more robust approach by focusing on the absolute deviations of observations from their group mean. By transforming the data in this way, it reduces the impact of non-normality while still providing a clear signal when variances differ:</p>
@@ -265,8 +264,8 @@ window.Quarto = {
 <p>The key difference among these tests lies in the trade-off between robustness and power. Bartlett is most powerful under perfect normality but collapses when normality is violated. Both Levene and Brown–Forsythe balance robustness and sensitivity, whereas Fligner–Killeen prioritises robustness at the expense of power under ideal conditions. In practice, this means that any single test result should not be treated as the decision gate.</p>
 <p>By comparing them in this way, we can see how each test embodies a philosophy of inference. Bartlett asks us to trust the normal model, Levene and Brown–Forsythe hedge against absolute deviations, and Fligner–Killeen ignores distributional assumptions entirely. Each test, then, embodies a different philosophy of inference — and none of them is well-suited to the role of a compulsory decision gate.</p>
 </section>
-<section id="why-assumption-tests-make-poor-decision-rules" class="level3">
-<h3 data-anchor-id="why-assumption-tests-make-poor-decision-rules">Why assumption tests make poor decision rules</h3>
+<section id="why-assumption-tests-make-poor-decision-rules" class="level2">
+<h2 data-anchor-id="why-assumption-tests-make-poor-decision-rules">Why assumption tests make poor decision rules</h2>
 <p>If assumption checks were merely descriptive, they would be relatively uncontroversial. The problem arises when they are treated as <em>decision rules</em> — formal gates that determine which analysis is <em>allowed</em> and which is not. That may not have been the intent, at least initially, but the way statistical methods have been taught has had unintended consequences.</p>
 <p>The first issue is statistical power. Assumption tests such as Levene’s test are often least informative in exactly the situations where their results matter most. With small samples, these tests have very low power to detect meaningful violations, so assumptions can appear satisfactory even when they are not. With large samples, the opposite occurs — even trivial departures from idealised assumptions are detected with high confidence, leading to rejections that have little practical consequence for inference.</p>
 <p>This creates an uncomfortable paradox. When the consequences of assumption violations are potentially serious, some tests tend to be silent. When the violations are negligible, others tend to be loud. As a result, passing or failing an arbitrary test often tells us more about sample size than about the suitability of a method.</p>
@@ -274,8 +273,8 @@ window.Quarto = {
 <p>But there is also a deeper logical concern. When assumption tests are used to <em>choose</em> an analysis, the data are effectively used twice: once to select a test and again to perform inference. This conditionality is rarely acknowledged, but it undermines the clean interpretation of <em>p</em>-values that the decision-tree workflow is meant to protect.</p>
 <p>Taken together, these issues make assumption tests ill-suited to the role they are often given. They are blunt instruments pressed into service as arbiters of validity, when in reality they provide only coarse, sample-size–dependent signals about idealised model conditions. This doesn’t mean assumption tests are useless — but they shouldn’t be treated as authoritative when it comes to selecting inferential tests.</p>
 </section>
-<section id="how-modern-methods-address-unequal-variances-directly" class="level3">
-<h3 data-anchor-id="how-modern-methods-address-unequal-variances-directly">How modern methods address unequal variances directly</h3>
+<section id="how-modern-methods-address-unequal-variances-directly" class="level2">
+<h2 data-anchor-id="how-modern-methods-address-unequal-variances-directly">How modern methods address unequal variances directly</h2>
 <p>One reason assumption testing has faded somewhat is that modern statistical methods no longer require us to pretend that variances are equal. We can simply incorporate heterogeneity into the analysis itself.</p>
 <p>A straightforward example is Welch’s ANOVA. Instead of pooling variances across groups, Welch’s approach allows each group to retain its own variance estimate and weights group means by its precision (or inverse variance):</p>
 <p><span class="math display">\omega_i = \frac{1}{\nu_i} = \frac{n_i}{s_i^2}</span></p>
@@ -288,14 +287,14 @@ window.Quarto = {
 <p>More explicitly, variance can be modelled rather than ignored. Generalised least squares, mixed-effects models, and Bayesian hierarchical models all allow variance to vary across groups, conditions, or levels of a hierarchy. In these approaches, unequal variances are not violations at all — they are parameters to be estimated, often with partial pooling that stabilises inference when data are sparse.</p>
 <p>What unites these methods is a change in mindset. Instead of asking whether the data satisfy the assumptions required by a particular test, we choose analyses that remain valid across a range of realistic data-generating processes. Equality of variances then becomes a special case, not a prerequisite.</p>
 </section>
-<section id="what-role-do-assumption-tests-play-now" class="level3">
-<h3 data-anchor-id="what-role-do-assumption-tests-play-now">What role do assumption tests play now?</h3>
+<section id="what-role-do-assumption-tests-play-now" class="level2">
+<h2 data-anchor-id="what-role-do-assumption-tests-play-now">What role do assumption tests play now?</h2>
 <p>In contemporary statistical workflows, tests for equality of variances have a role, but it is more subtle than the decision-rule function they once served. Rather than acting as formal gates that determine which analysis is permitted, they function as diagnostic and descriptive tools. The information they provide is <em>contextual</em> rather than prescriptive — offering insight without imposing a mandatory course of action.</p>
 <p>Testing for equality of variance can still highlight heterogeneity that warrants attention, and can inform choices about whether to adopt variance-weighted methods, consider transformations, or explore models that explicitly account for differing variability. The specific test selected still matters in this context: Bartlett remains a reasonable choice when normality is well-established, Levene and Brown–Forsythe offer greater robustness for typical applied data, and Fligner–Killeen suits situations where distributional assumptions are difficult to justify. But regardless of which test is used, and regardless of whether its result is significant, modern analyses are designed to produce valid inference even in the presence of unequal variances.</p>
 <p>These tests also retain genuine value in communicating data structure to others and, in teaching contexts, in demonstrating heteroskedasticity and its potential consequences. All of this matters — but it does reduce the burden placed on any single test to determine a primary analytic approach.</p>
 </section>
-<section id="wrapping-up" class="level3">
-<h3 data-anchor-id="wrapping-up">Wrapping up</h3>
+<section id="wrapping-up" class="level2">
+<h2 data-anchor-id="wrapping-up">Wrapping up</h2>
 <p>The story of variance testing reflects a broader evolution in statistical thinking. Classical workflows emphasised procedural checks that determined next steps — a structure that provided clarity, particularly for students, but that often conflated idealised model conditions with the practical requirements of inference.</p>
 <p>Today, statistical practice emphasises robustness, flexibility, and explicit modelling. Variance inequality, once a technical violation requiring a workaround, can now be incorporated directly into the model. Tests like Levene’s no longer function as gatekeepers prescribing which analysis is permitted; instead, they serve as descriptive companions — helping analysts characterise their data, communicate patterns to others, and, in teaching contexts, illustrate the nature and consequences of heteroskedasticity.</p>
 <p>This shift is not about abandoning rigour. On the contrary, it reflects a deeper commitment to inference that is both principled and resilient: principled, because methods are mathematically coherent across plausible scenarios; resilient, because they do not crumble in the face of minor or unavoidable departures from ideal assumptions. Assumption tests have moved from arbiters of analytic validity to tools that illuminate rather than dictate — informing understanding and guiding interpretation without imposing a mandatory course of action.</p>
@@ -698,8 +697,8 @@ window.Quarto = {
     }
   });
   </script>
-<input type="hidden" id="giscus-base-theme" value="light">
-<input type="hidden" id="giscus-alt-theme" value="dark">
+<input type="hidden" id="giscus-base-theme" value="https://robtaylor.co.nz/giscus-theme.css">
+<input type="hidden" id="giscus-alt-theme" value="https://robtaylor.co.nz/giscus-theme.css">
 <script>
   function loadGiscus() {
     // Function to get the theme based on body class
@@ -731,7 +730,7 @@ window.Quarto = {
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">
-<p>© Rob Taylor. Built with <a href="https://quarto.org">Quarto</a>.</p>
+<p>© Rob Taylor</p>
 </div>   
     <div class="nav-footer-center">
 <p>Statistics, probability, and Bayesian thinking</p>
@@ -741,6 +740,291 @@ window.Quarto = {
 </div>
   </div>
 </footer>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  var wrap = document.querySelector('.newsletter-form-wrap');
+  if (wrap) initNewsletter(wrap);
+});
+
+function initNewsletter(wrap) {
+  var form = wrap.querySelector('#newsletter-form');
+  if (!form) return;
+
+  var emailInput = wrap.querySelector('#newsletter-email');
+  var msgEl = wrap.querySelector('#newsletter-msg');
+  var originalHTML = wrap.innerHTML;
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    var email = emailInput.value.trim();
+    if (!email) {
+      showError('Enter an email address.');
+      return;
+    }
+
+    // Basic email validation
+    var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+    if (!emailPattern.test(email)) {
+      showError('That doesn\'t look like an email address.');
+      return;
+    }
+
+    // TODO: Replace with your Buttondown API endpoint
+    // Example: https://api.buttondown.email/v1/subscribers
+    var BUTTONDOWN_ENDPOINT = '';
+
+    if (!BUTTONDOWN_ENDPOINT) {
+      // Placeholder: show success state for now
+      showSuccess(email);
+      return;
+    }
+
+    // Disable form while submitting
+    emailInput.disabled = true;
+    form.querySelector('button').disabled = true;
+
+    fetch(BUTTONDOWN_ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: email, tags: ['website'] })
+    })
+    .then(function (res) {
+      if (res.ok || res.status === 201) {
+        showSuccess(email);
+      } else {
+        return res.json().then(function (data) {
+          var detail = data.detail || '';
+          if (/already/i.test(detail)) {
+            throw new Error('That address is already on the list.');
+          }
+          throw new Error(detail || 'Could not subscribe. Please try again.');
+        });
+      }
+    })
+    .catch(function (err) {
+      showError(err.message || 'Could not subscribe. Please try again.');
+      emailInput.disabled = false;
+      form.querySelector('button').disabled = false;
+    });
+  });
+
+  function showError(message) {
+    emailInput.classList.add('has-error');
+    msgEl.className = 'newsletter-msg newsletter-error';
+    msgEl.textContent = message;
+
+    emailInput.addEventListener('input', function handler() {
+      emailInput.classList.remove('has-error');
+      msgEl.textContent = '';
+      msgEl.className = 'newsletter-msg';
+      emailInput.removeEventListener('input', handler);
+    });
+  }
+
+  function showSuccess(email) {
+    wrap.innerHTML =
+      '<div class="newsletter-success">' +
+        '<h4>Check your inbox.</h4>' +
+        '<p>A confirmation went to <strong>' + escapeHtml(email) + '</strong>. ' +
+        'Click the link in it and you’re on the list.</p>' +
+        '<a href="#" class="newsletter-reset">Use a different address</a>' +
+      '</div>';
+    wrap.querySelector('.newsletter-reset').addEventListener('click', function (e) {
+      e.preventDefault();
+      wrap.innerHTML = originalHTML;
+      initNewsletter(wrap);
+    });
+  }
+
+  function escapeHtml(str) {
+    var div = document.createElement('div');
+    div.appendChild(document.createTextNode(str));
+    return div.innerHTML;
+  }
+}
+</script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  var meta = document.querySelector('.quarto-title-meta');
+  var main = document.getElementById('quarto-document-content');
+  if (!meta || !main) return;
+
+  var header = main.querySelector('#title-block-header');
+  var words = main.textContent || '';
+  if (header) words = words.slice((header.textContent || '').length);
+  var count = words.trim().split(/\s+/).filter(Boolean).length;
+  if (!count) return;
+
+  // Technical/maths prose reads slower than general text — 100wpm rather
+  // than the usual ~200-238wpm reading-time default.
+  var minutes = Math.max(1, Math.round(count / 100));
+
+  var block = document.createElement('div');
+  block.innerHTML =
+    '<div class="quarto-title-meta-heading">Reading time</div>' +
+    '<div class="quarto-title-meta-contents"><p>' + minutes + ' min</p></div>';
+  meta.appendChild(block);
+});
+</script>
+<script>
+// include-after-body scripts run very late in the document — on a fast
+// or cached load the `load` event (or even DOMContentLoaded) has often
+// already fired by the time this executes, so a plain addEventListener
+// can silently never run. Run immediately whenever the DOM is already
+// parsed, otherwise wait for it — and run as early as possible (not on
+// `load`, which waits on images) so the TOC's CSS `visibility: hidden`
+// default (see styles.css) is lifted almost immediately, instead of
+// showing it in its original spot first and visibly snapping into place.
+function initPostLayout() {
+  // Quarto stamps an (empty) #title-block-header on every page, even
+  // non-article ones like the Writing index — only individual posts get
+  // this treatment.
+  if (!document.querySelector('#quarto-content.page-layout-article')) return;
+  relocateTOC();
+  addAllWritingLink();
+}
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initPostLayout);
+} else {
+  initPostLayout();
+}
+
+// Quarto's article layout puts the TOC in a page-wide margin column,
+// running the full height of the page beside the title. The design has
+// it sitting inside the article's own measure instead, starting below
+// the hero image, beside the body copy — so move it there once Quarto
+// has finished its own setup (scroll-spy etc. keep working since that
+// re-queries #TOC live rather than caching a reference to its old spot).
+function relocateTOC() {
+  var sidebar = document.getElementById('quarto-sidebar');
+  var main = document.getElementById('quarto-document-content');
+  if (!sidebar || !main || sidebar.dataset.relocated) return;
+
+  var header = main.querySelector('#title-block-header');
+  var hero = main.querySelector(':scope > .quarto-figure');
+  var insertAfter = hero || header;
+  if (!insertAfter) return;
+
+  var columns = document.createElement('div');
+  columns.className = 'post-body-columns';
+  var prose = document.createElement('div');
+  prose.className = 'post-body-prose';
+
+  var node = insertAfter.nextElementSibling;
+  while (node) {
+    var next = node.nextElementSibling;
+    prose.appendChild(node);
+    node = next;
+  }
+
+  // TOC first in the DOM, matching the mockup: it leads (stacks above
+  // the prose) on mobile, and sits on the left at desktop widths — no
+  // flex `order` override needed either way.
+  columns.appendChild(sidebar);
+  columns.appendChild(prose);
+  insertAfter.insertAdjacentElement('afterend', columns);
+  sidebar.dataset.relocated = 'true';
+  sidebar.classList.add('post-toc-ready');
+}
+
+// Quarto's title block has no built-in "back to index" link — the design
+// wants one above the category tags, in the same style as the nav.
+function addAllWritingLink() {
+  var header = document.getElementById('title-block-header');
+  if (!header || header.dataset.breadcrumbAdded) return;
+
+  var link = document.createElement('a');
+  link.className = 'all-writing-link';
+  link.href = '/blog/';
+  link.innerHTML = '<span class="all-writing-rule"></span>All writing';
+  header.insertAdjacentElement('afterbegin', link);
+  header.dataset.breadcrumbAdded = 'true';
+}
+</script>
+<script>
+// Runs after toc-layout.js (see _quarto.yml's include-after-body order),
+// so .post-body-prose already exists by the time this executes.
+function initPostExtras() {
+  var prose = document.querySelector('.post-body-prose');
+  var h1 = document.querySelector('.quarto-title h1.title');
+  var dateMeta = document.querySelector('meta[name="dcterms.date"]');
+  if (!prose || !h1 || !dateMeta || prose.dataset.citeAdded) return;
+  prose.dataset.citeAdded = 'true';
+
+  var year = dateMeta.content.slice(0, 4);
+  var title = h1.textContent.trim();
+  var citation = 'Taylor, R. (' + year + '). ' + title + '. robtaylor.co.nz';
+
+  var box = document.createElement('div');
+  box.className = 'post-cite-box';
+
+  var citeCol = document.createElement('div');
+  var label = document.createElement('span');
+  label.className = 'post-cite-label';
+  label.textContent = 'Cite this post';
+  var text = document.createElement('span');
+  text.className = 'post-cite-text';
+  text.textContent = citation;
+  citeCol.appendChild(label);
+  citeCol.appendChild(text);
+
+  var actions = document.createElement('div');
+  actions.className = 'post-cite-actions';
+
+  var copyBtn = document.createElement('button');
+  copyBtn.type = 'button';
+  copyBtn.className = 'post-cite-btn';
+  copyBtn.textContent = 'Copy';
+
+  var shareBtn = document.createElement('button');
+  shareBtn.type = 'button';
+  shareBtn.className = 'post-cite-btn post-cite-btn-accent';
+  shareBtn.textContent = 'Share';
+
+  actions.appendChild(copyBtn);
+  actions.appendChild(shareBtn);
+  box.appendChild(citeCol);
+  box.appendChild(actions);
+  prose.appendChild(box);
+
+  function flash(btn, message) {
+    var original = btn.textContent;
+    btn.textContent = message;
+    btn.disabled = true;
+    setTimeout(function () {
+      btn.textContent = original;
+      btn.disabled = false;
+    }, 1800);
+  }
+
+  copyBtn.addEventListener('click', function () {
+    navigator.clipboard.writeText(citation).then(function () {
+      flash(copyBtn, 'Copied');
+    }, function () {
+      flash(copyBtn, 'Copy failed');
+    });
+  });
+
+  shareBtn.addEventListener('click', function () {
+    var url = location.href;
+    if (navigator.share) {
+      navigator.share({ title: title, url: url }).catch(function () {});
+    } else {
+      navigator.clipboard.writeText(url).then(function () {
+        flash(shareBtn, 'Link copied');
+      }, function () {
+        flash(shareBtn, 'Copy failed');
+      });
+    }
+  });
+}
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initPostExtras);
+} else {
+  initPostExtras();
+}
+</script>
 
 
 
