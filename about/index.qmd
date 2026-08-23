@@ -11,8 +11,9 @@ search: false
 ![](../images/profile.jpg){.profile-photo alt="Rob Taylor"}
 
 # Rob Taylor
-
-[Psychologist, statistician, and writer]{.profile-role}
+::: profile-role
+Psychologist, statistician, and writer
+:::
 
 ::: profile-divider
 :::

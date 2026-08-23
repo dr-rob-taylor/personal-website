@@ -12,3 +12,6 @@ comments:
     reactions-enabled: true
     loading: lazy
     input-position: bottom
+    theme:
+      light: https://robtaylor.co.nz/giscus-theme.css
+      dark: https://robtaylor.co.nz/giscus-theme.css

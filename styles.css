@@ -28,8 +28,16 @@ body {
   -moz-osx-font-smoothing: auto;
 }
 
+/* 18px matches the mockup's actual prose paragraph spacing exactly —
+   confirmed by grepping every `<p style="margin:...">` in the mockup:
+   `margin:0 0 18px` is the only value used for real body-copy paragraphs
+   (post body blocks, About page sections), appearing 9 times with no
+   variation. Every other paragraph in the mockup is either `margin:0`
+   (a single-line label/span wrapper, already handled with its own
+   explicit override elsewhere — see quarto-css-gotchas #15/#21) or a
+   one-off component value that already carries its own explicit style. */
 p {
-  margin: 0 0 13.8px;
+  margin: 0 0 18px;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -85,12 +93,20 @@ h2 {
    margin not quite reaching the row's true content height, this was
    adding ~150px of unaccounted space between the page content and the
    footer, well past the design's intended gap. Keep the named lines
-   themselves (content-top/content-bottom/page-bottom) intact — other
-   grid items (the margin sidebar, giscus comments) are positioned
-   against them and lose their placement entirely if the lines vanish —
-   just zero out the phantom row's own height. */
+   themselves (content-top/content-bottom/page-bottom) intact — Giscus
+   (`.giscus`, injected as a grid *sibling* of main, not nested inside
+   it — see main.qmd/giscus setup) has no explicit grid-row of its own
+   and simply auto-places into this second row track. A fixed `0px`
+   here (this row's previous value) doesn't grow for that content: the
+   grid container's own box ends as if the row were still empty, so the
+   footer — laid out immediately after in normal flow — starts before
+   Giscus's actual (variable-height) content finishes rendering,
+   visually overlapping it. `auto` fixes both cases at once: it still
+   collapses to ~0 on every page that has nothing placed in this row
+   (i.e. no phantom Quarto spacing), but genuinely grows to fit Giscus's
+   real height on a post page instead of clipping it. */
 #quarto-content {
-  grid-template-rows: [content-top] auto [content-bottom] 0px [page-bottom];
+  grid-template-rows: [content-top] auto [content-bottom] auto [page-bottom];
 }
 
 /* The remaining excess was main's own default 18px margin-bottom —
@@ -270,6 +286,10 @@ main.content {
 
 .btn {
   font-family: "Cormorant Garamond", Georgia, serif;
+  /* Every outlined CTA in the mockup (hero, 404, Software page) sets
+     this explicitly at 15px; Bootstrap's own `.btn` default (~1rem,
+     computed ~17px in this theme) was showing through unset otherwise. */
+  font-size: 15px;
   border-radius: 4px;
   box-shadow: none !important;
   transition: background var(--cl-transition),
@@ -740,6 +760,20 @@ img.plate {
 .elsewhere-links {
   border-top: 1px solid var(--cl-divider);
   padding-top: 20px;
+}
+
+/* The three link lines have no blank line between them in the .qmd, so
+   Pandoc merges them into one <p> (rather than the mockup's own
+   `display:flex;flex-direction:column;gap:9px` div) — reproduce that
+   gap here and drop the merged <p>'s own margin, which otherwise both
+   collapses the links flush together *and* adds an unwanted trailing
+   margin below the last one. `:has(a)` scopes this to that generated
+   <p> without touching the "Elsewhere" heading's own <p> sibling. */
+.elsewhere-links p:has(a) {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
 }
 
 .elsewhere-links a {
@@ -1221,6 +1255,7 @@ div.quarto-post .metadata {
   border: none;
   background: transparent;
   padding: 0;
+  font-weight: 400;
 }
 
 .quarto-title h1.title {
@@ -1278,6 +1313,7 @@ div.quarto-post .metadata {
 }
 
 .quarto-title-meta-contents p {
+  font-size: 15px;
   margin: 0;
 }
 
@@ -1316,7 +1352,9 @@ figure:has(> p > img.post-hero) figcaption {
    instead of its own 400). .page-layout-article is the one class that
    actually distinguishes a blog post page from every other layout. */
 .page-layout-article main.content {
-  font-size: 18.5px;
+  /* Matches the mockup's post-body paragraph font-size exactly — see
+     the (identical) clamp() on .about-main p below. */
+  font-size: clamp(17px, 0.5vw + 15px, 20px);
   line-height: 1.65;
   /* Quarto's own named grid columns leave the article ~150px narrower
      than the navbar on each side. Take it out of that grid and match the
@@ -1324,17 +1362,97 @@ figure:has(> p > img.post-hero) figcaption {
      max-width 1040px, 32px side padding) so the content lines up with the
      brand on the left and "About" on the right. */
   grid-column: 1 / -1;
+  /* Without an explicit `width`, this grid item's "auto" sizing (even
+     with min-width:0 below) still resolved to its content's max-content
+     size rather than stretching to fill its grid area — a code block's
+     unbreakable `white-space:pre` text (the longest line) sets that
+     size, so at narrow viewports the whole column stopped shrinking
+     with the viewport and forced real horizontal page overflow instead
+     of the code block scrolling internally as intended. Explicit
+     `width:100%` (grid areas otherwise default to `justify-self:stretch`
+     with a `width:auto` box, which is where the ambiguity crept in)
+     resolves it — matches `max-width:1040px` exactly at wide viewports,
+     genuinely fills the narrower grid area below that. */
+  width: 100%;
   max-width: 1040px;
   margin-left: auto;
   margin-right: auto;
   padding-left: 32px;
   padding-right: 32px;
+  min-width: 0;
 }
 
 .page-layout-article main.content p {
   text-align: justify;
   hyphens: auto;
   text-wrap: pretty;
+}
+
+/* Lists — the mockup drops native markers/counters entirely in favour
+   of custom flex rows: unordered items get a short accent dash (no
+   bullet) with a loose 11px gap between rows; ordered items get an
+   accent-coloured index number in a narrow left column plus a hairline
+   divider above each row (no native decimal marker/indent). Scoped to
+   `.post-body-prose` specifically, not the broader `.page-layout-article
+   main.content` — the post TOC (`#TOC`) is a `<ul><li><a>` too, and
+   lives in that same `main.content` container as a sidebar sibling of
+   the prose, so the wider selector was also putting an accent dash
+   before every TOC entry regardless of section/active state. */
+.post-body-prose ul,
+.post-body-prose ol {
+  margin: 0 0 22px;
+  padding: 0;
+  list-style: none;
+}
+
+.post-body-prose ul {
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+}
+
+.post-body-prose ul li {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  font-size: clamp(17px, 0.5vw + 15px, 20px);
+  line-height: 1.6;
+  color: var(--cl-text);
+}
+
+.post-body-prose ul li::before {
+  content: "";
+  flex: none;
+  width: 16px;
+  height: 1px;
+  margin-top: 15px;
+  background: var(--cl-accent-light);
+}
+
+.post-body-prose ol {
+  counter-reset: post-list;
+}
+
+.post-body-prose ol li {
+  counter-increment: post-list;
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  padding: 12px 0;
+  border-top: 1px solid var(--cl-divider);
+  font-size: clamp(17px, 0.5vw + 15px, 20px);
+  line-height: 1.6;
+  color: var(--cl-text);
+}
+
+.post-body-prose ol li::before {
+  content: counter(post-list) ".";
+  flex: none;
+  width: 24px;
+  padding-top: 2px;
+  font-size: 17px;
+  color: var(--cl-accent-text);
+  font-feature-settings: "tnum";
 }
 
 .page-layout-article main.content h2 {
@@ -1351,17 +1469,36 @@ figure:has(> p > img.post-hero) figcaption {
   font-size: 23px;
 }
 
-/* Blockquotes */
+/* Blockquotes. Quarto stamps Bootstrap's own `.blockquote` class onto
+   every <blockquote>, which — being a class selector — beats the plain
+   `blockquote` type selector below on shared properties (margin,
+   padding, font-size — Bootstrap has two `.blockquote` rules, one of
+   which sets `font-size:inherit`, silently pulling in the surrounding
+   prose's clamp() instead of the blockquote's own) regardless of
+   source order; !important forces our values (matching the mockup's
+   `margin:28px 0;padding:4px 0 4px 24px;font-size:clamp(20px,2.4vw,26px)`)
+   back in. Markdown always wraps quote content in its own <p>, which
+   the mockup's plain-text template has no equivalent of — reset that
+   inner <p>'s margin so it doesn't add extra space inside the padding. */
 blockquote {
-  padding: 4px 0 4px 24px;
+  margin: 28px 0 !important;
+  padding: 4px 0 4px 24px !important;
   border-left: 2px solid var(--cl-accent-light) !important;
   font-family: "Cormorant Garamond", Georgia, serif;
   font-style: italic;
-  font-size: clamp(20px, 2.4vw, 26px);
+  font-size: clamp(20px, 2.4vw, 26px) !important;
   line-height: 1.42;
   color: var(--cl-text);
   text-wrap: pretty;
   background: transparent !important;
+}
+
+blockquote p {
+  margin: 0;
+}
+
+blockquote p + p {
+  margin-top: 18px;
 }
 
 /* Figure captions */
@@ -1389,13 +1526,17 @@ figcaption {
 }
 
 .post-body-columns #quarto-sidebar {
-  order: -1;
   flex: 0 0 230px;
   position: sticky;
   top: 84px;
 }
 
-@media (max-width: 900px) {
+/* Matches Quarto/Bootstrap's own sidebar breakpoint (#quarto-sidebar is
+   only forced `display:flex` above `min-width:992px` — see
+   bootstrap.min.css). Using a different cutoff here (e.g. 900px) leaves
+   a dead zone between the two breakpoints where Bootstrap's default
+   `.collapse:not(.show){display:none}` wins and the TOC vanishes. */
+@media (max-width: 991px) {
   .post-body-columns {
     display: block;
   }
@@ -1459,6 +1600,12 @@ nav.toc-active {
   text-decoration: none;
   transition: color var(--cl-transition);
   padding: 4px 0;
+  /* Quarto/Bootstrap gives every TOC link its own left border by default
+     (`.sidebar nav[role="doc-toc"] > ul a{border-left:1px solid ...}`) —
+     a permanent hairline per item that we never opposed since nothing
+     here set border-left at all. Only the accent `::before` dash below
+     should mark a section, and only for the active one. */
+  border-left: none;
 }
 
 #TOC a::before {
@@ -1494,13 +1641,15 @@ nav.toc-active {
   margin-bottom: 10px;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 991px) {
   /* Quarto's article layout puts a left-positioned TOC in the same
      off-canvas sidebar mechanism docs sites use for left nav — hidden
-     by default below its own breakpoint, revealed only via a toggle
-     this page never renders. Left as-is, the TOC is just unreachable
-     on mobile. Force it open and in-flow instead, matching every
-     other rail on the site (static, stacked below its content). */
+     by default below its own breakpoint (992px, set in bootstrap.min.css
+     — matched here so there's no gap where neither rule applies and the
+     sidebar just vanishes), revealed only via a toggle this page never
+     renders. Left as-is, the TOC is just unreachable on mobile. Force it
+     open and in-flow instead, stacking above the prose (matches the
+     mockup's DOM order — see toc-layout.js). */
   #quarto-sidebar.sidebar.collapse {
     position: static !important;
     display: block !important;
@@ -1533,15 +1682,27 @@ nav.toc-active {
    CODE BLOCKS
    ============================================ */
 
+/* Every code block on the site is Quarto-generated, so is always
+   `pre.sourceCode` — Bootstrap has its own same-named rule
+   (`pre.sourceCode{border-style:none;font-size:.875em;padding:.4em;...}`)
+   that, being a class selector, outranks the plain-element `pre`
+   selector here regardless of source order (0,1,1 beats 0,0,1) —
+   silently dropping the border entirely and making font-size/padding
+   relative to the surrounding prose size instead of the fixed values
+   below. Quarto also inline-styles `.sourceCode{overflow:visible}`
+   (same specificity trap), which — only surfaced by checking a long
+   code line at a narrow viewport — let long lines force the *whole
+   page* to overflow horizontally instead of scrolling inside the
+   block. !important forces all of this back to the mockup's values. */
 pre {
-  margin: 0;
-  padding: 16px 18px;
+  margin: 0 !important;
+  padding: 16px 18px !important;
   background: var(--cl-ground) !important;
-  border: 1px solid var(--cl-divider);
-  border-top: 2px solid var(--cl-accent-light);
+  border: 1px solid var(--cl-divider) !important;
+  border-top: 2px solid var(--cl-accent-light) !important;
   border-radius: 4px;
-  overflow-x: auto;
-  font-size: 13px;
+  overflow-x: auto !important;
+  font-size: 13px !important;
   line-height: 1.7;
   box-shadow: none !important;
 }
@@ -1892,6 +2053,13 @@ pre code {
   font-family: "Cormorant Garamond", Georgia, serif;
   font-style: italic;
   font-size: 17px;
+  color: var(--cl-text-muted);
+}
+
+.about-profile-rail .profile-role < p {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-style: italic;
+  font-size: 17px !important;
   color: var(--cl-text-muted);
 }
 
@@ -2332,13 +2500,204 @@ pre code {
 
 
 /* ============================================
+   POST SERIES BOX — "Part of a series", shown at the top of a post
+   that belongs to one (raw HTML in the .qmd, ahead of the first
+   heading — see maximum-likelihood-estimation{,-part-2}/index.qmd)
+   ============================================ */
+
+.post-series-box {
+  margin: 0 0 34px;
+  border: 1px solid var(--cl-divider);
+  border-top: 2px solid var(--cl-accent-light);
+  border-radius: 4px;
+  padding: 20px 24px;
+}
+
+/* The two spans inside .post-series-header sit on one line with no
+   blank line between them in the .qmd's raw HTML, so Pandoc wraps them
+   in an auto-generated <p> — that <p>, not the outer div, is the flex
+   container that actually needs to space them apart (same pattern as
+   quarto-css-gotchas #11/#15/#28). */
+.post-series-header {
+  margin-bottom: 4px;
+}
+
+.post-series-header p {
+  margin: 0;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.post-series-label {
+  font-size: 11.5px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--cl-accent-text);
+}
+
+.post-series-count {
+  font-size: 11.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--cl-text-quiet);
+  font-feature-settings: "tnum";
+}
+
+.post-series-name {
+  margin: 0 0 4px;
+  font-weight: 600;
+  font-size: 23px;
+}
+
+/* Beats .page-layout-article main.content p's justify/hyphens (higher
+   specificity — see quarto-css-gotchas #20) — this blurb is one short
+   line in the mockup, never justified. */
+.post-series-box p.post-series-blurb {
+  margin: 0 0 14px;
+  font-size: 17px;
+  line-height: 1.55;
+  color: var(--cl-text-muted);
+  text-align: left;
+  hyphens: none;
+}
+
+.post-series-parts {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Same Pandoc auto-<p>-wrap as .post-series-header above — the grid
+   needs to be on that inner <p>, not the outer row div. */
+.post-series-part {
+  padding: 9px 0;
+  border-top: 1px solid var(--cl-divider);
+}
+
+.post-series-part p {
+  margin: 0;
+  display: grid;
+  grid-template-columns: 34px 1fr;
+  gap: 12px;
+  align-items: baseline;
+}
+
+.post-series-part-n {
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  color: var(--cl-text-quiet);
+  font-feature-settings: "tnum";
+}
+
+.post-series-part-current {
+  font-size: 18px;
+  color: var(--cl-text);
+}
+
+.post-series-part-current em {
+  font-size: 13px;
+  color: var(--cl-accent-text);
+}
+
+.post-series-part a {
+  font-size: 18px;
+  color: var(--cl-accent-text);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(125, 84, 17, 0.35);
+  width: fit-content;
+}
+
+
+/* ============================================
+   POST CITE/SHARE BOX — injected by _includes/post-extras.js at the
+   end of every post's prose, before Giscus
+   ============================================ */
+
+.post-cite-box {
+  margin-top: 36px;
+  border: 1px solid var(--cl-divider);
+  border-radius: 4px;
+  padding: 20px 24px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.post-cite-label {
+  display: block;
+  font-size: 11.5px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--cl-text-muted);
+  margin-bottom: 7px;
+}
+
+.post-cite-text {
+  display: block;
+  font-size: 16.5px;
+  line-height: 1.5;
+  color: var(--cl-text);
+}
+
+.post-cite-actions {
+  display: flex;
+  gap: 9px;
+}
+
+.post-cite-btn {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 14.5px;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  padding: 0 16px;
+  border: 1px solid var(--cl-divider);
+  border-radius: 4px;
+  cursor: pointer;
+  white-space: nowrap;
+  background: transparent;
+  color: var(--cl-text);
+  transition: background var(--cl-transition);
+}
+
+.post-cite-btn:hover {
+  background: rgba(32, 31, 29, 0.07);
+}
+
+.post-cite-btn-accent {
+  border-color: var(--cl-accent-text);
+  color: var(--cl-accent-text);
+}
+
+.post-cite-btn-accent:hover {
+  background: var(--cl-accent-tint);
+}
+
+
+/* ============================================
    GISCUS COMMENTS — rethemed
    ============================================ */
 
-.giscus-frame {
-  margin-top: 36px;
-  border-top: 1px solid var(--cl-divider);
-  padding-top: 22px;
+/* Space this against `.giscus` (giscus's own wrapper <div>), not
+   `.giscus-frame` (the <iframe> itself, also giscus's own class name).
+   Giscus sets the iframe's `height` in JS to exactly fit its own
+   content and assumes that height *is* the visible content area —
+   putting our divider/padding directly on the iframe, with the site's
+   global border-box sizing, silently ate 23px (22px padding + 1px
+   border) out of that budget instead of adding space above it,
+   clipping that much off the bottom of the widget (e.g. the "Sign in
+   with GitHub" button) every time, independent of any other giscus
+   loading/sizing issue. `.giscus` is a direct child of #quarto-content,
+   which Quarto/Bootstrap targets with its own `#quarto-content > *
+   {padding-top:14px}` (ID selector — beats a plain `.giscus` class
+   regardless of source order); !important forces our own value back. */
+.giscus {
+  margin-top: 36px !important;
+  border-top: 1px solid var(--cl-divider) !important;
+  padding-top: 22px !important;
 }
 
 

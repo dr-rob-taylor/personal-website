@@ -49,11 +49,11 @@ function relocateTOC() {
     node = next;
   }
 
-  // Prose first in the DOM so it leads on mobile (rails drop below their
-  // content there); flex `order` puts the TOC back on the left at
-  // desktop widths.
-  columns.appendChild(prose);
+  // TOC first in the DOM, matching the mockup: it leads (stacks above
+  // the prose) on mobile, and sits on the left at desktop widths — no
+  // flex `order` override needed either way.
   columns.appendChild(sidebar);
+  columns.appendChild(prose);
   insertAfter.insertAdjacentElement('afterend', columns);
   sidebar.dataset.relocated = 'true';
   sidebar.classList.add('post-toc-ready');

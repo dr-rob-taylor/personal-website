@@ -14,6 +14,25 @@ image-alt: "photo by Andres Drange"
 ---
 ![Photo by Andres Drange on Unsplash](anders-drange-VIveO0APhqI-unsplash.jpg){.post-hero}
 
+<div class="post-series-box">
+<div class="post-series-header">
+<span class="post-series-label">Part of a series</span>
+<span class="post-series-count">2 parts</span>
+</div>
+<h3 class="post-series-name">Maximum Likelihood Estimation</h3>
+<p class="post-series-blurb">A two-part treatment: the estimator first, then the calculus behind it.</p>
+<div class="post-series-parts">
+<div class="post-series-part">
+<span class="post-series-part-n">I</span>
+<a href="/blog/posts/maximum-likelihood-estimation/">An Introduction to Maximum Likelihood Estimation</a>
+</div>
+<div class="post-series-part">
+<span class="post-series-part-n">II</span>
+<span class="post-series-part-current">Maximum Likelihood Estimation: Part 2 <em>— you are here</em></span>
+</div>
+</div>
+</div>
+
 ## Introduction
 
 In an earlier [post](https://medium.com/@dataforyou/maximum-likelihood-estimation-cd9fd068e9a8), I stepped through maximum likelihood estimation and showed how to derive the estimator for the Binomial model from first principles. It was a bit of a whirlwind, for sure, and I threw a lot of equations at you. If you were left wondering where those equations came from you’ve come to the right place!

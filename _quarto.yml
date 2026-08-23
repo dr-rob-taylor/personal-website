@@ -46,5 +46,6 @@ format:
       - file: _includes/newsletter.js
       - file: _includes/reading-time.js
       - file: _includes/toc-layout.js
+      - file: _includes/post-extras.js
 
 editor: visual

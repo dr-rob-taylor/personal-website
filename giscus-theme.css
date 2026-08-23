@@ -1,0 +1,91 @@
+/*!
+ * Custom giscus theme matching the site's "Classical" design system.
+ * Structure follows giscus's own custom-theme convention (color custom
+ * properties scoped to `main`, plus targeted .gsc-* overrides) — see
+ * https://github.com/giscus/giscus/blob/main/styles/themes/custom_example.css
+ *
+ * Loaded cross-origin by giscus.app itself (via the `theme:` URL passed
+ * in blog/posts/_metadata.yml), so this only takes effect once deployed
+ * to the real domain — giscus.app cannot fetch a localhost URL during
+ * local `quarto preview`.
+ */
+
+main {
+  --color-fg-default: #201f1d;
+  --color-fg-muted: #605d5d;
+  --color-fg-subtle: #6a6666;
+
+  --color-canvas-default: #f8f4f4;
+  --color-canvas-overlay: #f8f4f4;
+  --color-canvas-inset: #f3f2f2;
+  --color-canvas-subtle: #f3f2f2;
+
+  --color-border-default: rgba(32, 31, 29, 0.14);
+  --color-border-muted: rgba(32, 31, 29, 0.14);
+  --color-neutral-muted: rgba(32, 31, 29, 0.07);
+
+  --color-accent-fg: #7d5411;
+  --color-accent-emphasis: #b68235;
+  --color-accent-muted: rgba(225, 173, 102, 0.4);
+  --color-accent-subtle: rgba(225, 173, 102, 0.22);
+
+  --color-success-fg: #4b7a3d;
+  --color-attention-fg: #b68235;
+  --color-attention-muted: rgba(182, 130, 53, 0.4);
+  --color-attention-subtle: rgba(182, 130, 53, 0.15);
+  --color-danger-fg: #9a3b28;
+  --color-danger-muted: rgba(154, 59, 40, 0.4);
+  --color-danger-subtle: rgba(154, 59, 40, 0.1);
+
+  /* Outlined-button style, matching .btn-primary/.btn-secondary on the
+     rest of the site (transparent fill, hairline border, accent text) —
+     not GitHub's filled-green default. */
+  --color-btn-text: #201f1d;
+  --color-btn-bg: transparent;
+  --color-btn-border: rgba(32, 31, 29, 0.2);
+  --color-btn-shadow: 0 0 transparent;
+  --color-btn-inset-shadow: 0 0 transparent;
+  --color-btn-hover-bg: rgba(32, 31, 29, 0.07);
+  --color-btn-hover-border: #b68235;
+  --color-btn-active-bg: rgba(32, 31, 29, 0.07);
+  --color-btn-active-border: #b68235;
+  --color-btn-selected-bg: rgba(32, 31, 29, 0.07);
+
+  --color-btn-primary-text: #7d5411;
+  --color-btn-primary-bg: transparent;
+  --color-btn-primary-border: #7d5411;
+  --color-btn-primary-shadow: 0 0 transparent;
+  --color-btn-primary-inset-shadow: 0 0 transparent;
+  --color-btn-primary-hover-bg: rgba(225, 173, 102, 0.22);
+  --color-btn-primary-hover-border: #7d5411;
+  --color-btn-primary-selected-bg: rgba(225, 173, 102, 0.22);
+  --color-btn-primary-disabled-text: rgba(32, 31, 29, 0.5);
+  --color-btn-primary-disabled-bg: transparent;
+  --color-btn-primary-disabled-border: rgba(32, 31, 29, 0.14);
+
+  --color-social-reaction-bg-hover: rgba(225, 173, 102, 0.12);
+  --color-social-reaction-bg-reacted-hover: rgba(225, 173, 102, 0.22);
+
+  --color-primer-shadow-inset: 0 0 transparent;
+}
+
+/*! Typography — match the site's serif face, falling back to the same
+    Georgia/serif stack when Cormorant Garamond isn't loaded. */
+main,
+main input,
+main textarea,
+main button {
+  font-family: "Cormorant Garamond", Georgia, serif !important;
+}
+
+/* Corner radius/shadow on all cards, boxes, and the comment textarea —
+   the site never uses GitHub's rounder 6px + shadow combination. */
+.gsc-header,
+.gsc-comment-box,
+.gsc-comment-box-textarea,
+.gsc-comment-box-tabs,
+.gsc-comment,
+button {
+  border-radius: 4px !important;
+  box-shadow: none !important;
+}
