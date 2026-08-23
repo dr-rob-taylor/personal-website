@@ -5,48 +5,32 @@ toc: false
 search: false
 ---
 
-::: {.column-body-outset}
-
-::: {.about-layout}
-
-::: {.about-profile-rail}
-
+::::::::::::::::::::::::::::::::::::::::: column-body-outset
+:::::::::::::::::::::::::::::::::::::::: about-layout
+::::::: about-profile-rail
 ![](../images/profile.jpg){.profile-photo alt="Rob Taylor"}
 
 # Rob Taylor
 
 [Psychologist, statistician, and writer]{.profile-role}
 
-::: {.profile-divider}
+::: profile-divider
 :::
 
-::: {.profile-links}
-<a href="https://bsky.app/profile/dataforyou.bsky.social" target="_blank">Bluesky <span class="link-domain">bsky.app</span></a>
-<a href="https://www.linkedin.com/in/dr-rob-taylor/" target="_blank">LinkedIn <span class="link-domain">linkedin.com</span></a>
-<a href="https://github.com/dr-rob-taylor" target="_blank">GitHub <span class="link-domain">github.com</span></a>
-<a href="mailto:rob@robtaylor.co.nz">Email <span class="link-domain">robtaylor.co.nz</span></a>
+::: profile-links
+<a href="https://bsky.app/profile/dataforyou.bsky.social" target="_blank">Bluesky [bsky.app]{.link-domain}</a> <a href="https://www.linkedin.com/in/dr-rob-taylor/" target="_blank">LinkedIn [linkedin.com]{.link-domain}</a> <a href="https://github.com/dr-rob-taylor" target="_blank">GitHub [github.com]{.link-domain}</a> <a href="mailto:rob@robtaylor.co.nz">Email [robtaylor.co.nz]{.link-domain}</a>
 :::
 
-::: {.profile-expertise}
+:::: profile-expertise
 ### Expertise
 
-::: {.tag-list}
-[Bayesian Inference]{.expertise-tag .primary}
-[Probability Theory]{.expertise-tag .primary}
-[Mathematical Modelling]{.expertise-tag .primary}
-[Psychophysics]{.expertise-tag .secondary}
-[Visual Cognition]{.expertise-tag .secondary}
-[Applied Data Science]{.expertise-tag .secondary}
-[Statistical Education]{.expertise-tag .secondary}
-[Food Systems]{.expertise-tag .secondary}
-[R / Python]{.expertise-tag .secondary}
+::: tag-list
+[Bayesian Inference]{.expertise-tag .primary} [Probability Theory]{.expertise-tag .primary} [Mathematical Modelling]{.expertise-tag .primary} [Psychophysics]{.expertise-tag .secondary} [Visual Cognition]{.expertise-tag .secondary} [Applied Data Science]{.expertise-tag .secondary} [Statistical Education]{.expertise-tag .secondary} [Food Systems]{.expertise-tag .secondary} [R / Python]{.expertise-tag .secondary}
 :::
-:::
+::::
+:::::::
 
-:::
-
-::: {.about-main}
-
+:::::::::::::::::::::::::::::::::: about-main
 ## Motivation
 
 Statistics is one of the most powerful tools for understanding the world — and one of the most poorly taught. Too often it's presented as a collection of procedures to follow rather than a coherent way of thinking about uncertainty. The mechanics get taught; the intuition doesn't.
@@ -69,115 +53,117 @@ If there is one thread running through most of what I write, it is probability a
 
 A recurring theme here will be building Bayesian intuition from the ground up: what it means to have a prior, what it means to update on evidence, and why that way of thinking changes how you approach data problems.
 
-::: {.cv-section}
-
+::::::::::::::: cv-section
 ## Short CV
 
-::: {.cv-entry}
-::: {.cv-when}
+::::: cv-entry
+::: cv-when
 2025 --
 :::
-::: {.cv-what}
-[Research Fellow]{.cv-title}\
-[Massey University · Food systems modelling]{.cv-place}
-:::
-:::
 
-::: {.cv-entry}
-::: {.cv-when}
+::: cv-what
+[Research Fellow, Massey University]{.cv-title}\
+[Building food system models and web applications with the Sustainable Nutrition Initiative]{.cv-place}
+:::
+:::::
+
+::::: cv-entry
+::: cv-when
 2021 -- 2024
 :::
-::: {.cv-what}
+
+::: cv-what
 [Senior Analyst]{.cv-title}\
 [New Zealand Police · Applied data science]{.cv-place}
 :::
-:::
+:::::
 
-::: {.cv-entry}
-::: {.cv-when}
+::::: cv-entry
+::: cv-when
 2018 -- 2021
 :::
-::: {.cv-what}
+
+::: cv-what
 [Postdoctoral Research Associate]{.cv-title}\
 [University of Cambridge · Visual working memory]{.cv-place}
 :::
-:::
+:::::
 
-::: {.cv-entry}
-::: {.cv-when}
+::::: cv-entry
+::: cv-when
 2013 -- 2017
 :::
-::: {.cv-what}
+
+::: cv-what
 [PhD Psychology]{.cv-title}\
 [University of New South Wales · Psychophysics]{.cv-place}
 :::
-:::
+:::::
+:::::::::::::::
 
-:::
-
-::: {.selected-pubs}
-
-::: {.pubs-header}
+::::::::::::::::::: selected-pubs
+::: pubs-header
 ## Selected publications
 
 [All 10 papers](../publications/){.pubs-see-all}
 :::
 
-::: {.selected-pub-entry}
-::: {.pub-year}
+::::: selected-pub-entry
+::: pub-year
 2022
 :::
-::: {.pub-text}
+
+::: pub-text
 [Taylor, R.]{.pub-author-highlight}, Tomić, I., Aagten-Murphy, D., & Bays, P. M. Working memory is updated by reallocation of resources from obsolete to new items. [*Attention, Perception, & Psychophysics*]{.pub-venue}, 1--15. [PDF](https://link.springer.com/article/10.3758/s13414-022-02584-2)
 :::
-:::
+:::::
 
-::: {.selected-pub-entry}
-::: {.pub-year}
+::::: selected-pub-entry
+::: pub-year
 2020
 :::
-::: {.pub-text}
+
+::: pub-text
 Schneegans, S., [Taylor, R.]{.pub-author-highlight}, & Bays, P. M. Stochastic sampling provides a unifying account of visual working memory limits. [*Proceedings of the National Academy of Sciences, 117(34)*]{.pub-venue}, 20959--20968. [PDF](https://www.pnas.org/doi/epdf/10.1073/pnas.2004306117)
 :::
-:::
+:::::
 
-::: {.selected-pub-entry}
-::: {.pub-year}
+::::: selected-pub-entry
+::: pub-year
 2020
 :::
-::: {.pub-text}
+
+::: pub-text
 [Taylor, R.]{.pub-author-highlight}, & Bays, P. M. Theory of neural coding predicts an upper bound on estimates of memory variability. [*Psychological Review, 127(5)*]{.pub-venue}, 700. [PDF](https://psycnet.apa.org/fulltext/2020-19842-001.pdf)
 :::
-:::
+:::::
 
-::: {.selected-pub-entry}
-::: {.pub-year}
+::::: selected-pub-entry
+::: pub-year
 2018
 :::
-::: {.pub-text}
+
+::: pub-text
 [Taylor, R.]{.pub-author-highlight}, & Bays, P. M. Efficient coding in visual working memory accounts for stimulus-specific variations in recall. [*Journal of Neuroscience, 38(32)*]{.pub-venue}, 7132--7142. [PDF](https://www.jneurosci.org/content/jneuro/38/32/7132.full.pdf)
 :::
-:::
+:::::
 
-::: {.selected-pub-entry}
-::: {.pub-year}
+::::: selected-pub-entry
+::: pub-year
 2018
 :::
-::: {.pub-text}
+
+::: pub-text
 Bays, P. M., & [Taylor, R.]{.pub-author-highlight} A neural model of retrospective attention in visual working memory. [*Cognitive Psychology, 100*]{.pub-venue}, 43--52. [PDF](https://reader.elsevier.com/reader/sd/pii/S0010028517302645)
 :::
-:::
+:::::
+:::::::::::::::::::
 
-:::
-
-::: {.contact-card}
+::: contact-card
 ### Get in touch
 
 Questions, suggestions, or you just want to talk statistics — I'd love to hear from you.
 :::
-
-:::
-
-:::
-
-:::
+::::::::::::::::::::::::::::::::::
+::::::::::::::::::::::::::::::::::::::::
+:::::::::::::::::::::::::::::::::::::::::

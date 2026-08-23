@@ -28,6 +28,10 @@ body {
   -moz-osx-font-smoothing: auto;
 }
 
+p {
+  margin: 0 0 13.8px;
+}
+
 h1, h2, h3, h4, h5, h6 {
   font-family: "Cormorant Garamond", Georgia, serif;
 }
@@ -44,6 +48,8 @@ h1, h2, h3, h4, h5, h6 {
    overrides was quietly rendering a full step lighter than the mock. */
 h1 {
   font-weight: 400;
+  /*margin: 0px 0px 4px;
+  letter-spacing: -0.02em;*/
 }
 
 h2, h3, h4, h5, h6 {
@@ -1657,6 +1663,7 @@ pre code {
 
 .pub-entry .pub-links {
   flex: none;
+  /*flex: 0 0 auto;*/
   display: flex;
   gap: 16px;
   font-family: "Cormorant Garamond", Georgia, serif;
@@ -1995,11 +2002,12 @@ pre code {
   border-top: 1px solid var(--cl-divider);
 }
 
-.cv-entry .cv-when {
+.cv-entry .cv-when p {
+  margin: 0;
   flex: none;
   width: 112px;
   font-family: "Cormorant Garamond", Georgia, serif;
-  font-size: 15px;
+  font-size: 15px !important;
   letter-spacing: 0.04em;
   color: var(--cl-accent-text);
   font-feature-settings: "tnum";
@@ -2008,6 +2016,12 @@ pre code {
 .cv-entry .cv-what {
   flex: 1 1 240px;
   min-width: 0;
+}
+
+.cv-entry .cv-what p {
+  margin: 0;
+  font-size: 16.5px;
+  line-height: 1.5;
 }
 
 .cv-entry .cv-title {
@@ -2020,7 +2034,7 @@ pre code {
 .cv-entry .cv-place {
   font-family: "Cormorant Garamond", Georgia, serif;
   font-size: 16.5px;
-  line-height: 1.5;
+  line-height: 1.5 !important;
   color: var(--cl-text-muted);
 }
 
@@ -2039,8 +2053,12 @@ pre code {
 }
 
 .selected-pubs .pubs-header h2 {
-  margin: 0;
+  margin: 0 !important;
   font-size: 24px;
+}
+
+.selected-pubs .pubs-header p {
+  margin: 0;
 }
 
 .selected-pubs .pubs-header a {
