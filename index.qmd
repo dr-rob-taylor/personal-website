@@ -28,54 +28,54 @@ I'm a psychologist writing about statistics, probability and mathematical modell
 :::::
 ::::::
 
-::::::::::: home-content
+::::::::::::: home-content
 ::::: home-posts
 ::: posts-header
 ## Latest posts
 
-[All posts <span class="link-rule"></span>](blog/){.posts-all-link}
+[All posts ](blog/){.posts-all-link}
 :::
 
 ::: {#recent-posts}
 :::
 :::::
 
-::::::: home-rail
-:::: recently-block
+::::::::: home-rail
+::::::: recently-block
 [Recently]{.rail-heading}
 
-::: news-items
+:::::: news-items
 ::: news-item-classical
 [Aug 2026]{.news-date}
 
-[Returned to academic research, building models of food systems.]{.news-text}
+[New site launched! Content from Medium is slowly being migrated here. More to come.]{.news-text}
+:::
+
+::: news-item-classical
+[June 2026]{.news-date}
+
+[Wordle-bot is out! Becasue another half-baked Wordle engine is what everyone needs right now.]{.news-text}
+
+[Check it out [↗]{.arrow}](https://github.com/dr-rob-taylor/wordle-model){.news-link}
 :::
 
 ::: news-item-classical
 [Apr 2026]{.news-date}
 
-[Multi-part series on Maximum Likelihood Estimation underway — theory from first principles through to practical applications.]{.news-text}
+[Code for Prussian Horse Kick analysis available.]{.news-text}
 
-[Start here <span class="arrow">↗</span>](blog/posts/maximum-likelihood-estimation/){.news-link}
+[Check it out [↗]{.arrow}](https://github.com/dr-rob-taylor/horse-kick-analysis){.news-link}
 :::
-
-::: news-item-classical
-[Nov 2024]{.news-date}
-
-[Site launched. Publishing on statistics, probability, and Bayesian inference.]{.news-text}
-:::
-:::
-::::
+::::::
+:::::::
 
 ::: elsewhere-links
 [Elsewhere]{.rail-heading}
 
-<a href="https://bsky.app/profile/dataforyou.bsky.social" target="_blank">Bluesky <span class="link-domain">bsky.app</span></a>
-<a href="https://www.linkedin.com/in/dr-rob-taylor/" target="_blank">LinkedIn <span class="link-domain">linkedin.com</span></a>
-<a href="https://github.com/dr-rob-taylor" target="_blank">GitHub <span class="link-domain">github.com</span></a>
+<a href="https://bsky.app/profile/dataforyou.bsky.social" target="_blank">Bluesky [bsky.app]{.link-domain}</a> <a href="https://www.linkedin.com/in/dr-rob-taylor/" target="_blank">LinkedIn [linkedin.com]{.link-domain}</a> <a href="https://github.com/dr-rob-taylor" target="_blank">GitHub [github.com]{.link-domain}</a>
 :::
-:::::::
-:::::::::::
+:::::::::
+:::::::::::::
 
 :::::: newsletter-card
 ::::: newsletter-inner
@@ -87,9 +87,14 @@ One email per post. Statistics, probability, and the occasional gripe about how 
 
 ::: newsletter-form-wrap
 <form class="newsletter-form" id="newsletter-form" novalidate>
+
 <input type="text" inputmode="email" autocomplete="email" id="newsletter-email" placeholder="you@example.com" aria-label="Email address"> <button type="submit" class="btn btn-primary">Subscribe</button>
+
 </form>
-<p class="newsletter-msg" id="newsletter-msg"></p>
+
+<p class="newsletter-msg" id="newsletter-msg">
+
+</p>
 :::
 :::::
 ::::::
