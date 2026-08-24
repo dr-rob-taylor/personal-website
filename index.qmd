@@ -86,8 +86,8 @@ One email per post. Statistics, probability, and the occasional gripe about how 
 :::
 
 ::: newsletter-form-wrap
-<form class="newsletter-form" id="newsletter-form" novalidate>
-<input type="text" inputmode="email" autocomplete="email" id="newsletter-email" placeholder="you@example.com" aria-label="Email address"> <button type="submit" class="btn btn-primary">Subscribe</button>
+<form class="newsletter-form" id="newsletter-form" action="https://buttondown.com/api/emails/embed-subscribe/rob-taylor" method="post" target="popupwindow" novalidate>
+<input type="email" name="email" inputmode="email" autocomplete="email" id="newsletter-email" placeholder="you@example.com" aria-label="Email address"> <input type="hidden" value="1" name="embed"> <button type="submit" class="btn btn-primary">Subscribe</button>
 </form>
 <p class="newsletter-msg" id="newsletter-msg"></p>
 :::
