@@ -1,5 +1,7 @@
 project:
   type: website
+  resources:
+    - giscus-theme.css
 
 language:
   listing-page-filter: "Search the writing"
