@@ -34,7 +34,7 @@ Psychologist, statistician, and writer
 :::::::::::::::::::::::::::::::::: about-main
 ## Motivation
 
-Statistics is one of the most powerful tools for understanding the world — and one of the most poorly taught. Too often it's presented as a collection of procedures to follow rather than a coherent way of thinking about uncertainty. The mechanics get taught; the intuition doesn't.
+Statistics is one of the most powerful tools for understanding the world — and one of the most poorly taught. Too often it's presented as a collection of procedures to follow rather than a coherent way of thinking about uncertainty. The mechanics get taught but the intuition doesn't.
 
 Much of my writing exists to change that, at least in a small way. Every post here is written with a single goal: to help you understand not just *how* a method works, but *why* it works and *when* you should trust it. The mathematics is taken seriously, but it's always in service of understanding — never an end in itself.
 
@@ -64,40 +64,40 @@ A recurring theme here will be building Bayesian intuition from the ground up: w
 
 ::: cv-what
 [Research Fellow, Massey University]{.cv-title}\
-[Building food system models and web applications with the Sustainable Nutrition Initiative]{.cv-place}
+[Building food system models and web applications with the Sustainable Nutrition Initiative.]{.cv-place}
 :::
 :::::
 
 ::::: cv-entry
 ::: cv-when
-2021 -- 2024
+2019 -- 2025
 :::
 
 ::: cv-what
-[Senior Analyst]{.cv-title}\
-[New Zealand Police · Applied data science]{.cv-place}
+[Data scientist, New Zealand Police]{.cv-title}\
+[Applied statistics and modelling where analytical decisions carry real consequences.]{.cv-place}
 :::
 :::::
 
 ::::: cv-entry
 ::: cv-when
-2018 -- 2021
+2015 -- 2019
 :::
 
 ::: cv-what
-[Postdoctoral Research Associate]{.cv-title}\
-[University of Cambridge · Visual working memory]{.cv-place}
+[Postdoctoral research, visual working memory]{.cv-title}\
+[Computational models of visual memory precision and capacity. Neural coding models.]{.cv-place}
 :::
 :::::
 
 ::::: cv-entry
 ::: cv-when
-2013 -- 2017
+2011 -- 2015
 :::
 
 ::: cv-what
-[PhD Psychology]{.cv-title}\
-[University of New South Wales · Psychophysics]{.cv-place}
+[PhD, cognitive psychology]{.cv-title}\
+[Psychophysics and Bayesian signal detection models. Examined how feedback influences judgements of auditory stimuli.]{.cv-place}
 :::
 :::::
 :::::::::::::::
