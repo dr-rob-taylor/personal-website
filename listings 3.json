@@ -1,0 +1,32 @@
+[
+  {
+    "listing": "/blog/index.html",
+    "items": [
+      "/blog/posts/statistical-technicians/index.html",
+      "/blog/posts/do-we-need-to-test-variances/index.html",
+      "/blog/posts/stop-pretending-data-roles-are-separate/index.html",
+      "/blog/posts/a-note-on-confidence-intervals/index.html",
+      "/blog/posts/primer-on-p-values/index.html",
+      "/blog/posts/maximum-likelihood-estimation-part-2/index.html",
+      "/blog/posts/maximum-likelihood-estimation/index.html",
+      "/blog/posts/probability-versus-likelihood/index.html",
+      "/blog/posts/dual-axis-plots/index.html",
+      "/blog/posts/multicollinearity-problem-or-not/index.html"
+    ]
+  },
+  {
+    "listing": "/index.html",
+    "items": [
+      "/blog/posts/statistical-technicians/index.html",
+      "/blog/posts/do-we-need-to-test-variances/index.html",
+      "/blog/posts/stop-pretending-data-roles-are-separate/index.html",
+      "/blog/posts/a-note-on-confidence-intervals/index.html",
+      "/blog/posts/primer-on-p-values/index.html",
+      "/blog/posts/maximum-likelihood-estimation-part-2/index.html",
+      "/blog/posts/maximum-likelihood-estimation/index.html",
+      "/blog/posts/probability-versus-likelihood/index.html",
+      "/blog/posts/dual-axis-plots/index.html",
+      "/blog/posts/multicollinearity-problem-or-not/index.html"
+    ]
+  }
+]

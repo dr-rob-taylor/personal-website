@@ -1,0 +1,37 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "\nUnderstanding uncertainty, from first principles.\n",
+    "section": "",
+    "text": "Statistics · Probability · Bayesian thinking\n\n\nI’m a psychologist writing about statistics, probability and mathematical modelling — for people in data, and for anyone who wants the intuition and not just the procedure.\n\n\nRead the writing About me"
+  },
+  {
+    "objectID": "index.html#latest-posts",
+    "href": "index.html#latest-posts",
+    "title": "\nUnderstanding uncertainty, from first principles.\n",
+    "section": "Latest posts",
+    "text": "Latest posts\nAll posts"
+  },
+  {
+    "objectID": "Personal website UI mockups/github.html",
+    "href": "Personal website UI mockups/github.html",
+    "title": "rob taylor",
+    "section": "",
+    "text": "repo: dr-rob-taylor/personal-website branch: main"
+  },
+  {
+    "objectID": "Personal website UI mockups/github.html#last-sync",
+    "href": "Personal website UI mockups/github.html#last-sync",
+    "title": "rob taylor",
+    "section": "Last sync",
+    "text": "Last sync\ndate: 2026-08-18T08:49:24Z\n\nUpdated in this project\n\nPulled the real ggplot outputs for the dual-axis post (base and final plot) into assets/.\nReplaced placeholder R code with the post’s actual sec_axis walkthrough and prose.\nMulticollinearity post now carries its real display equations (collinearity, VIF)."
+  },
+  {
+    "objectID": "Personal website UI mockups/github.html#screen-map",
+    "href": "Personal website UI mockups/github.html#screen-map",
+    "title": "rob taylor",
+    "section": "Screen map",
+    "text": "Screen map\n\n\n\n\n\n\n\nProject screen\nBuilt from\n\n\n\n\nHome\nindex.qmd, _quarto.yml\n\n\nWriting (blog index)\nblog/index.qmd, blog/posts/*/index.qmd front matter\n\n\nBlog post\nblog/posts/*/index.qmd (bodies, figures, notes)\n\n\nSoftware + LaTeX editor\nsoftware/index.qmd, software/latex-editor/index.html\n\n\nPublications\npublications/index.qmd\n\n\nAbout\nabout/index.qmd, images/profile.jpg"
+  }
+]
